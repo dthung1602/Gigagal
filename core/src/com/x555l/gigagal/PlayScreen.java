@@ -21,12 +21,12 @@ class PlayScreen extends ScreenAdapter {
     public void show() {
         Assets.instance.init();
 
-        level = new Level();
-
         batch = new SpriteBatch();
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
-        chaseCamera = new ChaseCamera(viewport.getCamera(), level.gigagal);
+        level = new Level(viewport);
+
+        chaseCamera = new ChaseCamera(viewport.getCamera(), level.getGigagal());
     }
 
     @Override

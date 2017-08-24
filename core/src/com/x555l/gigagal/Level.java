@@ -5,18 +5,27 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.x555l.gigagal.entities.Bullet;
 import com.x555l.gigagal.entities.Enemy;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
+import com.x555l.gigagal.util.Enum.Facing;
+
 
 public class Level {
-    GigaGal gigagal;
-    public Array<Platform> platforms;
-    public DelayedRemovalArray<Enemy> enemies;
+    private GigaGal gigagal;
+    private Array<Platform> platforms;
+    private DelayedRemovalArray<Enemy> enemies;
+    private DelayedRemovalArray<Bullet> bullets;
 
-    Level() {
+    private Viewport viewport;
+
+    Level(Viewport viewport) {
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
+        bullets = new DelayedRemovalArray<Bullet>();
+        this.viewport = viewport;
 
         initDebugLevel();
     }
@@ -26,6 +35,14 @@ public class Level {
 
         for (Enemy enemy : enemies) {
             enemy.update(delta);
+        }
+
+
+        for (Bullet bullet : bullets) {
+            if (bullet.active)
+                bullet.update(delta);
+            else
+                bullets.removeValue(bullet, true);
         }
     }
 
@@ -38,6 +55,10 @@ public class Level {
 
         for (Enemy enemy : enemies) {
             enemy.render(batch);
+        }
+
+        for (Bullet bullet : bullets) {
+            bullet.render(batch);
         }
 
         gigagal.render(batch);
@@ -59,5 +80,25 @@ public class Level {
         platforms.add(new Platform(250, 90, 150, 10));
 
         enemies.add(new Enemy(platforms.get(8)));
+    }
+
+    public void addNewBullet(float x, float y, Facing direction) {
+        bullets.add(new Bullet(x, y, direction, this));
+    }
+
+    public GigaGal getGigagal() {
+        return gigagal;
+    }
+
+    public Array<Platform> getPlatforms() {
+        return platforms;
+    }
+
+    public DelayedRemovalArray<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public Viewport getViewport() {
+        return viewport;
     }
 }

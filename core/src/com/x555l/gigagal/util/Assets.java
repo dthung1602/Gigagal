@@ -26,6 +26,9 @@ public class Assets implements Disposable, AssetErrorListener {
     public GigaGalAssets gigaGalAssets;
     public PlatformAssets platformAssets;
     public EnemyAssets enemyAssets;
+    public BulletAssets bulletAssets;
+    public ExplosionAssets explosionAssets;
+    public PowerupAssets powerupAssets;
 
     // ensure singleton
     private Assets() {
@@ -41,6 +44,9 @@ public class Assets implements Disposable, AssetErrorListener {
         gigaGalAssets = new GigaGalAssets(textureAtlas);
         platformAssets = new PlatformAssets(textureAtlas);
         enemyAssets = new EnemyAssets(textureAtlas);
+        bulletAssets = new BulletAssets(textureAtlas);
+        explosionAssets = new ExplosionAssets(textureAtlas);
+        powerupAssets = new PowerupAssets(textureAtlas);
     }
 
     @Override
@@ -64,7 +70,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public AtlasRegion jumpingRight;
         public AtlasRegion jumpingLeft;
-        
+
         public Animation walkingLeft;
         public Animation walkingRight;
 
@@ -80,7 +86,7 @@ public class Assets implements Disposable, AssetErrorListener {
             regions.add(atlas.findRegion(Constants.WALK_2_LEFT));
             regions.add(atlas.findRegion(Constants.WALK_3_LEFT));
             walkingLeft = new Animation(Constants.WALK_LOOP_DURATION, regions, Animation.PlayMode.LOOP_PINGPONG);
-                    
+
             regions.clear();
             regions.add(atlas.findRegion(Constants.WALK_1_RIGHT));
             regions.add(atlas.findRegion(Constants.WALK_2_RIGHT));
@@ -108,6 +114,38 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion region;
 
         EnemyAssets(TextureAtlas atlas) {
+            region = atlas.findRegion(Constants.ENEMY);
+        }
+    }
+
+    public class BulletAssets {
+        public AtlasRegion leftBullet;
+        public AtlasRegion rightBullet;
+
+        BulletAssets(TextureAtlas atlas) {
+            leftBullet = atlas.findRegion(Constants.BULLET_LEFT);
+            rightBullet = atlas.findRegion(Constants.BULLET_RIGHT);
+        }
+    }
+
+    public class ExplosionAssets {
+        public Animation explosionLoop;
+
+        ExplosionAssets(TextureAtlas atlas) {
+            Array<TextureRegion> array = new Array<TextureRegion>();
+
+            array.add(atlas.findRegion(Constants.EXPLOSION_SMALL));
+            array.add(atlas.findRegion(Constants.EXPLOSION_MEDIUM));
+            array.add(atlas.findRegion(Constants.EXPLOSION_LARGE));
+
+            explosionLoop = new Animation(Constants.EXPLOSION_DURATION, array, Animation.PlayMode.LOOP_PINGPONG);
+        }
+    }
+
+    public class PowerupAssets {
+        public AtlasRegion region;
+
+        PowerupAssets(TextureAtlas atlas) {
             region = atlas.findRegion(Constants.ENEMY);
         }
     }

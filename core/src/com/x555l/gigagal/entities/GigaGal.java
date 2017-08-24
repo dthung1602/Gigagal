@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.*;
@@ -24,17 +25,16 @@ public class GigaGal {
 
     private long jumpStartTime;
     private long walkStartTime;
+    private long shootLastTime;
 
     private Facing facing;
     private JumpState jumpState;
     private WalkState walkState;
 
-    private Array<Platform> platforms;
-    private DelayedRemovalArray<Enemy> enemies;
+    private Level level;
 
     public GigaGal(Level level, Vector2 spawnPosition) {
-        platforms = level.platforms;
-        enemies = level.enemies;
+        this.level = level;
         this.spawnPosition = spawnPosition;
         init();
     }
@@ -47,6 +47,8 @@ public class GigaGal {
         facing = Facing.RIGHT;
         jumpState = JumpState.FALLING;
         walkState = WalkState.STANDING;
+
+        shootLastTime = 0;
     }
 
     public void update(float delta) {
@@ -70,7 +72,7 @@ public class GigaGal {
             if (jumpState != JumpState.KNOCK_BACK)
                 jumpState = JumpState.FALLING;
 
-            for (Platform platform : platforms) {
+            for (Platform platform : level.getPlatforms()) {
                 if (landOnPlatform(platform)) {
                     jumpState = JumpState.GROUNDED;
                     velocity.set(0, 0);
@@ -88,7 +90,7 @@ public class GigaGal {
                 Constants.GIGAGAL_HEIGHT
         );
 
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : level.getEnemies()) {
             Rectangle enemyBoundary = new Rectangle(
                     enemy.position.x - Constants.ENEMY_RADIUS,
                     enemy.position.y - Constants.ENEMY_RADIUS,
@@ -128,6 +130,27 @@ public class GigaGal {
             else
                 walkState = WalkState.STANDING;
 
+        // handle shoot key
+        if (Gdx.input.isKeyPressed(Keys.X)) {
+            shoot();
+        }
+
+    }
+
+    private void shoot() {
+        if (Util.seccondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN) {
+            shootLastTime = TimeUtils.nanoTime();
+
+            float xOffset = Constants.GIGAGAL_GUN_OFFSET.x;
+            if (facing == Facing.LEFT)
+                xOffset = -xOffset;
+
+            level.addNewBullet(
+                    position.x + xOffset,
+                    position.y + Constants.GIGAGAL_GUN_OFFSET.y,
+                    facing
+            );
+        }
     }
 
     private void knockBack(Enemy enemy) {

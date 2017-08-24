@@ -4,9 +4,16 @@ size: 128,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-bullet
+bullet-left
   rotate: false
   xy: 116, 83
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
+bullet-right
+  rotate: false
+  xy: 107, 6
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
