@@ -11,6 +11,7 @@ public class Enum {
         JUMPING,
         FALLING,
         GROUNDED,
+        KNOCK_BACK,
     }
 
     public enum WalkState {

@@ -1,6 +1,5 @@
 package com.x555l.gigagal.entities;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +14,7 @@ import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.*;
 import com.x555l.gigagal.util.Util;
 import com.x555l.gigagal.Level;
+
 
 public class GigaGal {
     private Vector2 spawnPosition;
@@ -67,12 +67,13 @@ public class GigaGal {
 
         // handle jumping states and landing on platforms
         if (jumpState != JumpState.JUMPING) {
-            jumpState = JumpState.FALLING;
+            if (jumpState != JumpState.KNOCK_BACK)
+                jumpState = JumpState.FALLING;
 
             for (Platform platform : platforms) {
                 if (landOnPlatform(platform)) {
                     jumpState = JumpState.GROUNDED;
-                    velocity.y = 0;
+                    velocity.set(0, 0);
                     position.y = platform.top + Constants.GIGAGAL_EYE_POSITION.y;
                     break;
                 }
@@ -119,17 +120,18 @@ public class GigaGal {
         }
 
         // handle moving left/right key
-        if (Gdx.input.isKeyPressed(Keys.LEFT))
-            moveLeft(delta);
-        else if (Gdx.input.isKeyPressed(Keys.RIGHT))
-            moveRight(delta);
-        else
-            walkState = WalkState.STANDING;
+        if (jumpState != JumpState.KNOCK_BACK)
+            if (Gdx.input.isKeyPressed(Keys.LEFT))
+                moveLeft(delta);
+            else if (Gdx.input.isKeyPressed(Keys.RIGHT))
+                moveRight(delta);
+            else
+                walkState = WalkState.STANDING;
 
     }
 
     private void knockBack(Enemy enemy) {
-        jumpState = JumpState.FALLING;
+        jumpState = JumpState.KNOCK_BACK;
 
         // knock to the right
         velocity.set(Constants.KNOCK_BACK_VELOCITY);
