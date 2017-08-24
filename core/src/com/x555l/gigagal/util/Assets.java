@@ -129,16 +129,27 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class ExplosionAssets {
-        public Animation explosionLoop;
+        private Array<TextureRegion> smallArray;
+        private Array<TextureRegion> largeArray;
 
         ExplosionAssets(TextureAtlas atlas) {
-            Array<TextureRegion> array = new Array<TextureRegion>();
+            smallArray = new Array<TextureRegion>();
 
-            array.add(atlas.findRegion(Constants.EXPLOSION_SMALL));
-            array.add(atlas.findRegion(Constants.EXPLOSION_MEDIUM));
-            array.add(atlas.findRegion(Constants.EXPLOSION_LARGE));
+            smallArray.add(atlas.findRegion(Constants.EXPLOSION_SMALL));
+            smallArray.add(atlas.findRegion(Constants.EXPLOSION_MEDIUM));
+            smallArray.add(atlas.findRegion(Constants.EXPLOSION_LARGE));
 
-            explosionLoop = new Animation(Constants.EXPLOSION_DURATION, array, Animation.PlayMode.LOOP_PINGPONG);
+            largeArray = new Array<TextureRegion>();
+
+            largeArray.add(atlas.findRegion(Constants.EXPLOSION_SMALL_X));
+            largeArray.add(atlas.findRegion(Constants.EXPLOSION_MEDIUM_X));
+            largeArray.add(atlas.findRegion(Constants.EXPLOSION_LARGE_X));
+        }
+
+        public Animation getExplosionLoop(boolean largeExplosion) {
+            if (largeExplosion)
+                return new Animation(Constants.EXPLOSION_DURATION, largeArray, Animation.PlayMode.NORMAL);
+            return new Animation(Constants.EXPLOSION_DURATION, smallArray, Animation.PlayMode.NORMAL);
         }
     }
 

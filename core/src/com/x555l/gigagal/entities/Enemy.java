@@ -3,22 +3,25 @@ package com.x555l.gigagal.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.x555l.gigagal.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
 
 public class Enemy {
     private Platform platform;
-    Vector2 position;
     private float floatTime;
-
     private Facing direction;
+
+    public Vector2 position;
+    public int health;
 
     public Enemy(Platform platform) {
         this.platform = platform;
         position = new Vector2(platform.left, platform.top + Constants.ENEMY_CENTER.y);
         direction = Facing.RIGHT;
         floatTime = 0;
+        health = Constants.ENEMY_HEALTH;
     }
 
     public void update(float delta) {

@@ -43,6 +43,13 @@ public class Bullet {
         }
 
         // detect collision with enemy
+        for (Enemy enemy : level.getEnemies()) {
+            if (enemy.position.dst(position) < Constants.ENEMY_HIT_RADIUS) {
+                enemy.health--;
+                level.addNewExplosion(position, false);
+                active = false;
+            }
+        }
     }
 
     public void render(SpriteBatch batch) {

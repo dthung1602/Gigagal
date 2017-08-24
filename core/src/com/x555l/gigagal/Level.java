@@ -6,10 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.x555l.gigagal.entities.Bullet;
-import com.x555l.gigagal.entities.Enemy;
-import com.x555l.gigagal.entities.GigaGal;
-import com.x555l.gigagal.entities.Platform;
+import com.x555l.gigagal.entities.*;
 import com.x555l.gigagal.util.Enum.Facing;
 
 
@@ -18,6 +15,7 @@ public class Level {
     private Array<Platform> platforms;
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
+    private DelayedRemovalArray<Explosion> explosions;
 
     private Viewport viewport;
 
@@ -25,6 +23,7 @@ public class Level {
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
+        explosions = new DelayedRemovalArray<Explosion>();
         this.viewport = viewport;
 
         initDebugLevel();
@@ -34,7 +33,12 @@ public class Level {
         gigagal.update(delta);
 
         for (Enemy enemy : enemies) {
-            enemy.update(delta);
+            if (enemy.health >= 1) {
+                enemy.update(delta);
+            } else {
+                enemies.removeValue(enemy, true);
+                addNewExplosion(enemy.position, true);
+            }
         }
 
 
@@ -43,6 +47,11 @@ public class Level {
                 bullet.update(delta);
             else
                 bullets.removeValue(bullet, true);
+        }
+
+        for (Explosion explosion : explosions) {
+            if (explosion.finished)
+                explosions.removeValue(explosion, true);
         }
     }
 
@@ -59,6 +68,10 @@ public class Level {
 
         for (Bullet bullet : bullets) {
             bullet.render(batch);
+        }
+
+        for (Explosion explosion : explosions) {
+            explosion.render(batch);
         }
 
         gigagal.render(batch);
@@ -84,6 +97,10 @@ public class Level {
 
     public void addNewBullet(float x, float y, Facing direction) {
         bullets.add(new Bullet(x, y, direction, this));
+    }
+
+    public void addNewExplosion(Vector2 position, boolean largeExplosion) {
+        explosions.add(new Explosion(position, largeExplosion));
     }
 
     public GigaGal getGigagal() {

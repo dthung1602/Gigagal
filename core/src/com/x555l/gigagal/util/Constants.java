@@ -50,6 +50,8 @@ public class Constants {
     public static final float FLOAT_AMPLITUDE = 4f;
     public static final float FLOAT_PERIOD = 3f;
     public static final float ENEMY_RADIUS = 15f;
+    public static final float ENEMY_HIT_RADIUS = 17f;
+    public static final int ENEMY_HEALTH = 3;
 
     // bullet
     static final String BULLET_LEFT = "bullet-left";
@@ -62,8 +64,11 @@ public class Constants {
     static final String EXPLOSION_SMALL = "explosion-small";
     static final String EXPLOSION_MEDIUM = "explosion-medium";
     static final String EXPLOSION_LARGE = "explosion-large";
+    static final String EXPLOSION_SMALL_X = "explosion-small-x";
+    static final String EXPLOSION_MEDIUM_X = "explosion-medium-x";
+    static final String EXPLOSION_LARGE_X = "explosion-large-x";
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);
-    public static final float EXPLOSION_DURATION = 1f;
+    static final float EXPLOSION_DURATION = 0.05f;
 
     // powerup
     static final String POWERUP = "powerup";
