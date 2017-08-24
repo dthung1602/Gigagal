@@ -9,10 +9,10 @@ import com.x555l.gigagal.entities.Enemy;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 
-class Level {
+public class Level {
     GigaGal gigagal;
-    private Array<Platform> platforms;
-    private DelayedRemovalArray<Enemy> enemies;
+    public Array<Platform> platforms;
+    public DelayedRemovalArray<Enemy> enemies;
 
     Level() {
         platforms = new Array<Platform>();
@@ -22,7 +22,7 @@ class Level {
     }
 
     void update(float delta) {
-        gigagal.update(delta, platforms);
+        gigagal.update(delta);
 
         for (Enemy enemy : enemies) {
             enemy.update(delta);
@@ -46,7 +46,7 @@ class Level {
     }
 
     void initDebugLevel() {
-        gigagal = new GigaGal(new Vector2(80, 80));
+        gigagal = new GigaGal(this, new Vector2(80, 80));
 
         platforms.add(new Platform(30, 8, 100, 30));
         platforms.add(new Platform(60, 50, 50, 10));

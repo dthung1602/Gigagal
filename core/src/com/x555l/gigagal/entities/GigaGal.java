@@ -5,14 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.*;
 import com.x555l.gigagal.util.Util;
+import com.x555l.gigagal.Level;
 
 public class GigaGal {
     private Vector2 spawnPosition;
@@ -27,7 +29,12 @@ public class GigaGal {
     private JumpState jumpState;
     private WalkState walkState;
 
-    public GigaGal(Vector2 spawnPosition) {
+    private Array<Platform> platforms;
+    private DelayedRemovalArray<Enemy> enemies;
+
+    public GigaGal(Level level, Vector2 spawnPosition) {
+        platforms = level.platforms;
+        enemies = level.enemies;
         this.spawnPosition = spawnPosition;
         init();
     }
@@ -42,7 +49,7 @@ public class GigaGal {
         walkState = WalkState.STANDING;
     }
 
-    public void update(float delta, Array<Platform> platforms) {
+    public void update(float delta) {
         // save current pos to prev. pos
         prevPosition.set(position);
 
@@ -72,6 +79,28 @@ public class GigaGal {
             }
         }
 
+        // detect collision with enemy
+        Rectangle gigagalBoundary = new Rectangle(
+                position.x - Constants.GIGAGAL_EYE_POSITION.x,
+                position.y - Constants.GIGAGAL_EYE_POSITION.y,
+                Constants.GIGAGAL_STANCE_WIDTH,
+                Constants.GIGAGAL_HEIGHT
+        );
+
+        for (Enemy enemy : enemies) {
+            Rectangle enemyBoundary = new Rectangle(
+                    enemy.position.x - Constants.ENEMY_RADIUS,
+                    enemy.position.y - Constants.ENEMY_RADIUS,
+                    Constants.ENEMY_RADIUS * 2,
+                    Constants.ENEMY_RADIUS * 2
+            );
+
+            if (gigagalBoundary.overlaps(enemyBoundary)) {
+                knockBack(enemy);
+                break;
+            }
+
+        }
 
         // handle jumping key
         if (Gdx.input.isKeyPressed(Keys.Z)) {
@@ -97,6 +126,18 @@ public class GigaGal {
         else
             walkState = WalkState.STANDING;
 
+    }
+
+    private void knockBack(Enemy enemy) {
+        jumpState = JumpState.FALLING;
+
+        // knock to the right
+        velocity.set(Constants.KNOCK_BACK_VELOCITY);
+
+        // knock to the left
+        if (enemy.position.x > position.x) {
+            velocity.x = -velocity.x;
+        }
     }
 
     private boolean landOnPlatform(Platform platform) {

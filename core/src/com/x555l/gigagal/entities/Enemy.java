@@ -9,7 +9,7 @@ import com.x555l.gigagal.util.Enum.Facing;
 
 public class Enemy {
     private Platform platform;
-    private Vector2 position;
+    Vector2 position;
     private float floatTime;
 
     private Facing direction;

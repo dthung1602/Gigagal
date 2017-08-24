@@ -10,7 +10,7 @@ public class Constants {
     public static final Color BACKGROUND_COLOR = Color.SKY;
     static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
     public static final float DEATH_DEPTH = -50;
-    public static final float CAMERA_SPEED = 64;
+    static final float CAMERA_SPEED = 64;
 
     // gigagal
     static final String STANDING_RIGHT = "standing-right";
@@ -28,11 +28,14 @@ public class Constants {
 
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(10, 24);
     public static final float GIGAGAL_STANCE_WIDTH = 15;
+    public static final float GIGAGAL_HEIGHT = 23;
 
     public static final float GIGAGAL_SPEED = 64;
     public static final float GIGAGAL_JUMP_SPEED = 256;
     public static final float GIGAGAL_MAX_JUMP_DURATION = 0.20f;
     public static final float GRAVITY = 1024;
+
+    public static final Vector2 KNOCK_BACK_VELOCITY = new Vector2(128, 256);
 
     // platform
     static final String PLATFORM = "platform";
