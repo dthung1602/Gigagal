@@ -6,15 +6,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.x555l.gigagal.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
-import com.x555l.gigagal.util.Enum.*;
+import com.x555l.gigagal.util.Enum.Facing;
+import com.x555l.gigagal.util.Enum.JumpState;
+import com.x555l.gigagal.util.Enum.WalkState;
 import com.x555l.gigagal.util.Util;
-import com.x555l.gigagal.Level;
 
 
 public class GigaGal {
@@ -23,7 +22,9 @@ public class GigaGal {
     private Vector2 prevPosition;
     private Vector2 velocity;
 
-    private int health;
+    public int health;
+    public int life;
+    public int bullet;
 
     private long jumpStartTime;
     private long walkStartTime;
@@ -36,18 +37,17 @@ public class GigaGal {
     private Level level;
 
     public GigaGal(Level level, float x, float y) {
-        this.level = level;
-        this.spawnPosition = new Vector2(x, y);
-        init();
+        this(level, new Vector2(x, y));
     }
 
     public GigaGal(Level level, Vector2 spawnPosition) {
         this.level = level;
         this.spawnPosition = spawnPosition.cpy();
+        life = Constants.INIT_LIFE;
         init();
     }
 
-    public void init() {
+    private void init() {
         position = new Vector2(spawnPosition);
         prevPosition = new Vector2(position);
         velocity = new Vector2(0, 0);
@@ -57,6 +57,7 @@ public class GigaGal {
         walkState = WalkState.STANDING;
 
         health = Constants.INIT_HEALTH;
+        bullet = Constants.INIT_BULLET;
 
         shootLastTime = 0;
     }
@@ -73,7 +74,7 @@ public class GigaGal {
 
         // death plane
         if (position.y < Constants.DEATH_DEPTH) {
-            init();
+            die();
             return;
         }
 
@@ -157,8 +158,9 @@ public class GigaGal {
     }
 
     private void shoot() {
-        if (Util.seccondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN) {
+        if (Util.seccondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN && bullet > 0) {
             shootLastTime = TimeUtils.nanoTime();
+            bullet--;
 
             float xOffset = Constants.GIGAGAL_GUN_OFFSET.x;
             if (facing == Facing.LEFT)
@@ -174,7 +176,7 @@ public class GigaGal {
 
     private void knockBack(Enemy enemy) {
         if (jumpState != JumpState.KNOCK_BACK) {
-            health--;
+            if (!loseHealth()) return;
             jumpState = JumpState.KNOCK_BACK;
         }
 
@@ -251,6 +253,33 @@ public class GigaGal {
         walkState = WalkState.WALKING;
         position.x += delta * Constants.GIGAGAL_SPEED;
         facing = Facing.RIGHT;
+    }
+
+    /*Return true if gigagal still alive,
+    false otherwise
+    * */
+    private boolean loseHealth() {
+        health--;
+        if (health == 0) {
+            die();
+            return false;
+        }
+        return true;
+    }
+
+    /*Return true if gigagal still has extra life,
+    false otherwise
+    * */
+    private boolean die() {
+        life--;
+        if (life == 0) {
+            // TODO lose
+            init();
+            return false;
+        } else {
+            init();
+            return true;
+        }
     }
 
     public void render(SpriteBatch batch) {

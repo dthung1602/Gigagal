@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.x555l.gigagal.overlays.GigagalHUD;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
 import com.x555l.gigagal.util.Constants;
@@ -18,6 +19,8 @@ class PlayScreen extends ScreenAdapter {
 
     private Level level;
 
+    private GigagalHUD hud;
+
     @Override
     public void show() {
         Assets.instance.init();
@@ -28,11 +31,14 @@ class PlayScreen extends ScreenAdapter {
         level = LevelLoader.load("level1", viewport);
 
         chaseCamera = new ChaseCamera(viewport.getCamera(), level.getGigagal());
+
+        hud = new GigagalHUD(level);
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+        hud.viewport.update(width, height, true);
     }
 
     @Override
@@ -46,7 +52,6 @@ class PlayScreen extends ScreenAdapter {
         // update everything
         level.update(delta);
         chaseCamera.update(delta);
-        viewport.apply();
 
         // clear screen
         Gdx.gl.glClearColor(
@@ -57,7 +62,7 @@ class PlayScreen extends ScreenAdapter {
         );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        batch.setProjectionMatrix(viewport.getCamera().combined);
         level.render(batch);
+        hud.render(batch);
     }
 }

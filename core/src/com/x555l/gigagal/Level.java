@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.entities.*;
+import com.x555l.gigagal.overlays.GigagalHUD;
 import com.x555l.gigagal.util.Enum.Facing;
 
 
@@ -59,6 +60,8 @@ public class Level {
     }
 
     void render(SpriteBatch batch) {
+        viewport.apply();
+        batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
         for (Platform platform : platforms) {

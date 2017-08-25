@@ -39,7 +39,13 @@ public class Constants {
     public static final Vector2 KNOCK_BACK_VELOCITY = new Vector2(128, 256);
 
     public static final int MAX_HEALTH = 5;
-    public static final int INIT_HEALTH = 2;
+    public static final int INIT_HEALTH = 3;
+
+    public static final int MAX_LIFE = 5;
+    public static final int INIT_LIFE = 3;
+
+    public static final int MAX_BULLET = 500;
+    public static final int INIT_BULLET = 25;
 
     // platform
     static final String PLATFORM = "platform";
@@ -78,14 +84,14 @@ public class Constants {
     public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
 
     // exit portal
-    public static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
-    public static final String EXIT_PORTAL_SPRITE_2 = "exit-portal-2";
-    public static final String EXIT_PORTAL_SPRITE_3 = "exit-portal-3";
-    public static final String EXIT_PORTAL_SPRITE_4 = "exit-portal-4";
-    public static final String EXIT_PORTAL_SPRITE_5 = "exit-portal-5";
-    public static final String EXIT_PORTAL_SPRITE_6 = "exit-portal-6";
+    static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
+    static final String EXIT_PORTAL_SPRITE_2 = "exit-portal-2";
+    static final String EXIT_PORTAL_SPRITE_3 = "exit-portal-3";
+    static final String EXIT_PORTAL_SPRITE_4 = "exit-portal-4";
+    static final String EXIT_PORTAL_SPRITE_5 = "exit-portal-5";
+    static final String EXIT_PORTAL_SPRITE_6 = "exit-portal-6";
 
-    public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
+    static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
     public static final float EXIT_PORTAL_RADIUS = 30;
 
     // level
@@ -109,4 +115,11 @@ public class Constants {
     static final String LEVEL_PLATFORM_TAG = "platform";
     static final String LEVEL_ENEMY_TAG = "platform-enemy";
     static final String LEVEL_POWERUP_TAG = "powerup";
+
+    // HUD
+    public static final float HUD_VIEWPORT_SIZE = 256;
+    public static final float HUD_LIFE_ICON_SIZE = 15;
+    public static final Vector2 HUD_HEALTH_OFFSET = new Vector2(5, 5);
+    public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
+
 }
