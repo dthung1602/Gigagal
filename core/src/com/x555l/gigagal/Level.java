@@ -12,6 +12,7 @@ import com.x555l.gigagal.util.Enum.Facing;
 
 public class Level {
     private GigaGal gigagal;
+    private ExitPortal exitPortal;
     private Array<Platform> platforms;
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
@@ -21,14 +22,15 @@ public class Level {
     private Viewport viewport;
 
     public Level(Viewport viewport) {
+        this.viewport = viewport;
+
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
-        this.viewport = viewport;
 
-//        initDebugLevel();
+        // initDebugLevel();
     }
 
     void update(float delta) {
@@ -79,6 +81,8 @@ public class Level {
             powerup.render(batch);
         }
 
+        exitPortal.render(batch);
+
         gigagal.render(batch);
 
         batch.end();
@@ -117,10 +121,6 @@ public class Level {
         return gigagal;
     }
 
-    public void setGigagal(GigaGal gigagal) {
-        this.gigagal = gigagal;
-    }
-
     public Array<Platform> getPlatforms() {
         return platforms;
     }
@@ -135,5 +135,13 @@ public class Level {
 
     public DelayedRemovalArray<Powerup> getPowerups() {
         return powerups;
+    }
+
+    public void setGigagal(GigaGal gigagal) {
+        this.gigagal = gigagal;
+    }
+
+    public void setExitPortal(ExitPortal exitPortal) {
+        this.exitPortal = exitPortal;
     }
 }

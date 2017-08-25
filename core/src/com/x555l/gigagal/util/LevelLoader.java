@@ -2,11 +2,10 @@ package com.x555l.gigagal.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.Level;
 import com.x555l.gigagal.entities.Enemy;
+import com.x555l.gigagal.entities.ExitPortal;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.Powerup;
@@ -49,19 +48,19 @@ public class LevelLoader {
 
                 String type = (String) jsonObject.get(Constants.LEVEL_TYPE_KEY);
 
-                System.out.println(type + " " + x + " " + y + " " + width + " " + height);
+//                System.out.println(type + " " + x + " " + y + " " + width + " " + height);
 
                 // create entity according to type
                 if (type.equals(Constants.LEVEL_PLATFORM_TAG))
                     newPlatform(level, x, y, width, height);
                 else if (type.equals(Constants.LEVEL_ENEMY_TAG))
                     newPlatformWithEnemy(level, x, y, width, height);
+                else if (type.equals(Constants.LEVEL_POWERUP_TAG))
+                    newPowerup(level, x, y);
                 else if (type.equals(Constants.LEVEL_START_TAG))
                     newStartPlatform(level, x, y, width, height);
                 else if (type.equals(Constants.LEVEL_END_TAG))
-                    newExit(level, x, y);
-                else if (type.equals(Constants.LEVEL_POWERUP_TAG))
-                    newPowerup(level, x, y);
+                    newExitPortal(level, x, y);
             }
 
         } catch (Exception ex) {
@@ -94,10 +93,9 @@ public class LevelLoader {
 
     private static void newPowerup(Level level, float x, float y) {
         level.getPowerups().add(new Powerup(x, y));
-        System.out.println(level.getPowerups());
     }
 
-    private static void newExit(Level level, float x, float y) {
-        // TODO complete
+    private static void newExitPortal(Level level, float x, float y) {
+        level.setExitPortal(new ExitPortal(x, y));
     }
 }

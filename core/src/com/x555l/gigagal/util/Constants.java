@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
     // world
-    public static final int WORLD_SIZE = 256/2;
+    public static final int WORLD_SIZE = 256;
     public static final Color BACKGROUND_COLOR = Color.SKY;
     static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
     public static final float DEATH_DEPTH = -150;
@@ -76,6 +76,17 @@ public class Constants {
     // powerup
     static final String POWERUP = "powerup";
     public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
+
+    // exit portal
+    public static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
+    public static final String EXIT_PORTAL_SPRITE_2 = "exit-portal-2";
+    public static final String EXIT_PORTAL_SPRITE_3 = "exit-portal-3";
+    public static final String EXIT_PORTAL_SPRITE_4 = "exit-portal-4";
+    public static final String EXIT_PORTAL_SPRITE_5 = "exit-portal-5";
+    public static final String EXIT_PORTAL_SPRITE_6 = "exit-portal-6";
+
+    public static final float EXIT_PORTAL_FRAME_DURATION = 0.1f;
+    public static final float EXIT_PORTAL_RADIUS = 30;
 
     // level
     static final String LEVEL_DIR = "levels";

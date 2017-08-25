@@ -29,6 +29,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public BulletAssets bulletAssets;
     public ExplosionAssets explosionAssets;
     public PowerupAssets powerupAssets;
+    public ExitPortalAssets exitPortalAssets;
 
     // ensure singleton
     private Assets() {
@@ -47,6 +48,7 @@ public class Assets implements Disposable, AssetErrorListener {
         bulletAssets = new BulletAssets(textureAtlas);
         explosionAssets = new ExplosionAssets(textureAtlas);
         powerupAssets = new PowerupAssets(textureAtlas);
+        exitPortalAssets = new ExitPortalAssets(textureAtlas);
     }
 
     @Override
@@ -158,6 +160,27 @@ public class Assets implements Disposable, AssetErrorListener {
 
         PowerupAssets(TextureAtlas atlas) {
             region = atlas.findRegion(Constants.POWERUP);
+        }
+    }
+
+    public class ExitPortalAssets {
+        public Animation animation;
+
+        ExitPortalAssets(TextureAtlas atlas) {
+            Array<TextureRegion> array = new Array<TextureRegion>();
+
+            array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_1));
+            array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_2));
+            array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_3));
+            array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_4));
+            array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_5));
+            array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_6));
+
+            animation = new Animation(
+                    Constants.EXIT_PORTAL_FRAME_DURATION,
+                    array,
+                    Animation.PlayMode.LOOP_REVERSED
+            );
         }
     }
 }
