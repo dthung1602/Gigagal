@@ -23,6 +23,8 @@ public class GigaGal {
     private Vector2 prevPosition;
     private Vector2 velocity;
 
+    private int health;
+
     private long jumpStartTime;
     private long walkStartTime;
     private long shootLastTime;
@@ -33,9 +35,15 @@ public class GigaGal {
 
     private Level level;
 
+    public GigaGal(Level level, float x, float y) {
+        this.level = level;
+        this.spawnPosition = new Vector2(x, y);
+        init();
+    }
+
     public GigaGal(Level level, Vector2 spawnPosition) {
         this.level = level;
-        this.spawnPosition = spawnPosition;
+        this.spawnPosition = spawnPosition.cpy();
         init();
     }
 
@@ -47,6 +55,8 @@ public class GigaGal {
         facing = Facing.RIGHT;
         jumpState = JumpState.FALLING;
         walkState = WalkState.STANDING;
+
+        health = Constants.INIT_HEALTH;
 
         shootLastTime = 0;
     }
@@ -102,7 +112,16 @@ public class GigaGal {
                 knockBack(enemy);
                 break;
             }
+        }
 
+        // detect powerup
+        for (Powerup powerup : level.getPowerups()) {
+            if (gigagalBoundary.contains(powerup.position)) {
+                level.getPowerups().removeValue(powerup, true);
+                if (health < Constants.MAX_HEALTH)
+                    health++;
+                break;
+            }
         }
 
         // handle jumping key
@@ -154,7 +173,10 @@ public class GigaGal {
     }
 
     private void knockBack(Enemy enemy) {
-        jumpState = JumpState.KNOCK_BACK;
+        if (jumpState != JumpState.KNOCK_BACK) {
+            health--;
+            jumpState = JumpState.KNOCK_BACK;
+        }
 
         // knock to the right
         velocity.set(Constants.KNOCK_BACK_VELOCITY);

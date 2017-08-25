@@ -157,7 +157,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion region;
 
         PowerupAssets(TextureAtlas atlas) {
-            region = atlas.findRegion(Constants.ENEMY);
+            region = atlas.findRegion(Constants.POWERUP);
         }
     }
 }

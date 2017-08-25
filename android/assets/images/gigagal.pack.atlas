@@ -1,19 +1,19 @@
 
 gigagal.pack.png
-size: 512,64
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 bullet-left
   rotate: false
-  xy: 264, 26
+  xy: 62, 9
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
   index: -1
 bullet-right
   rotate: false
-  xy: 472, 36
+  xy: 62, 2
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
@@ -25,58 +25,100 @@ enemy
   orig: 29, 44
   offset: 0, 0
   index: -1
+exit-portal-1
+  rotate: false
+  xy: 2, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-2
+  rotate: false
+  xy: 68, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-3
+  rotate: false
+  xy: 134, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-4
+  rotate: false
+  xy: 200, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-5
+  rotate: false
+  xy: 266, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+exit-portal-6
+  rotate: false
+  xy: 332, 62
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 explosion-large
   rotate: false
-  xy: 472, 43
+  xy: 319, 43
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-large-x
   rotate: false
-  xy: 93, 26
+  xy: 398, 92
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 explosion-medium
   rotate: false
-  xy: 491, 43
+  xy: 338, 43
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-medium-x
   rotate: false
-  xy: 129, 26
+  xy: 93, 26
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 explosion-small
   rotate: false
-  xy: 93, 7
+  xy: 357, 43
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-small-x
   rotate: false
-  xy: 165, 26
+  xy: 434, 92
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 jumping-left
   rotate: false
-  xy: 233, 25
+  xy: 161, 25
   size: 29, 35
   orig: 29, 35
   offset: 0, 0
   index: -1
 jumping-right
   rotate: false
-  xy: 201, 25
+  xy: 129, 25
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
@@ -90,63 +132,63 @@ platform
   index: -1
 powerup
   rotate: false
-  xy: 112, 7
+  xy: 452, 73
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 264, 33
+  xy: 398, 63
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 standing-right
   rotate: false
-  xy: 291, 33
+  xy: 470, 99
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 walk-1-left
   rotate: false
-  xy: 372, 33
+  xy: 219, 33
   size: 24, 27
   orig: 24, 27
   offset: 0, 0
   index: -1
 walk-1-right
   rotate: false
-  xy: 398, 33
+  xy: 245, 33
   size: 24, 27
   orig: 24, 27
   offset: 0, 0
   index: -1
 walk-2-left
   rotate: false
-  xy: 424, 33
+  xy: 271, 33
   size: 22, 27
   orig: 22, 27
   offset: 0, 0
   index: -1
 walk-2-right
   rotate: false
-  xy: 448, 33
+  xy: 295, 33
   size: 22, 27
   orig: 22, 27
   offset: 0, 0
   index: -1
 walk-3-left
   rotate: false
-  xy: 318, 33
+  xy: 192, 33
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 walk-3-right
   rotate: false
-  xy: 345, 33
+  xy: 425, 63
   size: 25, 27
   orig: 25, 27
   offset: 0, 0

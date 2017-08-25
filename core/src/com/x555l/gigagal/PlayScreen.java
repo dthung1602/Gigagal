@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
 import com.x555l.gigagal.util.Constants;
+import com.x555l.gigagal.util.LevelLoader;
 
 
 class PlayScreen extends ScreenAdapter {
@@ -24,7 +25,7 @@ class PlayScreen extends ScreenAdapter {
         batch = new SpriteBatch();
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
-        level = new Level(viewport);
+        level = LevelLoader.load("level1", viewport);
 
         chaseCamera = new ChaseCamera(viewport.getCamera(), level.getGigagal());
     }

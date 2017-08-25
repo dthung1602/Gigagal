@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
     // world
-    public static final int WORLD_SIZE = 256;
+    public static final int WORLD_SIZE = 256/2;
     public static final Color BACKGROUND_COLOR = Color.SKY;
     static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
-    public static final float DEATH_DEPTH = -50;
+    public static final float DEATH_DEPTH = -150;
     static final float CAMERA_SPEED = 64;
 
     // gigagal
@@ -38,6 +38,9 @@ public class Constants {
 
     public static final Vector2 KNOCK_BACK_VELOCITY = new Vector2(128, 256);
 
+    public static final int MAX_HEALTH = 5;
+    public static final int INIT_HEALTH = 2;
+
     // platform
     static final String PLATFORM = "platform";
     static final int HORIZONTAL_BORDER = 8;
@@ -58,7 +61,7 @@ public class Constants {
     static final String BULLET_RIGHT = "bullet-right";
     public static final Vector2 BULLET_CENTER = new Vector2(2, 3);
     public static final float BULLET_SPEED = 150;
-    public static final float BULLET_COOL_DOWN = 0.75f;
+    public static final float BULLET_COOL_DOWN = 0.4f;
 
     // explosion
     static final String EXPLOSION_SMALL = "explosion-small";
@@ -73,4 +76,26 @@ public class Constants {
     // powerup
     static final String POWERUP = "powerup";
     public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
+
+    // level
+    static final String LEVEL_DIR = "levels";
+    static final String LEVEL_FILE_EXTENSION = "json";
+    static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level.";
+
+    static final String LEVEL_LAYER_KEY = "layers";
+    static final String LEVEL_OBJECT_KEY = "objects";
+
+    static final String LEVEL_TILE_HEIGHT_KEY = "tileheight";
+
+    static final String LEVEL_TYPE_KEY = "type";
+    static final String LEVEL_X_KEY = "x";
+    static final String LEVEL_Y_KEY = "y";
+    static final String LEVEL_WIDTH_KEY = "width";
+    static final String LEVEL_HEIGHT_KEY = "height";
+
+    static final String LEVEL_START_TAG = "start";
+    static final String LEVEL_END_TAG = "end";
+    static final String LEVEL_PLATFORM_TAG = "platform";
+    static final String LEVEL_ENEMY_TAG = "platform-enemy";
+    static final String LEVEL_POWERUP_TAG = "powerup";
 }

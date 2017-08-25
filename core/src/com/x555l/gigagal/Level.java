@@ -16,17 +16,19 @@ public class Level {
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
+    private DelayedRemovalArray<Powerup> powerups;
 
     private Viewport viewport;
 
-    Level(Viewport viewport) {
+    public Level(Viewport viewport) {
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
+        powerups = new DelayedRemovalArray<Powerup>();
         this.viewport = viewport;
 
-        initDebugLevel();
+//        initDebugLevel();
     }
 
     void update(float delta) {
@@ -40,7 +42,6 @@ public class Level {
                 addNewExplosion(enemy.position, true);
             }
         }
-
 
         for (Bullet bullet : bullets) {
             if (bullet.active)
@@ -74,6 +75,10 @@ public class Level {
             explosion.render(batch);
         }
 
+        for (Powerup powerup : powerups) {
+            powerup.render(batch);
+        }
+
         gigagal.render(batch);
 
         batch.end();
@@ -92,7 +97,12 @@ public class Level {
         platforms.add(new Platform(200, 40, 50, 30));
         platforms.add(new Platform(250, 90, 150, 10));
 
-        enemies.add(new Enemy(platforms.get(8)));
+        for (int i = 5; i < 9; i++)
+            enemies.add(new Enemy(platforms.get(i)));
+
+        powerups.add(new Powerup(30, 120));
+        powerups.add(new Powerup(50, 140));
+        powerups.add(new Powerup(150, 170));
     }
 
     public void addNewBullet(float x, float y, Facing direction) {
@@ -107,6 +117,10 @@ public class Level {
         return gigagal;
     }
 
+    public void setGigagal(GigaGal gigagal) {
+        this.gigagal = gigagal;
+    }
+
     public Array<Platform> getPlatforms() {
         return platforms;
     }
@@ -117,5 +131,9 @@ public class Level {
 
     public Viewport getViewport() {
         return viewport;
+    }
+
+    public DelayedRemovalArray<Powerup> getPowerups() {
+        return powerups;
     }
 }
