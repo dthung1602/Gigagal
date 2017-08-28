@@ -8,15 +8,14 @@ import com.x555l.gigagal.entities.GigaGal;
 
 
 public class ChaseCamera {
-    Camera camera;
-    GigaGal gigaGal;
+    private Camera camera;
+    private GigaGal gigaGal;
 
-    boolean following;
+    private boolean following;
 
     public ChaseCamera(Camera camera, GigaGal gigaGal) {
         this.camera = camera;
         this.gigaGal = gigaGal;
-
         following = true;
     }
 

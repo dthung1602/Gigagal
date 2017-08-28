@@ -95,9 +95,9 @@ public class Constants {
     public static final float EXIT_PORTAL_RADIUS = 30;
 
     // level
-    static final String LEVEL_DIR = "levels";
-    static final String LEVEL_FILE_EXTENSION = "json";
-    static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level.";
+    public static final int MAX_LEVEL = 1;
+
+    static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
 
     static final String LEVEL_LAYER_KEY = "layers";
     static final String LEVEL_OBJECT_KEY = "objects";
@@ -122,4 +122,11 @@ public class Constants {
     public static final Vector2 HUD_HEALTH_OFFSET = new Vector2(5, 5);
     public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
 
+    // VictoryOverlay/Game Over screens
+    public static final float LEVEL_END_DURATION = 5;
+    public static final String VICTORY_MESSAGE = "Level completed!";
+    public static final String GAME_OVER_MESSAGE = "Game Over, Gal";
+    public static final int EXPLOSION_COUNT = 600;
+    public static final int ENEMY_COUNT = 300;
+    public static final String FONT_FILE = "font/header.fnt";
 }

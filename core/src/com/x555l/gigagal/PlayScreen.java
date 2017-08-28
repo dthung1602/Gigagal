@@ -4,47 +4,41 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.x555l.gigagal.overlays.EndLevelOverlay;
+import com.x555l.gigagal.overlays.GameOverOverlay;
 import com.x555l.gigagal.overlays.GigagalHUD;
+import com.x555l.gigagal.overlays.VictoryOverlay;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.LevelLoader;
+import com.x555l.gigagal.util.Util;
 
 
 class PlayScreen extends ScreenAdapter {
     private SpriteBatch batch;
-    private ExtendViewport viewport;
     private ChaseCamera chaseCamera;
 
     private Level level;
 
     private GigagalHUD hud;
+    private VictoryOverlay victoryOverlay;
+    private GameOverOverlay gameoverOverlay;
+
+    private long levelEndOverLayerStartTime;
 
     @Override
     public void show() {
         Assets.instance.init();
 
         batch = new SpriteBatch();
-        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
-        level = LevelLoader.load("level1", viewport);
+        hud = new GigagalHUD();
+        victoryOverlay = new VictoryOverlay();
+        gameoverOverlay = new GameOverOverlay();
 
-        chaseCamera = new ChaseCamera(viewport.getCamera(), level.getGigagal());
-
-        hud = new GigagalHUD(level);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height, true);
-        hud.viewport.update(width, height, true);
-    }
-
-    @Override
-    public void dispose() {
-        batch.dispose();
-        Assets.instance.dispose();
+        startNewLevel();
     }
 
     @Override
@@ -62,7 +56,73 @@ class PlayScreen extends ScreenAdapter {
         );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // render everything
         level.render(batch);
-        hud.render(batch);
+        hud.render(batch, level.getGigagal());
+
+        // render messages when level ends
+        renderEndLevelOverlay();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        level.getViewport().update(width, height, true); // this is also viewport in chase cam
+        hud.getViewport().update(width, height, true);
+        victoryOverlay.getViewport().update(width, height, true);
+        gameoverOverlay.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        Assets.instance.dispose();
+    }
+
+    private void renderEndLevelOverlay() {
+        EndLevelOverlay endLevelOverlay;
+
+        if (level.victory) // win
+            endLevelOverlay = victoryOverlay;
+        else if (level.gameover) // lose
+            endLevelOverlay = gameoverOverlay;
+        else // playing --> do nothing
+            return;
+
+        // init layer for the first time
+        if (levelEndOverLayerStartTime == 0) {
+            endLevelOverlay.init();
+            levelEndOverLayerStartTime = TimeUtils.nanoTime();
+        }
+
+        // render
+        endLevelOverlay.render(batch);
+
+        // end layer after a period of time
+        if (Util.seccondsSince(levelEndOverLayerStartTime) > Constants.LEVEL_END_DURATION) {
+            levelComplete();
+        }
+    }
+
+    private void levelComplete() {
+        // TODO ???
+        startNewLevel();
+    }
+
+    private void startNewLevel() {
+        if (level == null) {
+            level = LevelLoader.load(1); // begin of game, load level 1
+        } else {
+            if (level.levelNum == Constants.MAX_LEVEL) {
+                // TODO end of game
+                level = LevelLoader.load(1);
+            } else {
+                level = LevelLoader.load(level.levelNum + 1); // load next level
+            }
+        }
+
+        chaseCamera = new ChaseCamera(level.getViewport().getCamera(), level.getGigagal());
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // must resize to init viewports
+
+        levelEndOverLayerStartTime = 0;
     }
 }

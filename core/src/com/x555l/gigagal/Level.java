@@ -5,13 +5,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.viewport.*;
 import com.x555l.gigagal.entities.*;
-import com.x555l.gigagal.overlays.GigagalHUD;
 import com.x555l.gigagal.util.Enum.Facing;
+import com.x555l.gigagal.util.Constants;
 
 
 public class Level {
+    public int levelNum;
+
     private GigaGal gigagal;
     private ExitPortal exitPortal;
     private Array<Platform> platforms;
@@ -22,8 +24,13 @@ public class Level {
 
     private Viewport viewport;
 
-    public Level(Viewport viewport) {
-        this.viewport = viewport;
+    public boolean victory;
+    public boolean gameover;
+
+    public Level(int levelNum) {
+        this.levelNum = levelNum;
+
+        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();
@@ -31,10 +38,15 @@ public class Level {
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
 
-        // initDebugLevel();
+        victory = false;
+        gameover = false;
     }
 
     void update(float delta) {
+        // freeze everything when victory or gameover for endLevelLayer
+        if (victory || gameover)
+            return;
+
         gigagal.update(delta);
 
         for (Enemy enemy : enemies) {
@@ -140,11 +152,21 @@ public class Level {
         return powerups;
     }
 
+    public ExitPortal getExitPortal() {
+        return exitPortal;
+    }
+
     public void setGigagal(GigaGal gigagal) {
         this.gigagal = gigagal;
     }
 
     public void setExitPortal(ExitPortal exitPortal) {
         this.exitPortal = exitPortal;
+    }
+
+    public Level getNewDebugLevel() {
+        Level level = new Level(0);
+        level.initDebugLevel();
+        return level;
     }
 }

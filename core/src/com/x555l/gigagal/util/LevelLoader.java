@@ -18,11 +18,11 @@ import org.json.simple.parser.JSONParser;
 public class LevelLoader {
     private static final String TAG = LevelLoader.class.getName();
 
-    public static Level load(String levelName, Viewport viewport) {
+    public static Level load(int levelNum) {
         // path to json file
-        String path = Constants.LEVEL_DIR + "/" + levelName + "." + Constants.LEVEL_FILE_EXTENSION;
+        String path = "levels/level" + levelNum + ".json";
 
-        Level level = new Level(viewport);
+        Level level = new Level(levelNum);
 
         try {
             // parse json file
@@ -30,7 +30,7 @@ public class LevelLoader {
             JSONParser parser = new JSONParser();
             JSONObject rootJsonObject = (JSONObject) parser.parse(file.reader());
 
-            // get map height to reverse y coordinate
+            // get map height to reverse y axis
             float mapHeight = (Long) rootJsonObject.get(Constants.LEVEL_HEIGHT_KEY) // number of vertical tile
                     * (Long) rootJsonObject.get(Constants.LEVEL_TILE_HEIGHT_KEY);   // height of 1 tile in px
 
@@ -44,7 +44,7 @@ public class LevelLoader {
                 float width = (Long) jsonObject.get(Constants.LEVEL_WIDTH_KEY);
                 float height = (Long) jsonObject.get(Constants.LEVEL_HEIGHT_KEY);
                 float x = (Long) jsonObject.get(Constants.LEVEL_X_KEY);
-                float y = mapHeight - (Long) jsonObject.get(Constants.LEVEL_Y_KEY) - height;
+                float y = mapHeight - (Long) jsonObject.get(Constants.LEVEL_Y_KEY) - height; // reverse y axis
 
                 String type = (String) jsonObject.get(Constants.LEVEL_TYPE_KEY);
 

@@ -63,6 +63,12 @@ public class GigaGal {
     }
 
     public void update(float delta) {
+        // check if gigagal win
+        if (position.dst(level.getExitPortal().position) < Constants.EXIT_PORTAL_RADIUS) {
+            level.victory = true;
+            return;
+        }
+
         // save current pos to prev. pos
         prevPosition.set(position);
 
@@ -273,8 +279,7 @@ public class GigaGal {
     private boolean die() {
         life--;
         if (life == 0) {
-            // TODO lose
-            init();
+            level.gameover = true;
             return false;
         } else {
             init();

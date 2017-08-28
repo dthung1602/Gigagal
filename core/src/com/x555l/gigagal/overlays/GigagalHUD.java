@@ -14,13 +14,10 @@ import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 
 public class GigagalHUD {
-    public Viewport viewport;
+    private Viewport viewport;
     private BitmapFont font;
 
-    private GigaGal gigagal;
-
-    public GigagalHUD(Level level) {
-        gigagal = level.getGigagal();
+    public GigagalHUD() {
         viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -28,7 +25,7 @@ public class GigagalHUD {
         font.setColor(Color.BLUE);
     }
 
-    public void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch, GigaGal gigagal) {
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
 
@@ -68,5 +65,9 @@ public class GigagalHUD {
         }
 
         batch.end();
+    }
+
+    public Viewport getViewport() {
+        return viewport;
     }
 }
