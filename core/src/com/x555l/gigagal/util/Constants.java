@@ -95,7 +95,7 @@ public class Constants {
     public static final float EXIT_PORTAL_RADIUS = 30;
 
     // level
-    public static final int MAX_LEVEL = 1;
+    public static final int MAX_LEVEL = 2;
 
     static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
 
@@ -129,4 +129,14 @@ public class Constants {
     public static final int EXPLOSION_COUNT = 600;
     public static final int ENEMY_COUNT = 300;
     public static final String FONT_FILE = "font/header.fnt";
+    
+    // onscreen control asset
+    static final String BUTTON_LEFT = "button-move-left";
+    static final String BUTTON_RIGHT = "button-move-right";
+    static final String BUTTON_JUMP = "button-jump";
+    static final String BUTTON_SHOOT = "button-shoot";
+
+    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 256;
+    public static final Vector2 BUTTON_CENTER = new Vector2(16, 16);
+    public static final float BUTTON_RADIUS = 32;
 }

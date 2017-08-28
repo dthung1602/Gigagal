@@ -41,10 +41,11 @@ public class LevelLoader {
             for (Object object : objectArray) {
                 // get json object properties
                 JSONObject jsonObject = (JSONObject) object;
-                float width = (Long) jsonObject.get(Constants.LEVEL_WIDTH_KEY);
-                float height = (Long) jsonObject.get(Constants.LEVEL_HEIGHT_KEY);
-                float x = (Long) jsonObject.get(Constants.LEVEL_X_KEY);
-                float y = mapHeight - (Long) jsonObject.get(Constants.LEVEL_Y_KEY) - height; // reverse y axis
+                float width = getNumber(jsonObject, Constants.LEVEL_WIDTH_KEY);
+                float height = getNumber(jsonObject, Constants.LEVEL_HEIGHT_KEY);
+                float x = getNumber(jsonObject, Constants.LEVEL_X_KEY);
+                float y = mapHeight - getNumber(jsonObject, Constants.LEVEL_Y_KEY) - height; // reverse y axis
+//                float y = getNumber(jsonObject, Constants.LEVEL_Y_KEY);
 
                 String type = (String) jsonObject.get(Constants.LEVEL_TYPE_KEY);
 
@@ -64,11 +65,17 @@ public class LevelLoader {
             }
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             Gdx.app.error(TAG, ex.getMessage());
             Gdx.app.error(TAG, Constants.LEVEL_ERROR_MESSAGE);
         }
 
         return level;
+    }
+
+    private static float getNumber(JSONObject jsonObject, String propertyName) {
+        Number number = (Number) jsonObject.get(propertyName);
+        return number.floatValue();
     }
 
     private static void newPlatform(Level level, float x, float y, float width, float height) {
@@ -87,7 +94,7 @@ public class LevelLoader {
         level.setGigagal(new GigaGal(
                 level,
                 x + Constants.GIGAGAL_EYE_POSITION.x,
-                y + Constants.GIGAGAL_EYE_POSITION.y * 2
+                y + height + Constants.GIGAGAL_EYE_POSITION.y * 2
         ));
     }
 

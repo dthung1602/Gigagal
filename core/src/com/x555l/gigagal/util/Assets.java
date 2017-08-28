@@ -14,7 +14,7 @@ import com.badlogic.gdx.Gdx;
 
 
 public class Assets implements Disposable, AssetErrorListener {
-    // for debug
+    // for debugging
     private static final String TAG = Assets.class.getName();
 
     // singleton
@@ -30,6 +30,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExplosionAssets explosionAssets;
     public PowerupAssets powerupAssets;
     public ExitPortalAssets exitPortalAssets;
+    public OnscreenControlAssets onscreenControlAssets;
 
     // ensure singleton
     private Assets() {
@@ -42,6 +43,7 @@ public class Assets implements Disposable, AssetErrorListener {
         assetManager.finishLoading();
 
         TextureAtlas textureAtlas = assetManager.get(Constants.TEXTURE_ATLAS);
+
         gigaGalAssets = new GigaGalAssets(textureAtlas);
         platformAssets = new PlatformAssets(textureAtlas);
         enemyAssets = new EnemyAssets(textureAtlas);
@@ -49,6 +51,7 @@ public class Assets implements Disposable, AssetErrorListener {
         explosionAssets = new ExplosionAssets(textureAtlas);
         powerupAssets = new PowerupAssets(textureAtlas);
         exitPortalAssets = new ExitPortalAssets(textureAtlas);
+        onscreenControlAssets = new OnscreenControlAssets(textureAtlas);
     }
 
     @Override
@@ -181,6 +184,20 @@ public class Assets implements Disposable, AssetErrorListener {
                     array,
                     Animation.PlayMode.LOOP_REVERSED
             );
+        }
+    }
+
+    public class OnscreenControlAssets {
+        public AtlasRegion leftButton;
+        public AtlasRegion rightButton;
+        public AtlasRegion jumpButton;
+        public AtlasRegion shootButton;
+
+        OnscreenControlAssets(TextureAtlas atlas) {
+            leftButton = atlas.findRegion(Constants.BUTTON_LEFT);
+            rightButton = atlas.findRegion(Constants.BUTTON_RIGHT);
+            jumpButton = atlas.findRegion(Constants.BUTTON_JUMP);
+            shootButton = atlas.findRegion(Constants.BUTTON_SHOOT);
         }
     }
 }

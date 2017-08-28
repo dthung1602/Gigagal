@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.Level;
+import com.x555l.gigagal.inputProcessor.InputProcessor;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
@@ -35,6 +36,7 @@ public class GigaGal {
     private WalkState walkState;
 
     private Level level;
+    private InputProcessor inputProcessor;
 
     public GigaGal(Level level, float x, float y) {
         this(level, new Vector2(x, y));
@@ -92,7 +94,7 @@ public class GigaGal {
             for (Platform platform : level.getPlatforms()) {
                 if (landOnPlatform(platform)) {
                     jumpState = JumpState.GROUNDED;
-                    velocity.set(0, 0);
+                    velocity.y = 0;
                     position.y = platform.top + Constants.GIGAGAL_EYE_POSITION.y;
                     break;
                 }
@@ -132,32 +134,23 @@ public class GigaGal {
         }
 
         // handle jumping key
-        if (Gdx.input.isKeyPressed(Keys.Z)) {
-            switch (jumpState) {
-                case GROUNDED:
-                    startJumping();
-                    break;
-                case JUMPING:
-                    continueJumping();
-                    break;
-                case FALLING:
-                    break;
-            }
+        if (inputProcessor.jumpKeyPressed) {
+            handleJumping();
         } else {
             endJumping();
         }
 
         // handle moving left/right key
         if (jumpState != JumpState.KNOCK_BACK)
-            if (Gdx.input.isKeyPressed(Keys.LEFT))
+            if (inputProcessor.leftKeyPressed)
                 moveLeft(delta);
-            else if (Gdx.input.isKeyPressed(Keys.RIGHT))
+            else if (inputProcessor.rightKeyPressed)
                 moveRight(delta);
             else
-                walkState = WalkState.STANDING;
+                endMoving();
 
         // handle shoot key
-        if (Gdx.input.isKeyPressed(Keys.X)) {
+        if (inputProcessor.shootKeyPressed) {
             shoot();
         }
 
@@ -215,6 +208,19 @@ public class GigaGal {
         return true;
     }
 
+    private void handleJumping() {
+        switch (jumpState) {
+            case GROUNDED:
+                startJumping();
+                break;
+            case JUMPING:
+                continueJumping();
+                break;
+            case FALLING:
+                break;
+        }
+    }
+
     private void startJumping() {
         jumpState = JumpState.JUMPING;
         jumpStartTime = TimeUtils.nanoTime();
@@ -247,8 +253,9 @@ public class GigaGal {
             walkStartTime = TimeUtils.nanoTime();
 
         walkState = WalkState.WALKING;
-        position.x -= delta * Constants.GIGAGAL_SPEED;
         facing = Facing.LEFT;
+
+        position.x -= delta * Constants.GIGAGAL_SPEED;
     }
 
     private void moveRight(float delta) {
@@ -257,8 +264,14 @@ public class GigaGal {
             walkStartTime = TimeUtils.nanoTime();
 
         walkState = WalkState.WALKING;
-        position.x += delta * Constants.GIGAGAL_SPEED;
         facing = Facing.RIGHT;
+
+        position.x += delta * Constants.GIGAGAL_SPEED;
+    }
+
+    private void endMoving() {
+        velocity.set(0, velocity.y);
+        walkState = WalkState.STANDING;
     }
 
     /*Return true if gigagal still alive,
@@ -317,5 +330,9 @@ public class GigaGal {
                 position.x - Constants.GIGAGAL_EYE_POSITION.x,
                 position.y - Constants.GIGAGAL_EYE_POSITION.y
         );
+    }
+
+    public void setInputProcessor(InputProcessor inputProcessor) {
+        this.inputProcessor = inputProcessor;
     }
 }
