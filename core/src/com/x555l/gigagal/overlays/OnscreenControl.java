@@ -38,15 +38,15 @@ public class OnscreenControl {
     public void calculateButtonPosition() {
         float radius = Constants.BUTTON_RADIUS;
         float width = viewport.getWorldWidth();
-
+        // TODO farther buttons
         // leftButton
-        buttons[0] = new Button(radius * 4 / 3, radius * 7 / 4, Assets.instance.onscreenControlAssets.leftButton);
+        buttons[0] = new Button(radius * 4 / 3, radius * 5 / 2, Assets.instance.onscreenControlAssets.leftButton);
         // rightButton
-        buttons[1] = new Button(radius * 2.5f, radius * 3 / 2, Assets.instance.onscreenControlAssets.rightButton);
+        buttons[1] = new Button(radius * 3.5f, radius * 1.25f, Assets.instance.onscreenControlAssets.rightButton);
         // jumpButton
-        buttons[2] = new Button(width - radius / 3, radius * 7 / 4, Assets.instance.onscreenControlAssets.jumpButton);
+        buttons[2] = new Button(width - radius * 4 / 3, radius * 5 / 2, Assets.instance.onscreenControlAssets.jumpButton);
         // shootButton
-        buttons[3] = new Button(width - radius * 1.5f, radius * 3 / 2, Assets.instance.onscreenControlAssets.shootButton);
+        buttons[3] = new Button(width - radius * 3.5f, radius * 1.25f, Assets.instance.onscreenControlAssets.shootButton);
     }
 
     public Viewport getViewport() {
@@ -61,9 +61,12 @@ public class OnscreenControl {
         private Vector2 position;
         private TextureRegion region;
 
+        public int pointer;
+
         Button(float x, float y, TextureRegion region) {
             this.position = new Vector2(x, y);
             this.region = region;
+            pointer = -1;
         }
 
         void render(SpriteBatch batch) {

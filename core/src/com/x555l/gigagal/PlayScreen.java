@@ -140,21 +140,22 @@ class PlayScreen extends ScreenAdapter {
         if (level == null) {
             level = LevelLoader.load(1); // begin of game, load level 1
         } else {
-            if (level.levelNum == Constants.MAX_LEVEL) {
-                if (level.victory)
-                    // TODO end of game, congrat player
+            if (level.victory)
+                // TODO end of game, congrat player
+                if (level.levelNum == Constants.MAX_LEVEL) {
                     level = LevelLoader.load(1);
-                else
-                    level = LevelLoader.load(level.levelNum); // lose --> reload that level
-            } else {
-                level = LevelLoader.load(level.levelNum + 1); // load next level
-            }
+                } else {
+                    level = LevelLoader.load(level.levelNum + 1); // load next level
+                }
+            else
+                level = LevelLoader.load(level.levelNum); // lose --> reload that level
         }
 
         chaseCamera = new ChaseCamera(level.getViewport().getCamera(), level.getGigagal());
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // must resize to init viewports
 
         level.getGigagal().setInputProcessor(inputProcessor);
+        inputProcessor.reset();
 
         levelEndOverLayerStartTime = 0;
     }

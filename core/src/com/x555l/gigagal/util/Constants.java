@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
     // world
-    public static final int WORLD_SIZE = 256;
+    public static final int WORLD_SIZE = 200;
     public static final Color BACKGROUND_COLOR = Color.SKY;
     static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
     public static final float DEATH_DEPTH = -150;
@@ -117,7 +117,7 @@ public class Constants {
     static final String LEVEL_POWERUP_TAG = "powerup";
 
     // HUD
-    public static final float HUD_VIEWPORT_SIZE = 256;
+    public static final float HUD_VIEWPORT_SIZE = 160;
     public static final float HUD_LIFE_ICON_SIZE = 15;
     public static final Vector2 HUD_HEALTH_OFFSET = new Vector2(5, 5);
     public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
@@ -136,7 +136,6 @@ public class Constants {
     static final String BUTTON_JUMP = "button-jump";
     static final String BUTTON_SHOOT = "button-shoot";
 
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 256;
-    public static final Vector2 BUTTON_CENTER = new Vector2(16, 16);
-    public static final float BUTTON_RADIUS = 32;
+    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 180;
+    public static final float BUTTON_RADIUS = 16;
 }

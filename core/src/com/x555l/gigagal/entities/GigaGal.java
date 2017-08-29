@@ -54,6 +54,9 @@ public class GigaGal {
         prevPosition = new Vector2(position);
         velocity = new Vector2(0, 0);
 
+        if (inputProcessor != null)
+            inputProcessor.reset();
+
         facing = Facing.RIGHT;
         jumpState = JumpState.FALLING;
         walkState = WalkState.STANDING;

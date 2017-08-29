@@ -19,7 +19,7 @@ public class GameOverOverlay extends EndLevelOverlay {
     public GameOverOverlay() {
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
-        font.getData().setScale(1.5f);
+        font.getData().setScale(1.1f);
         font.setColor(Color.RED);
     }
 
@@ -46,7 +46,7 @@ public class GameOverOverlay extends EndLevelOverlay {
                 batch,
                 Constants.GAME_OVER_MESSAGE,
                 viewport.getWorldWidth() / 8,
-                viewport.getWorldHeight() / 4
+                viewport.getWorldHeight() * 3 / 4
         );
 
         batch.end();

@@ -51,8 +51,8 @@ public class VictoryOverlay extends EndLevelOverlay {
         font.draw(
                 batch,
                 Constants.VICTORY_MESSAGE,
-                viewport.getWorldWidth() / 6,
-                viewport.getWorldHeight() / 4
+                viewport.getWorldWidth() / 8,
+                viewport.getWorldHeight() * 3 / 4
         );
 
         batch.end();

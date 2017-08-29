@@ -8,4 +8,11 @@ public abstract class InputProcessor extends InputAdapter {
     public boolean rightKeyPressed;
     public boolean jumpKeyPressed;
     public boolean shootKeyPressed;
+
+    public void reset() {
+        leftKeyPressed = false;
+        rightKeyPressed = false;
+        jumpKeyPressed = false;
+        shootKeyPressed = false;
+    }
 }
