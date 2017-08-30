@@ -45,6 +45,7 @@ public class Constants {
     public static final int INIT_LIFE = 3;
 
     public static final int MAX_BULLET = 500;
+    public static final int BONUS_BULLET_AMOUNT = 10;
     public static final int INIT_BULLET = 25;
 
     // platform
@@ -79,7 +80,7 @@ public class Constants {
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);
     static final float EXPLOSION_DURATION = 0.05f;
 
-    // powerup
+    // bonus
     static final String POWERUP = "powerup";
     public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
 
@@ -114,7 +115,9 @@ public class Constants {
     public static final String LEVEL_END_TAG = "end";
     public static final String LEVEL_PLATFORM_TAG = "platform";
     public static final String LEVEL_ENEMY_TAG = "platform-enemy";
-    public static final String LEVEL_POWERUP_TAG = "powerup";
+    public static final String LEVEL_BONUS_HEALTH_TAG = "health";
+    public static final String LEVEL_BONUS_LIFE_TAG = "life";
+    public static final String LEVEL_BONUS_BULLET_TAG = "bullet";
 
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 160;

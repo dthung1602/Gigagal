@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.x555l.gigagal.entities.bonus.BonusHealth;
+import com.x555l.gigagal.entities.bonus.Bonus;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.util.Assets;
@@ -124,19 +126,18 @@ public class GigaGal {
             }
         }
 
-        // detect powerup
-        for (Powerup powerup : level.getPowerups()) {
-            if (gigagalBoundary.contains(powerup.position)) {
-                level.getPowerups().removeValue(powerup, true);
-                if (health < Constants.MAX_HEALTH)
-                    health++;
+        // detect bonus
+        for (Bonus bonus : level.getBonuses()) {
+            if (gigagalBoundary.contains(bonus.position)) {
+                level.getBonuses().removeValue(bonus, true);
+                bonus.performAction(this);
                 break;
             }
         }
 
-        //--------------------------
-        //      HANDLE INPUT
-        //--------------------------
+        //------------------------------------
+        //             HANDLE INPUT
+        //------------------------------------
 
         // handle jumping key
         if (inputProcessor.jumpKeyPressed) {

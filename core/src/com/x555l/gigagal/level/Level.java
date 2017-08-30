@@ -8,12 +8,13 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.entities.Bullet;
+import com.x555l.gigagal.entities.bonus.BonusHealth;
 import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.entities.ExitPortal;
 import com.x555l.gigagal.entities.Explosion;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
-import com.x555l.gigagal.entities.Powerup;
+import com.x555l.gigagal.entities.bonus.Bonus;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
 
@@ -27,14 +28,14 @@ public class Level {
     private DelayedRemovalArray<Enemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
-    private DelayedRemovalArray<Powerup> powerups;
+    private DelayedRemovalArray<Bonus> bonuses;
 
     private Viewport viewport;
 
     public boolean victory;
     public boolean gameover;
 
-    public Level(int levelNum) {
+    Level(int levelNum) {
         this.levelNum = levelNum;
 
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
@@ -43,7 +44,7 @@ public class Level {
         enemies = new DelayedRemovalArray<Enemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
-        powerups = new DelayedRemovalArray<Powerup>();
+        bonuses = new DelayedRemovalArray<Bonus>();
 
         victory = false;
         gameover = false;
@@ -99,7 +100,7 @@ public class Level {
             explosion.render(batch);
         }
 
-        for (Powerup powerup : powerups) {
+        for (Bonus powerup : bonuses) {
             powerup.render(batch);
         }
 
@@ -110,7 +111,7 @@ public class Level {
         batch.end();
     }
 
-    void initDebugLevel() {
+    private void initDebugLevel() {
         gigagal = new GigaGal(this, new Vector2(80, 80));
 
         platforms.add(new Platform(30, 8, 100, 30));
@@ -126,9 +127,9 @@ public class Level {
         for (int i = 5; i < 9; i++)
             enemies.add(new Enemy(platforms.get(i)));
 
-        powerups.add(new Powerup(30, 120));
-        powerups.add(new Powerup(50, 140));
-        powerups.add(new Powerup(150, 170));
+        bonuses.add(new BonusHealth(30, 120));
+        bonuses.add(new BonusHealth(50, 140));
+        bonuses.add(new BonusHealth(150, 170));
     }
 
     public void addNewBullet(float x, float y, Facing direction) {
@@ -155,8 +156,8 @@ public class Level {
         return viewport;
     }
 
-    public DelayedRemovalArray<Powerup> getPowerups() {
-        return powerups;
+    public DelayedRemovalArray<Bonus> getBonuses() {
+        return bonuses;
     }
 
     public ExitPortal getExitPortal() {
@@ -167,7 +168,7 @@ public class Level {
         this.gigagal = gigagal;
     }
 
-    public void setExitPortal(ExitPortal exitPortal) {
+    void setExitPortal(ExitPortal exitPortal) {
         this.exitPortal = exitPortal;
     }
 

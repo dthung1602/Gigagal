@@ -5,7 +5,9 @@ import com.badlogic.gdx.files.FileHandle;
 import com.x555l.gigagal.entities.ExitPortal;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
-import com.x555l.gigagal.entities.Powerup;
+import com.x555l.gigagal.entities.bonus.BonusBullet;
+import com.x555l.gigagal.entities.bonus.BonusHealth;
+import com.x555l.gigagal.entities.bonus.BonusLife;
 import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.util.Constants;
 
@@ -52,8 +54,12 @@ public class LevelLoader {
                     newPlatform(level, x, y, width, height);
                 else if (type.equals(Constants.LEVEL_ENEMY_TAG))
                     newPlatformWithEnemy(level, x, y, width, height);
-                else if (type.equals(Constants.LEVEL_POWERUP_TAG))
-                    newPowerup(level, x, y);
+                else if (type.equals(Constants.LEVEL_BONUS_HEALTH_TAG))
+                    newBonusHealth(level, x, y);
+                else if (type.equals(Constants.LEVEL_BONUS_BULLET_TAG))
+                    newBonusBullet(level, x, y);
+                else if (type.equals(Constants.LEVEL_BONUS_LIFE_TAG))
+                    newBonusLife(level, x, y);
                 else if (type.equals(Constants.LEVEL_START_TAG))
                     newStartPlatform(level, x, y, width, height);
                 else if (type.equals(Constants.LEVEL_END_TAG))
@@ -94,8 +100,16 @@ public class LevelLoader {
         ));
     }
 
-    private static void newPowerup(Level level, float x, float y) {
-        level.getPowerups().add(new Powerup(x, y));
+    private static void newBonusHealth(Level level, float x, float y) {
+        level.getBonuses().add(new BonusHealth(x, y));
+    }
+
+    private static void newBonusLife(Level level, float x, float y) {
+        level.getBonuses().add(new BonusLife(x, y));
+    }
+
+    private static void newBonusBullet(Level level, float x, float y) {
+        level.getBonuses().add(new BonusBullet(x, y));
     }
 
     private static void newExitPortal(Level level, float x, float y) {
