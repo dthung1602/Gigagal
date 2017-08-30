@@ -1,7 +1,6 @@
 package com.x555l.gigagal.util;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.x555l.gigagal.entities.GigaGal;
@@ -30,7 +29,7 @@ public class ChaseCamera {
             return;
         }
 
-        // debug camera
+        // debugging camera
         if (Gdx.input.isKeyPressed(Keys.A))
             camera.position.x -= delta * Constants.CAMERA_SPEED;
         else if (Gdx.input.isKeyPressed(Keys.D))

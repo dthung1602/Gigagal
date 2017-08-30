@@ -3,7 +3,6 @@ package com.x555l.gigagal.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.util.Assets;
@@ -28,20 +27,16 @@ public class Explosion {
     public void render(SpriteBatch batch) {
         float time = Util.seccondsSince(explosionStartTime);
 
-        if (time < delayTime)
-            return;
-        else if (animation.isAnimationFinished(time - delayTime))
-            finished = true;
-        else
-            batch.draw(
-                    animation.getKeyFrame(time),
-                    position.x - Constants.EXPLOSION_CENTER.x,
-                    position.y - Constants.EXPLOSION_CENTER.y
-            );
-
-//        System.out.println("time = " + time);
-//        System.out.println("dtime = " + delayTime);
-//        System.out.println("animation done = " + finished);
+        if (time > delayTime) {
+            if (animation.isAnimationFinished(time - delayTime))
+                finished = true;
+            else
+                batch.draw(
+                        animation.getKeyFrame(time),
+                        position.x - Constants.EXPLOSION_CENTER.x,
+                        position.y - Constants.EXPLOSION_CENTER.y
+                );
+        }
     }
 
     public void setDelayTime(float second) {

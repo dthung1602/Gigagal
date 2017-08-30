@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.x555l.gigagal.Level;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;

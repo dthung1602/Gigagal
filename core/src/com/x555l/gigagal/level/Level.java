@@ -1,14 +1,21 @@
-package com.x555l.gigagal;
+package com.x555l.gigagal.level;
 
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.badlogic.gdx.utils.viewport.*;
-import com.x555l.gigagal.entities.*;
-import com.x555l.gigagal.util.Enum.Facing;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.x555l.gigagal.entities.Bullet;
+import com.x555l.gigagal.entities.enemies.Enemy;
+import com.x555l.gigagal.entities.ExitPortal;
+import com.x555l.gigagal.entities.Explosion;
+import com.x555l.gigagal.entities.GigaGal;
+import com.x555l.gigagal.entities.Platform;
+import com.x555l.gigagal.entities.Powerup;
 import com.x555l.gigagal.util.Constants;
+import com.x555l.gigagal.util.Enum.Facing;
 
 
 public class Level {
@@ -42,7 +49,7 @@ public class Level {
         gameover = false;
     }
 
-    void update(float delta) {
+    public void update(float delta) {
         // freeze everything when victory or gameover for endLevelLayer
         if (victory || gameover)
             return;
@@ -71,7 +78,7 @@ public class Level {
         }
     }
 
-    void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch) {
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();

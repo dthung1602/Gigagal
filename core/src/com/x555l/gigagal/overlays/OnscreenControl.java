@@ -38,7 +38,7 @@ public class OnscreenControl {
     public void calculateButtonPosition() {
         float radius = Constants.BUTTON_RADIUS;
         float width = viewport.getWorldWidth();
-        // TODO farther buttons
+
         // leftButton
         buttons[0] = new Button(radius * 4 / 3, radius * 5 / 2, Assets.instance.onscreenControlAssets.leftButton);
         // rightButton

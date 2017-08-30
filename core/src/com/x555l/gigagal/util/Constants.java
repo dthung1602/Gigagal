@@ -97,24 +97,24 @@ public class Constants {
     // level
     public static final int MAX_LEVEL = 2;
 
-    static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
+    public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
 
-    static final String LEVEL_LAYER_KEY = "layers";
-    static final String LEVEL_OBJECT_KEY = "objects";
+    public static final String LEVEL_LAYER_KEY = "layers";
+    public static final String LEVEL_OBJECT_KEY = "objects";
 
-    static final String LEVEL_TILE_HEIGHT_KEY = "tileheight";
+    public static final String LEVEL_TILE_HEIGHT_KEY = "tileheight";
 
-    static final String LEVEL_TYPE_KEY = "type";
-    static final String LEVEL_X_KEY = "x";
-    static final String LEVEL_Y_KEY = "y";
-    static final String LEVEL_WIDTH_KEY = "width";
-    static final String LEVEL_HEIGHT_KEY = "height";
+    public static final String LEVEL_TYPE_KEY = "type";
+    public static final String LEVEL_X_KEY = "x";
+    public static final String LEVEL_Y_KEY = "y";
+    public static final String LEVEL_WIDTH_KEY = "width";
+    public static final String LEVEL_HEIGHT_KEY = "height";
 
-    static final String LEVEL_START_TAG = "start";
-    static final String LEVEL_END_TAG = "end";
-    static final String LEVEL_PLATFORM_TAG = "platform";
-    static final String LEVEL_ENEMY_TAG = "platform-enemy";
-    static final String LEVEL_POWERUP_TAG = "powerup";
+    public static final String LEVEL_START_TAG = "start";
+    public static final String LEVEL_END_TAG = "end";
+    public static final String LEVEL_PLATFORM_TAG = "platform";
+    public static final String LEVEL_ENEMY_TAG = "platform-enemy";
+    public static final String LEVEL_POWERUP_TAG = "powerup";
 
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 160;

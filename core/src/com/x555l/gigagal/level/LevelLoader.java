@@ -1,14 +1,13 @@
-package com.x555l.gigagal.util;
+package com.x555l.gigagal.level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.x555l.gigagal.Level;
-import com.x555l.gigagal.entities.Enemy;
 import com.x555l.gigagal.entities.ExitPortal;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.Powerup;
+import com.x555l.gigagal.entities.enemies.Enemy;
+import com.x555l.gigagal.util.Constants;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -45,11 +44,8 @@ public class LevelLoader {
                 float height = getNumber(jsonObject, Constants.LEVEL_HEIGHT_KEY);
                 float x = getNumber(jsonObject, Constants.LEVEL_X_KEY);
                 float y = mapHeight - getNumber(jsonObject, Constants.LEVEL_Y_KEY) - height; // reverse y axis
-//                float y = getNumber(jsonObject, Constants.LEVEL_Y_KEY);
 
                 String type = (String) jsonObject.get(Constants.LEVEL_TYPE_KEY);
-
-//                System.out.println(type + " " + x + " " + y + " " + width + " " + height);
 
                 // create entity according to type
                 if (type.equals(Constants.LEVEL_PLATFORM_TAG))

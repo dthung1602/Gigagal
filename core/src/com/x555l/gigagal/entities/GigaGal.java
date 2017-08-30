@@ -1,14 +1,12 @@
 package com.x555l.gigagal.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.x555l.gigagal.Level;
-import com.x555l.gigagal.inputProcessor.InputProcessor;
+import com.x555l.gigagal.level.Level;
+import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
@@ -97,7 +95,7 @@ public class GigaGal {
             for (Platform platform : level.getPlatforms()) {
                 if (landOnPlatform(platform)) {
                     jumpState = JumpState.GROUNDED;
-                    velocity.y = 0;
+                    velocity.set(0, 0);
                     position.y = platform.top + Constants.GIGAGAL_EYE_POSITION.y;
                     break;
                 }
@@ -112,7 +110,7 @@ public class GigaGal {
                 Constants.GIGAGAL_HEIGHT
         );
 
-        for (Enemy enemy : level.getEnemies()) {
+        for (com.x555l.gigagal.entities.enemies.Enemy enemy : level.getEnemies()) {
             Rectangle enemyBoundary = new Rectangle(
                     enemy.position.x - Constants.ENEMY_RADIUS,
                     enemy.position.y - Constants.ENEMY_RADIUS,
@@ -136,11 +134,22 @@ public class GigaGal {
             }
         }
 
+        //--------------------------
+        //      HANDLE INPUT
+        //--------------------------
+
         // handle jumping key
         if (inputProcessor.jumpKeyPressed) {
             handleJumping();
         } else {
             endJumping();
+        }
+
+        // handle down key
+        if (inputProcessor.downKeyPressed) {
+            if (jumpState == JumpState.GROUNDED) {
+                position.y -= 2;
+            }
         }
 
         // handle moving left/right key
@@ -176,7 +185,7 @@ public class GigaGal {
         }
     }
 
-    private void knockBack(Enemy enemy) {
+    private void knockBack(com.x555l.gigagal.entities.enemies.Enemy enemy) {
         if (jumpState != JumpState.KNOCK_BACK) {
             if (!loseHealth()) return;
             jumpState = JumpState.KNOCK_BACK;

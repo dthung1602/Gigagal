@@ -4,7 +4,6 @@ package com.x555l.gigagal.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.util.Assets;
-import com.x555l.gigagal.util.Constants;
 
 public class Powerup {
     Vector2 position;

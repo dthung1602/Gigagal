@@ -1,0 +1,47 @@
+SCREENS
+    Main menu
+        - Continue
+        - Choose level
+        - High score
+        - Setting
+        - Quit
+    Choose level
+    High score ?
+    Setting
+        - Sound
+        - Music
+        - Brightness
+        - Reset progress >> ask for confirmation
+    Pause ~> overlay?
+        - Resume
+        - Menu >> ask for confirmation
+        - Setting
+        - Restart level
+
+AUDIO
+
+CHARACTER
+    up arrow key: face up (ready to shoot up)
+    # down arrow key: get off current platform
+
+BONUS
+    bullet
+    health (done)
+    life
+
+ENEMY
+    Basic (done)
+    Fast (can detect when character land on its platform)
+    Strong (high health)
+    Shoot (can shoot bullet)
+
+    Flying ?
+
+TRAP
+    Spike
+    Shoot (4 direction)
+    Fallen platform
+
+WALL (as vertical platform)
+
+BOSS
