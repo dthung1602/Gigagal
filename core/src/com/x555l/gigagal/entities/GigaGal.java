@@ -85,9 +85,6 @@ public class GigaGal {
 
         // apply velocity to position
         position.mulAdd(velocity, delta);
-//        System.out.println(prevPosition.x);
-//        System.out.println(position.x);
-//        System.out.println(prevPosition.x == position.x);
 
         // death plane
         if (position.y < Constants.DEATH_DEPTH) {
@@ -104,9 +101,7 @@ public class GigaGal {
         // handle platform collision
         currentPlatform = null;
 
-        System.out.println("-----------------------------");
         for (Platform platform : level.getPlatforms()) {
-//            System.out.println(platform.x + " " + platform.y);
 
             if (landOnPlatform(platform)) {
                 currentPlatform = platform;
@@ -124,11 +119,18 @@ public class GigaGal {
             }
 
             if (blockedByLeftPlatform(platform)) {
-                System.exit(0);
                 if (jumpState != JumpState.GROUNDED)
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
-                position.x = platform.xRight + Constants.GIGAGAL_STANCE_WIDTH/2;
+                position.x = platform.xRight + Constants.GIGAGAL_STANCE_WIDTH / 2 + 1;
+//                break;
+            }
+
+            if (blockedByRightPlatform(platform)) {
+                if (jumpState != JumpState.GROUNDED)
+                    jumpState = JumpState.FALLING;
+                velocity.x = 0;
+                position.x = platform.x - Constants.GIGAGAL_STANCE_WIDTH / 2 - 1;
 //                break;
             }
         }
@@ -188,9 +190,9 @@ public class GigaGal {
         // handle moving left/xRight key
         if (jumpState != JumpState.KNOCK_BACK)
             if (inputProcessor.leftKeyPressed)
-                moveLeft(delta);
+                moveLeft();
             else if (inputProcessor.rightKeyPressed)
-                moveRight(delta);
+                moveRight();
             else
                 endMoving();
 
@@ -284,6 +286,19 @@ public class GigaGal {
         // left foot cross right border of platform
         return (leftFoot < platform.xRight && platform.xRight < prevLeftFoot);
     }
+    
+    private boolean blockedByRightPlatform(Platform platform) {
+        // check platforms with relevant heights only
+        if (position.y < platform.y
+                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)
+            return false;
+
+        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+        float prevRightFoot = prevPosition.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+
+        // right foot cross left border of platform
+        return (prevRightFoot < platform.x && platform.x < rightFoot);
+    }
 
     private void handleJumping() {
         switch (jumpState) {
@@ -324,7 +339,7 @@ public class GigaGal {
             jumpState = JumpState.FALLING;
     }
 
-    private void moveLeft(float delta) {
+    private void moveLeft() {
         // save time if first time walking
         if (jumpState == JumpState.GROUNDED && walkState == WalkState.STANDING)
             walkStartTime = TimeUtils.nanoTime();
@@ -332,14 +347,10 @@ public class GigaGal {
         walkState = WalkState.WALKING;
         facing = Facing.LEFT;
 
-        System.out.println(prevPosition.x);
-        System.out.println("  " + position.x);
-        position.x -= delta * Constants.GIGAGAL_SPEED;
-        System.out.println("  " + position.x);
-        System.out.println(position.x == prevPosition.x);
+        velocity.x = -Constants.GIGAGAL_SPEED;
     }
 
-    private void moveRight(float delta) {
+    private void moveRight() {
         // save time if first time walking
         if (jumpState == JumpState.GROUNDED && walkState == WalkState.STANDING)
             walkStartTime = TimeUtils.nanoTime();
@@ -347,7 +358,7 @@ public class GigaGal {
         walkState = WalkState.WALKING;
         facing = Facing.RIGHT;
 
-        position.x += delta * Constants.GIGAGAL_SPEED;
+        velocity.x = Constants.GIGAGAL_SPEED;
     }
 
     private void endMoving() {
@@ -355,7 +366,9 @@ public class GigaGal {
         walkState = WalkState.STANDING;
     }
 
-    /**Return true if gigagal still alive, false otherwise*/
+    /**
+     * Return true if gigagal still alive, false otherwise
+     */
     private boolean loseHealth() {
         health--;
         if (health == 0) {
@@ -365,7 +378,9 @@ public class GigaGal {
         return true;
     }
 
-    /**Return true if gigagal still has extra life, false otherwise*/
+    /**
+     * Return true if gigagal still has extra life, false otherwise
+     */
     private boolean die() {
         life--;
         if (life == 0) {
