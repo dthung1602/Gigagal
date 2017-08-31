@@ -2019,25 +2019,14 @@
       "objects": [
         {
           "height": 20,
-          "id": 4,
+          "id": 5,
           "name": "",
           "rotation": 0,
           "type": "start",
           "visible": true,
-          "width": 70,
-          "x": 10,
-          "y": 160
-        },
-        {
-          "height": 20,
-          "id": 5,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 70,
-          "x": 90,
-          "y": 130
+          "width": 170,
+          "x": 320,
+          "y": 180
         },
         {
           "height": 20,
@@ -2051,158 +2040,15 @@
           "y": 130
         },
         {
-          "height": 10,
-          "id": 7,
+          "height": 50,
+          "id": 6,
           "name": "",
           "rotation": 0,
-          "type": "platform",
+          "type": "platform-enemy",
           "visible": true,
-          "width": 30,
-          "x": 330,
+          "width": 120,
+          "x": 80,
           "y": 100
-        },
-        {
-          "height": 10,
-          "id": 8,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 380,
-          "y": 80
-        },
-        {
-          "height": 10,
-          "id": 9,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 430,
-          "y": 60
-        },
-        {
-          "height": 20,
-          "id": 10,
-          "name": "",
-          "rotation": 0,
-          "type": "platform-enemy",
-          "visible": true,
-          "width": 80,
-          "x": 470,
-          "y": 40
-        },
-        {
-          "height": 30,
-          "id": 11,
-          "name": "",
-          "rotation": 0,
-          "type": "platform-enemy",
-          "visible": true,
-          "width": 60,
-          "x": 330,
-          "y": 150
-        },
-        {
-          "height": 10,
-          "id": 12,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 10,
-          "x": 400,
-          "y": 130
-        },
-        {
-          "height": 20,
-          "id": 13,
-          "name": "",
-          "rotation": 0,
-          "type": "platform-enemy",
-          "visible": true,
-          "width": 70,
-          "x": 440,
-          "y": 150
-        },
-        {
-          "height": 20,
-          "id": 14,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 520,
-          "y": 120
-        },
-        {
-          "height": 20,
-          "id": 15,
-          "name": "",
-          "rotation": 0,
-          "type": "platform-enemy",
-          "visible": true,
-          "width": 70,
-          "x": 580,
-          "y": 120
-        },
-        {
-          "height": 20,
-          "id": 16,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 670,
-          "y": 90
-        },
-        {
-          "height": 20,
-          "id": 17,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 720,
-          "y": 90
-        },
-        {
-          "height": 20,
-          "id": 18,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 770,
-          "y": 90
-        },
-        {
-          "height": 20,
-          "id": 19,
-          "name": "",
-          "rotation": 0,
-          "type": "platform",
-          "visible": true,
-          "width": 30,
-          "x": 820,
-          "y": 90
-        },
-        {
-          "height": 20,
-          "id": 20,
-          "name": "",
-          "rotation": 0,
-          "type": "platform-enemy",
-          "visible": true,
-          "width": 70,
-          "x": 870,
-          "y": 70
         },
         {
           "ellipse": true,
@@ -2215,54 +2061,6 @@
           "width": 30,
           "x": 1000,
           "y": 30
-        },
-        {
-          "ellipse": true,
-          "height": 0,
-          "id": 23,
-          "name": "",
-          "rotation": 0,
-          "type": "bullet",
-          "visible": true,
-          "width": 0,
-          "x": 400,
-          "y": 70
-        },
-        {
-          "ellipse": true,
-          "height": 0,
-          "id": 24,
-          "name": "",
-          "rotation": 0,
-          "type": "bullet",
-          "visible": true,
-          "width": 0,
-          "x": 405,
-          "y": 106
-        },
-        {
-          "ellipse": true,
-          "height": 0,
-          "id": 25,
-          "name": "",
-          "rotation": 0,
-          "type": "bullet",
-          "visible": true,
-          "width": 0,
-          "x": 548,
-          "y": 27
-        },
-        {
-          "ellipse": true,
-          "height": 0,
-          "id": 26,
-          "name": "",
-          "rotation": 0,
-          "type": "bullet",
-          "visible": true,
-          "width": 0,
-          "x": 710,
-          "y": 111
         }
       ],
       "opacity": 1,

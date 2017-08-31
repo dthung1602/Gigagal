@@ -28,7 +28,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public EnemyAssets enemyAssets;
     public BulletAssets bulletAssets;
     public ExplosionAssets explosionAssets;
-    public PowerupAssets powerupAssets;
+    public BonusAssets bonusAssets;
     public ExitPortalAssets exitPortalAssets;
     public OnscreenControlAssets onscreenControlAssets;
 
@@ -49,7 +49,7 @@ public class Assets implements Disposable, AssetErrorListener {
         enemyAssets = new EnemyAssets(textureAtlas);
         bulletAssets = new BulletAssets(textureAtlas);
         explosionAssets = new ExplosionAssets(textureAtlas);
-        powerupAssets = new PowerupAssets(textureAtlas);
+        bonusAssets = new BonusAssets(textureAtlas);
         exitPortalAssets = new ExitPortalAssets(textureAtlas);
         onscreenControlAssets = new OnscreenControlAssets(textureAtlas);
     }
@@ -101,17 +101,20 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class PlatformAssets {
-        public NinePatch ninePatch;
+        public NinePatch passablePlatform;
+        public NinePatch solidPlatform;
 
         PlatformAssets(TextureAtlas atlas) {
             TextureRegion region = atlas.findRegion(Constants.PLATFORM);
-            ninePatch = new NinePatch(
+            passablePlatform = new NinePatch(
                     region,
                     Constants.HORIZONTAL_BORDER,
                     Constants.HORIZONTAL_BORDER,
                     Constants.VERTICAL_BORDER,
                     Constants.VERTICAL_BORDER
             );
+            // TODO add pic
+            solidPlatform = passablePlatform;
         }
     }
 
@@ -158,11 +161,15 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class PowerupAssets {
-        public AtlasRegion region;
+    public class BonusAssets {
+        public AtlasRegion health;
+        public AtlasRegion life;
+        public AtlasRegion bullet;
 
-        PowerupAssets(TextureAtlas atlas) {
-            region = atlas.findRegion(Constants.POWERUP);
+        BonusAssets(TextureAtlas atlas) {
+            health = atlas.findRegion(Constants.BONUS_HEALTH);
+            life = atlas.findRegion(Constants.BONUS_LIFE);
+            bullet = atlas.findRegion(Constants.BONUS_BULLET);
         }
     }
 

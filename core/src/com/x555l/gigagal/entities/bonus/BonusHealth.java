@@ -9,7 +9,7 @@ import com.x555l.gigagal.util.Constants;
 public class BonusHealth extends Bonus {
     public BonusHealth(float x, float y) {
         position = new Vector2(x, y);
-        region = Assets.instance.powerupAssets.region;
+        region = Assets.instance.bonusAssets.health;
     }
 
     @Override

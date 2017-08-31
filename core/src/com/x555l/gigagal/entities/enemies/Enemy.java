@@ -18,7 +18,7 @@ public class Enemy {
 
     public Enemy(Platform platform) {
         this.platform = platform;
-        position = new Vector2(platform.left, platform.top + Constants.ENEMY_CENTER.y);
+        position = new Vector2(platform.x, platform.yTop + Constants.ENEMY_CENTER.y);
         direction = Facing.RIGHT;
         floatTime = 0;
         health = Constants.ENEMY_HEALTH;
@@ -34,14 +34,14 @@ public class Enemy {
 
         // create floating effect
         floatTime += delta;
-        position.y = platform.top
+        position.y = platform.yTop
                 + Constants.ENEMY_CENTER.y
                 + (float) Math.sin(2 * Math.PI / Constants.FLOAT_PERIOD * floatTime) * Constants.FLOAT_AMPLITUDE;
 
         // change direction
-        if (position.x < platform.left) {
+        if (position.x < platform.x) {
             direction = Facing.RIGHT;
-        } else if (position.x > platform.right) {
+        } else if (position.x > platform.xRight) {
             direction = Facing.LEFT;
         }
     }

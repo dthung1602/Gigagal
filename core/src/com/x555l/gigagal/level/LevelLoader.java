@@ -81,17 +81,17 @@ public class LevelLoader {
     }
 
     private static void newPlatform(Level level, float x, float y, float width, float height) {
-        level.getPlatforms().add(new Platform(x, y, width, height));
+        level.getPlatforms().add(new Platform(true, x, y, width, height));
     }
 
     private static void newPlatformWithEnemy(Level level, float x, float y, float width, float height) {
-        Platform platform = new Platform(x, y, width, height);
+        Platform platform = new Platform(false, x, y, width, height);
         level.getPlatforms().add(platform);
         level.getEnemies().add(new Enemy(platform));
     }
 
     private static void newStartPlatform(Level level, float x, float y, float width, float height) {
-        Platform platform = new Platform(x, y, width, height);
+        Platform platform = new Platform(true, x, y, width, height);
         level.getPlatforms().add(platform);
         level.setGigagal(new GigaGal(
                 level,

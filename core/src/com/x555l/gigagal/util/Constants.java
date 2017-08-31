@@ -81,8 +81,11 @@ public class Constants {
     static final float EXPLOSION_DURATION = 0.05f;
 
     // bonus
-    static final String POWERUP = "powerup";
-    public static final Vector2 POWERUP_CENTER = new Vector2(7, 5);
+    static final String BONUS_HEALTH = "powerup";
+    // TODO change these
+    static final String BONUS_LIFE = "powerup";
+    static final String BONUS_BULLET = "powerup";
+    public static final Vector2 BONUS_CENTER = new Vector2(7, 5);
 
     // exit portal
     static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
@@ -132,7 +135,7 @@ public class Constants {
     public static final int EXPLOSION_COUNT = 600;
     public static final int ENEMY_COUNT = 300;
     public static final String FONT_FILE = "font/header.fnt";
-    
+
     // onscreen control asset
     static final String BUTTON_LEFT = "button-move-left";
     static final String BUTTON_RIGHT = "button-move-right";

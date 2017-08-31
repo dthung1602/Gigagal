@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.x555l.gigagal.entities.bonus.BonusHealth;
 import com.x555l.gigagal.entities.bonus.Bonus;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
@@ -38,6 +37,8 @@ public class GigaGal {
     private Level level;
     private InputProcessor inputProcessor;
 
+    private Platform currentPlatform; // platform ggg is standing on
+
     public GigaGal(Level level, float x, float y) {
         this(level, new Vector2(x, y));
     }
@@ -64,6 +65,8 @@ public class GigaGal {
         health = Constants.INIT_HEALTH;
         bullet = Constants.INIT_BULLET;
 
+        currentPlatform = null;
+
         shootLastTime = 0;
     }
 
@@ -75,13 +78,16 @@ public class GigaGal {
         }
 
         // save current pos to prev. pos
-        prevPosition.set(position);
+        prevPosition.set(position.x, position.y);
 
         // gravity
         velocity.y -= delta * Constants.GRAVITY;
 
         // apply velocity to position
         position.mulAdd(velocity, delta);
+//        System.out.println(prevPosition.x);
+//        System.out.println(position.x);
+//        System.out.println(prevPosition.x == position.x);
 
         // death plane
         if (position.y < Constants.DEATH_DEPTH) {
@@ -89,22 +95,45 @@ public class GigaGal {
             return;
         }
 
-        // handle jumping states and landing on platforms
+        // handle jumping states
         if (jumpState != JumpState.JUMPING) {
             if (jumpState != JumpState.KNOCK_BACK)
                 jumpState = JumpState.FALLING;
+        }
 
-            for (Platform platform : level.getPlatforms()) {
-                if (landOnPlatform(platform)) {
-                    jumpState = JumpState.GROUNDED;
-                    velocity.set(0, 0);
-                    position.y = platform.top + Constants.GIGAGAL_EYE_POSITION.y;
-                    break;
-                }
+        // handle platform collision
+        currentPlatform = null;
+
+        System.out.println("-----------------------------");
+        for (Platform platform : level.getPlatforms()) {
+//            System.out.println(platform.x + " " + platform.y);
+
+            if (landOnPlatform(platform)) {
+                currentPlatform = platform;
+                jumpState = JumpState.GROUNDED;
+                velocity.set(0, 0);
+                position.y = platform.yTop + Constants.GIGAGAL_EYE_POSITION.y;
+//                break;
+            }
+
+            if (blockedByAbovePlatform(platform)) {
+                jumpState = JumpState.FALLING;
+                velocity.set(0, 0);
+                position.y = platform.y;
+//                break;
+            }
+
+            if (blockedByLeftPlatform(platform)) {
+                System.exit(0);
+                if (jumpState != JumpState.GROUNDED)
+                    jumpState = JumpState.FALLING;
+                velocity.x = 0;
+                position.x = platform.xRight + Constants.GIGAGAL_STANCE_WIDTH/2;
+//                break;
             }
         }
 
-        // detect collision with enemy
+        // a rectangle to detect collision
         Rectangle gigagalBoundary = new Rectangle(
                 position.x - Constants.GIGAGAL_EYE_POSITION.x,
                 position.y - Constants.GIGAGAL_EYE_POSITION.y,
@@ -112,6 +141,7 @@ public class GigaGal {
                 Constants.GIGAGAL_HEIGHT
         );
 
+        // detect collision with enemy
         for (com.x555l.gigagal.entities.enemies.Enemy enemy : level.getEnemies()) {
             Rectangle enemyBoundary = new Rectangle(
                     enemy.position.x - Constants.ENEMY_RADIUS,
@@ -135,10 +165,11 @@ public class GigaGal {
             }
         }
 
-        //------------------------------------
-        //             HANDLE INPUT
-        //------------------------------------
+        // handle input
+        handleInput(delta);
+    }
 
+    private void handleInput(float delta) {
         // handle jumping key
         if (inputProcessor.jumpKeyPressed) {
             handleJumping();
@@ -148,12 +179,13 @@ public class GigaGal {
 
         // handle down key
         if (inputProcessor.downKeyPressed) {
-            if (jumpState == JumpState.GROUNDED) {
+            if (jumpState == JumpState.GROUNDED
+                    && currentPlatform != null && currentPlatform.passable) {
                 position.y -= 2;
             }
         }
 
-        // handle moving left/right key
+        // handle moving left/xRight key
         if (jumpState != JumpState.KNOCK_BACK)
             if (inputProcessor.leftKeyPressed)
                 moveLeft(delta);
@@ -166,7 +198,6 @@ public class GigaGal {
         if (inputProcessor.shootKeyPressed) {
             shoot();
         }
-
     }
 
     private void shoot() {
@@ -192,7 +223,7 @@ public class GigaGal {
             jumpState = JumpState.KNOCK_BACK;
         }
 
-        // knock to the right
+        // knock to the xRight
         velocity.set(Constants.KNOCK_BACK_VELOCITY);
 
         // knock to the left
@@ -203,22 +234,55 @@ public class GigaGal {
 
     private boolean landOnPlatform(Platform platform) {
         // check if gigagal is falling pass top border of platform
-        if (prevPosition.y - Constants.GIGAGAL_EYE_POSITION.y < platform.top      // prev.pos must be above
-                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.top)  // curr.pos must be below
+        if (prevPosition.y - Constants.GIGAGAL_EYE_POSITION.y < platform.yTop      // prev.pos must be above
+                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)  // curr.pos must be below
             return false;
 
         float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
         float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
 
         // both feet on the left of platform
-        if (rightFoot < platform.left)
+        if (rightFoot < platform.x)
             return false;
 
         // both feet on the right of platform
-        if (leftFoot > platform.right)
+        if (leftFoot > platform.xRight)
             return false;
 
         return true;
+    }
+
+    private boolean blockedByAbovePlatform(Platform platform) {
+        // check if gigagal is jumping pass bottom border of platform
+        if (prevPosition.y > platform.y      // prev.pos must be below
+                || position.y < platform.y)  // curr.pos must be above
+            return false;
+
+        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+
+        // both feet on the left of platform
+        if (rightFoot < platform.x)
+            return false;
+
+        // both feet on the right of platform
+        if (leftFoot > platform.xRight)
+            return false;
+
+        return true;
+    }
+
+    private boolean blockedByLeftPlatform(Platform platform) {
+        // check platforms with relevant heights only
+        if (position.y < platform.y
+                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)
+            return false;
+
+        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+        float prevLeftFoot = prevPosition.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+
+        // left foot cross right border of platform
+        return (leftFoot < platform.xRight && platform.xRight < prevLeftFoot);
     }
 
     private void handleJumping() {
@@ -268,7 +332,11 @@ public class GigaGal {
         walkState = WalkState.WALKING;
         facing = Facing.LEFT;
 
+        System.out.println(prevPosition.x);
+        System.out.println("  " + position.x);
         position.x -= delta * Constants.GIGAGAL_SPEED;
+        System.out.println("  " + position.x);
+        System.out.println(position.x == prevPosition.x);
     }
 
     private void moveRight(float delta) {
@@ -287,9 +355,7 @@ public class GigaGal {
         walkState = WalkState.STANDING;
     }
 
-    /*Return true if gigagal still alive,
-    false otherwise
-    * */
+    /**Return true if gigagal still alive, false otherwise*/
     private boolean loseHealth() {
         health--;
         if (health == 0) {
@@ -299,9 +365,7 @@ public class GigaGal {
         return true;
     }
 
-    /*Return true if gigagal still has extra life,
-    false otherwise
-    * */
+    /**Return true if gigagal still has extra life, false otherwise*/
     private boolean die() {
         life--;
         if (life == 0) {
@@ -320,19 +384,21 @@ public class GigaGal {
 
         if (facing == Facing.LEFT) {
             if (jumpState == JumpState.GROUNDED) {
-                if (walkState == WalkState.WALKING)
+                if (walkState == WalkState.WALKING) {
                     region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
-                else
+                } else {
                     region = Assets.instance.gigaGalAssets.standingLeft;
+                }
             } else {
                 region = Assets.instance.gigaGalAssets.jumpingLeft;
             }
         } else {
             if (jumpState == JumpState.GROUNDED) {
-                if (walkState == WalkState.WALKING)
+                if (walkState == WalkState.WALKING) {
                     region = Assets.instance.gigaGalAssets.walkingRight.getKeyFrame(walkingTime);
-                else
+                } else {
                     region = Assets.instance.gigaGalAssets.standingRight;
+                }
             } else {
                 region = Assets.instance.gigaGalAssets.jumpingRight;
             }

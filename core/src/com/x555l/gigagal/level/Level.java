@@ -114,15 +114,15 @@ public class Level {
     private void initDebugLevel() {
         gigagal = new GigaGal(this, new Vector2(80, 80));
 
-        platforms.add(new Platform(30, 8, 100, 30));
-        platforms.add(new Platform(60, 50, 50, 10));
-        platforms.add(new Platform(20, 80, 10, 50));
-        platforms.add(new Platform(100, 80, 80, 20));
-        platforms.add(new Platform(80, 120, 40, 20));
-        platforms.add(new Platform(40, 160, 40, 20));
-        platforms.add(new Platform(20, 200, 40, 20));
-        platforms.add(new Platform(200, 40, 50, 30));
-        platforms.add(new Platform(250, 90, 150, 10));
+        platforms.add(new Platform(true, 30, 8, 100, 30));
+        platforms.add(new Platform(true, 60, 50, 50, 10));
+        platforms.add(new Platform(true, 20, 80, 10, 50));
+        platforms.add(new Platform(true, 100, 80, 80, 20));
+        platforms.add(new Platform(true, 80, 120, 40, 20));
+        platforms.add(new Platform(true, 40, 160, 40, 20));
+        platforms.add(new Platform(true, 20, 200, 40, 20));
+        platforms.add(new Platform(true, 200, 40, 50, 30));
+        platforms.add(new Platform(true, 250, 90, 150, 10));
 
         for (int i = 5; i < 9; i++)
             enemies.add(new Enemy(platforms.get(i)));
@@ -172,7 +172,7 @@ public class Level {
         this.exitPortal = exitPortal;
     }
 
-    public Level getNewDebugLevel() {
+    public static Level getNewDebugLevel() {
         Level level = new Level(0);
         level.initDebugLevel();
         return level;

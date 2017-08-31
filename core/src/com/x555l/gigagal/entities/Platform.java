@@ -1,27 +1,38 @@
 package com.x555l.gigagal.entities;
 
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.x555l.gigagal.util.Assets;
 
 
-public class Platform {
-    private float width, height;
-    public float left, right;
-    public float bottom, top;
+public class Platform extends Rectangle {
+    public float xRight;
+    public float yTop;
 
-    public Platform(float left, float bottom, float width, float height) {
-        this.left = left;
-        this.right = left + width;
-        this.bottom = bottom;
-        this.top = bottom + height;
+    private NinePatch ninePatch;
+    boolean passable;
+
+    public Platform(boolean passable, float x, float y, float width, float height) {
+        this.passable = passable;
+        if (passable) {
+            ninePatch = Assets.instance.platformAssets.passablePlatform;
+        } else {
+            ninePatch = Assets.instance.platformAssets.solidPlatform;
+        }
+
+        this.x = x;
+        this.xRight = x + width;
+        this.y = y;
+        this.yTop = y + height;
         this.width = width;
         this.height = height;
     }
 
     public void render(SpriteBatch batch) {
-        Assets.instance.platformAssets.ninePatch.draw(
+        ninePatch.draw(
                 batch,
-                left, bottom,
+                x, y,
                 width, height
         );
     }
