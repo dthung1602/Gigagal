@@ -256,6 +256,7 @@ public class GigaGal {
                     region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
                 } else {
                     region = Assets.instance.gigaGalAssets.standingLeft;
+                    System.out.println(region);
                 }
             } else {
                 region = Assets.instance.gigaGalAssets.jumpingLeft;
@@ -271,6 +272,7 @@ public class GigaGal {
                 region = Assets.instance.gigaGalAssets.jumpingRight;
             }
         }
+
 
         batch.draw(
                 region,
@@ -289,7 +291,7 @@ public class GigaGal {
     }
 
     private boolean betweenVerticalBorder(Platform platform) {
-        return  ( (!platform.passable)          // platform mustn't be passable
+        return ((!platform.passable)          // platform mustn't be passable
                 && position.y >= platform.y     // head must be higher than bottom border of platform
                 && position.y - Constants.GIGAGAL_EYE_POSITION.y <= platform.yTop);  // feet must be lower than top border of platform
 
@@ -405,10 +407,15 @@ public class GigaGal {
             if (facing == Facing.LEFT)
                 xOffset = -xOffset;
 
+            Facing bulletFacing = null;
+
+            if (walkState != WalkState.FACE_UP)
+                bulletFacing = facing;
+
             level.addNewBullet(
                     position.x + xOffset,
                     position.y + Constants.GIGAGAL_GUN_OFFSET.y,
-                    facing
+                    bulletFacing
             );
         }
     }

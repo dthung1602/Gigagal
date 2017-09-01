@@ -11,35 +11,59 @@ import com.x555l.gigagal.util.Enum.Facing;
 
 public class Bullet {
     public Vector2 position;
-    private Facing direction;
+    private Vector2 velocity;
 
     public boolean active;
 
     private Level level;
+    private TextureRegion region;
 
     public Bullet(float x, float y, Facing direction, Level level) {
-        position = new Vector2(x, y);
-        this.direction = direction;
         this.level = level;
         active = true;
+
+        position = new Vector2(x, y);
+        velocity = new Vector2(0, 0);
+
+        if (direction == null) {
+            // up bullet
+            region = Assets.instance.bulletAssets.upBullet;
+            velocity.y = Constants.BULLET_SPEED;
+        } else if (direction == Facing.LEFT) {
+            // left bullet
+            region = Assets.instance.bulletAssets.leftBullet;
+            velocity.x = -Constants.BULLET_SPEED;
+        } else {
+            // right bullet
+            region = Assets.instance.bulletAssets.rightBullet;
+            velocity.x = Constants.BULLET_SPEED;
+        }
     }
 
     public void update(float delta) {
         // move the bullet
-        if (direction == Facing.LEFT) {
-            position.x -= delta * Constants.BULLET_SPEED;
-        } else {
-            position.x += delta * Constants.BULLET_SPEED;
-        }
+        position.mulAdd(velocity, delta);
 
         // check if bullet out of screen
-        final float halfWorldWidth = level.getViewport().getWorldWidth() / 2;
+        if (velocity.y == 0) {
+            // for left/right bullet
+            final float halfWorldWidth = level.getViewport().getWorldWidth() / 2;
+            final float cameraX = level.getViewport().getCamera().position.x;
 
-        final float cameraX = level.getViewport().getCamera().position.x;
+            if (position.x < cameraX - halfWorldWidth
+                    || position.x > cameraX + halfWorldWidth) {
+                active = false;
+                return;
+            }
+        } else {
+            // for up bullet
+            final float halfWorldHeight = level.getViewport().getWorldHeight() / 2;
+            final float cameraY = level.getViewport().getCamera().position.y;
 
-        if (position.x < cameraX - halfWorldWidth
-                || position.x > cameraX + halfWorldWidth) {
-            active = false;
+            if (position.y > cameraY + halfWorldHeight) {
+                active = false;
+                return;
+            }
         }
 
         // detect collision with non-passable platforms
@@ -62,13 +86,6 @@ public class Bullet {
     }
 
     public void render(SpriteBatch batch) {
-        TextureRegion region;
-
-        if (direction == Facing.LEFT)
-            region = Assets.instance.bulletAssets.leftBullet;
-        else
-            region = Assets.instance.bulletAssets.rightBullet;
-
         batch.draw(
                 region,
                 position.x - Constants.BULLET_CENTER.x,

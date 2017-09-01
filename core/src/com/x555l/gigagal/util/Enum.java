@@ -16,6 +16,7 @@ public class Enum {
 
     public enum WalkState {
         STANDING,
+        FACE_UP,
         WALKING,
     }
 }
