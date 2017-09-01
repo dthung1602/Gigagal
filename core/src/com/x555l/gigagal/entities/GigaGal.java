@@ -6,8 +6,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.bonus.Bonus;
-import com.x555l.gigagal.level.Level;
+import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
+import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
@@ -38,6 +39,10 @@ public class GigaGal {
     private InputProcessor inputProcessor;
 
     private Platform currentPlatform; // platform ggg is standing on
+
+    //-------------------------------------
+    //            CONSTRUCTOR
+    //-------------------------------------
 
     public GigaGal(Level level, float x, float y) {
         this(level, new Vector2(x, y));
@@ -70,7 +75,18 @@ public class GigaGal {
         shootLastTime = 0;
     }
 
+    //-------------------------------------
+    //          UPDATE & RENDER
+    //-------------------------------------
+
     public void update(float delta) {
+        commonUpdate(delta);
+        handlePlatforms();
+        handleCollisions();
+        handleInput();
+    }
+
+    private void commonUpdate(float delta) {
         // check if gigagal win
         if (position.dst(level.getExitPortal().position) < Constants.EXIT_PORTAL_RADIUS) {
             level.victory = true;
@@ -97,33 +113,45 @@ public class GigaGal {
             if (jumpState != JumpState.KNOCK_BACK)
                 jumpState = JumpState.FALLING;
         }
+    }
 
-        // handle platform collision
+    private void handlePlatforms() {
+        // handle platform (y axis)
         currentPlatform = null;
 
         for (Platform platform : level.getPlatforms()) {
+
+            if (!betweenHorizontalBorder(platform))
+                continue;
 
             if (landOnPlatform(platform)) {
                 currentPlatform = platform;
                 jumpState = JumpState.GROUNDED;
                 velocity.set(0, 0);
                 position.y = platform.yTop + Constants.GIGAGAL_EYE_POSITION.y;
-//                break;
+                break;
             }
 
             if (blockedByAbovePlatform(platform)) {
                 jumpState = JumpState.FALLING;
                 velocity.set(0, 0);
                 position.y = platform.y;
-//                break;
+                break;
             }
+        }
+
+        // handle platform (x axis)
+        for (Platform platform : level.getPlatforms()) {
+
+            if (!betweenVerticalBorder(platform))
+                continue;
 
             if (blockedByLeftPlatform(platform)) {
                 if (jumpState != JumpState.GROUNDED)
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
                 position.x = platform.xRight + Constants.GIGAGAL_STANCE_WIDTH / 2 + 1;
-//                break;
+                break;
             }
 
             if (blockedByRightPlatform(platform)) {
@@ -131,10 +159,12 @@ public class GigaGal {
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
                 position.x = platform.x - Constants.GIGAGAL_STANCE_WIDTH / 2 - 1;
-//                break;
+                break;
             }
         }
+    }
 
+    private void handleCollisions() {
         // a rectangle to detect collision
         Rectangle gigagalBoundary = new Rectangle(
                 position.x - Constants.GIGAGAL_EYE_POSITION.x,
@@ -166,12 +196,9 @@ public class GigaGal {
                 break;
             }
         }
-
-        // handle input
-        handleInput(delta);
     }
 
-    private void handleInput(float delta) {
+    private void handleInput() {
         // handle jumping key
         if (inputProcessor.jumpKeyPressed) {
             handleJumping();
@@ -202,36 +229,70 @@ public class GigaGal {
         }
     }
 
-    private void shoot() {
-        if (Util.seccondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN && bullet > 0) {
-            shootLastTime = TimeUtils.nanoTime();
-            bullet--;
+    public void render(SpriteBatch batch) {
+        TextureRegion region;
 
-            float xOffset = Constants.GIGAGAL_GUN_OFFSET.x;
-            if (facing == Facing.LEFT)
-                xOffset = -xOffset;
+        float walkingTime = Util.seccondsSince(walkStartTime);
 
-            level.addNewBullet(
-                    position.x + xOffset,
-                    position.y + Constants.GIGAGAL_GUN_OFFSET.y,
-                    facing
-            );
+        if (facing == Facing.LEFT) {
+            if (jumpState == JumpState.GROUNDED) {
+                if (walkState == WalkState.WALKING) {
+                    region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
+                } else {
+                    region = Assets.instance.gigaGalAssets.standingLeft;
+                }
+            } else {
+                region = Assets.instance.gigaGalAssets.jumpingLeft;
+            }
+        } else {
+            if (jumpState == JumpState.GROUNDED) {
+                if (walkState == WalkState.WALKING) {
+                    region = Assets.instance.gigaGalAssets.walkingRight.getKeyFrame(walkingTime);
+                } else {
+                    region = Assets.instance.gigaGalAssets.standingRight;
+                }
+            } else {
+                region = Assets.instance.gigaGalAssets.jumpingRight;
+            }
         }
+
+        batch.draw(
+                region,
+                position.x - Constants.GIGAGAL_EYE_POSITION.x,
+                position.y - Constants.GIGAGAL_EYE_POSITION.y
+        );
     }
 
-    private void knockBack(com.x555l.gigagal.entities.enemies.Enemy enemy) {
-        if (jumpState != JumpState.KNOCK_BACK) {
-            if (!loseHealth()) return;
-            jumpState = JumpState.KNOCK_BACK;
-        }
+    //-------------------------------------
+    //             PLATFORMS
+    //-------------------------------------
 
-        // knock to the xRight
-        velocity.set(Constants.KNOCK_BACK_VELOCITY);
+    private boolean betweenHorizontalBorder(Platform platform) {
+        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
 
-        // knock to the left
-        if (enemy.position.x > position.x) {
-            velocity.x = -velocity.x;
-        }
+        // both feet on the left of platform
+        if (rightFoot < platform.x)
+            return false;
+
+        // both feet on the right of platform
+        if (leftFoot > platform.xRight)
+            return false;
+
+        return true;
+    }
+
+    private boolean betweenVerticalBorder(Platform platform) {
+        // check if platform is passable
+        if (platform.passable)
+            return false;
+
+        // check platforms with relevant heights only
+        if (position.y < platform.y
+                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)
+            return false;
+
+        return true;
     }
 
     private boolean landOnPlatform(Platform platform) {
@@ -240,65 +301,41 @@ public class GigaGal {
                 || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)  // curr.pos must be below
             return false;
 
-        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-
-        // both feet on the left of platform
-        if (rightFoot < platform.x)
-            return false;
-
-        // both feet on the right of platform
-        if (leftFoot > platform.xRight)
-            return false;
-
         return true;
     }
 
     private boolean blockedByAbovePlatform(Platform platform) {
+        // check if platform is passable
+        if (platform.passable)
+            return false;
+
         // check if gigagal is jumping pass bottom border of platform
         if (prevPosition.y > platform.y      // prev.pos must be below
                 || position.y < platform.y)  // curr.pos must be above
-            return false;
-
-        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-
-        // both feet on the left of platform
-        if (rightFoot < platform.x)
-            return false;
-
-        // both feet on the right of platform
-        if (leftFoot > platform.xRight)
             return false;
 
         return true;
     }
 
     private boolean blockedByLeftPlatform(Platform platform) {
-        // check platforms with relevant heights only
-        if (position.y < platform.y
-                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)
-            return false;
-
         float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
         float prevLeftFoot = prevPosition.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
 
         // left foot cross right border of platform
         return (leftFoot < platform.xRight && platform.xRight < prevLeftFoot);
     }
-    
-    private boolean blockedByRightPlatform(Platform platform) {
-        // check platforms with relevant heights only
-        if (position.y < platform.y
-                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)
-            return false;
 
+    private boolean blockedByRightPlatform(Platform platform) {
         float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
         float prevRightFoot = prevPosition.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
 
         // right foot cross left border of platform
         return (prevRightFoot < platform.x && platform.x < rightFoot);
     }
+
+    //-------------------------------------
+    //              JUMPING
+    //-------------------------------------
 
     private void handleJumping() {
         switch (jumpState) {
@@ -339,6 +376,10 @@ public class GigaGal {
             jumpState = JumpState.FALLING;
     }
 
+    //-------------------------------------
+    //               MOVING
+    //-------------------------------------
+
     private void moveLeft() {
         // save time if first time walking
         if (jumpState == JumpState.GROUNDED && walkState == WalkState.STANDING)
@@ -364,6 +405,42 @@ public class GigaGal {
     private void endMoving() {
         velocity.set(0, velocity.y);
         walkState = WalkState.STANDING;
+    }
+
+    //-------------------------------------
+    //               OTHERS
+    //-------------------------------------
+
+    private void shoot() {
+        if (Util.seccondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN && bullet > 0) {
+            shootLastTime = TimeUtils.nanoTime();
+            bullet--;
+
+            float xOffset = Constants.GIGAGAL_GUN_OFFSET.x;
+            if (facing == Facing.LEFT)
+                xOffset = -xOffset;
+
+            level.addNewBullet(
+                    position.x + xOffset,
+                    position.y + Constants.GIGAGAL_GUN_OFFSET.y,
+                    facing
+            );
+        }
+    }
+
+    private void knockBack(Enemy enemy) {
+        if (jumpState != JumpState.KNOCK_BACK) {
+            if (!loseHealth()) return;
+            jumpState = JumpState.KNOCK_BACK;
+        }
+
+        // knock to the xRight
+        velocity.set(Constants.KNOCK_BACK_VELOCITY);
+
+        // knock to the left
+        if (enemy.position.x > position.x) {
+            velocity.x = -velocity.x;
+        }
     }
 
     /**
@@ -392,39 +469,9 @@ public class GigaGal {
         }
     }
 
-    public void render(SpriteBatch batch) {
-        TextureRegion region;
-
-        float walkingTime = Util.seccondsSince(walkStartTime);
-
-        if (facing == Facing.LEFT) {
-            if (jumpState == JumpState.GROUNDED) {
-                if (walkState == WalkState.WALKING) {
-                    region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
-                } else {
-                    region = Assets.instance.gigaGalAssets.standingLeft;
-                }
-            } else {
-                region = Assets.instance.gigaGalAssets.jumpingLeft;
-            }
-        } else {
-            if (jumpState == JumpState.GROUNDED) {
-                if (walkState == WalkState.WALKING) {
-                    region = Assets.instance.gigaGalAssets.walkingRight.getKeyFrame(walkingTime);
-                } else {
-                    region = Assets.instance.gigaGalAssets.standingRight;
-                }
-            } else {
-                region = Assets.instance.gigaGalAssets.jumpingRight;
-            }
-        }
-
-        batch.draw(
-                region,
-                position.x - Constants.GIGAGAL_EYE_POSITION.x,
-                position.y - Constants.GIGAGAL_EYE_POSITION.y
-        );
-    }
+    //-------------------------------------
+    //         GETTERS & SETTERS
+    //-------------------------------------
 
     public void setInputProcessor(InputProcessor inputProcessor) {
         this.inputProcessor = inputProcessor;

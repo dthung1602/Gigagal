@@ -2026,7 +2026,18 @@
           "visible": true,
           "width": 170,
           "x": 80,
-          "y": 180
+          "y": 60
+        },
+        {
+          "height": 20,
+          "id": 5,
+          "name": "",
+          "rotation": 0,
+          "type": "platform",
+          "visible": true,
+          "width": 170,
+          "x": 40,
+          "y": 40
         },
         {
           "height": 20,
@@ -2038,6 +2049,17 @@
           "width": 120,
           "x": 200,
           "y": 130
+        },
+        {
+          "height": 20,
+          "id": 6,
+          "name": "",
+          "rotation": 0,
+          "type": "platform-enemy",
+          "visible": true,
+          "width": 100,
+          "x": 200,
+          "y": 80
         },
         {
           "height": 50,
