@@ -23,6 +23,9 @@ public class GigaGal {
     private Vector2 prevPosition;
     private Vector2 velocity;
 
+    private float leftFoot, rightFoot;
+    private float prevLeftFoot, prevRightFoot;
+
     public int health;
     public int life;
     public int bullet;
@@ -72,6 +75,11 @@ public class GigaGal {
 
         currentPlatform = null;
 
+        leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+        rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+        prevLeftFoot = leftFoot;
+        prevRightFoot = rightFoot;
+
         shootLastTime = 0;
     }
 
@@ -102,6 +110,12 @@ public class GigaGal {
         // apply velocity to position
         position.mulAdd(velocity, delta);
 
+        // calculate left, right foot
+        leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+        rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+        prevLeftFoot = prevPosition.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
+        prevRightFoot = prevPosition.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+
         // death plane
         if (position.y < Constants.DEATH_DEPTH) {
             die();
@@ -121,6 +135,7 @@ public class GigaGal {
 
         for (Platform platform : level.getPlatforms()) {
 
+            // only check platforms that have relevant heights
             if (!betweenHorizontalBorder(platform))
                 continue;
 
@@ -143,6 +158,7 @@ public class GigaGal {
         // handle platform (x axis)
         for (Platform platform : level.getPlatforms()) {
 
+            // only check platforms that have relevant width
             if (!betweenVerticalBorder(platform))
                 continue;
 
@@ -268,67 +284,36 @@ public class GigaGal {
     //-------------------------------------
 
     private boolean betweenHorizontalBorder(Platform platform) {
-        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-
-        // both feet on the left of platform
-        if (rightFoot < platform.x)
-            return false;
-
-        // both feet on the right of platform
-        if (leftFoot > platform.xRight)
-            return false;
-
-        return true;
+        return (rightFoot > platform.x          // both feet on the left of platform
+                && leftFoot < platform.xRight); // both feet on the right of platform
     }
 
     private boolean betweenVerticalBorder(Platform platform) {
-        // check if platform is passable
-        if (platform.passable)
-            return false;
+        return  ( (!platform.passable)          // platform mustn't be passable
+                && position.y >= platform.y     // head must be higher than bottom border of platform
+                && position.y - Constants.GIGAGAL_EYE_POSITION.y <= platform.yTop);  // feet must be lower than top border of platform
 
-        // check platforms with relevant heights only
-        if (position.y < platform.y
-                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)
-            return false;
-
-        return true;
     }
 
     private boolean landOnPlatform(Platform platform) {
         // check if gigagal is falling pass top border of platform
-        if (prevPosition.y - Constants.GIGAGAL_EYE_POSITION.y < platform.yTop      // prev.pos must be above
-                || position.y - Constants.GIGAGAL_EYE_POSITION.y > platform.yTop)  // curr.pos must be below
-            return false;
-
-        return true;
+        return (prevPosition.y - Constants.GIGAGAL_EYE_POSITION.y >= platform.yTop  // prev.pos must be above
+                && position.y - Constants.GIGAGAL_EYE_POSITION.y <= platform.yTop);  // curr.pos must be below
     }
 
     private boolean blockedByAbovePlatform(Platform platform) {
-        // check if platform is passable
-        if (platform.passable)
-            return false;
-
         // check if gigagal is jumping pass bottom border of platform
-        if (prevPosition.y > platform.y      // prev.pos must be below
-                || position.y < platform.y)  // curr.pos must be above
-            return false;
-
-        return true;
+        return ((!platform.passable)             // platform mustn't be passable
+                && prevPosition.y < platform.y   // prev.pos must be below
+                && platform.y < position.y);     // curr.pos must be above
     }
 
     private boolean blockedByLeftPlatform(Platform platform) {
-        float leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        float prevLeftFoot = prevPosition.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-
         // left foot cross right border of platform
         return (leftFoot < platform.xRight && platform.xRight < prevLeftFoot);
     }
 
     private boolean blockedByRightPlatform(Platform platform) {
-        float rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-        float prevRightFoot = prevPosition.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-
         // right foot cross left border of platform
         return (prevRightFoot < platform.x && platform.x < rightFoot);
     }
