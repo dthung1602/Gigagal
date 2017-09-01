@@ -72,6 +72,8 @@ public class Assets implements Disposable, AssetErrorListener {
     public class GigaGalAssets {
         public AtlasRegion standingRight;
         public AtlasRegion standingLeft;
+        public AtlasRegion standingUpLeft;
+        public AtlasRegion standingUpRight;
 
         public AtlasRegion jumpingRight;
         public AtlasRegion jumpingLeft;
@@ -83,6 +85,9 @@ public class Assets implements Disposable, AssetErrorListener {
             standingRight = atlas.findRegion(Constants.STANDING_RIGHT);
             standingLeft = atlas.findRegion(Constants.STANDING_LEFT);
 
+            standingUpRight = atlas.findRegion(Constants.STANDING_UP_RIGHT);
+            standingUpLeft = atlas.findRegion(Constants.STANDING_UP_LEFT);
+            
             jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
             jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
 
@@ -129,10 +134,12 @@ public class Assets implements Disposable, AssetErrorListener {
     public class BulletAssets {
         public AtlasRegion leftBullet;
         public AtlasRegion rightBullet;
+        public AtlasRegion upBullet;
 
         BulletAssets(TextureAtlas atlas) {
             leftBullet = atlas.findRegion(Constants.BULLET_LEFT);
             rightBullet = atlas.findRegion(Constants.BULLET_RIGHT);
+            upBullet = atlas.findRegion(Constants.BULLET_UP);
         }
     }
 

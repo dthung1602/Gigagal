@@ -24,13 +24,13 @@ CHARACTER
     up arrow key: face up (ready to shoot up)
     # down arrow key: get off current platform
 
-BONUS
-    bullet
-    health (done)
-    life
+# BONUS
+    # bullet
+    # health (done)
+    # life
 
 ENEMY
-    Basic (done)
+    # Basic (done)
     Fast (can detect when character land on its platform)
     Strong (high health)
     Shoot (can shoot bullet)
@@ -42,7 +42,7 @@ TRAP
     Shoot (4 direction)
     Fallen platform
 
-WALL (as vertical platform)
+# WALL (as vertical platform)
 
 BOSS
 

@@ -15,6 +15,8 @@ public class Constants {
     // gigagal
     static final String STANDING_RIGHT = "standing-right";
     static final String STANDING_LEFT = "standing-left";
+    static final String STANDING_UP_RIGHT = "standing-up-right";
+    static final String STANDING_UP_LEFT = "standing-up-left";
     static final String JUMPING_LEFT = "jumping-left";
     static final String JUMPING_RIGHT = "jumping-right";
     static final String WALK_1_LEFT = "walk-1-left";
@@ -66,6 +68,7 @@ public class Constants {
     // bullet
     static final String BULLET_LEFT = "bullet-left";
     static final String BULLET_RIGHT = "bullet-right";
+    static final String BULLET_UP = "bullet-up";
     public static final Vector2 BULLET_CENTER = new Vector2(2, 3);
     public static final float BULLET_SPEED = 150;
     public static final float BULLET_COOL_DOWN = 0.4f;
