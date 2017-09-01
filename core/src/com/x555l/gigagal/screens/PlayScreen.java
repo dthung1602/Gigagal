@@ -49,6 +49,7 @@ public class PlayScreen extends ScreenAdapter {
         victoryOverlay = new VictoryOverlay();
         gameoverOverlay = new GameOverOverlay();
 
+        // DEBUG
         onMobile = (Gdx.app.getType() == Application.ApplicationType.Android);
 
         if (onMobile) {

@@ -204,12 +204,18 @@ public class Assets implements Disposable, AssetErrorListener {
     public class OnscreenControlAssets {
         public AtlasRegion leftButton;
         public AtlasRegion rightButton;
+        public AtlasRegion upButton;
+        public AtlasRegion downButton;
+        
         public AtlasRegion jumpButton;
         public AtlasRegion shootButton;
 
         OnscreenControlAssets(TextureAtlas atlas) {
             leftButton = atlas.findRegion(Constants.BUTTON_LEFT);
             rightButton = atlas.findRegion(Constants.BUTTON_RIGHT);
+            upButton = atlas.findRegion(Constants.BUTTON_UP);
+            downButton = atlas.findRegion(Constants.BUTTON_DOWN);
+            
             jumpButton = atlas.findRegion(Constants.BUTTON_JUMP);
             shootButton = atlas.findRegion(Constants.BUTTON_SHOOT);
         }

@@ -142,6 +142,9 @@ public class Constants {
     // onscreen control asset
     static final String BUTTON_LEFT = "button-move-left";
     static final String BUTTON_RIGHT = "button-move-right";
+    static final String BUTTON_UP = "button-up";
+    static final String BUTTON_DOWN = "button-down";
+
     static final String BUTTON_JUMP = "button-jump";
     static final String BUTTON_SHOOT = "button-shoot";
 
