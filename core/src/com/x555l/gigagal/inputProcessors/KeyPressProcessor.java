@@ -28,6 +28,9 @@ public class KeyPressProcessor extends InputProcessor {
             case Keys.DOWN:
                 downKeyPressed = value;
                 break;
+            case Keys.UP:
+                upKeyPressed = value;
+                break;
             case Keys.Z:
                 jumpKeyPressed = value;
                 break;

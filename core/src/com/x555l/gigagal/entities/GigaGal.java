@@ -230,15 +230,21 @@ public class GigaGal {
             }
         }
 
-        // handle moving left/xRight key
-        if (jumpState != JumpState.KNOCK_BACK)
-            if (inputProcessor.leftKeyPressed)
-                moveLeft();
-            else if (inputProcessor.rightKeyPressed)
-                moveRight();
-            else
-                endMoving();
+        // handle moving left/right key
+        if (jumpState != JumpState.KNOCK_BACK) {
+            if (inputProcessor.upKeyPressed) {
+                walkState = WalkState.FACE_UP;
+            } else {
+                walkState = WalkState.WALKING;
 
+                if (inputProcessor.leftKeyPressed)
+                    moveLeft();
+                else if (inputProcessor.rightKeyPressed)
+                    moveRight();
+                else
+                    endMoving();
+            }
+        }
         // handle shoot key
         if (inputProcessor.shootKeyPressed) {
             shoot();
@@ -252,21 +258,30 @@ public class GigaGal {
 
         if (facing == Facing.LEFT) {
             if (jumpState == JumpState.GROUNDED) {
-                if (walkState == WalkState.WALKING) {
-                    region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
-                } else {
-                    region = Assets.instance.gigaGalAssets.standingLeft;
-                    System.out.println(region);
+                switch (walkState) {
+                    case WALKING:
+                        region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
+                        break;
+                    case STANDING:
+                        region = Assets.instance.gigaGalAssets.standingLeft;
+                        break;
+                    default:
+                        region = Assets.instance.gigaGalAssets.standingUpLeft;
                 }
             } else {
                 region = Assets.instance.gigaGalAssets.jumpingLeft;
             }
         } else {
             if (jumpState == JumpState.GROUNDED) {
-                if (walkState == WalkState.WALKING) {
-                    region = Assets.instance.gigaGalAssets.walkingRight.getKeyFrame(walkingTime);
-                } else {
-                    region = Assets.instance.gigaGalAssets.standingRight;
+                switch (walkState) {
+                    case WALKING:
+                        region = Assets.instance.gigaGalAssets.walkingRight.getKeyFrame(walkingTime);
+                        break;
+                    case STANDING:
+                        region = Assets.instance.gigaGalAssets.standingRight;
+                        break;
+                    default:
+                        region = Assets.instance.gigaGalAssets.standingUpRight;
                 }
             } else {
                 region = Assets.instance.gigaGalAssets.jumpingRight;
