@@ -42,12 +42,21 @@ public class Bullet {
             active = false;
         }
 
+        // detect collision with non-passable platforms
+        for (Platform platform : level.getPlatforms()) {
+            if ((!platform.passable) && platform.contains(position)) {
+                active = false;
+                return;
+            }
+        }
+
         // detect collision with enemy
         for (com.x555l.gigagal.entities.enemies.Enemy enemy : level.getEnemies()) {
             if (enemy.position.dst(position) < Constants.ENEMY_HIT_RADIUS) {
                 enemy.health--;
                 level.addNewExplosion(position, false);
                 active = false;
+                return;
             }
         }
     }
