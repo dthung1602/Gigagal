@@ -2,10 +2,11 @@ package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -13,8 +14,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.util.Assets;
 
 
-abstract class Screen extends ScreenAdapter {
-    private Game game;
+abstract class MyScreen implements Screen {
+    Game game;
+    Skin skin;
 
     private Stage stage;
 
@@ -22,6 +24,13 @@ abstract class Screen extends ScreenAdapter {
     private Viewport backgroundViewport;
     private float worldSize;
     private TextureRegion background;
+
+    MyScreen(Game game, float worldSize, TextureRegion background) {
+        this.skin = Assets.instance.skin;
+        this.game = game;
+        this.worldSize = worldSize;
+        this.background = background;
+    }
 
     /**
      * Add widgets of the screen by this method
@@ -65,10 +74,25 @@ abstract class Screen extends ScreenAdapter {
         backgroundViewport.apply();
         batch.setProjectionMatrix(backgroundViewport.getCamera().combined);
         batch.begin();
-        batch.draw(Assets.instance.screenBackgroundAssets.mainMenu, 0, 0);
+        batch.draw(background, 0, 0);
         batch.end();
 
         stage.getViewport().apply();
         stage.draw();
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 }

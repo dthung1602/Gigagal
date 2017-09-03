@@ -1,10 +1,22 @@
 package com.x555l.gigagal.screens;
 
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.Constants;
 
-/**
- * Created by hung on 9/3/17.
- */
 
-public class LevelSelectScreen extends ScreenAdapter {
+public class LevelSelectScreen extends MyScreen {
+    LevelSelectScreen(Game game) {
+        super(
+                game,
+                Constants.SELECT_LEVEL_WORLD_SIZE,
+                Assets.instance.screenBackgroundAssets.selectLevel
+        );
+    }
+
+    @Override
+    void createButton(Table table) {
+
+    }
 }

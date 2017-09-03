@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -35,11 +35,15 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public ScreenBackgroundAssets screenBackgroundAssets;
 
+    public Skin skin;
+
     // ensure singleton
     private Assets() {
     }
 
     public void init() {
+        skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
+
         assetManager = new AssetManager();
         assetManager.setErrorListener(this);
         assetManager.load(Constants.GIGAGAL_ATLAS, TextureAtlas.class);
@@ -230,9 +234,13 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class ScreenBackgroundAssets {
         public TextureRegion mainMenu;
+        public TextureRegion selectLevel;
+        public TextureRegion setting;
 
         ScreenBackgroundAssets(TextureAtlas atlas){
-            mainMenu = atlas.findRegion(Constants.MAIN_MENU_BACKGROUND);
+            mainMenu = atlas.findRegion(Constants.BG_MAIN_MENU);
+            selectLevel = atlas.findRegion(Constants.BG_SELECT_LEVEL);
+            setting = atlas.findRegion(Constants.BG_SETTING);
         }
     }
 }

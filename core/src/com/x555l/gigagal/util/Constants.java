@@ -154,5 +154,9 @@ public class Constants {
 
     // main menu
     public static final float MAIN_MENU_WORLD_SIZE = 180;
-    public static final String MAIN_MENU_BACKGROUND = "mainmenu";
+    public static final float SELECT_LEVEL_WORLD_SIZE = 180;
+    public static final float SETTING_WORLD_SIZE = 180;
+    static final String BG_MAIN_MENU = "main-menu";
+    static final String BG_SELECT_LEVEL = "select-level";
+    static final String BG_SETTING = "setting";
 }

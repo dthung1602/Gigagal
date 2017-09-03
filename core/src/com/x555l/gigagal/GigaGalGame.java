@@ -10,7 +10,7 @@ public class GigaGalGame extends Game {
     @Override
     public void create() {
         Assets.instance.init();
-//        setScreen(new PlayScreen());
-        setScreen(new MainMenu());
+        setScreen(new PlayScreen(this));
+        setScreen(new MainMenuScreen(this));
     }
 }

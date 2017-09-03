@@ -6,7 +6,6 @@ SCREENS
         - Setting
         - Quit
     Choose level
-    High score ?
     Setting
         - Sound
         - Music
