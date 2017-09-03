@@ -30,6 +30,7 @@ public class PlayScreen extends ScreenAdapter {
     private ChaseCamera chaseCamera;
 
     private Level level;
+    private int levelNum;
 
     private GigagalHUD hud;
     private OnscreenControl onscreenControl;
@@ -42,8 +43,9 @@ public class PlayScreen extends ScreenAdapter {
 
     private boolean onMobile;
 
-    public PlayScreen(Game game) {
+    PlayScreen(Game game, int levelNum) {
         this.game = game;
+        this.levelNum = levelNum;
     }
 
     @Override
@@ -143,7 +145,7 @@ public class PlayScreen extends ScreenAdapter {
 
     private void startNewLevel() {
         if (level == null) {
-            level = LevelLoader.load(1); // begin of game, load level 1
+            level = LevelLoader.load(levelNum); // begin of game, load level determined by levelNum
         } else {
             if (level.victory)
                 // TODO end of game, congrat player

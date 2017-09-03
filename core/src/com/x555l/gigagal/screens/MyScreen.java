@@ -18,7 +18,7 @@ abstract class MyScreen implements Screen {
     Game game;
     Skin skin;
 
-    private Stage stage;
+    Stage stage;
 
     private SpriteBatch batch;
     private Viewport backgroundViewport;
@@ -35,7 +35,7 @@ abstract class MyScreen implements Screen {
     /**
      * Add widgets of the screen by this method
      */
-    abstract void createButton(Table table);
+    abstract void createWidgets(Table table);
 
     @Override
     public void show() {
@@ -54,7 +54,7 @@ abstract class MyScreen implements Screen {
         stage.addActor(table);
 
         // create buttons
-        createButton(table);
+        createWidgets(table);
     }
 
     @Override
@@ -79,6 +79,21 @@ abstract class MyScreen implements Screen {
 
         stage.getViewport().apply();
         stage.draw();
+
+        // DEBUG del these
+//        System.out.println("----------------------------------------------");
+//        System.out.println("Gdx");
+//        System.out.println(Gdx.graphics.getWidth());
+//        System.out.println(Gdx.graphics.getHeight());
+//        System.out.println("stage");
+//        System.out.println(stage.getWidth());
+//        System.out.println(stage.getHeight());
+//        System.out.println("viewport world");
+//        System.out.println(stage.getViewport().getWorldWidth());
+//        System.out.println(stage.getViewport().getWorldHeight());
+//        System.out.println("viewport screen");
+//        System.out.println(stage.getViewport().getScreenWidth());
+//        System.out.println(stage.getViewport().getScreenHeight());
     }
 
     @Override

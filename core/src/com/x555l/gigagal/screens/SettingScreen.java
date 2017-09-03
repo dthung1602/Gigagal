@@ -16,7 +16,7 @@ public class SettingScreen extends MyScreen {
     }
 
 
-    void createButton(Table table) {
+    void createWidgets(Table table) {
 
     }
 }

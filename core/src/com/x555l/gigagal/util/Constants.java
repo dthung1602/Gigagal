@@ -103,7 +103,7 @@ public class Constants {
     public static final float EXIT_PORTAL_RADIUS = 30;
 
     // level
-    public static final int MAX_LEVEL = 2;
+    public static final int MAX_LEVEL = 15;
 
     public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
 
@@ -159,4 +159,8 @@ public class Constants {
     static final String BG_MAIN_MENU = "main-menu";
     static final String BG_SELECT_LEVEL = "select-level";
     static final String BG_SETTING = "setting";
+
+    // select level
+    public static final int SELECT_LEVEL_NUMBER_OF_COLUMN = 6;
+    public static final Vector2 SELECT_LEVEL_SIZE = new Vector2(30, 20);
 }

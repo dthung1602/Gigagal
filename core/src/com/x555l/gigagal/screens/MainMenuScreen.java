@@ -19,7 +19,7 @@ public class MainMenuScreen extends MyScreen {
     }
 
     @Override
-    void createButton(Table table) {
+    void createWidgets(Table table) {
 
         // start button
         TextButton button = new TextButton("CONTINUE", skin, "default");
@@ -27,8 +27,7 @@ public class MainMenuScreen extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // TODO start game
-                System.out.println("CLICKED!");
-                ((TextButton) event.getTarget()).setText("HELLO!");
+                game.setScreen(new PlayScreen(game, 1));
             }
         });
         table.add(button).fillX().padBottom(5).padBottom(5).row();
