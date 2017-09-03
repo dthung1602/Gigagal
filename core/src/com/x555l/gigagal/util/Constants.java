@@ -8,7 +8,8 @@ public class Constants {
     // world
     public static final int WORLD_SIZE = 200;
     public static final Color BACKGROUND_COLOR = Color.SKY;
-    static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
+    static final String GIGAGAL_ATLAS = "images/gigagal.pack.atlas";
+    static final String BACKGROUND_ATLAS = "images/background.pack.atlas";
     public static final float DEATH_DEPTH = -150;
     static final float CAMERA_SPEED = 64;
 
@@ -150,4 +151,8 @@ public class Constants {
 
     public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 180;
     public static final float BUTTON_RADIUS = 16;
+
+    // main menu
+    public static final float MAIN_MENU_WORLD_SIZE = 180;
+    public static final String MAIN_MENU_BACKGROUND = "mainmenu";
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -32,6 +33,8 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExitPortalAssets exitPortalAssets;
     public OnscreenControlAssets onscreenControlAssets;
 
+    public ScreenBackgroundAssets screenBackgroundAssets;
+
     // ensure singleton
     private Assets() {
     }
@@ -39,19 +42,23 @@ public class Assets implements Disposable, AssetErrorListener {
     public void init() {
         assetManager = new AssetManager();
         assetManager.setErrorListener(this);
-        assetManager.load(Constants.TEXTURE_ATLAS, TextureAtlas.class);
+        assetManager.load(Constants.GIGAGAL_ATLAS, TextureAtlas.class);
+        assetManager.load(Constants.BACKGROUND_ATLAS, TextureAtlas.class);
         assetManager.finishLoading();
 
-        TextureAtlas textureAtlas = assetManager.get(Constants.TEXTURE_ATLAS);
+        TextureAtlas gigagalAtlas = assetManager.get(Constants.GIGAGAL_ATLAS);
+        TextureAtlas backgroundAtlas = assetManager.get(Constants.BACKGROUND_ATLAS);
 
-        gigaGalAssets = new GigaGalAssets(textureAtlas);
-        platformAssets = new PlatformAssets(textureAtlas);
-        enemyAssets = new EnemyAssets(textureAtlas);
-        bulletAssets = new BulletAssets(textureAtlas);
-        explosionAssets = new ExplosionAssets(textureAtlas);
-        bonusAssets = new BonusAssets(textureAtlas);
-        exitPortalAssets = new ExitPortalAssets(textureAtlas);
-        onscreenControlAssets = new OnscreenControlAssets(textureAtlas);
+        gigaGalAssets = new GigaGalAssets(gigagalAtlas);
+        platformAssets = new PlatformAssets(gigagalAtlas);
+        enemyAssets = new EnemyAssets(gigagalAtlas);
+        bulletAssets = new BulletAssets(gigagalAtlas);
+        explosionAssets = new ExplosionAssets(gigagalAtlas);
+        bonusAssets = new BonusAssets(gigagalAtlas);
+        exitPortalAssets = new ExitPortalAssets(gigagalAtlas);
+        onscreenControlAssets = new OnscreenControlAssets(gigagalAtlas);
+
+        screenBackgroundAssets = new ScreenBackgroundAssets(backgroundAtlas);
     }
 
     @Override
@@ -218,6 +225,14 @@ public class Assets implements Disposable, AssetErrorListener {
             
             jumpButton = atlas.findRegion(Constants.BUTTON_JUMP);
             shootButton = atlas.findRegion(Constants.BUTTON_SHOOT);
+        }
+    }
+
+    public class ScreenBackgroundAssets {
+        public TextureRegion mainMenu;
+
+        ScreenBackgroundAssets(TextureAtlas atlas){
+            mainMenu = atlas.findRegion(Constants.MAIN_MENU_BACKGROUND);
         }
     }
 }

@@ -21,7 +21,7 @@ SCREENS
 AUDIO
 
 CHARACTER
-    up arrow key: face up (ready to shoot up)
+    # up arrow key: face up (ready to shoot up)
     # down arrow key: get off current platform
 
 # BONUS

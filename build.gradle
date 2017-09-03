@@ -73,13 +73,16 @@ project(":core") {
 
 
     task packTextures {
-        def inputDir = "$rootDir/core/rawAssets/sprites"
+        def inputDir1 = "$rootDir/core/rawAssets/sprites"
+        def inputDir2 = "$rootDir/core/rawAssets/backgrounds"
         def outputDir = "$rootDir/android/assets/images"
-        inputs.dir inputDir
+        inputs.dir inputDir1
+        inputs.dir inputDir2
         outputs.dir outputDir
         doLast {
             delete(outputDir)
-            TexturePacker.process(inputDir, outputDir, "gigagal.pack")
+            TexturePacker.process(inputDir1, outputDir, "gigagal.pack")
+            TexturePacker.process(inputDir2, outputDir, "background.pack")
         }
     }
 

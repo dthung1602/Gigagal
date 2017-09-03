@@ -6,10 +6,11 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.inputProcessors.KeyPressProcessor;
 import com.x555l.gigagal.inputProcessors.TouchProcessor;
+import com.x555l.gigagal.level.Level;
+import com.x555l.gigagal.level.LevelLoader;
 import com.x555l.gigagal.overlays.EndLevelOverlay;
 import com.x555l.gigagal.overlays.GameOverOverlay;
 import com.x555l.gigagal.overlays.GigagalHUD;
@@ -18,7 +19,6 @@ import com.x555l.gigagal.overlays.VictoryOverlay;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
 import com.x555l.gigagal.util.Constants;
-import com.x555l.gigagal.level.LevelLoader;
 import com.x555l.gigagal.util.Util;
 
 
@@ -41,15 +41,12 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        Assets.instance.init();
-
         batch = new SpriteBatch();
 
         hud = new GigagalHUD();
         victoryOverlay = new VictoryOverlay();
         gameoverOverlay = new GameOverOverlay();
 
-        // DEBUG
         onMobile = (Gdx.app.getType() == Application.ApplicationType.Android);
 
         if (onMobile) {
@@ -81,7 +78,6 @@ public class PlayScreen extends ScreenAdapter {
         batch.dispose();
         Assets.instance.dispose();
     }
-
 
     @Override
     public void render(float delta) {
