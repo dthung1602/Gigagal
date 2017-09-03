@@ -1,5 +1,6 @@
 package com.x555l.gigagal.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,9 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.util.Assets;
@@ -21,9 +19,15 @@ import com.x555l.gigagal.util.Constants;
 
 
 public class MainMenu extends ScreenAdapter {
+    private Game game;
+
     private Stage stage;
     private SpriteBatch batch;
     private Viewport backgroundViewport;
+
+    public MainMenu(Game game) {
+        this.game = game;
+    }
 
     @Override
     public void show() {
@@ -53,7 +57,7 @@ public class MainMenu extends ScreenAdapter {
 
     private void createButton(Table table) {
         // load skin
-        Skin skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
+        Skin skin = Assets.instance.skin;
 
         // start button
         TextButton button = new TextButton("CONTINUE", skin, "default");
@@ -67,35 +71,27 @@ public class MainMenu extends ScreenAdapter {
         });
         table.add(button).fillX().padBottom(5).padBottom(5).row();
 
-        // choose level button
-        button = new TextButton("CHOOSE LEVEL", skin, "default");
+        // select level button
+        button = new TextButton("SELECT LEVEL", skin, "default");
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO change to level screen
+                game.setScreen(new LevelSelectScreen(game));
             }
         });
         table.add(button).padBottom(5).fillX().row();
 
-        // high score button
-        button = new TextButton("HIGH SCORE", skin, "default");
-        button.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                // TODO change to high score screen
-            }
-        });
-        table.add(button).fillX().padBottom(5).row();
-
+        // setting
         button = new TextButton("SETTING", skin, "default");
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO change to level screen
+                game.setScreen(new SettingScreen(game));
             }
         });
         table.add(button).fillX().padBottom(5).row();
 
+        // quit
         button = new TextButton("QUIT", skin, "default");
         button.addListener(new ChangeListener() {
             @Override
@@ -114,25 +110,16 @@ public class MainMenu extends ScreenAdapter {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
     }
 
     @Override
     public void render(float delta) {
-        // clear screen
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // TODO add background
+        // render background
         backgroundViewport.apply();
         batch.setProjectionMatrix(backgroundViewport.getCamera().combined);
-        System.out.println(Assets.instance.screenBackgroundAssets.mainMenu);
         batch.begin();
-        batch.draw(
-                Assets.instance.screenBackgroundAssets.mainMenu,
-                0,
-                0
-        );
+        batch.draw(Assets.instance.screenBackgroundAssets.mainMenu, 0, 0);
         batch.end();
 
         stage.getViewport().apply();
