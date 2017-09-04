@@ -33,7 +33,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExitPortalAssets exitPortalAssets;
     public OnscreenControlAssets onscreenControlAssets;
 
-    public ScreenBackgroundAssets screenBackgroundAssets;
+    public backgroundAssets backgroundAssets;
 
     public Skin skin;
 
@@ -62,7 +62,7 @@ public class Assets implements Disposable, AssetErrorListener {
         exitPortalAssets = new ExitPortalAssets(gigagalAtlas);
         onscreenControlAssets = new OnscreenControlAssets(gigagalAtlas);
 
-        screenBackgroundAssets = new ScreenBackgroundAssets(backgroundAtlas);
+        backgroundAssets = new backgroundAssets(backgroundAtlas);
     }
 
     @Override
@@ -232,15 +232,17 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class ScreenBackgroundAssets {
+    public class backgroundAssets {
         public TextureRegion mainMenu;
         public TextureRegion selectLevel;
         public TextureRegion setting;
+        public TextureRegion overlay;
 
-        ScreenBackgroundAssets(TextureAtlas atlas){
+        backgroundAssets(TextureAtlas atlas){
             mainMenu = atlas.findRegion(Constants.BG_MAIN_MENU);
             selectLevel = atlas.findRegion(Constants.BG_SELECT_LEVEL);
             setting = atlas.findRegion(Constants.BG_SETTING);
+            overlay= atlas.findRegion(Constants.BG_OVERLAY);
         }
     }
 }

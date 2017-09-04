@@ -3,6 +3,7 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,6 +17,7 @@ import com.x555l.gigagal.overlays.EndLevelOverlay;
 import com.x555l.gigagal.overlays.GameOverOverlay;
 import com.x555l.gigagal.overlays.GigagalHUD;
 import com.x555l.gigagal.overlays.OnscreenControl;
+import com.x555l.gigagal.overlays.PauseGameOverlay;
 import com.x555l.gigagal.overlays.VictoryOverlay;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
@@ -38,10 +40,12 @@ public class PlayScreen extends ScreenAdapter {
 
     private VictoryOverlay victoryOverlay;
     private GameOverOverlay gameoverOverlay;
+    private PauseGameOverlay pauseGameOverlay;
 
     private long levelEndOverLayerStartTime;
 
     private boolean onMobile;
+    private boolean pause;
 
     PlayScreen(Game game, int levelNum) {
         this.game = game;
@@ -55,6 +59,7 @@ public class PlayScreen extends ScreenAdapter {
         hud = new GigagalHUD();
         victoryOverlay = new VictoryOverlay();
         gameoverOverlay = new GameOverOverlay();
+        pauseGameOverlay = new PauseGameOverlay(game, batch);
 
         onMobile = (Gdx.app.getType() == Application.ApplicationType.Android);
 
@@ -89,7 +94,30 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     @Override
+    public void pause() {
+        pause = true;
+        Gdx.input.setInputProcessor(pauseGameOverlay.getStage());
+        System.out.println("pause");
+    }
+
+    @Override
+    public void resume() {
+        pause = false;
+        Gdx.input.setInputProcessor(inputProcessor);
+        inputProcessor.reset();
+        System.out.println("resume");
+    }
+
+    @Override
     public void render(float delta) {
+        // check if game is paused or not
+        if (inputProcessor.pauseKeyPressed)
+            pause();
+        if (pause) {
+            pauseGameOverlay.render();
+            return;
+        }
+
         // update everything
         level.update(delta);
         chaseCamera.update(delta);
@@ -164,6 +192,7 @@ public class PlayScreen extends ScreenAdapter {
         level.getGigagal().setInputProcessor(inputProcessor);
         inputProcessor.reset();
 
+        pause = false;
         levelEndOverLayerStartTime = 0;
     }
 }

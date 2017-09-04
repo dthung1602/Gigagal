@@ -1,6 +1,6 @@
 
 background.pack.png
-size: 1024,256
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -9,6 +9,13 @@ main-menu
   xy: 341, 2
   size: 300, 190
   orig: 300, 190
+  offset: 0, 0
+  index: -1
+overlay
+  rotate: false
+  xy: 2, 194
+  size: 768, 240
+  orig: 768, 240
   offset: 0, 0
   index: -1
 select-level

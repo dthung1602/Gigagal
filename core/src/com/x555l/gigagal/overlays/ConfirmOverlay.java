@@ -1,11 +1,9 @@
 package com.x555l.gigagal.overlays;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -19,7 +17,7 @@ public class ConfirmOverlay extends MenuOverlay {
         super(
                 batch,
                 viewport,
-                Assets.instance.screenBackgroundAssets.mainMenu
+                Assets.instance.backgroundAssets.mainMenu
         );
 
         confirm = null;

@@ -36,6 +36,10 @@ public class KeyPressProcessor extends InputProcessor {
                 break;
             case Keys.X:
                 shootKeyPressed = value;
+                break;
+            case Keys.P:
+                pauseKeyPressed = value;
+                break;
         }
     }
 }

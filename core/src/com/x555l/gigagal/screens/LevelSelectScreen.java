@@ -3,7 +3,6 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.x555l.gigagal.overlays.ConfirmOverlay;
@@ -16,7 +15,7 @@ class LevelSelectScreen extends MyScreen {
         super(
                 game,
                 Constants.SELECT_LEVEL_WORLD_SIZE,
-                Assets.instance.screenBackgroundAssets.selectLevel
+                Assets.instance.backgroundAssets.selectLevel
         );
     }
 
@@ -24,7 +23,7 @@ class LevelSelectScreen extends MyScreen {
     void createWidgets(Table table) {
 
         // TODO consider this vs background in MyScreen
-//        TextureRegionDrawable texture = new TextureRegionDrawable(Assets.instance.screenBackgroundAssets.setting);
+//        TextureRegionDrawable texture = new TextureRegionDrawable(Assets.instance.backgroundAssets.setting);
 //        table.setBackground(texture);
 
         Table subTable = createBackButton(table);
@@ -52,17 +51,5 @@ class LevelSelectScreen extends MyScreen {
             if ((i + 1) % Constants.SELECT_LEVEL_NUMBER_OF_COLUMN == 0)
                 subTable.row();
         }
-
-        overlay = new ConfirmOverlay("Are you sure?",
-                game, stage.getBatch(), stage.getViewport());
-    }
-
-    ConfirmOverlay overlay;
-
-    @Override
-    // DEBUG
-    public void render(float delta) {
-        super.render(delta);
-        overlay.render();
     }
 }

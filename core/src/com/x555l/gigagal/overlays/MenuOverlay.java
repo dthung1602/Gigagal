@@ -40,4 +40,8 @@ abstract class MenuOverlay {
     public void render() {
         stage.draw();
     }
+
+    public Stage getStage() {
+        return stage;
+    }
 }

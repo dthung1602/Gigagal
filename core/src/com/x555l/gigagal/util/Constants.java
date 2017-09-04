@@ -159,6 +159,7 @@ public class Constants {
     static final String BG_MAIN_MENU = "main-menu";
     static final String BG_SELECT_LEVEL = "select-level";
     static final String BG_SETTING = "setting";
+    static final String BG_OVERLAY = "overlay";
 
     // select level
     public static final int SELECT_LEVEL_NUMBER_OF_COLUMN = 6;
