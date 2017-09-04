@@ -1,7 +1,6 @@
 package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -10,7 +9,7 @@ import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 
 
-public class LevelSelectScreen extends MyScreen {
+class LevelSelectScreen extends MyScreen {
     LevelSelectScreen(Game game) {
         super(
                 game,
@@ -21,19 +20,20 @@ public class LevelSelectScreen extends MyScreen {
 
     @Override
     void createWidgets(Table table) {
-        table.padTop(25);
+
         // TODO consider this vs background in MyScreen
 //        TextureRegionDrawable texture = new TextureRegionDrawable(Assets.instance.screenBackgroundAssets.setting);
 //        table.setBackground(texture);
+
+        Table subTable = createBackButton(table);
 
         for (int i = 0; i < Constants.MAX_LEVEL; i++) {
             // new button
             TextButton button = new TextButton((i + 1) + "", skin, "default");
 
             // format the button
-            table.add(button)
+            subTable.add(button)
                     .pad(5, 5, 5, 5)
-                    .fillX()
                     .prefSize(Constants.SELECT_LEVEL_SIZE.x,
                             Constants.SELECT_LEVEL_SIZE.y);
 
@@ -48,7 +48,7 @@ public class LevelSelectScreen extends MyScreen {
 
             // end row
             if ((i + 1) % Constants.SELECT_LEVEL_NUMBER_OF_COLUMN == 0)
-                table.row();
+                subTable.row();
         }
     }
 }

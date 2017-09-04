@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -18,7 +21,7 @@ abstract class MyScreen implements Screen {
     Game game;
     Skin skin;
 
-    Stage stage;
+    private Stage stage;
 
     private Batch batch;
     private Viewport backgroundViewport;
@@ -53,7 +56,7 @@ abstract class MyScreen implements Screen {
         table.debug(); // DEBUG del it
         stage.addActor(table);
 
-        // create buttons
+        // add other widgets
         createWidgets(table);
     }
 
@@ -79,21 +82,6 @@ abstract class MyScreen implements Screen {
 
         stage.getViewport().apply();
         stage.draw();
-
-        // DEBUG del these
-//        System.out.println("----------------------------------------------");
-//        System.out.println("Gdx");
-//        System.out.println(Gdx.graphics.getWidth());
-//        System.out.println(Gdx.graphics.getHeight());
-//        System.out.println("stage");
-//        System.out.println(stage.getWidth());
-//        System.out.println(stage.getHeight());
-//        System.out.println("viewport world");
-//        System.out.println(stage.getViewport().getWorldWidth());
-//        System.out.println(stage.getViewport().getWorldHeight());
-//        System.out.println("viewport screen");
-//        System.out.println(stage.getViewport().getScreenWidth());
-//        System.out.println(stage.getViewport().getScreenHeight());
     }
 
     @Override
@@ -109,5 +97,36 @@ abstract class MyScreen implements Screen {
     @Override
     public void hide() {
 
+    }
+
+    /**
+     * Create a back to main menu button at top left of the given table,
+     * then create and return a sub-table so that more widgets can be added
+     *
+     * @param table: root table that spans the whole screen
+     * @return sub-table to add more widgets
+     */
+    Table createBackButton(Table table) {
+        // new back button
+        TextButton backButton = new TextButton("BACK", skin, "default");
+
+        // add action
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new MainMenuScreen(game));
+            }
+        });
+
+        // format
+        table.setFillParent(true);
+        table.add(backButton).top().left().padBottom(25).row();
+
+        // sub table to hold other widgets
+        Table subTable = new Table();
+        table.add(subTable);
+
+        // return sub-table to add widget
+        return subTable;
     }
 }

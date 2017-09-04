@@ -12,8 +12,9 @@ import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Settings;
 
 
-public class SettingScreen extends MyScreen {
-    public SettingScreen(Game game) {
+class SettingScreen extends MyScreen {
+
+    SettingScreen(Game game) {
         super(
                 game,
                 Constants.SETTING_WORLD_SIZE,
@@ -21,10 +22,12 @@ public class SettingScreen extends MyScreen {
         );
     }
 
-
     void createWidgets(Table table) {
         Label label;
         CheckBox checkBox;
+
+        // add back to menu button
+        Table subTable = createBackButton(table);
 
         // ------------------- brightness --------------------------------
         label = new Label("Brightness", skin, "default");
@@ -37,9 +40,9 @@ public class SettingScreen extends MyScreen {
             }
         });
 
-        table.add(label);
-        table.add(brightnessSlider);
-        table.row().padTop(5);
+        subTable.add(label);
+        subTable.add(brightnessSlider);
+        subTable.row().padTop(5);
 
         // ------------------- FX sound ----------------------------------
         final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
@@ -61,9 +64,9 @@ public class SettingScreen extends MyScreen {
             }
         });
 
-        table.add(checkBox);
-        table.add(fxSoundSlider);
-        table.row().padTop(5);
+        subTable.add(checkBox).left();
+        subTable.add(fxSoundSlider);
+        subTable.row().padTop(5);
 
 
         // ------------------ music ------------------------------------
@@ -86,8 +89,8 @@ public class SettingScreen extends MyScreen {
             }
         });
 
-        table.add(checkBox);
-        table.add(musicSlider);
-        table.row();
+        subTable.add(checkBox).left();
+        subTable.add(musicSlider);
+        subTable.row();
     }
 }
