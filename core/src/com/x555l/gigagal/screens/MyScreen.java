@@ -73,7 +73,6 @@ abstract class MyScreen implements Screen {
         // render background
         backgroundViewport.apply();
         batch.setProjectionMatrix(backgroundViewport.getCamera().combined);
-        batch.setColor(1f, 1f, 1f, 1f);
         batch.begin();
         batch.draw(background, 0, 0);
         batch.end();

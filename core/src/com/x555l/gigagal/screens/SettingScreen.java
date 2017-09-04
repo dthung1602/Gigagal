@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
+import com.x555l.gigagal.util.Settings;
 
 
 public class SettingScreen extends MyScreen {
@@ -25,7 +26,7 @@ public class SettingScreen extends MyScreen {
         Label label;
         CheckBox checkBox;
 
-        // brightness
+        // ------------------- brightness --------------------------------
         label = new Label("Brightness", skin, "default");
         final Slider brightnessSlider = new Slider(0, 1, 0.05f, false, skin);
         brightnessSlider.addListener(new ChangeListener() {
@@ -35,38 +36,56 @@ public class SettingScreen extends MyScreen {
                 System.out.println(((Slider) actor).getValue());
             }
         });
+
         table.add(label);
         table.add(brightnessSlider);
         table.row().padTop(5);
 
-        // FX sound
+        // ------------------- FX sound ----------------------------------
+        final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
+        fxSoundSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Settings.instance.setSoundVolume(((Slider) actor).getValue());
+            }
+        });
+
         checkBox = new CheckBox("FX sound", skin);
         checkBox.setChecked(true);
-        final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
         checkBox.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO sound
                 CheckBox sound = (CheckBox) actor;
                 fxSoundSlider.setDisabled(!sound.isChecked());
+                Settings.instance.setSoundEnabled(sound.isChecked());
             }
         });
+
         table.add(checkBox);
         table.add(fxSoundSlider);
         table.row().padTop(5);
 
-        // music
+
+        // ------------------ music ------------------------------------
+        final Slider musicSlider = new Slider(0, 1, 0.05f, false, skin);
+        musicSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Settings.instance.setMusicVolume(((Slider) actor).getValue());
+            }
+        });
+
         checkBox = new CheckBox("Music", skin);
         checkBox.setChecked(true);
-        final Slider musicSlider = new Slider(0, 1, 0.05f, false, skin);
         checkBox.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO music
                 CheckBox music = (CheckBox) actor;
                 musicSlider.setDisabled(!music.isChecked());
+                Settings.instance.setMusicEnabled(music.isChecked());
             }
         });
+
         table.add(checkBox);
         table.add(musicSlider);
         table.row();

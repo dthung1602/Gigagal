@@ -32,11 +32,11 @@ public class ChaseCamera {
         // debugging camera
         if (Gdx.input.isKeyPressed(Keys.A))
             camera.position.x -= delta * Constants.CAMERA_SPEED;
-        else if (Gdx.input.isKeyPressed(Keys.D))
+        if (Gdx.input.isKeyPressed(Keys.D))
             camera.position.x += delta * Constants.CAMERA_SPEED;
-        else if (Gdx.input.isKeyPressed(Keys.W))
+        if (Gdx.input.isKeyPressed(Keys.W))
             camera.position.y += delta * Constants.CAMERA_SPEED;
-        else if (Gdx.input.isKeyPressed(Keys.S))
+        if (Gdx.input.isKeyPressed(Keys.S))
             camera.position.y -= delta * Constants.CAMERA_SPEED;
     }
 }
