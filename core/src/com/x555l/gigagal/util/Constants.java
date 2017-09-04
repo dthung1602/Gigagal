@@ -163,4 +163,7 @@ public class Constants {
     // select level
     public static final int SELECT_LEVEL_NUMBER_OF_COLUMN = 6;
     public static final Vector2 SELECT_LEVEL_SIZE = new Vector2(30, 20);
+
+    // confirm overlay
+    public static final Vector2 CONFIRM_OVELAY_PADDING = new Vector2(25, 25);
 }

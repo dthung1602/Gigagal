@@ -3,8 +3,10 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.x555l.gigagal.overlays.ConfirmOverlay;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 
@@ -50,5 +52,17 @@ class LevelSelectScreen extends MyScreen {
             if ((i + 1) % Constants.SELECT_LEVEL_NUMBER_OF_COLUMN == 0)
                 subTable.row();
         }
+
+        overlay = new ConfirmOverlay("Are you sure?",
+                game, stage.getBatch(), stage.getViewport());
+    }
+
+    ConfirmOverlay overlay;
+
+    @Override
+    // DEBUG
+    public void render(float delta) {
+        super.render(delta);
+        overlay.render();
     }
 }

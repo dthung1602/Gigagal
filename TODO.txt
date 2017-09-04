@@ -1,16 +1,16 @@
 SCREENS
-    Main menu
-        - Continue
-        - Choose level
-        - High score
-        - Setting
-        - Quit
+    #Main menu
+        #- Continue
+        #- Choose level
+        #- Setting
+        #- Quit
     Choose level
+        - lock levels
     Setting
-        - Sound
-        - Music
-        - Brightness
-        - Reset progress >> ask for confirmation
+        #- Sound
+        #- Music
+        ?- Brightness
+        - Reset progress >> ask for confirmation ~ lock levels
     Pause ~> overlay?
         - Resume
         - Menu >> ask for confirmation
