@@ -1,12 +1,11 @@
 package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 
@@ -34,8 +33,8 @@ public class LevelSelectScreen extends MyScreen {
             // format the button
             table.add(button)
                     .pad(5, 5, 5, 5)
-                    .fill()
-                    .minSize(Constants.SELECT_LEVEL_SIZE.x,
+                    .fillX()
+                    .prefSize(Constants.SELECT_LEVEL_SIZE.x,
                             Constants.SELECT_LEVEL_SIZE.y);
 
             // add action to button

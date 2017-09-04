@@ -3,7 +3,7 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -20,7 +20,7 @@ abstract class MyScreen implements Screen {
 
     Stage stage;
 
-    private SpriteBatch batch;
+    private Batch batch;
     private Viewport backgroundViewport;
     private float worldSize;
     private TextureRegion background;
@@ -39,13 +39,13 @@ abstract class MyScreen implements Screen {
 
     @Override
     public void show() {
-        // for background rendering
-        batch = new SpriteBatch();
-        backgroundViewport = new StretchViewport(worldSize, worldSize);
-
         // new stage
         stage = new Stage(new ExtendViewport(worldSize, worldSize));
         Gdx.input.setInputProcessor(stage);
+
+        // for background rendering
+        batch = stage.getBatch();
+        backgroundViewport = new StretchViewport(worldSize, worldSize);
 
         // table to organize widgets
         Table table = new Table();
@@ -73,6 +73,7 @@ abstract class MyScreen implements Screen {
         // render background
         backgroundViewport.apply();
         batch.setProjectionMatrix(backgroundViewport.getCamera().combined);
+        batch.setColor(1f, 1f, 1f, 1f);
         batch.begin();
         batch.draw(background, 0, 0);
         batch.end();
