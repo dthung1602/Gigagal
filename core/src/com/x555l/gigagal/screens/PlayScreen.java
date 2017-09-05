@@ -96,7 +96,7 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void pause() {
         pause = true;
-        Gdx.input.setInputProcessor(pauseGameOverlay.getStage());
+        Gdx.input.setInputProcessor(pauseGameOverlay.stage);
         System.out.println("pause");
     }
 
@@ -167,24 +167,21 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     private void levelComplete() {
-        // TODO ???
+        if (level.victory)
+            // TODO end of game, congrat player
+            if (level.levelNum == Constants.MAX_LEVEL) {
+                levelNum = 1;
+            } else {
+                levelNum++; // load next level
+            }
+
+        // if lose levelNum stays the same --> replay that level
+
         startNewLevel();
     }
 
-    private void startNewLevel() {
-        if (level == null) {
-            level = LevelLoader.load(levelNum); // begin of game, load level determined by levelNum
-        } else {
-            if (level.victory)
-                // TODO end of game, congrat player
-                if (level.levelNum == Constants.MAX_LEVEL) {
-                    level = LevelLoader.load(1);
-                } else {
-                    level = LevelLoader.load(level.levelNum + 1); // load next level
-                }
-            else
-                level = LevelLoader.load(level.levelNum); // lose --> reload that level
-        }
+    public void startNewLevel() {
+        level = LevelLoader.load(levelNum);
 
         chaseCamera = new ChaseCamera(level.getViewport().getCamera(), level.getGigagal());
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // must resize to init viewports

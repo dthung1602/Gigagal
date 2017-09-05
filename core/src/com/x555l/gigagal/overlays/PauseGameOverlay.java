@@ -2,8 +2,6 @@ package com.x555l.gigagal.overlays;
 
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -11,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.x555l.gigagal.screens.MainMenuScreen;
 import com.x555l.gigagal.screens.PlayScreen;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
@@ -46,13 +45,30 @@ public class PauseGameOverlay extends MenuOverlay {
                 game.getScreen().resume();
             }
         });
-        table.add(resume).padBottom(5).row();
+        table.add(resume).padBottom(5).prefWidth(100).row();
 
         System.out.println(table.getCells());
-    }
 
-    @Override
-    public void render() {
-        super.render();
+        // menu button
+        TextButton menu = new TextButton("Menu", skin);
+        menu.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new MainMenuScreen(game));
+            }
+        });
+        table.add(menu).padBottom(5).prefWidth(100).row();
+
+        // replay level
+        TextButton replay = new TextButton("Replay", skin);
+        replay.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                PlayScreen playScreen = (PlayScreen) game.getScreen();
+                playScreen.startNewLevel();
+                playScreen.resume();
+            }
+        });
+        table.add(replay).padBottom(5).prefWidth(100).row();
     }
 }

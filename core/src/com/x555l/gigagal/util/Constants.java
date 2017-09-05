@@ -103,7 +103,7 @@ public class Constants {
     public static final float EXIT_PORTAL_RADIUS = 30;
 
     // level
-    public static final int MAX_LEVEL = 15;
+    public static final int MAX_LEVEL = 2;
 
     public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
 

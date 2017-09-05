@@ -12,6 +12,9 @@ import com.x555l.gigagal.util.Assets;
 
 public class ConfirmOverlay extends MenuOverlay {
     public Boolean confirm;
+    public Action action;
+
+    private String text;
 
     public ConfirmOverlay(String text, Batch batch, Viewport viewport) {
         super(
@@ -19,6 +22,7 @@ public class ConfirmOverlay extends MenuOverlay {
                 viewport,
                 Assets.instance.backgroundAssets.mainMenu
         );
+        this.text = text;
 
         confirm = null;
 
@@ -30,7 +34,7 @@ public class ConfirmOverlay extends MenuOverlay {
         Skin skin = Assets.instance.skin;
 
         // label to display text
-        Label label = new Label("", skin);
+        Label label = new Label(text, skin);
         table.add(label).pad(2).row();
 
         // yes button
@@ -52,5 +56,10 @@ public class ConfirmOverlay extends MenuOverlay {
             }
         });
         table.add(no).pad(15).prefWidth(50);
+    }
+
+    interface Action {
+        void yes();
+        void no();
     }
 }

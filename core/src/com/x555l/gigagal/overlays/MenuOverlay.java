@@ -11,8 +11,10 @@ import com.x555l.gigagal.util.Constants;
 
 
 abstract class MenuOverlay {
-    private Stage stage;
+    public Stage stage;
     Table table;
+
+    ConfirmOverlay confirmOverlay;
 
     MenuOverlay(Batch batch, Viewport viewport, TextureRegion background) {
         stage = new Stage(viewport, batch);
@@ -38,10 +40,16 @@ abstract class MenuOverlay {
     abstract void addWidgets();
 
     public void render() {
-        stage.draw();
-    }
+        if (confirmOverlay == null) {
+            stage.draw();
+        } else {
+            if (confirmOverlay.confirm == null)
+                confirmOverlay.render();
+            else if (confirmOverlay.confirm)
+                confirmOverlay.action.yes();
+            else
+                confirmOverlay.action.no();
+        }
 
-    public Stage getStage() {
-        return stage;
     }
 }

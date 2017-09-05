@@ -12,10 +12,10 @@ SCREENS
         ?- Brightness
         - Reset progress >> ask for confirmation ~ lock levels
     Pause ~> overlay?
-        - Resume
-        - Menu >> ask for confirmation
+        #- Resume
+        #- Menu >> ask for confirmation
         - Setting
-        - Restart level
+        #- Restart level >> ask for confirmation
 
 AUDIO
 
