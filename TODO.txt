@@ -6,12 +6,12 @@ SCREENS
         #- Quit
     #Choose level
         #- lock levels
-    Setting
+    #Setting
         #- Sound
         #- Music
         ?- Brightness
-        - Reset progress >> ask for confirmation ~ lock levels
-    Pause ~> overlay?
+        #- Reset progress >> ask for confirmation ~ lock levels
+    #Pause ~> overlay?
         #- Resume
         #- Menu >> ask for confirmation
         - Setting
@@ -19,7 +19,7 @@ SCREENS
 
 AUDIO
 
-CHARACTER
+#CHARACTER
     # up arrow key: face up (ready to shoot up)
     # down arrow key: get off current platform
 
@@ -66,7 +66,7 @@ TMP
 //          "id": 10,
 //          "name": "",
 //          "rotation": 0,
-//          "type": "platform-enemy",
+//          "type": "platform-basicEnemy",
 //          "visible": true,
 //          "width": 80,
 //          "x": 470,
@@ -77,7 +77,7 @@ TMP
 //          "id": 11,
 //          "name": "",
 //          "rotation": 0,
-//          "type": "platform-enemy",
+//          "type": "platform-basicEnemy",
 //          "visible": true,
 //          "width": 60,
 //          "x": 330,
@@ -99,7 +99,7 @@ TMP
 //          "id": 13,
 //          "name": "",
 //          "rotation": 0,
-//          "type": "platform-enemy",
+//          "type": "platform-basicEnemy",
 //          "visible": true,
 //          "width": 70,
 //          "x": 440,
@@ -121,7 +121,7 @@ TMP
 //          "id": 15,
 //          "name": "",
 //          "rotation": 0,
-//          "type": "platform-enemy",
+//          "type": "platform-basicEnemy",
 //          "visible": true,
 //          "width": 70,
 //          "x": 580,
@@ -176,7 +176,7 @@ TMP
 //          "id": 20,
 //          "name": "",
 //          "rotation": 0,
-//          "type": "platform-enemy",
+//          "type": "platform-basicEnemy",
 //          "visible": true,
 //          "width": 70,
 //          "x": 870,

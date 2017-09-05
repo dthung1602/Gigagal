@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.entities.Bullet;
 import com.x555l.gigagal.entities.bonus.BonusHealth;
-import com.x555l.gigagal.entities.enemies.Enemy;
+import com.x555l.gigagal.entities.enemies.BasicEnemy;
 import com.x555l.gigagal.entities.ExitPortal;
 import com.x555l.gigagal.entities.Explosion;
 import com.x555l.gigagal.entities.GigaGal;
@@ -25,7 +25,7 @@ public class Level {
     private GigaGal gigagal;
     private ExitPortal exitPortal;
     private Array<Platform> platforms;
-    private DelayedRemovalArray<Enemy> enemies;
+    private DelayedRemovalArray<BasicEnemy> enemies;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Bonus> bonuses;
@@ -41,7 +41,7 @@ public class Level {
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
         platforms = new Array<Platform>();
-        enemies = new DelayedRemovalArray<Enemy>();
+        enemies = new DelayedRemovalArray<BasicEnemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
         bonuses = new DelayedRemovalArray<Bonus>();
@@ -57,12 +57,12 @@ public class Level {
 
         gigagal.update(delta);
 
-        for (Enemy enemy : enemies) {
-            if (enemy.health >= 1) {
-                enemy.update(delta);
+        for (BasicEnemy basicEnemy : enemies) {
+            if (basicEnemy.health >= 1) {
+                basicEnemy.update(delta);
             } else {
-                enemies.removeValue(enemy, true);
-                addNewExplosion(enemy.position, true);
+                enemies.removeValue(basicEnemy, true);
+                addNewExplosion(basicEnemy.position, true);
             }
         }
 
@@ -88,8 +88,8 @@ public class Level {
             platform.render(batch);
         }
 
-        for (Enemy enemy : enemies) {
-            enemy.render(batch);
+        for (BasicEnemy basicEnemy : enemies) {
+            basicEnemy.render(batch);
         }
 
         for (Bullet bullet : bullets) {
@@ -125,7 +125,7 @@ public class Level {
         platforms.add(new Platform(true, 250, 90, 150, 10));
 
         for (int i = 5; i < 9; i++)
-            enemies.add(new Enemy(platforms.get(i)));
+            enemies.add(new BasicEnemy(platforms.get(i)));
 
         bonuses.add(new BonusHealth(30, 120));
         bonuses.add(new BonusHealth(50, 140));
@@ -148,7 +148,7 @@ public class Level {
         return platforms;
     }
 
-    public DelayedRemovalArray<Enemy> getEnemies() {
+    public DelayedRemovalArray<BasicEnemy> getEnemies() {
         return enemies;
     }
 

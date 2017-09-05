@@ -8,7 +8,7 @@ import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.bonus.BonusBullet;
 import com.x555l.gigagal.entities.bonus.BonusHealth;
 import com.x555l.gigagal.entities.bonus.BonusLife;
-import com.x555l.gigagal.entities.enemies.Enemy;
+import com.x555l.gigagal.entities.enemies.BasicEnemy;
 import com.x555l.gigagal.util.Constants;
 
 import org.json.simple.JSONArray;
@@ -96,7 +96,7 @@ public class LevelLoader {
     private static void newPlatformWithEnemy(Level level, float x, float y, float width, float height) {
         Platform platform = new Platform(false, x, y, width, height);
         level.getPlatforms().add(platform);
-        level.getEnemies().add(new Enemy(platform));
+        level.getEnemies().add(new BasicEnemy(platform));
     }
 
     private static void newStartPlatform(Level level, float x, float y, float width, float height) {

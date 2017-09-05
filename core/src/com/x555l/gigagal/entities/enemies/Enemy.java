@@ -1,54 +1,34 @@
 package com.x555l.gigagal.entities.enemies;
 
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.x555l.gigagal.entities.Platform;
-import com.x555l.gigagal.util.Assets;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.util.Constants;
-import com.x555l.gigagal.util.Enum.Facing;
+import com.x555l.gigagal.util.Enum.*;
 
-public class Enemy {
-    private Platform platform;
-    private float floatTime;
-    private Facing direction;
 
+public abstract class Enemy {
     public Vector2 position;
+    public Vector2 velocity;
+
     public int health;
+    public long startTime;
 
-    public Enemy(Platform platform) {
-        this.platform = platform;
-        position = new Vector2(platform.x, platform.yTop + Constants.ENEMY_CENTER.y);
-        direction = Facing.RIGHT;
-        floatTime = 0;
-        health = Constants.ENEMY_HEALTH;
+    public Facing facing;
+
+    TextureRegion textureRegion;
+
+    Enemy() {
+        startTime = TimeUtils.nanoTime();
+        facing = Facing.LEFT;
     }
 
-    public void update(float delta) {
-        // move the enemy
-        if (direction == Facing.RIGHT) {
-            position.x += delta * Constants.ENEMY_SPEED;
-        } else {
-            position.x -= delta * Constants.ENEMY_SPEED;
-        }
-
-        // create floating effect
-        floatTime += delta;
-        position.y = platform.yTop
-                + Constants.ENEMY_CENTER.y
-                + (float) Math.sin(2 * Math.PI / Constants.FLOAT_PERIOD * floatTime) * Constants.FLOAT_AMPLITUDE;
-
-        // change direction
-        if (position.x < platform.x) {
-            direction = Facing.RIGHT;
-        } else if (position.x > platform.xRight) {
-            direction = Facing.LEFT;
-        }
-    }
+    abstract public void update(float delta);
 
     public void render(SpriteBatch batch) {
         batch.draw(
-                Assets.instance.enemyAssets.region,
+                textureRegion,
                 position.x - Constants.ENEMY_CENTER.x,
                 position.y - Constants.ENEMY_CENTER.y
         );
