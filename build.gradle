@@ -35,7 +35,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java"
-    
+
     dependencies {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
@@ -66,32 +66,49 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
 
         // We also had to do some shenanigans to prevent a version conflict
-        compile ('com.googlecode.json-simple:json-simple:1.1.1') {
+        compile('com.googlecode.json-simple:json-simple:1.1.1') {
             exclude module: 'junit'
         }
     }
 
 
     task packTextures {
-        def inputDir1 = "$rootDir/core/rawAssets/sprites"
-        def inputDir2 = "$rootDir/core/rawAssets/backgrounds"
-        def outputDir = "$rootDir/android/assets/images"
-        inputs.dir inputDir1
-        inputs.dir inputDir2
-        outputs.dir outputDir
-        doLast {
-            delete(outputDir)
-            TexturePacker.process(inputDir1, outputDir, "gigagal.pack")
-            TexturePacker.process(inputDir2, outputDir, "background.pack")
-        }
+        def sprites = "$rootDir/core/rawAssets/sprites"
+        def backgrounds = "$rootDir/core/rawAssets/backgrounds"
+        def widgets = "$rootDir/core/rawAssets/widgets/images"
+
+        def imageDirectory = "$rootDir/android/assets/images"
+        def skinDirectory = "$rootDir/android/assets/skin"
+
+        inputs.dir sprites
+        inputs.dir backgrounds
+        inputs.dir widgets
+
+        outputs.dir imageDirectory
+        outputs.dir skinDirectory
+
+
+        delete(imageDirectory)
+        delete(skinDirectory)
+
+        TexturePacker.process(sprites, imageDirectory, "gigagal.pack")
+        TexturePacker.process(backgrounds, imageDirectory, "background.pack")
+        TexturePacker.process(widgets, skinDirectory, "skin")
+
     }
 
-    task copyLevels(type: Copy){
+    task copyWidgetFiles(type: Copy) {
+        from "$rootDir/core/rawAssets/widgets/copy"
+        into "$rootDir/android/assets/skin"
+    }
+
+    task copyLevels(type: Copy) {
         from "../levels"
         into "../android/assets/levels"
     }
 
     project.tasks.compileJava.dependsOn packTextures
+    project.tasks.compileJava.dependsOn copyWidgetFiles
     project.tasks.compileJava.dependsOn copyLevels
 
 }

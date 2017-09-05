@@ -47,8 +47,6 @@ public class PauseGameOverlay extends MenuOverlay {
         });
         table.add(resume).padBottom(5).prefWidth(100).row();
 
-        System.out.println(table.getCells());
-
         // menu button
         TextButton menu = new TextButton("Menu", skin);
         menu.addListener(new ChangeListener() {

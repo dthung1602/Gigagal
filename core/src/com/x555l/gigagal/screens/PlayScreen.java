@@ -97,7 +97,6 @@ public class PlayScreen extends ScreenAdapter {
     public void pause() {
         pause = true;
         Gdx.input.setInputProcessor(pauseGameOverlay.stage);
-        System.out.println("pause");
     }
 
     @Override
@@ -105,7 +104,6 @@ public class PlayScreen extends ScreenAdapter {
         pause = false;
         Gdx.input.setInputProcessor(inputProcessor);
         inputProcessor.reset();
-        System.out.println("resume");
     }
 
     @Override

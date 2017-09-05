@@ -42,7 +42,7 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public void load() {
-        skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("skin/skin.json"));
 
         assetManager = new AssetManager();
         assetManager.setErrorListener(this);

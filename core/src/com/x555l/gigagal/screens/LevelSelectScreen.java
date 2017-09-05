@@ -22,10 +22,6 @@ class LevelSelectScreen extends MyScreen {
     @Override
     void createWidgets(Table table) {
 
-        // TODO consider this vs background in MyScreen
-//        TextureRegionDrawable texture = new TextureRegionDrawable(Assets.instance.backgroundAssets.setting);
-//        table.setBackground(texture);
-
         Table subTable = createBackButton(table);
 
         for (int i = 0; i < Constants.MAX_LEVEL; i++) {

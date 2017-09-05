@@ -48,6 +48,7 @@ class SettingScreen extends MyScreen {
         // ------------------- FX sound ----------------------------------
         final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
         fxSoundSlider.setValue(Configs.instance.getSoundVolume());
+        fxSoundSlider.setDisabled(!Configs.instance.isSoundEnabled());
         fxSoundSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -74,6 +75,7 @@ class SettingScreen extends MyScreen {
         // ------------------ music ------------------------------------
         final Slider musicSlider = new Slider(0, 1, 0.05f, false, skin);
         musicSlider.setValue(Configs.instance.getMusicVolume());
+        musicSlider.setDisabled(!Configs.instance.isMusicEnabled());
         musicSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
