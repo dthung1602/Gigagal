@@ -167,4 +167,14 @@ public class Constants {
 
     // confirm overlay
     public static final Vector2 CONFIRM_OVELAY_PADDING = new Vector2(25, 25);
+
+    // Config
+    static final String CONFIG_FILE = "config.json";
+    static final String CONFIG_FILE_DEFAULT = "config-default.json";
+    static final String CONFIG_CURRENT_LEVEL = "level";
+    static final String CONFIG_BRIGHTNESS = "brightness";
+    static final String CONFIG_SOUND_ENABLE = "sound-enable";
+    static final String CONFIG_MUSIC_ENABLE = "music-enable";
+    static final String CONFIG_SOUND_VOLUME = "sound-volume";
+    static final String CONFIG_MUSIC_VOLUME = "music-volume";
 }

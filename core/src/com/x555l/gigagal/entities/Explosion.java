@@ -25,7 +25,7 @@ public class Explosion {
     }
 
     public void render(SpriteBatch batch) {
-        float time = Util.seccondsSince(explosionStartTime);
+        float time = Util.secondsSince(explosionStartTime);
 
         if (time > delayTime) {
             if (animation.isAnimationFinished(time - delayTime))

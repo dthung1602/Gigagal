@@ -3,7 +3,6 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,6 +20,7 @@ import com.x555l.gigagal.overlays.PauseGameOverlay;
 import com.x555l.gigagal.overlays.VictoryOverlay;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
+import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
@@ -151,7 +151,7 @@ public class PlayScreen extends ScreenAdapter {
         else // playing --> do nothing
             return;
 
-        // init layer for the first time
+        // load layer for the first time
         if (levelEndOverLayerStartTime == 0) {
             endLevelOverlay.init();
             levelEndOverLayerStartTime = TimeUtils.nanoTime();
@@ -161,18 +161,21 @@ public class PlayScreen extends ScreenAdapter {
         endLevelOverlay.render(batch);
 
         // end layer after a period of time
-        if (Util.seccondsSince(levelEndOverLayerStartTime) > Constants.LEVEL_END_DURATION) {
+        if (Util.secondsSince(levelEndOverLayerStartTime) > Constants.LEVEL_END_DURATION) {
             levelComplete();
         }
     }
 
     private void levelComplete() {
+        // if win
         if (level.victory)
             // TODO end of game, congrat player
+            // unlock all level
             if (level.levelNum == Constants.MAX_LEVEL) {
                 levelNum = 1;
             } else {
                 levelNum++; // load next level
+                Configs.instance.setCurrentLevel(levelNum); // save to json object -> save to file
             }
 
         // if lose levelNum stays the same --> replay that level
@@ -184,7 +187,7 @@ public class PlayScreen extends ScreenAdapter {
         level = LevelLoader.load(levelNum);
 
         chaseCamera = new ChaseCamera(level.getViewport().getCamera(), level.getGigagal());
-        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // must resize to init viewports
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // must resize to load viewports
 
         level.getGigagal().setInputProcessor(inputProcessor);
         inputProcessor.reset();

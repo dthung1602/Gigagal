@@ -1,12 +1,15 @@
 package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
+import com.x555l.gigagal.util.Util;
 
 
 public class MainMenuScreen extends MyScreen {
@@ -26,8 +29,7 @@ public class MainMenuScreen extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO start game
-                game.setScreen(new PlayScreen(game, 1));
+                game.setScreen(new PlayScreen(game, Configs.instance.getCurrentLevel()));
             }
         });
         table.add(button).fillX().padBottom(5).padBottom(5).row();
@@ -57,7 +59,7 @@ public class MainMenuScreen extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.exit(0);
+                Util.exit(0);
             }
         });
         table.add(button).fillX();

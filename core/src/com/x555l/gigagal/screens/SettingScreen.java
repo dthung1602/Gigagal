@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
-import com.x555l.gigagal.util.Settings;
+import com.x555l.gigagal.util.Configs;
 
 
 class SettingScreen extends MyScreen {
@@ -32,6 +32,7 @@ class SettingScreen extends MyScreen {
         // ------------------- brightness --------------------------------
         label = new Label("Brightness", skin, "default");
         final Slider brightnessSlider = new Slider(0, 1, 0.05f, false, skin);
+        brightnessSlider.setValue(Configs.instance.getBrightness());
         brightnessSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -46,21 +47,22 @@ class SettingScreen extends MyScreen {
 
         // ------------------- FX sound ----------------------------------
         final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
+        fxSoundSlider.setValue(Configs.instance.getSoundVolume());
         fxSoundSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Settings.instance.setSoundVolume(((Slider) actor).getValue());
+                Configs.instance.setSoundVolume(((Slider) actor).getValue());
             }
         });
 
         checkBox = new CheckBox("FX sound", skin);
-        checkBox.setChecked(true);
+        checkBox.setChecked(Configs.instance.isSoundEnabled());
         checkBox.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 CheckBox sound = (CheckBox) actor;
                 fxSoundSlider.setDisabled(!sound.isChecked());
-                Settings.instance.setSoundEnabled(sound.isChecked());
+                Configs.instance.setSoundEnabled(sound.isChecked());
             }
         });
 
@@ -71,21 +73,22 @@ class SettingScreen extends MyScreen {
 
         // ------------------ music ------------------------------------
         final Slider musicSlider = new Slider(0, 1, 0.05f, false, skin);
+        musicSlider.setValue(Configs.instance.getMusicVolume());
         musicSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Settings.instance.setMusicVolume(((Slider) actor).getValue());
+                Configs.instance.setMusicVolume(((Slider) actor).getValue());
             }
         });
 
         checkBox = new CheckBox("Music", skin);
-        checkBox.setChecked(true);
+        checkBox.setChecked(Configs.instance.isMusicEnabled());
         checkBox.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 CheckBox music = (CheckBox) actor;
                 musicSlider.setDisabled(!music.isChecked());
-                Settings.instance.setMusicEnabled(music.isChecked());
+                Configs.instance.setMusicEnabled(music.isChecked());
             }
         });
 

@@ -68,7 +68,7 @@ public class GameOverOverlay extends EndLevelOverlay {
         }
 
         void render(SpriteBatch batch) {
-            float time = Util.seccondsSince(startTime);
+            float time = Util.secondsSince(startTime);
             if (time > delay) {
                 batch.draw(
                         Assets.instance.enemyAssets.region,

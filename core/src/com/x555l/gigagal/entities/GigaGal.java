@@ -254,7 +254,7 @@ public class GigaGal {
     public void render(SpriteBatch batch) {
         TextureRegion region;
 
-        float walkingTime = Util.seccondsSince(walkStartTime);
+        float walkingTime = Util.secondsSince(walkStartTime);
 
         if (facing == Facing.LEFT) {
             if (jumpState == JumpState.GROUNDED) {
@@ -364,7 +364,7 @@ public class GigaGal {
             return;
         }
 
-        float jumpTime = Util.seccondsSince(jumpStartTime);
+        float jumpTime = Util.secondsSince(jumpStartTime);
 
         if (jumpTime < Constants.GIGAGAL_MAX_JUMP_DURATION) {
             velocity.y = Constants.GIGAGAL_JUMP_SPEED;
@@ -414,7 +414,7 @@ public class GigaGal {
     //-------------------------------------
 
     private void shoot() {
-        if (Util.seccondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN && bullet > 0) {
+        if (Util.secondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN && bullet > 0) {
             shootLastTime = TimeUtils.nanoTime();
             bullet--;
 

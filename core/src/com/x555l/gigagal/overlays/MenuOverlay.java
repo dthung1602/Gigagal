@@ -22,7 +22,6 @@ abstract class MenuOverlay {
 
         // create table
         table = new Table();
-        table.debug();
         stage.addActor(table);
 
         // add background to table

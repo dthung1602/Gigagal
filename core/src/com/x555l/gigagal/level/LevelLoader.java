@@ -15,10 +15,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * Create a level using data from a json file
+ */
 
 public class LevelLoader {
     private static final String TAG = LevelLoader.class.getName();
 
+    /**
+     * Create a level using data from a json file
+     *
+     * @param levelNum: integer specifies which number to load
+     * @return newly created level
+     */
     public static Level load(int levelNum) {
         // path to json file
         String path = "levels/level" + levelNum + ".json";
