@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
@@ -96,6 +97,18 @@ class SettingScreen extends MyScreen {
 
         subTable.add(checkBox).left();
         subTable.add(musicSlider);
+        subTable.row().padTop(15);
+
+        //----------------- reset progress ----------------------
+        final TextButton resetButton = new TextButton("Reset progress", skin);
+        resetButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Configs.instance.setCurrentLevel(1);
+            }
+        });
+
+        subTable.add(resetButton);
         subTable.row();
     }
 }

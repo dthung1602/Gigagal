@@ -4,8 +4,8 @@ SCREENS
         #- Choose level
         #- Setting
         #- Quit
-    Choose level
-        - lock levels
+    #Choose level
+        #- lock levels
     Setting
         #- Sound
         #- Music

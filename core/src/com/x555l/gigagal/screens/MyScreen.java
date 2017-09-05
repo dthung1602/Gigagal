@@ -53,7 +53,6 @@ abstract class MyScreen implements Screen {
         // table to organize widgets
         Table table = new Table();
         table.setFillParent(true);
-//        table.debug(); // DEBUG del it
         stage.addActor(table);
 
         // add other widgets
