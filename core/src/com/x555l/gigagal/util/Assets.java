@@ -24,16 +24,16 @@ public class Assets implements Disposable, AssetErrorListener {
     private AssetManager assetManager;
 
     // hold assets of different objects
-    public GigaGalAssets gigaGalAssets;
-    public PlatformAssets platformAssets;
-    public EnemyAssets enemyAssets;
-    public BulletAssets bulletAssets;
-    public ExplosionAssets explosionAssets;
-    public BonusAssets bonusAssets;
-    public ExitPortalAssets exitPortalAssets;
-    public OnscreenControlAssets onscreenControlAssets;
+    public GigaGalAssets gigagal;
+    public PlatformAssets platform;
+    public EnemyAssets enemy;
+    public BulletAssets bullet;
+    public ExplosionAssets explosion;
+    public BonusAssets bonus;
+    public ExitPortalAssets exitPortal;
+    public OnscreenControlAssets onscreenControl;
 
-    public backgroundAssets backgroundAssets;
+    public backgroundAssets background;
 
     public Skin skin;
 
@@ -53,16 +53,16 @@ public class Assets implements Disposable, AssetErrorListener {
         TextureAtlas gigagalAtlas = assetManager.get(Constants.GIGAGAL_ATLAS);
         TextureAtlas backgroundAtlas = assetManager.get(Constants.BACKGROUND_ATLAS);
 
-        gigaGalAssets = new GigaGalAssets(gigagalAtlas);
-        platformAssets = new PlatformAssets(gigagalAtlas);
-        enemyAssets = new EnemyAssets(gigagalAtlas);
-        bulletAssets = new BulletAssets(gigagalAtlas);
-        explosionAssets = new ExplosionAssets(gigagalAtlas);
-        bonusAssets = new BonusAssets(gigagalAtlas);
-        exitPortalAssets = new ExitPortalAssets(gigagalAtlas);
-        onscreenControlAssets = new OnscreenControlAssets(gigagalAtlas);
+        gigagal = new GigaGalAssets(gigagalAtlas);
+        platform = new PlatformAssets(gigagalAtlas);
+        enemy = new EnemyAssets(gigagalAtlas);
+        bullet = new BulletAssets(gigagalAtlas);
+        explosion = new ExplosionAssets(gigagalAtlas);
+        bonus = new BonusAssets(gigagalAtlas);
+        exitPortal = new ExitPortalAssets(gigagalAtlas);
+        onscreenControl = new OnscreenControlAssets(gigagalAtlas);
 
-        backgroundAssets = new backgroundAssets(backgroundAtlas);
+        background = new backgroundAssets(backgroundAtlas);
     }
 
     @Override
@@ -135,10 +135,10 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class EnemyAssets {
-        public AtlasRegion region;
+        public AtlasRegion basicEnemy;
 
         EnemyAssets(TextureAtlas atlas) {
-            region = atlas.findRegion(Constants.ENEMY);
+            basicEnemy = atlas.findRegion(Constants.ENEMY_BASIC);
         }
     }
 

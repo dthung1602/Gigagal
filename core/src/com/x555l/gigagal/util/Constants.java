@@ -57,14 +57,15 @@ public class Constants {
     static final int VERTICAL_BORDER = 8;
 
     // enemy
-    static final String ENEMY = "enemy";
-    public static final Vector2 ENEMY_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_SPEED = 10f;
-    public static final float FLOAT_AMPLITUDE = 4f;
-    public static final float FLOAT_PERIOD = 3f;
-    public static final float ENEMY_RADIUS = 15f;
-    public static final float ENEMY_HIT_RADIUS = 17f;
-    public static final int ENEMY_HEALTH = 3;
+    // basic enemy
+    static final String ENEMY_BASIC = "enemy-basic";
+    public static final Vector2 ENEMY_BASIC_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_BASIC_SPEED = 10f;
+    public static final float ENEMY_BASIC_FLOAT_AMPLITUDE = 4f;
+    public static final float ENEMY_BASIC_FLOAT_PERIOD = 3f;
+    public static final float ENEMY_BASIC_RADIUS = 15f;
+    public static final float ENEMY_BASIC_HIT_RADIUS = 17f;
+    public static final int ENEMY_BASIC_HEALTH = 3;
 
     // bullet
     static final String BULLET_LEFT = "bullet-left";

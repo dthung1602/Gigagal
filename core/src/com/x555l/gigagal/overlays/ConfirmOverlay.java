@@ -20,7 +20,7 @@ public class ConfirmOverlay extends MenuOverlay {
         super(
                 batch,
                 viewport,
-                Assets.instance.backgroundAssets.mainMenu
+                Assets.instance.background.mainMenu
         );
         this.text = text;
 

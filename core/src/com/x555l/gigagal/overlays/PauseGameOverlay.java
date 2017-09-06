@@ -21,7 +21,7 @@ public class PauseGameOverlay extends MenuOverlay {
         super(
                 batch,
                 new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE),
-                Assets.instance.backgroundAssets.overlay
+                Assets.instance.background.overlay
         );
 
         this.game = game;

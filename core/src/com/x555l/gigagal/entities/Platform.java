@@ -16,9 +16,9 @@ public class Platform extends Rectangle {
     public Platform(boolean passable, float x, float y, float width, float height) {
         this.passable = passable;
         if (passable) {
-            ninePatch = Assets.instance.platformAssets.passablePlatform;
+            ninePatch = Assets.instance.platform.passablePlatform;
         } else {
-            ninePatch = Assets.instance.platformAssets.solidPlatform;
+            ninePatch = Assets.instance.platform.solidPlatform;
         }
 
         this.x = x;

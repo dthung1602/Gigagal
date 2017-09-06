@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.util.Constants;
-import com.x555l.gigagal.util.Enum.*;
+import com.x555l.gigagal.util.Enum.Facing;
 
-
+/**
+ * Abstract class for all enemies
+ */
 public abstract class Enemy {
     public Vector2 position;
     public Vector2 velocity;
@@ -29,8 +31,8 @@ public abstract class Enemy {
     public void render(SpriteBatch batch) {
         batch.draw(
                 textureRegion,
-                position.x - Constants.ENEMY_CENTER.x,
-                position.y - Constants.ENEMY_CENTER.y
+                position.x - Constants.ENEMY_BASIC_CENTER.x,
+                position.y - Constants.ENEMY_BASIC_CENTER.y
         );
     }
 }

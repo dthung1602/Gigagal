@@ -71,9 +71,9 @@ public class GameOverOverlay extends EndLevelOverlay {
             float time = Util.secondsSince(startTime);
             if (time > delay) {
                 batch.draw(
-                        Assets.instance.enemyAssets.region,
+                        Assets.instance.enemy.basicEnemy,
                         x,
-                        y + (float) Math.sin(2 * Math.PI / Constants.FLOAT_PERIOD * time + angle) * Constants.FLOAT_AMPLITUDE
+                        y + (float) Math.sin(2 * Math.PI / Constants.ENEMY_BASIC_FLOAT_PERIOD * time + angle) * Constants.ENEMY_BASIC_FLOAT_AMPLITUDE
                 );
             }
         }

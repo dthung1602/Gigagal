@@ -192,10 +192,10 @@ public class GigaGal {
         // detect collision with enemy
         for (Enemy enemy : level.getEnemies()) {
             Rectangle enemyBoundary = new Rectangle(
-                    enemy.position.x - Constants.ENEMY_RADIUS,
-                    enemy.position.y - Constants.ENEMY_RADIUS,
-                    Constants.ENEMY_RADIUS * 2,
-                    Constants.ENEMY_RADIUS * 2
+                    enemy.position.x - Constants.ENEMY_BASIC_RADIUS,
+                    enemy.position.y - Constants.ENEMY_BASIC_RADIUS,
+                    Constants.ENEMY_BASIC_RADIUS * 2,
+                    Constants.ENEMY_BASIC_RADIUS * 2
             );
 
             if (gigagalBoundary.overlaps(enemyBoundary)) {
@@ -260,31 +260,31 @@ public class GigaGal {
             if (jumpState == JumpState.GROUNDED) {
                 switch (walkState) {
                     case WALKING:
-                        region = Assets.instance.gigaGalAssets.walkingLeft.getKeyFrame(walkingTime);
+                        region = Assets.instance.gigagal.walkingLeft.getKeyFrame(walkingTime);
                         break;
                     case STANDING:
-                        region = Assets.instance.gigaGalAssets.standingLeft;
+                        region = Assets.instance.gigagal.standingLeft;
                         break;
                     default:
-                        region = Assets.instance.gigaGalAssets.standingUpLeft;
+                        region = Assets.instance.gigagal.standingUpLeft;
                 }
             } else {
-                region = Assets.instance.gigaGalAssets.jumpingLeft;
+                region = Assets.instance.gigagal.jumpingLeft;
             }
         } else {
             if (jumpState == JumpState.GROUNDED) {
                 switch (walkState) {
                     case WALKING:
-                        region = Assets.instance.gigaGalAssets.walkingRight.getKeyFrame(walkingTime);
+                        region = Assets.instance.gigagal.walkingRight.getKeyFrame(walkingTime);
                         break;
                     case STANDING:
-                        region = Assets.instance.gigaGalAssets.standingRight;
+                        region = Assets.instance.gigagal.standingRight;
                         break;
                     default:
-                        region = Assets.instance.gigaGalAssets.standingUpRight;
+                        region = Assets.instance.gigagal.standingUpRight;
                 }
             } else {
-                region = Assets.instance.gigaGalAssets.jumpingRight;
+                region = Assets.instance.gigagal.jumpingRight;
             }
         }
 

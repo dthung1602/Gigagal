@@ -15,7 +15,7 @@ class LevelSelectScreen extends MyScreen {
         super(
                 game,
                 Constants.SELECT_LEVEL_WORLD_SIZE,
-                Assets.instance.backgroundAssets.selectLevel
+                Assets.instance.background.selectLevel
         );
     }
 

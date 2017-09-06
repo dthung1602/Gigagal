@@ -48,7 +48,7 @@ public class GigagalHUD {
 
         // life
         for (int i = 0; i < gigagal.life; i++) {
-            TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
+            TextureRegion region = Assets.instance.gigagal.standingRight;
             batch.draw(
                     region,
                     viewport.getWorldWidth() - (i + 1) * Constants.HUD_LIFE_ICON_SIZE,

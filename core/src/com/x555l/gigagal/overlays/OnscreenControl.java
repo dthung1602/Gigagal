@@ -40,18 +40,18 @@ public class OnscreenControl {
         float width = viewport.getWorldWidth();
 
         // leftButton
-        buttons[0] = new Button(radius * 4 / 3, radius * 2.4f, Assets.instance.onscreenControlAssets.leftButton);
+        buttons[0] = new Button(radius * 4 / 3, radius * 2.4f, Assets.instance.onscreenControl.leftButton);
         // rightButton
-        buttons[1] = new Button(radius * 12 / 3, radius * 2.4f, Assets.instance.onscreenControlAssets.rightButton);
+        buttons[1] = new Button(radius * 12 / 3, radius * 2.4f, Assets.instance.onscreenControl.rightButton);
         // upButton
-        buttons[2] = new Button(radius * 8 / 3, radius * 3.65f, Assets.instance.onscreenControlAssets.upButton);
+        buttons[2] = new Button(radius * 8 / 3, radius * 3.65f, Assets.instance.onscreenControl.upButton);
         // downButton
-        buttons[3] = new Button(radius * 8 / 3, radius * 1.15f, Assets.instance.onscreenControlAssets.downButton);
+        buttons[3] = new Button(radius * 8 / 3, radius * 1.15f, Assets.instance.onscreenControl.downButton);
 
         // jumpButton
-        buttons[4] = new Button(width - radius * 4 / 3, radius * 5 / 2, Assets.instance.onscreenControlAssets.jumpButton);
+        buttons[4] = new Button(width - radius * 4 / 3, radius * 5 / 2, Assets.instance.onscreenControl.jumpButton);
         // shootButton
-        buttons[5] = new Button(width - radius * 3.5f, radius * 1.25f, Assets.instance.onscreenControlAssets.shootButton);
+        buttons[5] = new Button(width - radius * 3.5f, radius * 1.25f, Assets.instance.onscreenControl.shootButton);
     }
 
     public Viewport getViewport() {

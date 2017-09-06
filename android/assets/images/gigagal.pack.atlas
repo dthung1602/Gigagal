@@ -67,7 +67,7 @@ button-shoot
   orig: 32, 32
   offset: 0, 0
   index: -1
-enemy
+enemy-basic
   rotate: false
   xy: 62, 16
   size: 29, 44

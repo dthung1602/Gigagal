@@ -28,15 +28,15 @@ public class Bullet {
 
         if (direction == null) {
             // up bullet
-            region = Assets.instance.bulletAssets.upBullet;
+            region = Assets.instance.bullet.upBullet;
             velocity.y = Constants.BULLET_SPEED;
         } else if (direction == Facing.LEFT) {
             // left bullet
-            region = Assets.instance.bulletAssets.leftBullet;
+            region = Assets.instance.bullet.leftBullet;
             velocity.x = -Constants.BULLET_SPEED;
         } else {
             // right bullet
-            region = Assets.instance.bulletAssets.rightBullet;
+            region = Assets.instance.bullet.rightBullet;
             velocity.x = Constants.BULLET_SPEED;
         }
     }
@@ -77,7 +77,7 @@ public class Bullet {
 
         // detect collision with enemy
         for (Enemy enemy : level.getEnemies()) {
-            if (enemy.position.dst(position) < Constants.ENEMY_HIT_RADIUS) {
+            if (enemy.position.dst(position) < Constants.ENEMY_BASIC_HIT_RADIUS) {
                 enemy.health--;
                 level.addNewExplosion(position, false);
                 active = false;

@@ -9,7 +9,7 @@ import com.x555l.gigagal.util.Constants;
 public class BonusBullet extends Bonus {
     public BonusBullet(float x, float y) {
         position = new Vector2(x, y);
-        region = Assets.instance.bonusAssets.bullet;
+        region = Assets.instance.bonus.bullet;
     }
 
     @Override

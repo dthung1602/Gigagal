@@ -1,7 +1,6 @@
 package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -17,7 +16,7 @@ public class MainMenuScreen extends MyScreen {
         super(
                 game,
                 Constants.MAIN_MENU_WORLD_SIZE,
-                Assets.instance.backgroundAssets.mainMenu
+                Assets.instance.background.mainMenu
         );
     }
 

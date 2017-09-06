@@ -20,7 +20,7 @@ public class ExitPortal {
 
     public void render(SpriteBatch batch) {
         float time = Util.secondsSince(startTime);
-        TextureRegion region = Assets.instance.exitPortalAssets.animation.getKeyFrame(time);
+        TextureRegion region = Assets.instance.exitPortal.animation.getKeyFrame(time);
 
         batch.draw(
                 region,
