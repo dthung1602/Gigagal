@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.bonus.Bonus;
-import com.x555l.gigagal.entities.enemies.BasicEnemy;
+import com.x555l.gigagal.entities.enemies.*;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
@@ -190,16 +190,16 @@ public class GigaGal {
         );
 
         // detect collision with enemy
-        for (BasicEnemy basicEnemy : level.getEnemies()) {
+        for (Enemy enemy : level.getEnemies()) {
             Rectangle enemyBoundary = new Rectangle(
-                    basicEnemy.position.x - Constants.ENEMY_RADIUS,
-                    basicEnemy.position.y - Constants.ENEMY_RADIUS,
+                    enemy.position.x - Constants.ENEMY_RADIUS,
+                    enemy.position.y - Constants.ENEMY_RADIUS,
                     Constants.ENEMY_RADIUS * 2,
                     Constants.ENEMY_RADIUS * 2
             );
 
             if (gigagalBoundary.overlaps(enemyBoundary)) {
-                knockBack(basicEnemy);
+                knockBack(enemy);
                 break;
             }
         }
@@ -435,7 +435,7 @@ public class GigaGal {
         }
     }
 
-    private void knockBack(BasicEnemy basicEnemy) {
+    private void knockBack(Enemy enemy) {
         if (jumpState != JumpState.KNOCK_BACK) {
             if (!loseHealth()) return;
             jumpState = JumpState.KNOCK_BACK;
@@ -445,7 +445,7 @@ public class GigaGal {
         velocity.set(Constants.KNOCK_BACK_VELOCITY);
 
         // knock to the left
-        if (basicEnemy.position.x > position.x) {
+        if (enemy.position.x > position.x) {
             velocity.x = -velocity.x;
         }
     }

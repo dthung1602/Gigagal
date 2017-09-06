@@ -3,7 +3,7 @@ package com.x555l.gigagal.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.x555l.gigagal.entities.enemies.BasicEnemy;
+import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
@@ -76,9 +76,9 @@ public class Bullet {
         }
 
         // detect collision with enemy
-        for (BasicEnemy basicEnemy : level.getEnemies()) {
-            if (basicEnemy.position.dst(position) < Constants.ENEMY_HIT_RADIUS) {
-                basicEnemy.health--;
+        for (Enemy enemy : level.getEnemies()) {
+            if (enemy.position.dst(position) < Constants.ENEMY_HIT_RADIUS) {
+                enemy.health--;
                 level.addNewExplosion(position, false);
                 active = false;
                 return;
