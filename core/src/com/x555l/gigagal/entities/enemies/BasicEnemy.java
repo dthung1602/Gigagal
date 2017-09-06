@@ -20,6 +20,8 @@ public class BasicEnemy extends PatrolPlatformEnemy {
                 Constants.ENEMY_BASIC_CENTER,
                 Assets.instance.enemy.basicEnemy
         );
+
+        boundary = new CircularShape();
     }
 
     @Override

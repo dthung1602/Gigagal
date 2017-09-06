@@ -77,7 +77,7 @@ public class Bullet {
 
         // detect collision with enemy
         for (Enemy enemy : level.getEnemies()) {
-            if (enemy.position.dst(position) < Constants.ENEMY_BASIC_HIT_RADIUS) {
+            if (enemy.boundary.hitByBullet(position)) {
                 enemy.health--;
                 level.addNewExplosion(position, false);
                 active = false;

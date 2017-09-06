@@ -29,10 +29,10 @@ abstract class MenuOverlay {
 
         // set overlay to screen center
         table.setBounds(
-                Constants.CONFIRM_OVELAY_PADDING.x,
-                Constants.CONFIRM_OVELAY_PADDING.y,
-                viewport.getWorldWidth() - Constants.CONFIRM_OVELAY_PADDING.x * 2,
-                viewport.getWorldHeight() - Constants.CONFIRM_OVELAY_PADDING.y * 2
+                Constants.CONFIRM_OVERLAY_PADDING.x,
+                Constants.CONFIRM_OVERLAY_PADDING.y,
+                viewport.getWorldWidth() - Constants.CONFIRM_OVERLAY_PADDING.x * 2,
+                viewport.getWorldHeight() - Constants.CONFIRM_OVERLAY_PADDING.y * 2
         );
     }
 

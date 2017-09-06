@@ -191,14 +191,7 @@ public class GigaGal {
 
         // detect collision with enemy
         for (Enemy enemy : level.getEnemies()) {
-            Rectangle enemyBoundary = new Rectangle(
-                    enemy.position.x - Constants.ENEMY_BASIC_RADIUS,
-                    enemy.position.y - Constants.ENEMY_BASIC_RADIUS,
-                    Constants.ENEMY_BASIC_RADIUS * 2,
-                    Constants.ENEMY_BASIC_RADIUS * 2
-            );
-
-            if (gigagalBoundary.overlaps(enemyBoundary)) {
+            if (enemy.boundary.hitByGigagal(gigagalBoundary)) {
                 knockBack(enemy);
                 break;
             }

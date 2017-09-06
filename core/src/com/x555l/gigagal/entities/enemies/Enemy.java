@@ -15,11 +15,12 @@ public abstract class Enemy {
     public Vector2 velocity;
     public Vector2 offset;
 
+    public EnemyShape boundary;
+
     public int health;
     public long startTime;
 
     public Facing facing;
-
     TextureRegion textureRegion;
 
     Enemy() {
@@ -45,7 +46,7 @@ public abstract class Enemy {
      * Contains methods and properties to detect bullet/gigagal collision
      */
 
-    abstract class EnemyShape {
+    public abstract class EnemyShape {
 
         abstract public boolean hitByBullet(Vector2 bulletPosition);
 
@@ -53,15 +54,15 @@ public abstract class Enemy {
     }
 
     /**
-     * Class for enemies with circular shape
+     * Class for enemies with circular boundary
      * Requires radius
      */
 
     class CircularShape extends EnemyShape {
         private float radius;
 
-        CircularShape(float radius) {
-            this.radius = radius;
+        CircularShape() {
+            radius = (offset.x + offset.y) / 2;
         }
 
         @Override
@@ -81,7 +82,7 @@ public abstract class Enemy {
     }
 
     /**
-     * Class for enemy with rectangular shape
+     * Class for enemy with rectangular boundary
      * Requires width and height
      */
     class RectangularShape extends EnemyShape {

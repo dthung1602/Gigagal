@@ -167,7 +167,7 @@ public class Constants {
     public static final Vector2 SELECT_LEVEL_SIZE = new Vector2(30, 20);
 
     // confirm overlay
-    public static final Vector2 CONFIRM_OVELAY_PADDING = new Vector2(25, 25);
+    public static final Vector2 CONFIRM_OVERLAY_PADDING = new Vector2(25, 25);
 
     // Config
     static final String CONFIG_FILE = "config.json";
