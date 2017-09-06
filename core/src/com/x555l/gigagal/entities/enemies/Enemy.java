@@ -2,9 +2,9 @@ package com.x555l.gigagal.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
 
 /**
@@ -13,6 +13,7 @@ import com.x555l.gigagal.util.Enum.Facing;
 public abstract class Enemy {
     public Vector2 position;
     public Vector2 velocity;
+    public Vector2 offset;
 
     public int health;
     public long startTime;
@@ -31,8 +32,84 @@ public abstract class Enemy {
     public void render(SpriteBatch batch) {
         batch.draw(
                 textureRegion,
-                position.x - Constants.ENEMY_BASIC_CENTER.x,
-                position.y - Constants.ENEMY_BASIC_CENTER.y
+                position.x - offset.x,
+                position.y - offset.y
         );
+    }
+
+    //-------------------------------------------
+    //            NESTED CLASSES
+    //-------------------------------------------
+
+    /**
+     * Contains methods and properties to detect bullet/gigagal collision
+     */
+
+    abstract class EnemyShape {
+
+        abstract public boolean hitByBullet(Vector2 bulletPosition);
+
+        abstract public boolean hitByGigagal(Rectangle gigagalBoundary);
+    }
+
+    /**
+     * Class for enemies with circular shape
+     * Requires radius
+     */
+
+    class CircularShape extends EnemyShape {
+        private float radius;
+
+        CircularShape(float radius) {
+            this.radius = radius;
+        }
+
+        @Override
+        public boolean hitByBullet(Vector2 bulletPosition) {
+            return position.dst(bulletPosition) < radius;
+        }
+
+        @Override
+        public boolean hitByGigagal(Rectangle gigagalBoundary) {
+            Rectangle extendRectangle = new Rectangle(
+                    gigagalBoundary.x - radius,
+                    gigagalBoundary.y - radius,
+                    gigagalBoundary.width + radius * 2,
+                    gigagalBoundary.height + radius * 2);
+            return extendRectangle.contains(position.x, position.y);
+        }
+    }
+
+    /**
+     * Class for enemy with rectangular shape
+     * Requires width and height
+     */
+    class RectangularShape extends EnemyShape {
+        private float width;
+        private float height;
+
+        RectangularShape() {
+            width = textureRegion.getRegionWidth();
+            height = textureRegion.getRegionHeight();
+        }
+
+        @Override
+        public boolean hitByBullet(Vector2 bulletPosition) {
+            return getBoundary().contains(bulletPosition.x, bulletPosition.y);
+        }
+
+        @Override
+        public boolean hitByGigagal(Rectangle gigagalBoundary) {
+            return getBoundary().overlaps(gigagalBoundary);
+        }
+
+        private Rectangle getBoundary() {
+            return new Rectangle(
+                    position.x - offset.x,
+                    position.y - offset.y,
+                    width,
+                    height
+            );
+        }
     }
 }

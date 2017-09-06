@@ -17,7 +17,7 @@ public class BasicEnemy extends PatrolPlatformEnemy {
                 platform,
                 Constants.ENEMY_BASIC_HEALTH,
                 Constants.ENEMY_BASIC_SPEED,
-                Constants.ENEMY_BASIC_CENTER.y,
+                Constants.ENEMY_BASIC_CENTER,
                 Assets.instance.enemy.basicEnemy
         );
     }

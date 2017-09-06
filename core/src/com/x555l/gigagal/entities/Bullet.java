@@ -11,7 +11,7 @@ import com.x555l.gigagal.util.Enum.Facing;
 
 
 public class Bullet {
-    public Vector2 position;
+    private Vector2 position;
     private Vector2 velocity;
 
     public boolean active;

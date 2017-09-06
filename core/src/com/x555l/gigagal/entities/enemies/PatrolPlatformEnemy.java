@@ -14,17 +14,18 @@ abstract class PatrolPlatformEnemy extends Enemy {
      * @param platform:      platform that enemy will patrol
      * @param health:        enemy's health
      * @param speed:         enemy's horizontal speed
-     * @param centerHeight:  enemy's center's height with respect to its bottom pixels
+     * @param offset:        enemy's center's coordinate with respect to its bottom left pixel
      * @param textureRegion: texture region for rendering
      */
-    PatrolPlatformEnemy(Platform platform, int health, float speed, float centerHeight, TextureRegion textureRegion) {
+    PatrolPlatformEnemy(Platform platform, int health, float speed, Vector2 offset, TextureRegion textureRegion) {
         super();
 
         this.health = health;
         this.platform = platform;
+        this.offset = offset;
         this.textureRegion = textureRegion;
 
-        position = new Vector2(platform.x, platform.yTop + centerHeight);
+        position = new Vector2(platform.x, platform.yTop + offset.y);
         velocity = new Vector2(speed, 0);
     }
 
