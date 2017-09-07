@@ -103,8 +103,10 @@ project(":core") {
     }
 
     task copyLevels(type: Copy) {
-        from "../levels"
-        into "../android/assets/levels"
+        from ("$rootDir/levels") {
+            exclude "icon/*.png"
+        }
+        into ("$rootDir/android/assets/levels")
     }
 
     project.tasks.compileJava.dependsOn packTextures

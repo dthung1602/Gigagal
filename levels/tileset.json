@@ -1,0 +1,62 @@
+{
+  "columns": 0,
+  "grid": {
+    "height": 1,
+    "orientation": "orthogonal",
+    "width": 1
+  },
+  "margin": 0,
+  "name": "images",
+  "spacing": 0,
+  "tilecount": 9,
+  "tileheight": 64,
+  "tiles": {
+    "0": {
+      "image": "icon\/BasicEnemy.png",
+      "imageheight": 44,
+      "imagewidth": 29
+    },
+    "1": {
+      "image": "icon\/BonusBullet.png",
+      "imageheight": 17,
+      "imagewidth": 15
+    },
+    "2": {
+      "image": "icon\/BonusHealth.png",
+      "imageheight": 15,
+      "imagewidth": 17
+    },
+    "3": {
+      "image": "icon\/BonusLife.png",
+      "imageheight": 15,
+      "imagewidth": 13
+    },
+    "4": {
+      "image": "icon\/ExitPortal.png",
+      "imageheight": 64,
+      "imagewidth": 64
+    },
+    "5": {
+      "image": "icon\/PlatformPassable.png",
+      "imageheight": 58,
+      "imagewidth": 58
+    },
+    "6": {
+      "image": "icon\/PlatformSolid.png",
+      "imageheight": 58,
+      "imagewidth": 58
+    },
+    "7": {
+      "image": "icon\/StartPoint.png",
+      "imageheight": 27,
+      "imagewidth": 25
+    },
+    "8": {
+      "image": "icon\/StrongEnemy.png",
+      "imageheight": 44,
+      "imagewidth": 29
+    }
+  },
+  "tilewidth": 64,
+  "type": "tileset"
+}

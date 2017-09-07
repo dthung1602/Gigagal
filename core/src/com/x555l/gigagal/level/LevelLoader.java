@@ -30,6 +30,7 @@ public class LevelLoader {
     /**
      * Maps from an object's gid to actual class name
      */
+
     private static final HashMap<Integer, String> gidToEntity = createMapping();
 
     /**
@@ -42,7 +43,7 @@ public class LevelLoader {
 
         try {
             // parse json file
-            FileHandle fileHandle = Gdx.files.internal("images.json");
+            FileHandle fileHandle = Gdx.files.internal("levels/tileset.json");
             JSONParser parser = new JSONParser();
             JSONObject rootJsonObject = (JSONObject) parser.parse(fileHandle.reader());
             tileCount = (Long) rootJsonObject.get("tilecount");
@@ -53,7 +54,7 @@ public class LevelLoader {
 
         for (int i = 0; i < tileCount; i++) {
             String rawImageName = (String) ((JSONObject) tiles.get("" + i)).get("image");
-            String entityName = rawImageName.substring(0, rawImageName.indexOf("."));
+            String entityName = rawImageName.substring("icon/".length(), rawImageName.indexOf("."));
             hashMap.put(i, entityName);
         }
 
