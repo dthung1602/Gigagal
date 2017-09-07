@@ -94,9 +94,8 @@ public class Constants {
     static final float EXPLOSION_DURATION = 0.05f;
 
     // bonus
-    static final String BONUS_HEALTH = "powerup";
-    // TODO change these
-    static final String BONUS_LIFE = "powerup";
+    static final String BONUS_HEALTH = "health";
+    static final String BONUS_LIFE = "life";
     static final String BONUS_BULLET = "powerup";
     public static final Vector2 BONUS_CENTER = new Vector2(7, 5);
 
