@@ -74,6 +74,13 @@ public class Constants {
     public static final float ENEMY_STRONG_FLOAT_AMPLITUDE = 3f;
     public static final float ENEMY_STRONG_FLOAT_PERIOD = 2f;
     public static final int ENEMY_STRONG_HEALTH = 9;
+    // fly 8 enemy
+    static final String ENEMY_FLY_8 = "enemy-fly-8";
+    public static final Vector2 ENEMY_FLY_8_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_FLY_8_SHORT_AMPLITUDE = 40f;
+    public static final float ENEMY_FLY_8_LONG_AMPLITUDE = 80f;
+    public static final float ENEMY_FLY_8_PERIOD = 8;
+    public static final int ENEMY_FLY_8_HEALTH = 4;
 
     // bullet
     static final String BULLET_LEFT = "bullet-left";

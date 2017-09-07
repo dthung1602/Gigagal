@@ -17,10 +17,10 @@ abstract class FlyEnemy extends Enemy {
     /**
      * Constructor for fly enemy that does not uses vertices to mark its path
      */
-    FlyEnemy(int health, Vector2 offset, TextureRegion textureRegion) {
+    FlyEnemy(int health, Vector2 center, TextureRegion textureRegion) {
         super();
         this.health = health;
-        this.center = offset;
+        this.center = center;
         this.textureRegion = textureRegion;
     }
 

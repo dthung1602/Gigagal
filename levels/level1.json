@@ -63,46 +63,6 @@
                  "width":29,
                  "x":1039,
                  "y":144
-                }, 
-                {
-                 "height":0,
-                 "id":26,
-                 "name":"",
-                 "polygon":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":114,
-                         "y":99
-                        }, 
-                        {
-                         "x":207,
-                         "y":-8
-                        }, 
-                        {
-                         "x":123,
-                         "y":-70
-                        }, 
-                        {
-                         "x":107,
-                         "y":30
-                        }, 
-                        {
-                         "x":27,
-                         "y":-55
-                        }, 
-                        {
-                         "x":51,
-                         "y":11
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":389,
-                 "y":114
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -207,7 +167,43 @@
         {
          "draworder":"topdown",
          "name":"fly-enemy",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":10,
+                 "height":44,
+                 "id":27,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":446,
+                 "y":248
+                }, 
+                {
+                 "gid":10,
+                 "height":44,
+                 "id":28,
+                 "name":"",
+                 "rotation":0,
+                 "type":"vertical",
+                 "visible":true,
+                 "width":29,
+                 "x":576,
+                 "y":158
+                }, 
+                {
+                 "gid":10,
+                 "height":44,
+                 "id":29,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":915,
+                 "y":108
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -366,7 +362,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":27,
+ "nextobjectid":30,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.0.2",

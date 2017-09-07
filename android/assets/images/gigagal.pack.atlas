@@ -1,68 +1,68 @@
 
 gigagal.pack.png
-size: 512,128
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 bullet-left
   rotate: false
-  xy: 420, 38
+  xy: 122, 9
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
   index: -1
 bullet-right
   rotate: false
-  xy: 210, 2
+  xy: 122, 2
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
   index: -1
 bullet-up
   rotate: false
-  xy: 499, 119
+  xy: 184, 17
   size: 5, 7
   orig: 5, 7
   offset: 0, 0
   index: -1
 button-down
   rotate: false
-  xy: 465, 94
+  xy: 220, 28
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-jump
   rotate: false
-  xy: 225, 28
+  xy: 501, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-up
   rotate: false
-  xy: 225, 28
+  xy: 501, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-move-left
   rotate: false
-  xy: 259, 28
+  xy: 254, 28
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-move-right
   rotate: false
-  xy: 293, 28
+  xy: 535, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-shoot
   rotate: false
-  xy: 327, 28
+  xy: 288, 28
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -74,9 +74,16 @@ enemy-basic
   orig: 29, 44
   offset: 0, 0
   index: -1
-enemy-strong
+enemy-fly-8
   rotate: false
   xy: 398, 82
+  size: 29, 44
+  orig: 29, 44
+  offset: 0, 0
+  index: -1
+enemy-strong
+  rotate: false
+  xy: 153, 16
   size: 29, 44
   orig: 29, 44
   offset: 0, 0
@@ -125,70 +132,70 @@ exit-portal-6
   index: -1
 explosion-large
   rotate: false
-  xy: 153, 7
+  xy: 398, 63
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-large-x
   rotate: false
-  xy: 153, 26
+  xy: 429, 92
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 explosion-medium
   rotate: false
-  xy: 172, 7
+  xy: 376, 43
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-medium-x
   rotate: false
-  xy: 429, 92
+  xy: 184, 26
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 explosion-small
   rotate: false
-  xy: 191, 7
+  xy: 840, 109
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-small-x
   rotate: false
-  xy: 189, 26
+  xy: 465, 92
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 health
   rotate: false
-  xy: 210, 9
+  xy: 859, 111
   size: 17, 15
   orig: 17, 15
   offset: 0, 0
   index: -1
 jumping-left
   rotate: false
-  xy: 398, 45
+  xy: 601, 91
   size: 29, 35
   orig: 29, 35
   offset: 0, 0
   index: -1
 jumping-right
   rotate: false
-  xy: 361, 25
+  xy: 569, 91
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 life
   rotate: false
-  xy: 229, 11
+  xy: 895, 111
   size: 13, 15
   orig: 13, 15
   offset: 0, 0
@@ -209,77 +216,77 @@ platform-solid
   index: -1
 powerup
   rotate: false
-  xy: 495, 17
+  xy: 878, 109
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 429, 63
+  xy: 322, 33
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 standing-right
   rotate: false
-  xy: 429, 34
+  xy: 632, 99
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 standing-up-left
   rotate: false
-  xy: 393, 16
+  xy: 349, 33
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 standing-up-right
   rotate: false
-  xy: 456, 63
+  xy: 659, 99
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 walk-1-left
   rotate: false
-  xy: 483, 65
+  xy: 740, 99
   size: 24, 27
   orig: 24, 27
   offset: 0, 0
   index: -1
 walk-1-right
   rotate: false
-  xy: 483, 36
+  xy: 766, 99
   size: 24, 27
   orig: 24, 27
   offset: 0, 0
   index: -1
 walk-2-left
   rotate: false
-  xy: 447, 5
+  xy: 792, 99
   size: 22, 27
   orig: 22, 27
   offset: 0, 0
   index: -1
 walk-2-right
   rotate: false
-  xy: 471, 5
+  xy: 816, 99
   size: 22, 27
   orig: 22, 27
   offset: 0, 0
   index: -1
 walk-3-left
   rotate: false
-  xy: 456, 34
+  xy: 686, 99
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
 walk-3-right
   rotate: false
-  xy: 420, 5
+  xy: 713, 99
   size: 25, 27
   orig: 25, 27
   offset: 0, 0

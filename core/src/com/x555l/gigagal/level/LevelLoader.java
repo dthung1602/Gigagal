@@ -9,6 +9,7 @@ import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.bonus.Bonus;
 import com.x555l.gigagal.entities.enemies.Enemy;
+import com.x555l.gigagal.entities.enemies.Fly8Enemy;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
@@ -161,8 +162,26 @@ public class LevelLoader {
      *
      * @param mapHeight: height of the map to reverse the y axis
      */
-    private static void createFlyEnemy(JSONArray enemies, float mapHeight, Level level) {
-        // TODO
+    private static void createFlyEnemy(JSONArray enemyJSONArray, float mapHeight, Level level) {
+        DelayedRemovalArray<Enemy> enemies = level.getEnemies();
+
+        for (Object object : enemyJSONArray) {
+            // create entity to hold info
+            Entity entity = new Entity((JSONObject) object, mapHeight);
+
+            // create enemy base on each case
+            String type = gidToEntity.get(entity.gid);
+
+
+            if (type.equals("Fly8Enemy")) {
+                Fly8Enemy fly8Enemy = new Fly8Enemy(
+                        entity.x,
+                        entity.y,
+                        entity.type.equals("vertical")
+                );
+                enemies.add(fly8Enemy);
+            }
+        }
     }
 
 
@@ -171,10 +190,10 @@ public class LevelLoader {
      *
      * @param mapHeight: height of the map to reverse the y axis
      */
-    private static void createBonus(JSONArray upgrades, float mapHeight, Level level) {
+    private static void createBonus(JSONArray upgradeJSONArray, float mapHeight, Level level) {
         DelayedRemovalArray<Bonus> bonuses = level.getBonuses();
 
-        for (Object object : upgrades) {
+        for (Object object : upgradeJSONArray) {
             // create entity to hold info
             Entity entity = new Entity((JSONObject) object, mapHeight);
 
