@@ -204,7 +204,11 @@ public class LevelLoader {
 
             // init gigagal
             if (name.equals("StartPoint")) {
-                level.setGigagal(new GigaGal(level, entity.x, entity.y));
+                level.setGigagal(new GigaGal(
+                        level,
+                        entity.x + Constants.GIGAGAL_EYE_POSITION.x,
+                        entity.y + Constants.GIGAGAL_EYE_POSITION.y
+                ));
             }
 
             // exit portal
@@ -228,7 +232,7 @@ class Entity {
         width = getFloat(jsonObject, Constants.LEVEL_WIDTH_KEY);
         height = getFloat(jsonObject, Constants.LEVEL_HEIGHT_KEY);
         x = getFloat(jsonObject, Constants.LEVEL_X_KEY);
-        y = mapHeight - getFloat(jsonObject, Constants.LEVEL_Y_KEY) - height; // reverse y axis
+        y = mapHeight - getFloat(jsonObject, Constants.LEVEL_Y_KEY); // reverse y axis
         gid = getInt(jsonObject, "gid") - 1; // for some reason gid in tileset file is 1 off from gid in level.json
         type = (String) jsonObject.get("type");
     }
