@@ -213,7 +213,10 @@ public class LevelLoader {
 
             // exit portal
             if (name.equals("ExitPortal")) {
-                level.setExitPortal(new ExitPortal(entity.x, entity.y));
+                level.setExitPortal(new ExitPortal(
+                        entity.x + Constants.EXIT_PORTAL_RADIUS,
+                        entity.y + Constants.EXIT_PORTAL_RADIUS
+                ));
             }
         }
     }
