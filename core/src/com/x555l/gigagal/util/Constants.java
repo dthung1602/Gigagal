@@ -115,25 +115,7 @@ public class Constants {
 
     public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
 
-    public static final String LEVEL_LAYER_KEY = "layers";
-    public static final String LEVEL_OBJECT_KEY = "objects";
-
-    public static final String LEVEL_TILE_HEIGHT_KEY = "tileheight";
-
-    public static final String LEVEL_TYPE_KEY = "type";
-    public static final String LEVEL_X_KEY = "x";
-    public static final String LEVEL_Y_KEY = "y";
-    public static final String LEVEL_WIDTH_KEY = "width";
-    public static final String LEVEL_HEIGHT_KEY = "height";
-
-    // FIXME
-    public static final String LEVEL_START_TAG = "start";
-    public static final String LEVEL_END_TAG = "end";
-    public static final String LEVEL_PLATFORM_TAG = "platform";
-    public static final String LEVEL_ENEMY_TAG = "platform-enemy";
-    public static final String LEVEL_BONUS_HEALTH_TAG = "health";
-    public static final String LEVEL_BONUS_LIFE_TAG = "life";
-    public static final String LEVEL_BONUS_BULLET_TAG = "bullet";
+    public static final String LEVEL_TILESET_FILE = "levels/tileset.json";
 
     // HUD
     public static final float HUD_VIEWPORT_SIZE = 160;

@@ -43,7 +43,7 @@ public class LevelLoader {
 
         try {
             // parse json file
-            FileHandle fileHandle = Gdx.files.internal("levels/tileset.json");
+            FileHandle fileHandle = Gdx.files.internal(Constants.LEVEL_TILESET_FILE);
             JSONParser parser = new JSONParser();
             JSONObject rootJsonObject = (JSONObject) parser.parse(fileHandle.reader());
             tileCount = (Long) rootJsonObject.get("tilecount");
@@ -232,10 +232,10 @@ class Entity {
     String type = null;
 
     Entity(JSONObject jsonObject, float mapHeight) {
-        width = getFloat(jsonObject, Constants.LEVEL_WIDTH_KEY);
-        height = getFloat(jsonObject, Constants.LEVEL_HEIGHT_KEY);
-        x = getFloat(jsonObject, Constants.LEVEL_X_KEY);
-        y = mapHeight - getFloat(jsonObject, Constants.LEVEL_Y_KEY); // reverse y axis
+        width = getFloat(jsonObject, "width");
+        height = getFloat(jsonObject, "height");
+        x = getFloat(jsonObject, "x");
+        y = mapHeight - getFloat(jsonObject, "y"); // reverse y axis
         gid = getInt(jsonObject, "gid") - 1; // for some reason gid in tileset file is 1 off from gid in level.json
         type = (String) jsonObject.get("type");
     }
