@@ -19,4 +19,11 @@ public class Util {
         Gdx.app.exit();
         System.exit(exitCode);
     }
+
+    public static void exitWithError(String tag, Exception ex) {
+        ex.printStackTrace();
+        Gdx.app.error(tag, ex.getMessage());
+        Gdx.app.error(tag, Constants.LEVEL_ERROR_MESSAGE);
+        exit(1);
+    }
 }

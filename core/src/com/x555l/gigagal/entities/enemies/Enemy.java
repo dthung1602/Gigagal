@@ -13,7 +13,7 @@ import com.x555l.gigagal.util.Enum.Facing;
 public abstract class Enemy {
     public Vector2 position;
     public Vector2 velocity;
-    public Vector2 offset;
+    public Vector2 center;
 
     public EnemyShape boundary;
 
@@ -33,8 +33,8 @@ public abstract class Enemy {
     public void render(SpriteBatch batch) {
         batch.draw(
                 textureRegion,
-                position.x - offset.x,
-                position.y - offset.y
+                position.x - center.x,
+                position.y - center.y
         );
     }
 
@@ -62,7 +62,7 @@ public abstract class Enemy {
         private float radius;
 
         CircularShape() {
-            radius = (offset.x + offset.y) / 2;
+            radius = (center.x + center.y) / 2;
         }
 
         @Override
@@ -106,8 +106,8 @@ public abstract class Enemy {
 
         private Rectangle getBoundary() {
             return new Rectangle(
-                    position.x - offset.x,
-                    position.y - offset.y,
+                    position.x - center.x,
+                    position.y - center.y,
                     width,
                     height
             );

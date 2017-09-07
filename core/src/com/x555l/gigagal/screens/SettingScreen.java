@@ -37,6 +37,7 @@ class SettingScreen extends MyScreen {
         brightnessSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Configs.instance.setBrightness(((Slider) actor).getValue());
                 // TODO change brightness
                 System.out.println(((Slider) actor).getValue());
             }

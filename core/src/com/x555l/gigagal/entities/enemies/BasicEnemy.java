@@ -31,8 +31,7 @@ public class BasicEnemy extends PatrolPlatformEnemy {
 
         // create floating effect
         float time = Util.secondsSince(startTime);
-        position.y = platform.yTop
-                + Constants.ENEMY_BASIC_CENTER.y
+        position.y = platform.yTop + center.y
                 + (float) Math.sin(2 * Math.PI / Constants.ENEMY_BASIC_FLOAT_PERIOD * time) * Constants.ENEMY_BASIC_FLOAT_AMPLITUDE;
     }
 }

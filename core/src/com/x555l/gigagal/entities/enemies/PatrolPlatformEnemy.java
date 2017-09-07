@@ -22,7 +22,7 @@ abstract class PatrolPlatformEnemy extends Enemy {
 
         this.health = health;
         this.platform = platform;
-        this.offset = offset;
+        this.center = offset;
         this.textureRegion = textureRegion;
 
         position = new Vector2(platform.x, platform.yTop + offset.y);

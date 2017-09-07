@@ -121,7 +121,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public NinePatch solidPlatform;
 
         PlatformAssets(TextureAtlas atlas) {
-            TextureRegion region = atlas.findRegion(Constants.PLATFORM);
+            TextureRegion region = atlas.findRegion(Constants.PLATFORM_PASSABLE);
             passablePlatform = new NinePatch(
                     region,
                     Constants.HORIZONTAL_BORDER,
@@ -129,16 +129,25 @@ public class Assets implements Disposable, AssetErrorListener {
                     Constants.VERTICAL_BORDER,
                     Constants.VERTICAL_BORDER
             );
-            // TODO add pic
-            solidPlatform = passablePlatform;
+
+            region = atlas.findRegion(Constants.PLATFORM_SOLID);
+            solidPlatform = new NinePatch(
+                    region,
+                    Constants.HORIZONTAL_BORDER,
+                    Constants.HORIZONTAL_BORDER,
+                    Constants.VERTICAL_BORDER,
+                    Constants.VERTICAL_BORDER
+            );
         }
     }
 
     public class EnemyAssets {
         public AtlasRegion basicEnemy;
+        public AtlasRegion strongEnemy;
 
         EnemyAssets(TextureAtlas atlas) {
             basicEnemy = atlas.findRegion(Constants.ENEMY_BASIC);
+            strongEnemy = atlas.findRegion(Constants.ENEMY_STRONG);
         }
     }
 

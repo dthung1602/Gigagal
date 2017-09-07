@@ -4,6 +4,8 @@ package com.x555l.gigagal.util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.HashMap;
+
 public class Constants {
     // world
     public static final int WORLD_SIZE = 200;
@@ -52,7 +54,8 @@ public class Constants {
     public static final int INIT_BULLET = 25;
 
     // platform
-    static final String PLATFORM = "platform";
+    static final String PLATFORM_PASSABLE = "platform-passable";
+    static final String PLATFORM_SOLID = "platform-solid";
     static final int HORIZONTAL_BORDER = 8;
     static final int VERTICAL_BORDER = 8;
 
@@ -63,9 +66,14 @@ public class Constants {
     public static final float ENEMY_BASIC_SPEED = 10f;
     public static final float ENEMY_BASIC_FLOAT_AMPLITUDE = 4f;
     public static final float ENEMY_BASIC_FLOAT_PERIOD = 3f;
-    public static final float ENEMY_BASIC_RADIUS = 15f;
-    public static final float ENEMY_BASIC_HIT_RADIUS = 17f;
     public static final int ENEMY_BASIC_HEALTH = 3;
+    // strong enemy
+    static final String ENEMY_STRONG = "enemy-strong";
+    public static final Vector2 ENEMY_STRONG_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_STRONG_SPEED = 15f;
+    public static final float ENEMY_STRONG_FLOAT_AMPLITUDE = 3f;
+    public static final float ENEMY_STRONG_FLOAT_PERIOD = 2f;
+    public static final int ENEMY_STRONG_HEALTH = 9;
 
     // bullet
     static final String BULLET_LEFT = "bullet-left";
@@ -119,6 +127,7 @@ public class Constants {
     public static final String LEVEL_WIDTH_KEY = "width";
     public static final String LEVEL_HEIGHT_KEY = "height";
 
+    // FIXME
     public static final String LEVEL_START_TAG = "start";
     public static final String LEVEL_END_TAG = "end";
     public static final String LEVEL_PLATFORM_TAG = "platform";

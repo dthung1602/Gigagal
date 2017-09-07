@@ -6,6 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+
 /**
  * A singleton class that contains:
  * - player's progress: max unlock level
@@ -25,7 +26,7 @@ public class Configs {
     }
 
     // root json object
-    JSONObject rootObject;
+    private JSONObject rootObject;
 
     /**
      * Load config data from json file
@@ -44,14 +45,14 @@ public class Configs {
             rootObject = (JSONObject) parser.parse(configFile.reader());
 
         } catch (Exception ex) {
-            logError(ex);
+            Util.exitWithError(TAG, ex);
         }
     }
 
     /**
      * Save config data to json file
      */
-    public void save() {
+    void save() {
         try {
             // open file
             FileHandle configFile = Gdx.files.local(Constants.CONFIG_FILE);
@@ -60,7 +61,7 @@ public class Configs {
             configFile.writeString(rootObject.toJSONString(), false);
 
         } catch (Exception ex) {
-            logError(ex);
+            Util.exitWithError(TAG, ex);
         }
     }
 
@@ -68,24 +69,16 @@ public class Configs {
      * Create/set config file to factory-state
      * by overwritten config.json by default json file
      */
-    public void newConfigFile() {
+    private void newConfigFile() {
         try {
             FileHandle source = Gdx.files.internal(Constants.CONFIG_FILE_DEFAULT);
             FileHandle destination = Gdx.files.local(Constants.CONFIG_FILE);
             source.copyTo(destination);
         } catch (Exception ex) {
-            logError(ex);
+            Util.exitWithError(TAG, ex);
         }
     }
 
-    /**
-     * Log errors
-     */
-    private void logError(Exception ex) {
-        ex.printStackTrace();
-        Gdx.app.error(TAG, ex.getMessage());
-        Gdx.app.error(TAG, Constants.LEVEL_ERROR_MESSAGE);
-    }
 
     //--------------------------------------
     //               GETTERS
