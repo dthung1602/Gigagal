@@ -8,7 +8,7 @@
  "margin":0,
  "name":"images",
  "spacing":0,
- "tilecount":10,
+ "tilecount":11,
  "tileheight":64,
  "tiles":
     {
@@ -23,6 +23,12 @@
          "image":"icon\/BonusBullet.png",
          "imageheight":17,
          "imagewidth":15
+        },
+     "10":
+        {
+         "image":"icon\/FlollowPathEnemy.png",
+         "imageheight":44,
+         "imagewidth":29
         },
      "2":
         {

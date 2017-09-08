@@ -6,7 +6,7 @@ import com.x555l.gigagal.util.Enum.Facing;
 import com.x555l.gigagal.util.Util;
 
 
-abstract class FlyEnemy extends Enemy {
+abstract class NonPlatformEnemy extends Enemy {
     private Vector2[] vertices; // save absolute positions of vertices of the path
     private Vector2[] velocities; // save speed of enemy on each vertex
     private float[] travelTime; // save relative time since the begin of circle that enemy reach vertex
@@ -15,9 +15,9 @@ abstract class FlyEnemy extends Enemy {
     private float totalTime; // total time enemy transverse the polygon
 
     /**
-     * Constructor for fly enemy that does not uses vertices to mark its path
+     * Constructor for fly enemy that does NOT uses vertices to mark its path
      */
-    FlyEnemy(int health, Vector2 center, TextureRegion textureRegion) {
+    NonPlatformEnemy(int health, Vector2 center, TextureRegion textureRegion) {
         super();
         this.health = health;
         this.center = center;
@@ -30,26 +30,30 @@ abstract class FlyEnemy extends Enemy {
      * @param vertices: vertices of the polygon
      * @param speed:    speed of enemy on the whole path
      */
-    FlyEnemy(Vector2[] vertices, int health, float speed, Vector2 offset, TextureRegion textureRegion) {
+    NonPlatformEnemy(Vector2[] vertices, int health, float speed, Vector2 center, TextureRegion textureRegion) {
+        super();
         this.vertices = vertices;
         this.health = health;
-        this.center = offset;
+        this.center = center;
         this.textureRegion = textureRegion;
+
+        position = vertices[0].cpy();
 
         edgeNumber = vertices.length - 1; // last vertex is also the first
 
         velocities = new Vector2[edgeNumber];
-        travelTime = new float[edgeNumber];
+        travelTime = new float[edgeNumber + 1];
         facings = new Facing[edgeNumber];
 
         totalTime = 0;
+        travelTime[0] = 0;
 
         for (int i = 0; i < edgeNumber; i++) {
-            Vector2 edge = vertices[i + 1].sub(vertices[i]);
+            Vector2 edge = vertices[i + 1].cpy().sub(vertices[i]);
             facings[i] = (edge.x > 0) ? Facing.RIGHT : Facing.LEFT;
 
-            travelTime[i] = totalTime;
             totalTime += edge.len() / speed;
+            travelTime[i + 1] = totalTime;
 
             velocities[i] = edge.setLength(speed);
         }
@@ -62,14 +66,15 @@ abstract class FlyEnemy extends Enemy {
 
         // find which edge enemy is on
         int edge = 0;
-        for (int i = 1; i < edgeNumber; i++) {
-            if (travelTime[i] > time) {
-                edge = i - 1;
+        for (int i = 0; i < edgeNumber; i++) {
+            if (travelTime[i + 1] > time) {
+                edge = i;
+                break;
             }
         }
 
         // set position
-        position = vertices[edge].cpy().mulAdd(velocities[edge], delta);
+        position.set(vertices[edge]).mulAdd(velocities[edge], time - travelTime[edge]);
 
         // TODO update texture region base on facings[edge]
     }

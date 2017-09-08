@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Constants {
     // world
-    public static final int WORLD_SIZE = 200;
+    public static final int WORLD_SIZE = 500;
     public static final Color BACKGROUND_COLOR = Color.SKY;
     static final String GIGAGAL_ATLAS = "images/gigagal.pack.atlas";
     static final String BACKGROUND_ATLAS = "images/background.pack.atlas";
@@ -81,6 +81,12 @@ public class Constants {
     public static final float ENEMY_FLY_8_LONG_AMPLITUDE = 80f;
     public static final float ENEMY_FLY_8_PERIOD = 8;
     public static final int ENEMY_FLY_8_HEALTH = 4;
+    // follow path
+    static final String ENEMY_FOLLOW_PATH = "enemy-follow-path";
+    public static final Vector2 ENEMY_FOLLOW_PATH_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_FOLLOW_PATH_SPEED = 50;
+    public static final int ENEMY_FOLLOW_PATH_HEALTH = 6;
+    
 
     // bullet
     static final String BULLET_LEFT = "bullet-left";

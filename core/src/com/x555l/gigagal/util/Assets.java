@@ -145,11 +145,13 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion basicEnemy;
         public AtlasRegion strongEnemy;
         public AtlasRegion fly8Enemy;
+        public AtlasRegion followPathEnemy;
 
         EnemyAssets(TextureAtlas atlas) {
             basicEnemy = atlas.findRegion(Constants.ENEMY_BASIC);
             strongEnemy = atlas.findRegion(Constants.ENEMY_STRONG);
             fly8Enemy = atlas.findRegion(Constants.ENEMY_FLY_8);
+            followPathEnemy= atlas.findRegion(Constants.ENEMY_FOLLOW_PATH);
         }
     }
 

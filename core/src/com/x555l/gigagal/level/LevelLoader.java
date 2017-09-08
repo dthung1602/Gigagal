@@ -9,7 +9,7 @@ import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.bonus.Bonus;
 import com.x555l.gigagal.entities.enemies.Enemy;
-import com.x555l.gigagal.entities.enemies.Fly8Enemy;
+import com.x555l.gigagal.entities.enemies.FollowPathEnemy;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
@@ -90,7 +90,7 @@ public class LevelLoader {
 
             // create entities
             createPlatform(getObjectArray(layers, "platform"), mapHeight, level);
-            createFlyEnemy(getObjectArray(layers, "fly-enemy"), mapHeight, level);
+            createNonPlatformEnemy(getObjectArray(layers, "fly-enemy"), mapHeight, level);
             createBonus(getObjectArray(layers, "bonus"), mapHeight, level);
             createLevel(getObjectArray(layers, "level"), mapHeight, level);
 
@@ -162,24 +162,28 @@ public class LevelLoader {
      *
      * @param mapHeight: height of the map to reverse the y axis
      */
-    private static void createFlyEnemy(JSONArray enemyJSONArray, float mapHeight, Level level) {
+    private static void createNonPlatformEnemy(JSONArray enemyJSONArray, float mapHeight, Level level) {
         DelayedRemovalArray<Enemy> enemies = level.getEnemies();
 
         for (Object object : enemyJSONArray) {
             // create entity to hold info
             Entity entity = new Entity((JSONObject) object, mapHeight);
 
-            // create enemy base on each case
-            String type = gidToEntity.get(entity.gid);
+            // DEBUG
+            if (gidToEntity.get(entity.gid) == null) {
+                enemies.add(new FollowPathEnemy(entity));
+                return;
+            }
 
-
-            if (type.equals("Fly8Enemy")) {
-                Fly8Enemy fly8Enemy = new Fly8Enemy(
-                        entity.x,
-                        entity.y,
-                        entity.type.equals("vertical")
-                );
-                enemies.add(fly8Enemy);
+            // use reflection to create bonus
+            try {
+                String fullClassName = "com.x555l.gigagal.entities.enemies." + gidToEntity.get(entity.gid);
+                Class<?> cls = Class.forName(fullClassName);
+                Constructor<?> constructor = cls.getConstructor(Entity.class);
+                Enemy enemy = (Enemy) constructor.newInstance(entity);
+                enemies.add(enemy);
+            } catch (Exception ex) {
+                Util.exitWithError(TAG, ex);
             }
         }
     }
@@ -238,40 +242,5 @@ public class LevelLoader {
                 ));
             }
         }
-    }
-}
-
-/**
- * A class loads and contains all property of an json object
- */
-class Entity {
-    float x, y;
-    float width, height;
-    int gid;
-    String type = null;
-
-    Entity(JSONObject jsonObject, float mapHeight) {
-        width = getFloat(jsonObject, "width");
-        height = getFloat(jsonObject, "height");
-        x = getFloat(jsonObject, "x");
-        y = mapHeight - getFloat(jsonObject, "y"); // reverse y axis
-        gid = getInt(jsonObject, "gid") - 1; // for some reason gid in tileset file is 1 off from gid in level.json
-        type = (String) jsonObject.get("type");
-    }
-
-    /**
-     * Get float value of a property from a JSON object
-     */
-    private float getFloat(JSONObject jsonObject, String propertyName) {
-        Number number = (Number) jsonObject.get(propertyName);
-        return number.floatValue();
-    }
-
-    /**
-     * Get int value of a property from a JSON object
-     */
-    private int getInt(JSONObject jsonObject, String propertyName) {
-        Number number = (Number) jsonObject.get(propertyName);
-        return number.intValue();
     }
 }

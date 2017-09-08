@@ -1,6 +1,9 @@
 package com.x555l.gigagal.entities.enemies;
 
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.x555l.gigagal.level.Entity;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
@@ -9,21 +12,21 @@ import com.x555l.gigagal.util.Util;
  * Enemy fly in a 8 path
  */
 
-public class Fly8Enemy extends FlyEnemy {
+public class Fly8Enemy extends NonPlatformEnemy {
     private boolean vertical;
     private Vector2 path8Center;
 
-    public Fly8Enemy(float x, float y, boolean vertical) {
+    public Fly8Enemy(Entity entity) {
         super(
                 Constants.ENEMY_FLY_8_HEALTH,
                 Constants.ENEMY_FLY_8_CENTER,
                 Assets.instance.enemy.fly8Enemy
         );
 
-        this.vertical = vertical;
-        this.position = new Vector2(x, y);
+        this.vertical = entity.type.equals("vertical");
+        this.position = new Vector2(entity.x, entity.y);
         boundary = new CircularShape();
-        path8Center = new Vector2(x, y);
+        path8Center = new Vector2(entity.x, entity.y);
     }
 
     @Override

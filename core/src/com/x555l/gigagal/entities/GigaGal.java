@@ -92,6 +92,7 @@ public class GigaGal {
         handlePlatforms();
         handleCollisions();
         handleInput();
+//        System.out.println(position);
     }
 
     private void commonUpdate(float delta) {
