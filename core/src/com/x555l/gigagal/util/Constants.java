@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Constants {
     // world
-    public static final int WORLD_SIZE = 500;
+    public static final int WORLD_SIZE = 256;
     public static final Color BACKGROUND_COLOR = Color.SKY;
     static final String GIGAGAL_ATLAS = "images/gigagal.pack.atlas";
     static final String BACKGROUND_ATLAS = "images/background.pack.atlas";

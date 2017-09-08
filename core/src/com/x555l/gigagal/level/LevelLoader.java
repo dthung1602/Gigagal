@@ -9,7 +9,6 @@ import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.bonus.Bonus;
 import com.x555l.gigagal.entities.enemies.Enemy;
-import com.x555l.gigagal.entities.enemies.FollowPathEnemy;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
@@ -169,15 +168,16 @@ public class LevelLoader {
             // create entity to hold info
             Entity entity = new Entity((JSONObject) object, mapHeight);
 
-            // DEBUG
-            if (gidToEntity.get(entity.gid) == null) {
-                enemies.add(new FollowPathEnemy(entity));
-                return;
-            }
+            // try to convert gid to type
+            String entityType = gidToEntity.get(entity.gid);
 
-            // use reflection to create bonus
+            // if able to convert: we get class name
+            // else : entity is a polygon/polyline --> get entity.type
+            String enemyClass = (entityType == null) ? entity.type : entityType;
+
+            // create enemy using reflection
             try {
-                String fullClassName = "com.x555l.gigagal.entities.enemies." + gidToEntity.get(entity.gid);
+                String fullClassName = "com.x555l.gigagal.entities.enemies." + enemyClass;
                 Class<?> cls = Class.forName(fullClassName);
                 Constructor<?> constructor = cls.getConstructor(Entity.class);
                 Enemy enemy = (Enemy) constructor.newInstance(entity);

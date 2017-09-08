@@ -222,7 +222,7 @@
                          "y":48
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"FollowPathEnemy",
                  "visible":true,
                  "width":0,
                  "x":192,
