@@ -98,7 +98,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
             standingUpRight = atlas.findRegion(Constants.STANDING_UP_RIGHT);
             standingUpLeft = atlas.findRegion(Constants.STANDING_UP_LEFT);
-            
+
             jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
             jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
 
@@ -146,12 +146,14 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion strongEnemy;
         public AtlasRegion fly8Enemy;
         public AtlasRegion followPathEnemy;
+        public AtlasRegion patrolAirEnemy;
 
         EnemyAssets(TextureAtlas atlas) {
             basicEnemy = atlas.findRegion(Constants.ENEMY_BASIC);
             strongEnemy = atlas.findRegion(Constants.ENEMY_STRONG);
             fly8Enemy = atlas.findRegion(Constants.ENEMY_FLY_8);
-            followPathEnemy= atlas.findRegion(Constants.ENEMY_FOLLOW_PATH);
+            followPathEnemy = atlas.findRegion(Constants.ENEMY_FOLLOW_PATH);
+            patrolAirEnemy = atlas.findRegion(Constants.ENEMY_PATROL_AIR);
         }
     }
 
@@ -230,7 +232,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion rightButton;
         public AtlasRegion upButton;
         public AtlasRegion downButton;
-        
+
         public AtlasRegion jumpButton;
         public AtlasRegion shootButton;
 
@@ -239,7 +241,7 @@ public class Assets implements Disposable, AssetErrorListener {
             rightButton = atlas.findRegion(Constants.BUTTON_RIGHT);
             upButton = atlas.findRegion(Constants.BUTTON_UP);
             downButton = atlas.findRegion(Constants.BUTTON_DOWN);
-            
+
             jumpButton = atlas.findRegion(Constants.BUTTON_JUMP);
             shootButton = atlas.findRegion(Constants.BUTTON_SHOOT);
         }
@@ -251,11 +253,11 @@ public class Assets implements Disposable, AssetErrorListener {
         public TextureRegion setting;
         public TextureRegion overlay;
 
-        backgroundAssets(TextureAtlas atlas){
+        backgroundAssets(TextureAtlas atlas) {
             mainMenu = atlas.findRegion(Constants.BG_MAIN_MENU);
             selectLevel = atlas.findRegion(Constants.BG_SELECT_LEVEL);
             setting = atlas.findRegion(Constants.BG_SETTING);
-            overlay= atlas.findRegion(Constants.BG_OVERLAY);
+            overlay = atlas.findRegion(Constants.BG_OVERLAY);
         }
     }
 }

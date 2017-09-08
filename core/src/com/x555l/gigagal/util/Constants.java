@@ -86,6 +86,11 @@ public class Constants {
     public static final Vector2 ENEMY_FOLLOW_PATH_CENTER = new Vector2(14, 22);
     public static final float ENEMY_FOLLOW_PATH_SPEED = 50;
     public static final int ENEMY_FOLLOW_PATH_HEALTH = 6;
+    // patrol air
+    static final String ENEMY_PATROL_AIR = "enemy-patrol-air";
+    public static final Vector2 ENEMY_PATROL_AIR_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_PATROL_AIR_SPEED = 50;
+    public static final int ENEMY_PATROL_AIR_HEALTH = 6;
     
 
     // bullet
@@ -110,7 +115,6 @@ public class Constants {
     static final String BONUS_HEALTH = "health";
     static final String BONUS_LIFE = "life";
     static final String BONUS_BULLET = "powerup";
-    public static final Vector2 BONUS_CENTER = new Vector2(7, 5);
 
     // exit portal
     static final String EXIT_PORTAL_SPRITE_1 = "exit-portal-1";
@@ -137,7 +141,7 @@ public class Constants {
     public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
 
     // VictoryOverlay/Game Over screens
-    public static final float LEVEL_END_DURATION = 5;
+    public static final float LEVEL_END_DURATION = 3;
     public static final String VICTORY_MESSAGE = "Level completed!";
     public static final String GAME_OVER_MESSAGE = "Game Over, Gal";
     public static final int EXPLOSION_COUNT = 600;

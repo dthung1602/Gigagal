@@ -8,7 +8,7 @@
  "margin":0,
  "name":"images",
  "spacing":0,
- "tilecount":11,
+ "tilecount":12,
  "tileheight":64,
  "tiles":
     {
@@ -27,6 +27,12 @@
      "10":
         {
          "image":"icon\/FlollowPathEnemy.png",
+         "imageheight":44,
+         "imagewidth":29
+        },
+     "11":
+        {
+         "image":"icon\/PatrolAirEnemy.png",
          "imageheight":44,
          "imagewidth":29
         },

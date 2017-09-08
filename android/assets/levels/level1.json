@@ -63,6 +63,42 @@
                  "width":29,
                  "x":1039,
                  "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":44,
+                 "id":44,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":317,
+                 "y":328
+                }, 
+                {
+                 "gid":11,
+                 "height":44,
+                 "id":45,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":178,
+                 "y":244
+                }, 
+                {
+                 "gid":12,
+                 "height":44,
+                 "id":46,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":200,
+                 "y":313
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -227,6 +263,90 @@
                  "width":0,
                  "x":192,
                  "y":224
+                }, 
+                {
+                 "height":0,
+                 "id":37,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":132,
+                         "y":-1
+                        }, 
+                        {
+                         "x":225,
+                         "y":-57
+                        }, 
+                        {
+                         "x":353,
+                         "y":-148
+                        }, 
+                        {
+                         "x":354,
+                         "y":-197
+                        }, 
+                        {
+                         "x":478,
+                         "y":-202
+                        }, 
+                        {
+                         "x":478,
+                         "y":-243
+                        }, 
+                        {
+                         "x":317,
+                         "y":-235
+                        }, 
+                        {
+                         "x":278,
+                         "y":-32
+                        }, 
+                        {
+                         "x":-87,
+                         "y":-29
+                        }],
+                 "rotation":0,
+                 "type":"FollowPathEnemy",
+                 "visible":true,
+                 "width":0,
+                 "x":330,
+                 "y":308
+                }, 
+                {
+                 "height":0,
+                 "id":38,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":75,
+                         "y":-30
+                        }, 
+                        {
+                         "x":62,
+                         "y":-105
+                        }, 
+                        {
+                         "x":-87,
+                         "y":-106
+                        }, 
+                        {
+                         "x":-78,
+                         "y":-51
+                        }],
+                 "rotation":0,
+                 "type":"PatrolAirEnemy",
+                 "visible":true,
+                 "width":0,
+                 "x":217,
+                 "y":293
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -386,7 +506,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":36,
+ "nextobjectid":47,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.0.2",

@@ -59,25 +59,15 @@ public class Entity {
             return null;
         JSONArray polygonArray = (JSONArray) jsonObject.get("polygon");
 
-//        System.out.println("---------------------------------");
-
         // add first vertex to the last position
         polygonArray.add(polygonArray.get(0));
 
         Vector2[] polygon = convertToArray(polygonArray);
-//        for (Vector2 vector2: polygon)
-//            System.out.println(vector2);
 
         for (Vector2 vertex : polygon) {
             vertex.x += x;
             vertex.y = y - vertex.y;
         }
-
-//        System.out.println(x + "   " + y);
-//        for (Vector2 vector2: polygon)
-//            System.out.println(vector2);
-
-//        System.out.println("---------------------------------");
 
         return polygon;
     }
@@ -99,8 +89,8 @@ public class Entity {
         Vector2[] polyline = convertToArray(polylineArray);
 
         for (Vector2 vertex : polyline) {
-            vertex.y *= -1; // reverse y axis
-            vertex.add(x, y);                // convert relative position to absolute
+            vertex.x += x;
+            vertex.y = y - vertex.y;
         }
 
         return polyline;
