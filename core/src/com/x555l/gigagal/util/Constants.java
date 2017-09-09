@@ -39,7 +39,8 @@ public class Constants {
     public static final float GIGAGAL_MAX_JUMP_DURATION = 0.20f;
     public static final float GRAVITY = 1024;
 
-    public static final Vector2 KNOCK_BACK_VELOCITY = new Vector2(128, 256);
+    public static final Vector2 KNOCK_BACK_BY_ENEMY_VELOCITY = new Vector2(128, 256);
+    public static final Vector2 KNOCK_BACK_BY_BULLET_VELOCITY = new Vector2(64, 128);
 
     public static final int MAX_HEALTH = 5;
     public static final int INIT_HEALTH = 3;
@@ -59,6 +60,7 @@ public class Constants {
 
     // enemy
     public static final float ENEMY_SPEED_BOOST = 3f;
+    public static final int ENEMY_KNOCK_BACK_DAMAGE = 1;
     // basic enemy
     static final String ENEMY_BASIC = "enemy-basic";
     public static final Vector2 ENEMY_BASIC_CENTER = new Vector2(14, 22);
@@ -98,12 +100,16 @@ public class Constants {
     public static final float ENEMY_FAST_ANGLE = 20f;
 
     // bullet
-    static final String BULLET_LEFT = "bullet-left";
-    static final String BULLET_RIGHT = "bullet-right";
-    static final String BULLET_UP = "bullet-up";
-    public static final Vector2 BULLET_CENTER = new Vector2(2, 3);
-    public static final float BULLET_SPEED = 200;
-    public static final float BULLET_COOL_DOWN = 0.35f;
+    static final String GGG_BULLET_LEFT = "bullet-left";
+    static final String GGG_BULLET_RIGHT = "bullet-right";
+    static final String GGG_BULLET_UP = "bullet-up";
+    public static final Vector2 GGG_BULLET_CENTER = new Vector2(2, 3);
+    public static final float GGG_BULLET_SPEED = 200;
+    public static final float GGG_BULLET_COOL_DOWN = 0.35f;
+    public static final int GGG_BULLET_DAMAGE = 1;
+
+    // enemy bullet
+    //static final String ENEMY_BULLET_
 
     // explosion
     static final String EXPLOSION_SMALL = "explosion-small";

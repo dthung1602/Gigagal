@@ -166,9 +166,9 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion upBullet;
 
         BulletAssets(TextureAtlas atlas) {
-            leftBullet = atlas.findRegion(Constants.BULLET_LEFT);
-            rightBullet = atlas.findRegion(Constants.BULLET_RIGHT);
-            upBullet = atlas.findRegion(Constants.BULLET_UP);
+            leftBullet = atlas.findRegion(Constants.GGG_BULLET_LEFT);
+            rightBullet = atlas.findRegion(Constants.GGG_BULLET_RIGHT);
+            upBullet = atlas.findRegion(Constants.GGG_BULLET_UP);
         }
     }
 

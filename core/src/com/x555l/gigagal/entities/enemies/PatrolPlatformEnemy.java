@@ -21,7 +21,7 @@ abstract class PatrolPlatformEnemy extends Enemy {
      * @param ableToDetectGigagal: decide whether enemy can know if ggg is on its platform
      * @param speed:               enemy's horizontal speed
      * @param center:              enemy's center's coordinate with respect to its bottom left pixel
-     * @param textureRegion:       texture region for rendering
+     * @param textureRegion:       texture textureRegion for rendering
      */
     PatrolPlatformEnemy(Level level, Platform platform, boolean ableToDetectGigagal, int health, float speed, Vector2 center, TextureRegion textureRegion) {
         super(level);

@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.bonus.Bonus;
-import com.x555l.gigagal.entities.bullets.gigagalBullets.Bullet;
+import com.x555l.gigagal.entities.bullets.Bullet;
+import com.x555l.gigagal.entities.bullets.gigagalBullets.GigagalBullet;
 import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.level.Level;
@@ -93,7 +94,6 @@ public class GigaGal {
         handlePlatforms();
         handleCollisions();
         handleInput();
-//        System.out.println(position);
     }
 
     private void commonUpdate(float delta) {
@@ -205,6 +205,14 @@ public class GigaGal {
                 level.getBonuses().removeValue(bonus, true);
                 bonus.performAction(this);
                 break;
+            }
+        }
+
+        // detect bullets
+        for (Bullet bullet : level.getBullets()) {
+            if (gigagalBoundary.contains(bullet.position)) {
+                bullet.active = false;
+                knockBack(bullet);
             }
         }
     }
@@ -409,7 +417,7 @@ public class GigaGal {
     //-------------------------------------
 
     private void shoot() {
-        if (Util.secondsSince(shootLastTime) > Constants.BULLET_COOL_DOWN && bullet > 0) {
+        if (Util.secondsSince(shootLastTime) > Constants.GGG_BULLET_COOL_DOWN && bullet > 0) {
             shootLastTime = TimeUtils.nanoTime();
             bullet--;
 
@@ -422,7 +430,7 @@ public class GigaGal {
             if (walkState != WalkState.FACE_UP)
                 bulletFacing = facing;
 
-            level.getBullets().add(new Bullet(
+            level.getBullets().add(new GigagalBullet(
                     position.x + xOffset,
                     position.y + Constants.GIGAGAL_GUN_OFFSET.y,
                     bulletFacing,
@@ -434,12 +442,12 @@ public class GigaGal {
 
     private void knockBack(Enemy enemy) {
         if (jumpState != JumpState.KNOCK_BACK) {
-            if (!loseHealth()) return;
+            if (!loseHealth(Constants.ENEMY_KNOCK_BACK_DAMAGE)) return;
             jumpState = JumpState.KNOCK_BACK;
         }
 
-        // knock to the xRight
-        velocity.set(Constants.KNOCK_BACK_VELOCITY);
+        // knock to the right
+        velocity.set(Constants.KNOCK_BACK_BY_ENEMY_VELOCITY);
 
         // knock to the left
         if (enemy.position.x > position.x) {
@@ -447,11 +455,26 @@ public class GigaGal {
         }
     }
 
+    private void knockBack(Bullet bullet) {
+        if (jumpState != JumpState.KNOCK_BACK) {
+            if (!loseHealth(bullet.damage)) return;
+            jumpState = JumpState.KNOCK_BACK;
+        }
+
+        // knock to the right
+        velocity.set(Constants.KNOCK_BACK_BY_BULLET_VELOCITY);
+
+        // knock to the left
+        if (bullet.position.x > position.x) {
+            velocity.x = -velocity.x;
+        }
+    }
+
     /**
      * Return true if gigagal still alive, false otherwise
      */
-    private boolean loseHealth() {
-        health--;
+    private boolean loseHealth(int damage) {
+        health -= damage;
         if (health == 0) {
             die();
             return false;

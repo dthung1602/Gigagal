@@ -77,6 +77,6 @@ abstract class NonPlatformEnemy extends Enemy {
         // set position
         position.set(vertices[edge]).mulAdd(velocities[edge], time - travelTime[edge]);
 
-        // TODO update texture region base on facings[edge]
+        // TODO update texture textureRegion base on facings[edge]
     }
 }
