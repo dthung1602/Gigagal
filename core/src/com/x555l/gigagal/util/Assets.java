@@ -33,6 +33,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExitPortalAssets exitPortal;
     public OnscreenControlAssets onscreenControl;
 
+
     public backgroundAssets background;
 
     public Skin skin;
@@ -147,6 +148,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion fly8Enemy;
         public AtlasRegion followPathEnemy;
         public AtlasRegion patrolAirEnemy;
+        public AtlasRegion fastEnemy;
 
         EnemyAssets(TextureAtlas atlas) {
             basicEnemy = atlas.findRegion(Constants.ENEMY_BASIC);
@@ -154,6 +156,7 @@ public class Assets implements Disposable, AssetErrorListener {
             fly8Enemy = atlas.findRegion(Constants.ENEMY_FLY_8);
             followPathEnemy = atlas.findRegion(Constants.ENEMY_FOLLOW_PATH);
             patrolAirEnemy = atlas.findRegion(Constants.ENEMY_PATROL_AIR);
+            fastEnemy = atlas.findRegion(Constants.ENEMY_FAST);
         }
     }
 

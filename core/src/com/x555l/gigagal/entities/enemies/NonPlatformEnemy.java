@@ -2,6 +2,7 @@ package com.x555l.gigagal.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Enum.Facing;
 import com.x555l.gigagal.util.Util;
 
@@ -17,8 +18,8 @@ abstract class NonPlatformEnemy extends Enemy {
     /**
      * Constructor for fly enemy that does NOT uses vertices to mark its path
      */
-    NonPlatformEnemy(int health, Vector2 center, TextureRegion textureRegion) {
-        super();
+    NonPlatformEnemy(Level level, int health, Vector2 center, TextureRegion textureRegion) {
+        super(level);
         this.health = health;
         this.center = center;
         this.textureRegion = textureRegion;
@@ -30,8 +31,8 @@ abstract class NonPlatformEnemy extends Enemy {
      * @param vertices: vertices of the polygon
      * @param speed:    speed of enemy on the whole path
      */
-    NonPlatformEnemy(Vector2[] vertices, int health, float speed, Vector2 center, TextureRegion textureRegion) {
-        super();
+    NonPlatformEnemy(Level level, Vector2[] vertices, int health, float speed, Vector2 center, TextureRegion textureRegion) {
+        super(level);
         this.vertices = vertices;
         this.health = health;
         this.center = center;

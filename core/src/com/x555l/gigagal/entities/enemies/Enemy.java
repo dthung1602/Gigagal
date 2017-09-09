@@ -5,27 +5,31 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Enum.Facing;
 
 /**
  * Abstract class for all enemies
  */
 public abstract class Enemy {
+    Level level;
+
     public Vector2 position;
-    public Vector2 velocity;
-    public Vector2 center;
+    Vector2 velocity;
+    Vector2 center;
 
     public EnemyShape boundary;
 
     public int health;
-    public long startTime;
+    long startTime;
 
-    public Facing facing;
+    Facing facing;
     TextureRegion textureRegion;
 
-    Enemy() {
+    Enemy(Level level) {
+        this.level = level;
         startTime = TimeUtils.nanoTime();
-        facing = Facing.LEFT;
+        facing = Facing.RIGHT;
     }
 
     abstract public void update(float delta);

@@ -3,6 +3,7 @@ package com.x555l.gigagal.entities.enemies;
 
 import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.level.Entity;
+import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
@@ -15,8 +16,9 @@ public class Fly8Enemy extends NonPlatformEnemy {
     private boolean vertical;
     private Vector2 path8Center;
 
-    public Fly8Enemy(Entity entity) {
+    public Fly8Enemy(Level level, Entity entity) {
         super(
+                level,
                 Constants.ENEMY_FLY_8_HEALTH,
                 Constants.ENEMY_FLY_8_CENTER,
                 Assets.instance.enemy.fly8Enemy

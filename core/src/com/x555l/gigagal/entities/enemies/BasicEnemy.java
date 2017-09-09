@@ -1,6 +1,7 @@
 package com.x555l.gigagal.entities.enemies;
 
 import com.x555l.gigagal.entities.Platform;
+import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
@@ -12,9 +13,11 @@ import com.x555l.gigagal.util.Util;
  */
 public class BasicEnemy extends PatrolPlatformEnemy {
 
-    public BasicEnemy(Platform platform) {
+    public BasicEnemy(Level level, Platform platform) {
         super(
+                level,
                 platform,
+                false,
                 Constants.ENEMY_BASIC_HEALTH,
                 Constants.ENEMY_BASIC_SPEED,
                 Constants.ENEMY_BASIC_CENTER,

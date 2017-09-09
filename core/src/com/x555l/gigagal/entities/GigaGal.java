@@ -477,4 +477,8 @@ public class GigaGal {
     public void setInputProcessor(InputProcessor inputProcessor) {
         this.inputProcessor = inputProcessor;
     }
+
+    public Platform getCurrentPlatform() {
+        return currentPlatform;
+    }
 }

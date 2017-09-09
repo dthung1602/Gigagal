@@ -2,20 +2,8 @@
  "layers":[
         {
          "draworder":"topdown",
-         "name":"platform-enemy(ignored)",
+         "name":"ignored",
          "objects":[
-                {
-                 "gid":1,
-                 "height":44,
-                 "id":18,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":29,
-                 "x":383,
-                 "y":325
-                }, 
                 {
                  "gid":1,
                  "height":44,
@@ -31,30 +19,6 @@
                 {
                  "gid":9,
                  "height":44,
-                 "id":20,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":29,
-                 "x":533,
-                 "y":314
-                }, 
-                {
-                 "gid":9,
-                 "height":44,
-                 "id":21,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":29,
-                 "x":806,
-                 "y":160
-                }, 
-                {
-                 "gid":9,
-                 "height":44,
                  "id":22,
                  "name":"",
                  "rotation":0,
@@ -63,6 +27,66 @@
                  "width":29,
                  "x":1039,
                  "y":144
+                }, 
+                {
+                 "gid":9,
+                 "height":44,
+                 "id":25,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":373,
+                 "y":337
+                }, 
+                {
+                 "gid":13,
+                 "height":44,
+                 "id":37,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":535,
+                 "y":312
+                }, 
+                {
+                 "gid":13,
+                 "height":44,
+                 "id":38,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":749,
+                 "y":162
+                }, 
+                {
+                 "gid":13,
+                 "height":44,
+                 "id":39,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":245,
+                 "y":356
+                }, 
+                {
+                 "gid":12,
+                 "height":44,
+                 "id":40,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":594,
+                 "y":207
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -76,15 +100,15 @@
          "objects":[
                 {
                  "gid":6,
-                 "height":58,
+                 "height":22,
                  "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":172,
-                 "x":106,
-                 "y":362
+                 "x":317,
+                 "y":293
                 }, 
                 {
                  "gid":6,
@@ -92,7 +116,7 @@
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"BasicEnemy",
+                 "type":"StrongEnemy",
                  "visible":true,
                  "width":142,
                  "x":322,
@@ -104,7 +128,7 @@
                  "id":3,
                  "name":"",
                  "rotation":0,
-                 "type":"StrongEnemy",
+                 "type":"FastEnemy",
                  "visible":true,
                  "width":238,
                  "x":506,
@@ -128,7 +152,7 @@
                  "id":5,
                  "name":"",
                  "rotation":0,
-                 "type":"StrongEnemy",
+                 "type":"FastEnemy",
                  "visible":true,
                  "width":131,
                  "x":738,
@@ -157,6 +181,30 @@
                  "width":288,
                  "x":714,
                  "y":216
+                }, 
+                {
+                 "gid":9,
+                 "height":44,
+                 "id":26,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":743,
+                 "y":-133
+                }, 
+                {
+                 "gid":7,
+                 "height":23,
+                 "id":36,
+                 "name":"",
+                 "rotation":0,
+                 "type":"FastEnemy",
+                 "visible":true,
+                 "width":449,
+                 "x":220,
+                 "y":383
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -167,7 +215,63 @@
         {
          "draworder":"topdown",
          "name":"fly-enemy",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":41,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":5,
+                         "y":-63
+                        }, 
+                        {
+                         "x":105,
+                         "y":-93
+                        }, 
+                        {
+                         "x":117,
+                         "y":-156
+                        }, 
+                        {
+                         "x":218,
+                         "y":-175
+                        }, 
+                        {
+                         "x":230,
+                         "y":-231
+                        }, 
+                        {
+                         "x":399,
+                         "y":-221
+                        }, 
+                        {
+                         "x":402,
+                         "y":-175
+                        }],
+                 "rotation":0,
+                 "type":"PatrolAirEnemy",
+                 "visible":true,
+                 "width":0,
+                 "x":493,
+                 "y":347
+                }, 
+                {
+                 "gid":10,
+                 "height":44,
+                 "id":42,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":919,
+                 "y":175
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -187,8 +291,8 @@
                  "type":"",
                  "visible":true,
                  "width":15,
-                 "x":361,
-                 "y":317
+                 "x":401,
+                 "y":231
                 }, 
                 {
                  "gid":2,
@@ -199,8 +303,8 @@
                  "type":"",
                  "visible":true,
                  "width":15,
-                 "x":360,
-                 "y":290
+                 "x":364,
+                 "y":224
                 }, 
                 {
                  "gid":2,
@@ -211,8 +315,8 @@
                  "type":"",
                  "visible":true,
                  "width":15,
-                 "x":360,
-                 "y":252
+                 "x":329,
+                 "y":227
                 }, 
                 {
                  "gid":3,
@@ -285,6 +389,102 @@
                  "width":13,
                  "x":845,
                  "y":133
+                }, 
+                {
+                 "gid":2,
+                 "height":17,
+                 "id":28,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":15,
+                 "x":386,
+                 "y":259
+                }, 
+                {
+                 "gid":2,
+                 "height":17,
+                 "id":29,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":15,
+                 "x":358,
+                 "y":261
+                }, 
+                {
+                 "gid":3,
+                 "height":15,
+                 "id":30,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":512,
+                 "y":270
+                }, 
+                {
+                 "gid":3,
+                 "height":15,
+                 "id":31,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":516,
+                 "y":249
+                }, 
+                {
+                 "gid":3,
+                 "height":15,
+                 "id":32,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":561,
+                 "y":297
+                }, 
+                {
+                 "gid":3,
+                 "height":15,
+                 "id":33,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":591,
+                 "y":294
+                }, 
+                {
+                 "gid":3,
+                 "height":15,
+                 "id":34,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":638,
+                 "y":297
+                }, 
+                {
+                 "gid":3,
+                 "height":15,
+                 "id":35,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":664,
+                 "y":297
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -305,8 +505,8 @@
                  "type":"",
                  "visible":true,
                  "width":25,
-                 "x":138,
-                 "y":295
+                 "x":434,
+                 "y":264
                 }, 
                 {
                  "gid":5,
@@ -326,7 +526,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":25,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.0.2",

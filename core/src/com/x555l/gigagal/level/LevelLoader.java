@@ -147,8 +147,8 @@ public class LevelLoader {
                 try {
                     String fullClassName = "com.x555l.gigagal.entities.enemies." + entity.type;
                     Class<?> cls = Class.forName(fullClassName);
-                    Constructor<?> constructor = cls.getConstructor(Platform.class);
-                    Enemy enemy = (Enemy) constructor.newInstance(platform);
+                    Constructor<?> constructor = cls.getConstructor(Level.class, Platform.class);
+                    Enemy enemy = (Enemy) constructor.newInstance(level, platform);
                     enemies.add(enemy);
                 } catch (Exception ex) {
                     Util.exitWithError(TAG, ex);
@@ -179,8 +179,8 @@ public class LevelLoader {
             try {
                 String fullClassName = "com.x555l.gigagal.entities.enemies." + enemyClass;
                 Class<?> cls = Class.forName(fullClassName);
-                Constructor<?> constructor = cls.getConstructor(Entity.class);
-                Enemy enemy = (Enemy) constructor.newInstance(entity);
+                Constructor<?> constructor = cls.getConstructor(Level.class, Entity.class);
+                Enemy enemy = (Enemy) constructor.newInstance(level, entity);
                 enemies.add(enemy);
             } catch (Exception ex) {
                 Util.exitWithError(TAG, ex);

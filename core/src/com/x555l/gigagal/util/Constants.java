@@ -4,8 +4,6 @@ package com.x555l.gigagal.util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.HashMap;
-
 public class Constants {
     // world
     public static final int WORLD_SIZE = 256;
@@ -60,6 +58,7 @@ public class Constants {
     static final int VERTICAL_BORDER = 8;
 
     // enemy
+    public static final float ENEMY_SPEED_BOOST = 3f;
     // basic enemy
     static final String ENEMY_BASIC = "enemy-basic";
     public static final Vector2 ENEMY_BASIC_CENTER = new Vector2(14, 22);
@@ -91,15 +90,20 @@ public class Constants {
     public static final Vector2 ENEMY_PATROL_AIR_CENTER = new Vector2(14, 22);
     public static final float ENEMY_PATROL_AIR_SPEED = 50;
     public static final int ENEMY_PATROL_AIR_HEALTH = 6;
-    
+    // fast enemy
+    static final String ENEMY_FAST = "enemy-fast";
+    public static final Vector2 ENEMY_FAST_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_FAST_SPEED = 35f;
+    public static final int ENEMY_FAST_HEALTH = 4;
+    public static final float ENEMY_FAST_ANGLE = 20f;
 
     // bullet
     static final String BULLET_LEFT = "bullet-left";
     static final String BULLET_RIGHT = "bullet-right";
     static final String BULLET_UP = "bullet-up";
     public static final Vector2 BULLET_CENTER = new Vector2(2, 3);
-    public static final float BULLET_SPEED = 150;
-    public static final float BULLET_COOL_DOWN = 0.4f;
+    public static final float BULLET_SPEED = 200;
+    public static final float BULLET_COOL_DOWN = 0.35f;
 
     // explosion
     static final String EXPLOSION_SMALL = "explosion-small";
