@@ -3,6 +3,7 @@ package com.x555l.gigagal.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.util.Assets;
@@ -11,7 +12,7 @@ import com.x555l.gigagal.util.Util;
 
 public class Explosion {
     private Vector2 position;
-    private Animation animation;
+    private Animation<TextureRegion> animation;
     private long explosionStartTime;
     private float delayTime;
     public boolean finished;

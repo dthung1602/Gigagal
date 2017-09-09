@@ -89,8 +89,8 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion jumpingRight;
         public AtlasRegion jumpingLeft;
 
-        public Animation walkingLeft;
-        public Animation walkingRight;
+        public Animation<TextureRegion> walkingLeft;
+        public Animation<TextureRegion> walkingRight;
 
         GigaGalAssets(TextureAtlas atlas) {
             standingRight = atlas.findRegion(Constants.STANDING_RIGHT);
@@ -106,13 +106,13 @@ public class Assets implements Disposable, AssetErrorListener {
             regions.add(atlas.findRegion(Constants.WALK_1_LEFT));
             regions.add(atlas.findRegion(Constants.WALK_2_LEFT));
             regions.add(atlas.findRegion(Constants.WALK_3_LEFT));
-            walkingLeft = new Animation(Constants.WALK_LOOP_DURATION, regions, Animation.PlayMode.LOOP_PINGPONG);
+            walkingLeft = new Animation<TextureRegion>(Constants.WALK_LOOP_DURATION, regions, Animation.PlayMode.LOOP_PINGPONG);
 
             regions.clear();
             regions.add(atlas.findRegion(Constants.WALK_1_RIGHT));
             regions.add(atlas.findRegion(Constants.WALK_2_RIGHT));
             regions.add(atlas.findRegion(Constants.WALK_3_RIGHT));
-            walkingRight = new Animation(Constants.WALK_LOOP_DURATION, regions, Animation.PlayMode.LOOP_PINGPONG);
+            walkingRight = new Animation<TextureRegion>(Constants.WALK_LOOP_DURATION, regions, Animation.PlayMode.LOOP_PINGPONG);
         }
     }
 
@@ -187,10 +187,10 @@ public class Assets implements Disposable, AssetErrorListener {
             largeArray.add(atlas.findRegion(Constants.EXPLOSION_LARGE_X));
         }
 
-        public Animation getExplosionLoop(boolean largeExplosion) {
+        public Animation<TextureRegion> getExplosionLoop(boolean largeExplosion) {
             if (largeExplosion)
-                return new Animation(Constants.EXPLOSION_DURATION, largeArray, Animation.PlayMode.NORMAL);
-            return new Animation(Constants.EXPLOSION_DURATION, smallArray, Animation.PlayMode.NORMAL);
+                return new Animation<TextureRegion>(Constants.EXPLOSION_DURATION, largeArray, Animation.PlayMode.NORMAL);
+            return new Animation<TextureRegion>(Constants.EXPLOSION_DURATION, smallArray, Animation.PlayMode.NORMAL);
         }
     }
 
@@ -207,7 +207,7 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class ExitPortalAssets {
-        public Animation animation;
+        public Animation<TextureRegion> animation;
 
         ExitPortalAssets(TextureAtlas atlas) {
             Array<TextureRegion> array = new Array<TextureRegion>();
@@ -219,7 +219,7 @@ public class Assets implements Disposable, AssetErrorListener {
             array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_5));
             array.add(atlas.findRegion(Constants.EXIT_PORTAL_SPRITE_6));
 
-            animation = new Animation(
+            animation = new Animation<TextureRegion>(
                     Constants.EXIT_PORTAL_FRAME_DURATION,
                     array,
                     Animation.PlayMode.LOOP_REVERSED
