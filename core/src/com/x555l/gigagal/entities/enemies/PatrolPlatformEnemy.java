@@ -13,16 +13,15 @@ import com.x555l.gigagal.util.Enum;
  */
 abstract class PatrolPlatformEnemy extends Enemy {
     Platform platform;
-    private boolean ableToDetectGigagal;
-    boolean gigagalDetected;
     private float speed;
 
     /**
-     * @param platform:      platform that enemy will patrol
-     * @param health:        enemy's health
-     * @param speed:         enemy's horizontal speed
-     * @param center:        enemy's center's coordinate with respect to its bottom left pixel
-     * @param textureRegion: texture region for rendering
+     * @param platform:            platform that enemy will patrol
+     * @param health:              enemy's health
+     * @param ableToDetectGigagal: decide whether enemy can know if ggg is on its platform
+     * @param speed:               enemy's horizontal speed
+     * @param center:              enemy's center's coordinate with respect to its bottom left pixel
+     * @param textureRegion:       texture region for rendering
      */
     PatrolPlatformEnemy(Level level, Platform platform, boolean ableToDetectGigagal, int health, float speed, Vector2 center, TextureRegion textureRegion) {
         super(level);
@@ -41,24 +40,8 @@ abstract class PatrolPlatformEnemy extends Enemy {
     @Override
     public void update(float delta) {
         // detect ggg
-        if (ableToDetectGigagal) {
-            GigaGal gigaGal = level.getGigagal();
-
-            if (gigaGal.getCurrentPlatform() == platform) {
-                gigagalDetected = true;
-                // follow ggg
-                if (gigaGal.position.x < position.x) {
-                    facing = Enum.Facing.LEFT;
-                    velocity.x = -speed;
-                    delta *= Constants.ENEMY_SPEED_BOOST;
-                } else {
-                    facing = Enum.Facing.RIGHT;
-                    velocity.x = speed;
-                    delta *= Constants.ENEMY_SPEED_BOOST;
-                }
-            } else {
-                gigagalDetected = false;
-            }
+        if (ableToDetectGigagal && detectGigagal()) {
+            attack(delta, level.getGigagal().position);
         }
 
         // move enemy horizontally
@@ -74,5 +57,33 @@ abstract class PatrolPlatformEnemy extends Enemy {
             position.x = platform.xRight;
             facing = Enum.Facing.LEFT;
         }
+    }
+
+    @Override
+    boolean detectGigagal() {
+        gigagalDetected = platform == level.getGigagal().getCurrentPlatform();
+        return gigagalDetected;
+    }
+
+
+    @Override
+    void push(float delta, Vector2 target) {
+
+        // change direction & velocity to follow ggg
+        if (target.x < position.x) {
+            facing = Enum.Facing.LEFT;
+            velocity.x = -speed;
+        } else {
+            facing = Enum.Facing.RIGHT;
+            velocity.x = speed;
+        }
+
+        // move toward target
+        position.x += velocity.x * delta * Constants.ENEMY_SPEED_BOOST;
+    }
+
+    @Override
+    void shoot(float delta, Vector2 target) {
+        // TODO
     }
 }

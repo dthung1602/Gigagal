@@ -1,5 +1,6 @@
 package com.x555l.gigagal.entities.enemies;
 
+import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;

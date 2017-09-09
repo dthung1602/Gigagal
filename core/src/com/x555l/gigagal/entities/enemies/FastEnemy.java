@@ -1,6 +1,7 @@
 package com.x555l.gigagal.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
@@ -24,6 +25,11 @@ public class FastEnemy extends PatrolPlatformEnemy {
         );
 
         boundary = new CircularShape();
+    }
+
+    @Override
+    void attack(float delta, Vector2 target) {
+        push(delta, target);
     }
 
     @Override

@@ -23,6 +23,9 @@ public abstract class Enemy {
     public int health;
     long startTime;
 
+    boolean ableToDetectGigagal;
+    boolean gigagalDetected;
+
     Facing facing;
     TextureRegion textureRegion;
 
@@ -30,6 +33,39 @@ public abstract class Enemy {
         this.level = level;
         startTime = TimeUtils.nanoTime();
         facing = Facing.RIGHT;
+    }
+
+    /**
+     * Return true if enemy detect ggg and false otherwise
+     * Also set gigagalDetected accordingly
+     * Return true by default
+     */
+    boolean detectGigagal() {
+        gigagalDetected = true;
+        return true;
+    }
+
+    /**
+     * Enemy try to attack the given target
+     * There are 2 convenient implementations of this method: push and shoot
+     * Enemy does nothing by default
+     */
+    void attack(float delta, Vector2 target) {
+
+    }
+
+    /**
+     * Enemy shoots bullets at the given target
+     */
+    void shoot(float delta, Vector2 target) {
+
+    }
+
+    /**
+     * Enemy rush to target and push
+     */
+    void push(float delta, Vector2 target) {
+
     }
 
     abstract public void update(float delta);

@@ -30,7 +30,7 @@ AUDIO
 
 ENEMY
     # Basic (done)
-    Fast (can detect when character land on its platform)
+    # Fast (can detect when character land on its platform)
     # Strong (high health)
     Shoot (can shoot bullet)
 
