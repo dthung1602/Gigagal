@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.x555l.gigagal.entities.Explosion;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Enum.Facing;
 
@@ -66,6 +67,13 @@ public abstract class Enemy {
      */
     void push(float delta, Vector2 target) {
 
+    }
+
+    public void die() {
+        // remove enemy from enemy list
+        level.getEnemies().removeValue(this, true);
+        // new explosion
+        level.getExplosions().add(new Explosion(position, true));
     }
 
     abstract public void update(float delta);

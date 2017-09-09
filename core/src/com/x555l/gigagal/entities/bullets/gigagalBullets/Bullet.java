@@ -1,8 +1,10 @@
-package com.x555l.gigagal.entities;
+package com.x555l.gigagal.entities.bullets.gigagalBullets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.x555l.gigagal.entities.Explosion;
+import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
@@ -10,20 +12,11 @@ import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
 
 
-public class Bullet {
-    private Vector2 position;
-    private Vector2 velocity;
-
-    public boolean active;
-
-    private Level level;
-    private TextureRegion region;
+public class Bullet extends com.x555l.gigagal.entities.bullets.Bullet {
 
     public Bullet(float x, float y, Facing direction, Level level) {
-        this.level = level;
-        active = true;
+        super(x, y, level);
 
-        position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
 
         if (direction == null) {
@@ -41,6 +34,7 @@ public class Bullet {
         }
     }
 
+    @Override
     public void update(float delta) {
         // move the bullet
         position.mulAdd(velocity, delta);
@@ -79,18 +73,10 @@ public class Bullet {
         for (Enemy enemy : level.getEnemies()) {
             if (enemy.boundary.hitByBullet(position)) {
                 enemy.health--;
-                level.addNewExplosion(position, false);
+                level.getExplosions().add(new Explosion(position, false));
                 active = false;
                 return;
             }
         }
-    }
-
-    public void render(SpriteBatch batch) {
-        batch.draw(
-                region,
-                position.x - Constants.BULLET_CENTER.x,
-                position.y - Constants.BULLET_CENTER.y
-        );
     }
 }

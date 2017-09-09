@@ -1,20 +1,18 @@
 package com.x555l.gigagal.level;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.x555l.gigagal.entities.Bullet;
 import com.x555l.gigagal.entities.ExitPortal;
 import com.x555l.gigagal.entities.Explosion;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.entities.bonus.Bonus;
+import com.x555l.gigagal.entities.bullets.Bullet;
 import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.util.Constants;
-import com.x555l.gigagal.util.Enum.Facing;
 
 
 public class Level {
@@ -59,8 +57,7 @@ public class Level {
             if (enemy.health >= 1) {
                 enemy.update(delta);
             } else {
-                enemies.removeValue(enemy, true);
-                addNewExplosion(enemy.position, true);
+                enemy.die();
             }
         }
 
@@ -110,18 +107,6 @@ public class Level {
     }
 
     //---------------------------------------------------------------
-    //                   ADD NEW ENTITIES
-    //---------------------------------------------------------------
-
-    public void addNewBullet(float x, float y, Facing direction) {
-        bullets.add(new Bullet(x, y, direction, this));
-    }
-
-    public void addNewExplosion(Vector2 position, boolean largeExplosion) {
-        explosions.add(new Explosion(position, largeExplosion));
-    }
-
-    //---------------------------------------------------------------
     //                         GETTERS
     //---------------------------------------------------------------
 
@@ -147,6 +132,14 @@ public class Level {
 
     public ExitPortal getExitPortal() {
         return exitPortal;
+    }
+
+    public DelayedRemovalArray<Bullet> getBullets() {
+        return bullets;
+    }
+
+    public DelayedRemovalArray<Explosion> getExplosions() {
+        return explosions;
     }
 
     //---------------------------------------------------------------

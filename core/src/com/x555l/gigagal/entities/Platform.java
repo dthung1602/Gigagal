@@ -11,7 +11,7 @@ public class Platform extends Rectangle {
     public float yTop;
 
     private NinePatch ninePatch;
-    boolean passable;
+    public boolean passable;
 
     public Platform(boolean passable, float x, float y, float width, float height) {
         this.passable = passable;

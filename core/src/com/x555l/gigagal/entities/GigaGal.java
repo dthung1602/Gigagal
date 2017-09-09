@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.bonus.Bonus;
-import com.x555l.gigagal.entities.enemies.*;
+import com.x555l.gigagal.entities.bullets.gigagalBullets.Bullet;
+import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
@@ -421,12 +422,14 @@ public class GigaGal {
             if (walkState != WalkState.FACE_UP)
                 bulletFacing = facing;
 
-            level.addNewBullet(
+            level.getBullets().add(new Bullet(
                     position.x + xOffset,
                     position.y + Constants.GIGAGAL_GUN_OFFSET.y,
-                    bulletFacing
-            );
+                    bulletFacing,
+                    level
+            ));
         }
+
     }
 
     private void knockBack(Enemy enemy) {
