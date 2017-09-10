@@ -1,10 +1,13 @@
 package com.x555l.gigagal.entities.bullets;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.level.Level;
+import com.x555l.gigagal.util.Util;
 
 /**
  * Abstract class for all bullets
@@ -16,10 +19,13 @@ public abstract class Bullet {
 
     public int damage;
     public boolean active;
+    private long startTime;
+    protected float angle;
 
     protected Level level;
     protected TextureRegion textureRegion;
-    protected Vector2 center;
+    protected Animation<TextureRegion> animation;
+    private Vector2 center;
 
     protected Bullet(float x, float y, int damage, Vector2 center, Level level) {
         this.position = new Vector2(x, y);
@@ -28,12 +34,15 @@ public abstract class Bullet {
         this.level = level;
 
         active = true;
+        startTime = TimeUtils.nanoTime();
+        angle = 0;
     }
 
     public void update(float delta) {
         position.mulAdd(velocity, delta);
         checkOutOfScreen();
         checkHitPlatform();
+        updateTextureRegion();
     }
 
     /**
@@ -64,11 +73,26 @@ public abstract class Bullet {
         }
     }
 
+    /**
+     * Ensure consistency between animated & static bullet image
+     */
+    private void updateTextureRegion() {
+        if (animation != null)
+            textureRegion = animation.getKeyFrame(Util.secondsSince(startTime));
+    }
+
     public void render(SpriteBatch batch) {
         batch.draw(
                 textureRegion,
-                position.x - center.x,
-                position.y - center.y
+                position.x,
+                position.y,
+                center.x,
+                center.y,
+                textureRegion.getRegionWidth(),
+                textureRegion.getRegionHeight(),
+                1,
+                1,
+                angle
         );
     }
 }

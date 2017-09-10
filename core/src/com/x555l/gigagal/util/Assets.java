@@ -168,6 +168,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion upBullet;
 
         public AtlasRegion enemyLaser;
+        public Animation<TextureRegion> enemyPlasma;
 
         BulletAssets(TextureAtlas atlas) {
             leftBullet = atlas.findRegion(Constants.GGG_BULLET_LEFT);
@@ -175,6 +176,15 @@ public class Assets implements Disposable, AssetErrorListener {
             upBullet = atlas.findRegion(Constants.GGG_BULLET_UP);
 
             enemyLaser = atlas.findRegion(Constants.ENEMY_BULLET_LASER);
+
+            Array<TextureRegion> textureRegionArray = new Array<TextureRegion>();
+            textureRegionArray.add(atlas.findRegion(Constants.ENEMY_BULLET_PLASMA + "1"));
+            textureRegionArray.add(atlas.findRegion(Constants.ENEMY_BULLET_PLASMA + "2"));
+            enemyPlasma = new Animation<TextureRegion>(
+                    Constants.ENEMY_BULLET_PLASMA_FRAME_DURATION,
+                    textureRegionArray,
+                    Animation.PlayMode.LOOP_PINGPONG
+            );
         }
     }
 

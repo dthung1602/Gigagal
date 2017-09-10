@@ -160,7 +160,7 @@ exit-portal-6
   index: -1
 explosion-large
   rotate: false
-  xy: 398, 63
+  xy: 420, 63
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
@@ -174,7 +174,7 @@ explosion-large-x
   index: -1
 explosion-medium
   rotate: false
-  xy: 956, 109
+  xy: 439, 63
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
@@ -188,7 +188,7 @@ explosion-medium-x
   index: -1
 explosion-small
   rotate: false
-  xy: 417, 63
+  xy: 458, 63
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
@@ -202,7 +202,7 @@ explosion-small-x
   index: -1
 health
   rotate: false
-  xy: 975, 111
+  xy: 978, 111
   size: 17, 15
   orig: 17, 15
   offset: 0, 0
@@ -230,9 +230,23 @@ laser
   index: -1
 life
   rotate: false
-  xy: 994, 111
+  xy: 384, 45
   size: 13, 15
   orig: 13, 15
+  offset: 0, 0
+  index: -1
+plasma-1
+  rotate: false
+  xy: 398, 63
+  size: 20, 17
+  orig: 20, 17
+  offset: 0, 0
+  index: -1
+plasma-2
+  rotate: false
+  xy: 956, 111
+  size: 20, 15
+  orig: 20, 15
   offset: 0, 0
   index: -1
 platform-passable
@@ -251,7 +265,7 @@ platform-solid
   index: -1
 powerup
   rotate: false
-  xy: 436, 63
+  xy: 997, 109
   size: 15, 17
   orig: 15, 17
   offset: 0, 0

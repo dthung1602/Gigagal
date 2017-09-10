@@ -1,6 +1,5 @@
 package com.x555l.gigagal.util;
 
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
@@ -118,8 +117,15 @@ public class Constants {
     // laser
     static final String ENEMY_BULLET_LASER = "laser";
     public static final Vector2 ENEMY_BULLET_LASER_CENTER = new Vector2(8, 3);
-    public static final int ENEMY_BULLET_LASER_DAMAGE = 2;
+    public static final int ENEMY_BULLET_LASER_DAMAGE = 1;
     public static final float ENEMY_BULLET_LASER_SPEED = 150;
+    // plasma
+    static final String ENEMY_BULLET_PLASMA = "plasma-";
+    public static final Vector2 ENEMY_BULLET_PLASMA_CENTER = new Vector2(10, 7);
+    public static final int ENEMY_BULLET_PLASMA_DAMAGE = 2;
+    public static final float ENEMY_BULLET_PLASMA_SPEED = 120;
+    public static final float ENEMY_BULLET_PLASMA_FRAME_DURATION = 0.1f;
+
 
     // explosion
     static final String EXPLOSION_SMALL = "explosion-small";
