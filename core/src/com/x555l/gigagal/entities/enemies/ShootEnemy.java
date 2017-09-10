@@ -19,14 +19,14 @@ public class ShootEnemy extends PatrolPlatformEnemy {
                 level,
                 platform,
                 true,
-                Constants.ENEMY_SHOOT_HEALTH,
-                Constants.ENEMY_SHOOT_SPEED,
-                Constants.ENEMY_SHOOT_CENTER,
+                Constants.Enemy.ENEMY_SHOOT_HEALTH,
+                Constants.Enemy.ENEMY_SHOOT_SPEED,
+                Constants.Enemy.ENEMY_SHOOT_CENTER,
                 Assets.instance.enemy.shootEnemy
         );
 
         boundary = new RectangularShape();
-        attackCoolDown = Constants.ENEMY_SHOOT_COOLDOWN;
+        attackCoolDown = Constants.Enemy.ENEMY_SHOOT_COOLDOWN;
     }
 
     /**

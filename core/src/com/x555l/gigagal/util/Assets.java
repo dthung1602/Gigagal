@@ -35,7 +35,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public OnscreenControlAssets onscreenControl;
 
 
-    public backgroundAssets background;
+    public BackgroundAssets background;
 
     public Skin skin;
 
@@ -64,7 +64,7 @@ public class Assets implements Disposable, AssetErrorListener {
         exitPortal = new ExitPortalAssets(gigagalAtlas);
         onscreenControl = new OnscreenControlAssets(gigagalAtlas);
 
-        background = new backgroundAssets(backgroundAtlas);
+        background = new BackgroundAssets(backgroundAtlas);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class Assets implements Disposable, AssetErrorListener {
     private Animation<TextureRegion> createAnimation(TextureAtlas atlas, String name, int frameCount, float frameDuration, PlayMode playMode) {
         Array<TextureRegion> regions = new Array<TextureRegion>();
 
-        for (int i = 1; i < frameCount; i++)
+        for (int i = 1; i <= frameCount; i++)
             regions.add(atlas.findRegion(name + i));
 
         return new Animation<TextureRegion>(
@@ -196,14 +196,12 @@ public class Assets implements Disposable, AssetErrorListener {
             upBullet = atlas.findRegion(Constants.Asset.GGG_BULLET_UP);
 
             enemyLaser = atlas.findRegion(Constants.Asset.ENEMY_BULLET_LASER);
-
-            Array<TextureRegion> textureRegionArray = new Array<TextureRegion>();
-            for (int i = 1; i <= Constants.Asset.ENEMY_BULLET_PLASMA_FRAME_COUNT; i++)
-                textureRegionArray.add(atlas.findRegion(Constants.Asset.ENEMY_BULLET_PLASMA + i));
-            enemyPlasma = new Animation<TextureRegion>(
+            enemyPlasma = createAnimation(
+                    atlas,
+                    Constants.Asset.ENEMY_BULLET_PLASMA,
+                    Constants.Asset.ENEMY_BULLET_PLASMA_FRAME_COUNT,
                     Constants.Asset.ENEMY_BULLET_PLASMA_FRAME_DURATION,
-                    textureRegionArray,
-                    Animation.PlayMode.LOOP_PINGPONG
+                    PlayMode.LOOP
             );
         }
     }
@@ -276,13 +274,13 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class backgroundAssets {
+    public class BackgroundAssets {
         public TextureRegion mainMenu;
         public TextureRegion selectLevel;
         public TextureRegion setting;
         public TextureRegion overlay;
 
-        backgroundAssets(TextureAtlas atlas) {
+        BackgroundAssets(TextureAtlas atlas) {
             mainMenu = atlas.findRegion(Constants.Asset.BG_MAIN_MENU);
             selectLevel = atlas.findRegion(Constants.Asset.BG_SELECT_LEVEL);
             setting = atlas.findRegion(Constants.Asset.BG_SETTING);

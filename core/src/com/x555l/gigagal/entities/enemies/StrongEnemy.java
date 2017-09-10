@@ -17,9 +17,9 @@ public class StrongEnemy extends PatrolPlatformEnemy {
                 level,
                 platform,
                 false,
-                Constants.ENEMY_STRONG_HEALTH,
-                Constants.ENEMY_STRONG_SPEED,
-                Constants.ENEMY_STRONG_CENTER,
+                Constants.Enemy.ENEMY_STRONG_HEALTH,
+                Constants.Enemy.ENEMY_STRONG_SPEED,
+                Constants.Enemy.ENEMY_STRONG_CENTER,
                 Assets.instance.enemy.strongEnemy
         );
 
@@ -32,6 +32,6 @@ public class StrongEnemy extends PatrolPlatformEnemy {
 
         float time = Util.secondsSince(startTime);
         position.y = platform.yTop + center.y
-                + (time % Constants.ENEMY_STRONG_FLOAT_PERIOD) * Constants.ENEMY_STRONG_FLOAT_AMPLITUDE;
+                + (time % Constants.Enemy.ENEMY_STRONG_FLOAT_PERIOD) * Constants.Enemy.ENEMY_STRONG_FLOAT_AMPLITUDE;
     }
 }

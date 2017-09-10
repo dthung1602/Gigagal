@@ -80,6 +80,6 @@ abstract class PatrolPlatformEnemy extends Enemy {
         }
 
         // move toward target
-        position.x += velocity.x * delta * Constants.ENEMY_SPEED_BOOST;
+        position.x += velocity.x * delta * Constants.Enemy.SPEED_BOOST;
     }
 }

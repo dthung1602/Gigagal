@@ -14,7 +14,7 @@ public class BonusBullet extends Bonus {
 
     @Override
     public void performAction(GigaGal gigaGal) {
-        if (gigaGal.bullet < Constants.MAX_BULLET)
-            gigaGal.bullet += Constants.BONUS_BULLET_AMOUNT;
+        if (gigaGal.bullet < Constants.Gigagal.MAX_BULLET)
+            gigaGal.bullet += Constants.Gigagal.BONUS_BULLET_AMOUNT;
     }
 }

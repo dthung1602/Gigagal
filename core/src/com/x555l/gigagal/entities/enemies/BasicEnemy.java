@@ -19,9 +19,9 @@ public class BasicEnemy extends PatrolPlatformEnemy {
                 level,
                 platform,
                 false,
-                Constants.ENEMY_BASIC_HEALTH,
-                Constants.ENEMY_BASIC_SPEED,
-                Constants.ENEMY_BASIC_CENTER,
+                Constants.Enemy.ENEMY_BASIC_HEALTH,
+                Constants.Enemy.ENEMY_BASIC_SPEED,
+                Constants.Enemy.ENEMY_BASIC_CENTER,
                 Assets.instance.enemy.basicEnemy
         );
 
@@ -36,6 +36,6 @@ public class BasicEnemy extends PatrolPlatformEnemy {
         // create floating effect
         float time = Util.secondsSince(startTime);
         position.y = platform.yTop + center.y
-                + (float) Math.sin(2 * Math.PI / Constants.ENEMY_BASIC_FLOAT_PERIOD * time) * Constants.ENEMY_BASIC_FLOAT_AMPLITUDE;
+                + (float) Math.sin(2 * Math.PI / Constants.Enemy.ENEMY_BASIC_FLOAT_PERIOD * time) * Constants.Enemy.ENEMY_BASIC_FLOAT_AMPLITUDE;
     }
 }

@@ -82,6 +82,7 @@ public abstract class Bullet {
     }
 
     public void render(SpriteBatch batch) {
+        System.out.println(textureRegion);
         batch.draw(
                 textureRegion,
                 position.x,

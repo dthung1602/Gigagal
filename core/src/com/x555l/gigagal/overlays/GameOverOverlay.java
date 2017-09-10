@@ -73,7 +73,7 @@ public class GameOverOverlay extends EndLevelOverlay {
                 batch.draw(
                         Assets.instance.enemy.basicEnemy,
                         x,
-                        y + (float) Math.sin(2 * Math.PI / Constants.ENEMY_BASIC_FLOAT_PERIOD * time + angle) * Constants.ENEMY_BASIC_FLOAT_AMPLITUDE
+                        y + (float) Math.sin(2 * Math.PI / Constants.Enemy.ENEMY_BASIC_FLOAT_PERIOD * time + angle) * Constants.Enemy.ENEMY_BASIC_FLOAT_AMPLITUDE
                 );
             }
         }

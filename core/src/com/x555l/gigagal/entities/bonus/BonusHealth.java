@@ -14,7 +14,7 @@ public class BonusHealth extends Bonus {
 
     @Override
     public void performAction(GigaGal gigaGal) {
-        if (gigaGal.health < Constants.MAX_HEALTH)
+        if (gigaGal.health < Constants.Gigagal.MAX_HEALTH)
             gigaGal.health++;
     }
 }

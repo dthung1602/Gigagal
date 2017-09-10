@@ -19,9 +19,9 @@ public class FastEnemy extends PatrolPlatformEnemy {
                 level,
                 platform,
                 true,
-                Constants.ENEMY_FAST_HEALTH,
-                Constants.ENEMY_FAST_SPEED,
-                Constants.ENEMY_FAST_CENTER,
+                Constants.Enemy.ENEMY_FAST_HEALTH,
+                Constants.Enemy.ENEMY_FAST_SPEED,
+                Constants.Enemy.ENEMY_FAST_CENTER,
                 Assets.instance.enemy.fastEnemy
         );
 
@@ -37,7 +37,7 @@ public class FastEnemy extends PatrolPlatformEnemy {
     public void render(SpriteBatch batch) {
         float angle;
         if (gigagalDetected)
-            angle = Constants.ENEMY_FAST_ANGLE * (facing == Enum.Facing.RIGHT ? 1 : -1);
+            angle = Constants.Enemy.ENEMY_FAST_ANGLE * (facing == Enum.Facing.RIGHT ? 1 : -1);
         else
             angle = 0;
 

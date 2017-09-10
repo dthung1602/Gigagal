@@ -13,9 +13,9 @@ public class PatrolAirEnemy extends NonPlatformEnemy {
         super(
                 level,
                 entity.polyline,
-                Constants.ENEMY_PATROL_AIR_HEALTH,
-                Constants.ENEMY_PATROL_AIR_SPEED,
-                Constants.ENEMY_PATROL_AIR_CENTER,
+                Constants.Enemy.ENEMY_PATROL_AIR_HEALTH,
+                Constants.Enemy.ENEMY_PATROL_AIR_SPEED,
+                Constants.Enemy.ENEMY_PATROL_AIR_CENTER,
                 Assets.instance.enemy.patrolAirEnemy
         );
 

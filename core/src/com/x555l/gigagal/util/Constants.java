@@ -18,6 +18,7 @@ public class Constants {
         public static final Color BACKGROUND_COLOR = Color.SKY;
         public static final float DEATH_DEPTH = -150;
         public static final float CAMERA_SPEED = 64;
+        public static final float GRAVITY = 1024;
     }
 
     /**
@@ -100,100 +101,122 @@ public class Constants {
 
     }
 
-    // gigagal
+    /**
+     * Constants for Gigagal
+     */
+    public static class Gigagal {
+        //position
+        public static final Vector2 CENTER = new Vector2(10, 24);
+        public static final Vector2 GUN_POSITION = new Vector2(12, -13);
 
+        // size
+        public static final float STANCE_WIDTH = 15;
+        public static final float HEIGHT = 23;
 
+        // movement
+        public static final float SPEED = 64;
+        public static final float JUMP_SPEED = 256;
+        public static final float MAX_JUMP_DURATION = 0.20f;
+        public static final Vector2 KNOCK_BACK_BY_ENEMY_VELOCITY = new Vector2(128, 256);
+        public static final Vector2 KNOCK_BACK_BY_BULLET_VELOCITY = new Vector2(64, 128);
 
-    public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(10, 24);
-    public static final float GIGAGAL_STANCE_WIDTH = 15;
-    public static final float GIGAGAL_HEIGHT = 23;
-    public static final Vector2 GIGAGAL_GUN_OFFSET = new Vector2(12, -13);
+        // health
+        public static final int MAX_HEALTH = 5;
+        public static final int INIT_HEALTH = 3;
 
-    public static final float GIGAGAL_SPEED = 64;
-    public static final float GIGAGAL_JUMP_SPEED = 256;
-    public static final float GIGAGAL_MAX_JUMP_DURATION = 0.20f;
-    public static final float GRAVITY = 1024;
+        // life
+        public static final int MAX_LIFE = 5;
+        public static final int INIT_LIFE = 3;
 
-    public static final Vector2 KNOCK_BACK_BY_ENEMY_VELOCITY = new Vector2(128, 256);
-    public static final Vector2 KNOCK_BACK_BY_BULLET_VELOCITY = new Vector2(64, 128);
+        // bullet
+        public static final int MAX_BULLET = 500;
+        public static final int BONUS_BULLET_AMOUNT = 10;
+        public static final int INIT_BULLET = 25;
+    }
 
-    public static final int MAX_HEALTH = 5;
-    public static final int INIT_HEALTH = 3;
+    /**
+     * Constants for enemies
+     */
+    public static class Enemy {
+        // common constants
+        public static final float SPEED_BOOST = 3f;
+        public static final int KNOCK_BACK_DAMAGE = 1;
 
-    public static final int MAX_LIFE = 5;
-    public static final int INIT_LIFE = 3;
+        // basic enemy
+        public static final Vector2 ENEMY_BASIC_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_BASIC_SPEED = 10f;
+        public static final float ENEMY_BASIC_FLOAT_AMPLITUDE = 4f;
+        public static final float ENEMY_BASIC_FLOAT_PERIOD = 3f;
+        public static final int ENEMY_BASIC_HEALTH = 3;
 
-    public static final int MAX_BULLET = 500;
-    public static final int BONUS_BULLET_AMOUNT = 10;
-    public static final int INIT_BULLET = 25;
+        // strong enemy
+        public static final Vector2 ENEMY_STRONG_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_STRONG_SPEED = 15f;
+        public static final float ENEMY_STRONG_FLOAT_AMPLITUDE = 3f;
+        public static final float ENEMY_STRONG_FLOAT_PERIOD = 2f;
+        public static final int ENEMY_STRONG_HEALTH = 9;
 
-    // platform
+        // fly 8 enemy
+        public static final Vector2 ENEMY_FLY_8_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_FLY_8_SHORT_AMPLITUDE = 40f;
+        public static final float ENEMY_FLY_8_LONG_AMPLITUDE = 80f;
+        public static final float ENEMY_FLY_8_PERIOD = 8;
+        public static final int ENEMY_FLY_8_HEALTH = 4;
 
+        // follow path
+        public static final Vector2 ENEMY_FOLLOW_PATH_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_FOLLOW_PATH_SPEED = 50;
+        public static final int ENEMY_FOLLOW_PATH_HEALTH = 6;
 
-    // enemy
-    public static final float ENEMY_SPEED_BOOST = 3f;
-    public static final int ENEMY_KNOCK_BACK_DAMAGE = 1;
-    // basic enemy
-    public static final Vector2 ENEMY_BASIC_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_BASIC_SPEED = 10f;
-    public static final float ENEMY_BASIC_FLOAT_AMPLITUDE = 4f;
-    public static final float ENEMY_BASIC_FLOAT_PERIOD = 3f;
-    public static final int ENEMY_BASIC_HEALTH = 3;
-    // strong enemy
-    public static final Vector2 ENEMY_STRONG_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_STRONG_SPEED = 15f;
-    public static final float ENEMY_STRONG_FLOAT_AMPLITUDE = 3f;
-    public static final float ENEMY_STRONG_FLOAT_PERIOD = 2f;
-    public static final int ENEMY_STRONG_HEALTH = 9;
-    // fly 8 enemy
-    public static final Vector2 ENEMY_FLY_8_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_FLY_8_SHORT_AMPLITUDE = 40f;
-    public static final float ENEMY_FLY_8_LONG_AMPLITUDE = 80f;
-    public static final float ENEMY_FLY_8_PERIOD = 8;
-    public static final int ENEMY_FLY_8_HEALTH = 4;
-    // follow path
-    public static final Vector2 ENEMY_FOLLOW_PATH_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_FOLLOW_PATH_SPEED = 50;
-    public static final int ENEMY_FOLLOW_PATH_HEALTH = 6;
-    // patrol air
-    public static final Vector2 ENEMY_PATROL_AIR_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_PATROL_AIR_SPEED = 50;
-    public static final int ENEMY_PATROL_AIR_HEALTH = 6;
-    // fast enemy
-    public static final Vector2 ENEMY_FAST_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_FAST_SPEED = 35f;
-    public static final int ENEMY_FAST_HEALTH = 4;
-    public static final float ENEMY_FAST_ANGLE = 20f;
-    // shoot enemy
-    public static final Vector2 ENEMY_SHOOT_CENTER = new Vector2(14, 22);
-    public static final float ENEMY_SHOOT_SPEED = 25f;
-    public static final int ENEMY_SHOOT_HEALTH = 4;
-    public static final float ENEMY_SHOOT_COOLDOWN = 0.5f;
+        // patrol air
+        public static final Vector2 ENEMY_PATROL_AIR_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_PATROL_AIR_SPEED = 50;
+        public static final int ENEMY_PATROL_AIR_HEALTH = 6;
 
-    // bullet
+        // fast enemy
+        public static final Vector2 ENEMY_FAST_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_FAST_SPEED = 35f;
+        public static final int ENEMY_FAST_HEALTH = 4;
+        public static final float ENEMY_FAST_ANGLE = 20f;
 
-    public static final Vector2 GGG_BULLET_CENTER = new Vector2(2, 3);
-    public static final float GGG_BULLET_SPEED = 200;
-    public static final float GGG_BULLET_COOL_DOWN = 0.35f;
-    public static final int GGG_BULLET_DAMAGE = 1;
+        // shoot enemy
+        public static final Vector2 ENEMY_SHOOT_CENTER = new Vector2(14, 22);
+        public static final float ENEMY_SHOOT_SPEED = 25f;
+        public static final int ENEMY_SHOOT_HEALTH = 4;
+        public static final float ENEMY_SHOOT_COOLDOWN = 0.5f;
+    }
+
+    /**
+     * Constants for enemies' bullets
+     */
+    public static class EnemyBullet {
+        // laser
+        public static final Vector2 ENEMY_BULLET_LASER_CENTER = new Vector2(8, 3);
+        public static final int ENEMY_BULLET_LASER_DAMAGE = 1;
+        public static final float ENEMY_BULLET_LASER_SPEED = 150;
+
+        // plasma
+        public static final Vector2 ENEMY_BULLET_PLASMA_CENTER = new Vector2(10, 7);
+        public static final int ENEMY_BULLET_PLASMA_DAMAGE = 2;
+        public static final float ENEMY_BULLET_PLASMA_SPEED = 120;
+    }
+
+    /**
+     * Constants for Gigagal's bullets
+     */
+    public static class GigagalBullet {
+        public static final Vector2 GGG_BULLET_CENTER = new Vector2(2, 3);
+        public static final float GGG_BULLET_SPEED = 200;
+        public static final float GGG_BULLET_COOL_DOWN = 0.35f;
+        public static final int GGG_BULLET_DAMAGE = 1;
+    }
 
     // enemy bullet
-    // laser
-    public static final Vector2 ENEMY_BULLET_LASER_CENTER = new Vector2(8, 3);
-    public static final int ENEMY_BULLET_LASER_DAMAGE = 1;
-    public static final float ENEMY_BULLET_LASER_SPEED = 150;
-    // plasma
-
-
-    public static final Vector2 ENEMY_BULLET_PLASMA_CENTER = new Vector2(10, 7);
-    public static final int ENEMY_BULLET_PLASMA_DAMAGE = 2;
-    public static final float ENEMY_BULLET_PLASMA_SPEED = 120;
 
 
     // explosion
 
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);
-
 
 
     // bonus

@@ -56,7 +56,7 @@ public class GigaGal {
     public GigaGal(Level level, Vector2 spawnPosition) {
         this.level = level;
         this.spawnPosition = spawnPosition.cpy();
-        life = Constants.INIT_LIFE;
+        life = Constants.Gigagal.INIT_LIFE;
         init();
     }
 
@@ -72,13 +72,13 @@ public class GigaGal {
         jumpState = JumpState.FALLING;
         walkState = WalkState.STANDING;
 
-        health = Constants.INIT_HEALTH;
-        bullet = Constants.INIT_BULLET;
+        health = Constants.Gigagal.INIT_HEALTH;
+        bullet = Constants.Gigagal.INIT_BULLET;
 
         currentPlatform = null;
 
-        leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+        leftFoot = position.x - Constants.Gigagal.STANCE_WIDTH / 2;
+        rightFoot = position.x + Constants.Gigagal.STANCE_WIDTH / 2;
         prevLeftFoot = leftFoot;
         prevRightFoot = rightFoot;
 
@@ -107,16 +107,16 @@ public class GigaGal {
         prevPosition.set(position.x, position.y);
 
         // gravity
-        velocity.y -= delta * Constants.GRAVITY;
+        velocity.y -= delta * Constants.GameWorld.GRAVITY;
 
         // apply velocity to position
         position.mulAdd(velocity, delta);
 
         // calculate left, right foot
-        leftFoot = position.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        rightFoot = position.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
-        prevLeftFoot = prevPosition.x - Constants.GIGAGAL_STANCE_WIDTH / 2;
-        prevRightFoot = prevPosition.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
+        leftFoot = position.x - Constants.Gigagal.STANCE_WIDTH / 2;
+        rightFoot = position.x + Constants.Gigagal.STANCE_WIDTH / 2;
+        prevLeftFoot = prevPosition.x - Constants.Gigagal.STANCE_WIDTH / 2;
+        prevRightFoot = prevPosition.x + Constants.Gigagal.STANCE_WIDTH / 2;
 
         // death plane
         if (position.y < Constants.GameWorld.DEATH_DEPTH) {
@@ -145,7 +145,7 @@ public class GigaGal {
                 currentPlatform = platform;
                 jumpState = JumpState.GROUNDED;
                 velocity.set(0, 0);
-                position.y = platform.yTop + Constants.GIGAGAL_EYE_POSITION.y;
+                position.y = platform.yTop + Constants.Gigagal.CENTER.y;
                 break;
             }
 
@@ -168,7 +168,7 @@ public class GigaGal {
                 if (jumpState != JumpState.GROUNDED)
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
-                position.x = platform.xRight + Constants.GIGAGAL_STANCE_WIDTH / 2 + 1;
+                position.x = platform.xRight + Constants.Gigagal.STANCE_WIDTH / 2 + 1;
                 break;
             }
 
@@ -176,7 +176,7 @@ public class GigaGal {
                 if (jumpState != JumpState.GROUNDED)
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
-                position.x = platform.x - Constants.GIGAGAL_STANCE_WIDTH / 2 - 1;
+                position.x = platform.x - Constants.Gigagal.STANCE_WIDTH / 2 - 1;
                 break;
             }
         }
@@ -185,10 +185,10 @@ public class GigaGal {
     private void handleCollisions() {
         // a rectangle to detect collision
         Rectangle gigagalBoundary = new Rectangle(
-                position.x - Constants.GIGAGAL_EYE_POSITION.x,
-                position.y - Constants.GIGAGAL_EYE_POSITION.y,
-                Constants.GIGAGAL_STANCE_WIDTH,
-                Constants.GIGAGAL_HEIGHT
+                position.x - Constants.Gigagal.CENTER.x,
+                position.y - Constants.Gigagal.CENTER.y,
+                Constants.Gigagal.STANCE_WIDTH,
+                Constants.Gigagal.HEIGHT
         );
 
         // detect collision with enemy
@@ -294,8 +294,8 @@ public class GigaGal {
 
         batch.draw(
                 region,
-                position.x - Constants.GIGAGAL_EYE_POSITION.x,
-                position.y - Constants.GIGAGAL_EYE_POSITION.y
+                position.x - Constants.Gigagal.CENTER.x,
+                position.y - Constants.Gigagal.CENTER.y
         );
     }
 
@@ -311,14 +311,14 @@ public class GigaGal {
     private boolean betweenVerticalBorder(Platform platform) {
         return ((!platform.passable)          // platform mustn't be passable
                 && position.y >= platform.y     // head must be higher than bottom border of platform
-                && position.y - Constants.GIGAGAL_EYE_POSITION.y <= platform.yTop);  // feet must be lower than top border of platform
+                && position.y - Constants.Gigagal.CENTER.y <= platform.yTop);  // feet must be lower than top border of platform
 
     }
 
     private boolean landOnPlatform(Platform platform) {
         // check if gigagal is falling pass top border of platform
-        return (prevPosition.y - Constants.GIGAGAL_EYE_POSITION.y >= platform.yTop  // prev.pos must be above
-                && position.y - Constants.GIGAGAL_EYE_POSITION.y <= platform.yTop);  // curr.pos must be below
+        return (prevPosition.y - Constants.Gigagal.CENTER.y >= platform.yTop  // prev.pos must be above
+                && position.y - Constants.Gigagal.CENTER.y <= platform.yTop);  // curr.pos must be below
     }
 
     private boolean blockedByAbovePlatform(Platform platform) {
@@ -369,8 +369,8 @@ public class GigaGal {
 
         float jumpTime = Util.secondsSince(jumpStartTime);
 
-        if (jumpTime < Constants.GIGAGAL_MAX_JUMP_DURATION) {
-            velocity.y = Constants.GIGAGAL_JUMP_SPEED;
+        if (jumpTime < Constants.Gigagal.MAX_JUMP_DURATION) {
+            velocity.y = Constants.Gigagal.JUMP_SPEED;
         } else {
             endJumping();
         }
@@ -393,7 +393,7 @@ public class GigaGal {
         walkState = WalkState.WALKING;
         facing = Facing.LEFT;
 
-        velocity.x = -Constants.GIGAGAL_SPEED;
+        velocity.x = -Constants.Gigagal.SPEED;
     }
 
     private void moveRight() {
@@ -404,7 +404,7 @@ public class GigaGal {
         walkState = WalkState.WALKING;
         facing = Facing.RIGHT;
 
-        velocity.x = Constants.GIGAGAL_SPEED;
+        velocity.x = Constants.Gigagal.SPEED;
     }
 
     private void endMoving() {
@@ -417,11 +417,11 @@ public class GigaGal {
     //-------------------------------------
 
     private void shoot() {
-        if (Util.secondsSince(shootLastTime) > Constants.GGG_BULLET_COOL_DOWN && bullet > 0) {
+        if (Util.secondsSince(shootLastTime) > Constants.GigagalBullet.GGG_BULLET_COOL_DOWN && bullet > 0) {
             shootLastTime = TimeUtils.nanoTime();
             bullet--;
 
-            float xOffset = Constants.GIGAGAL_GUN_OFFSET.x;
+            float xOffset = Constants.Gigagal.GUN_POSITION.x;
             if (facing == Facing.LEFT)
                 xOffset = -xOffset;
 
@@ -432,7 +432,7 @@ public class GigaGal {
 
             level.getBullets().add(new GigagalBullet(
                     position.x + xOffset,
-                    position.y + Constants.GIGAGAL_GUN_OFFSET.y,
+                    position.y + Constants.Gigagal.GUN_POSITION.y,
                     bulletFacing,
                     level
             ));
@@ -442,12 +442,12 @@ public class GigaGal {
 
     private void knockBack(Enemy enemy) {
         if (jumpState != JumpState.KNOCK_BACK) {
-            if (!loseHealth(Constants.ENEMY_KNOCK_BACK_DAMAGE)) return;
+            if (!loseHealth(Constants.Enemy.KNOCK_BACK_DAMAGE)) return;
             jumpState = JumpState.KNOCK_BACK;
         }
 
         // knock to the right
-        velocity.set(Constants.KNOCK_BACK_BY_ENEMY_VELOCITY);
+        velocity.set(Constants.Gigagal.KNOCK_BACK_BY_ENEMY_VELOCITY);
 
         // knock to the left
         if (enemy.position.x > position.x) {
@@ -462,7 +462,7 @@ public class GigaGal {
         }
 
         // knock to the right
-        velocity.set(Constants.KNOCK_BACK_BY_BULLET_VELOCITY);
+        velocity.set(Constants.Gigagal.KNOCK_BACK_BY_BULLET_VELOCITY);
 
         // knock to the left
         if (bullet.position.x > position.x) {

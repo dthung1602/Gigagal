@@ -14,7 +14,7 @@ public class BonusLife extends Bonus {
 
     @Override
     public void performAction(GigaGal gigaGal) {
-        if (gigaGal.life < Constants.MAX_LIFE)
+        if (gigaGal.life < Constants.Gigagal.MAX_LIFE)
             gigaGal.life++;
     }
 }

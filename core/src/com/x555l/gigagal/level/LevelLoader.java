@@ -229,8 +229,8 @@ public class LevelLoader {
             if (name.equals("StartPoint")) {
                 level.setGigagal(new GigaGal(
                         level,
-                        entity.x + Constants.GIGAGAL_EYE_POSITION.x,
-                        entity.y + Constants.GIGAGAL_EYE_POSITION.y
+                        entity.x + Constants.Gigagal.CENTER.x,
+                        entity.y + Constants.Gigagal.CENTER.y
                 ));
             }
 
