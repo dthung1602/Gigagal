@@ -119,7 +119,7 @@ public class GigaGal {
         prevRightFoot = prevPosition.x + Constants.GIGAGAL_STANCE_WIDTH / 2;
 
         // death plane
-        if (position.y < Constants.DEATH_DEPTH) {
+        if (position.y < Constants.GameWorld.DEATH_DEPTH) {
             die();
             return;
         }

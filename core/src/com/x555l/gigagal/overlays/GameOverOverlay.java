@@ -17,7 +17,7 @@ public class GameOverOverlay extends EndLevelOverlay {
     private Array<StaticEnemy> enemies;
 
     public GameOverOverlay() {
-        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        viewport = new ExtendViewport(Constants.GameWorld.WORLD_SIZE, Constants.GameWorld.WORLD_SIZE);
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
         font.getData().setScale(1.1f);
         font.setColor(Color.RED);

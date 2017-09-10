@@ -122,10 +122,10 @@ public class PlayScreen extends ScreenAdapter {
 
         // clear screen
         Gdx.gl.glClearColor(
-                Constants.BACKGROUND_COLOR.r,
-                Constants.BACKGROUND_COLOR.g,
-                Constants.BACKGROUND_COLOR.b,
-                Constants.BACKGROUND_COLOR.a
+                Constants.GameWorld.BACKGROUND_COLOR.r,
+                Constants.GameWorld.BACKGROUND_COLOR.g,
+                Constants.GameWorld.BACKGROUND_COLOR.b,
+                Constants.GameWorld.BACKGROUND_COLOR.a
         );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

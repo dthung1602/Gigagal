@@ -34,7 +34,7 @@ public class Level {
     Level(int levelNum) {
         this.levelNum = levelNum;
 
-        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        viewport = new ExtendViewport(Constants.GameWorld.WORLD_SIZE, Constants.GameWorld.WORLD_SIZE);
 
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<Enemy>();

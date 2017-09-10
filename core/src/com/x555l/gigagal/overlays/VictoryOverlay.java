@@ -16,7 +16,7 @@ public class VictoryOverlay extends EndLevelOverlay {
     private Array<Explosion> explosions;
 
     public VictoryOverlay() {
-        viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        viewport = new ExtendViewport(Constants.GameWorld.WORLD_SIZE, Constants.GameWorld.WORLD_SIZE);
         font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
         font.getData().setScale(1.2f);
         font.setColor(Color.RED);

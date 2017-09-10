@@ -298,42 +298,42 @@ standing-up-right
   orig: 25, 27
   offset: 0, 0
   index: -1
-walk-1-left
+walk-left-1
   rotate: false
   xy: 856, 99
   size: 24, 27
   orig: 24, 27
   offset: 0, 0
   index: -1
-walk-1-right
-  rotate: false
-  xy: 882, 99
-  size: 24, 27
-  orig: 24, 27
-  offset: 0, 0
-  index: -1
-walk-2-left
+walk-left-2
   rotate: false
   xy: 908, 99
   size: 22, 27
   orig: 22, 27
   offset: 0, 0
   index: -1
-walk-2-right
-  rotate: false
-  xy: 932, 99
-  size: 22, 27
-  orig: 22, 27
-  offset: 0, 0
-  index: -1
-walk-3-left
+walk-left-3
   rotate: false
   xy: 802, 99
   size: 25, 27
   orig: 25, 27
   offset: 0, 0
   index: -1
-walk-3-right
+walk-right-1
+  rotate: false
+  xy: 882, 99
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+walk-right-2
+  rotate: false
+  xy: 932, 99
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+walk-right-3
   rotate: false
   xy: 829, 99
   size: 25, 27
