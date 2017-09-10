@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.Explosion;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Enum.Facing;
+import com.x555l.gigagal.util.Util;
 
 /**
  * Abstract class for all enemies
@@ -27,12 +28,16 @@ public abstract class Enemy {
     boolean ableToDetectGigagal;
     boolean gigagalDetected;
 
+    long lastTimeAttack;
+    float attackCoolDown;
+
     Facing facing;
     TextureRegion textureRegion;
 
     Enemy(Level level) {
         this.level = level;
         startTime = TimeUtils.nanoTime();
+        lastTimeAttack = startTime;
         facing = Facing.RIGHT;
     }
 
@@ -47,25 +52,19 @@ public abstract class Enemy {
     }
 
     /**
+     * Check enemy attack cool down time
+     *
+     * @return true if enemy is ready to attack, false otherwise
+     */
+    boolean readyToAttack() {
+        return Util.secondsSince(lastTimeAttack) >= attackCoolDown;
+    }
+
+    /**
      * Enemy try to attack the given target
-     * There are 2 convenient implementations of this method: push and shoot
      * Enemy does nothing by default
      */
     void attack(float delta, Vector2 target) {
-
-    }
-
-    /**
-     * Enemy shoots bullets at the given target
-     */
-    void shoot(float delta, Vector2 target) {
-
-    }
-
-    /**
-     * Enemy rush to target and push
-     */
-    void push(float delta, Vector2 target) {
 
     }
 

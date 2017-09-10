@@ -7,6 +7,7 @@ import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum;
+import com.x555l.gigagal.util.Util;
 
 /**
  * Enemies move quickly and are able to detect when ggg is on platform
@@ -28,8 +29,8 @@ public class FastEnemy extends PatrolPlatformEnemy {
     }
 
     @Override
-    void attack(float delta, Vector2 target) {
-        push(delta, target);
+    void attack(float delta, Vector2 gigagalPosition) {
+        push(delta, gigagalPosition);
     }
 
     @Override

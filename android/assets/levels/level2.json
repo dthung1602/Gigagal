@@ -29,30 +29,6 @@
                  "y":144
                 }, 
                 {
-                 "gid":9,
-                 "height":44,
-                 "id":25,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":29,
-                 "x":373,
-                 "y":337
-                }, 
-                {
-                 "gid":13,
-                 "height":44,
-                 "id":37,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":29,
-                 "x":535,
-                 "y":312
-                }, 
-                {
                  "gid":13,
                  "height":44,
                  "id":38,
@@ -65,18 +41,6 @@
                  "y":162
                 }, 
                 {
-                 "gid":13,
-                 "height":44,
-                 "id":39,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":29,
-                 "x":245,
-                 "y":356
-                }, 
-                {
                  "gid":12,
                  "height":44,
                  "id":40,
@@ -87,6 +51,42 @@
                  "width":29,
                  "x":594,
                  "y":207
+                }, 
+                {
+                 "gid":14,
+                 "height":44,
+                 "id":43,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":532,
+                 "y":315
+                }, 
+                {
+                 "gid":14,
+                 "height":44,
+                 "id":44,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":332,
+                 "y":332
+                }, 
+                {
+                 "gid":1,
+                 "height":44,
+                 "id":45,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":29,
+                 "x":237,
+                 "y":363
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -116,7 +116,7 @@
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"StrongEnemy",
+                 "type":"ShootEnemy",
                  "visible":true,
                  "width":142,
                  "x":322,
@@ -128,7 +128,7 @@
                  "id":3,
                  "name":"",
                  "rotation":0,
-                 "type":"FastEnemy",
+                 "type":"ShootEnemy",
                  "visible":true,
                  "width":238,
                  "x":506,
@@ -200,7 +200,7 @@
                  "id":36,
                  "name":"",
                  "rotation":0,
-                 "type":"FastEnemy",
+                 "type":"BasicEnemy",
                  "visible":true,
                  "width":449,
                  "x":220,
@@ -526,7 +526,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":43,
+ "nextobjectid":46,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.0.2",

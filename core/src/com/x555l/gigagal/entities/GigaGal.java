@@ -475,7 +475,7 @@ public class GigaGal {
      */
     private boolean loseHealth(int damage) {
         health -= damage;
-        if (health == 0) {
+        if (health <= 0) {
             die();
             return false;
         }

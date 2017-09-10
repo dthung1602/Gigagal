@@ -8,7 +8,7 @@
  "margin":0,
  "name":"images",
  "spacing":0,
- "tilecount":13,
+ "tilecount":14,
  "tileheight":64,
  "tiles":
     {
@@ -39,6 +39,12 @@
      "12":
         {
          "image":"icon\/FastEnemy.png",
+         "imageheight":44,
+         "imagewidth":29
+        },
+     "13":
+        {
+         "image":"icon\/ShootEnemy.png",
          "imageheight":44,
          "imagewidth":29
         },

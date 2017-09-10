@@ -149,6 +149,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion followPathEnemy;
         public AtlasRegion patrolAirEnemy;
         public AtlasRegion fastEnemy;
+        public AtlasRegion shootEnemy;
 
         EnemyAssets(TextureAtlas atlas) {
             basicEnemy = atlas.findRegion(Constants.ENEMY_BASIC);
@@ -157,6 +158,7 @@ public class Assets implements Disposable, AssetErrorListener {
             followPathEnemy = atlas.findRegion(Constants.ENEMY_FOLLOW_PATH);
             patrolAirEnemy = atlas.findRegion(Constants.ENEMY_PATROL_AIR);
             fastEnemy = atlas.findRegion(Constants.ENEMY_FAST);
+            shootEnemy = atlas.findRegion(Constants.ENEMY_SHOOT);
         }
     }
 
@@ -165,10 +167,14 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion rightBullet;
         public AtlasRegion upBullet;
 
+        public AtlasRegion enemyLaser;
+
         BulletAssets(TextureAtlas atlas) {
             leftBullet = atlas.findRegion(Constants.GGG_BULLET_LEFT);
             rightBullet = atlas.findRegion(Constants.GGG_BULLET_RIGHT);
             upBullet = atlas.findRegion(Constants.GGG_BULLET_UP);
+
+            enemyLaser = atlas.findRegion(Constants.ENEMY_BULLET_LASER);
         }
     }
 

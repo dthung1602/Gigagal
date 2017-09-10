@@ -2,7 +2,6 @@ package com.x555l.gigagal.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Constants;
@@ -65,12 +64,14 @@ abstract class PatrolPlatformEnemy extends Enemy {
         return gigagalDetected;
     }
 
-
-    @Override
-    void push(float delta, Vector2 target) {
+    /**
+     * A convenient implementation of attack method for platform enemies
+     * Enemy will move towards Gigagal and push
+     */
+    void push(float delta, Vector2 gigagal) {
 
         // change direction & velocity to follow ggg
-        if (target.x < position.x) {
+        if (gigagal.x < position.x) {
             facing = Enum.Facing.LEFT;
             velocity.x = -speed;
         } else {
@@ -80,10 +81,5 @@ abstract class PatrolPlatformEnemy extends Enemy {
 
         // move toward target
         position.x += velocity.x * delta * Constants.ENEMY_SPEED_BOOST;
-    }
-
-    @Override
-    void shoot(float delta, Vector2 target) {
-        // TODO
     }
 }

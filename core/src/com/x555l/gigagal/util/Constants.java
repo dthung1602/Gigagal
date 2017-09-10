@@ -98,6 +98,12 @@ public class Constants {
     public static final float ENEMY_FAST_SPEED = 35f;
     public static final int ENEMY_FAST_HEALTH = 4;
     public static final float ENEMY_FAST_ANGLE = 20f;
+    // shoot enemy
+    static final String ENEMY_SHOOT = "enemy-shoot";
+    public static final Vector2 ENEMY_SHOOT_CENTER = new Vector2(14, 22);
+    public static final float ENEMY_SHOOT_SPEED = 25f;
+    public static final int ENEMY_SHOOT_HEALTH = 4;
+    public static final float ENEMY_SHOOT_COOLDOWN = 0.5f;
 
     // bullet
     static final String GGG_BULLET_LEFT = "bullet-left";
@@ -109,7 +115,11 @@ public class Constants {
     public static final int GGG_BULLET_DAMAGE = 1;
 
     // enemy bullet
-    //static final String ENEMY_BULLET_
+    // laser
+    static final String ENEMY_BULLET_LASER = "laser";
+    public static final Vector2 ENEMY_BULLET_LASER_CENTER = new Vector2(8, 3);
+    public static final int ENEMY_BULLET_LASER_DAMAGE = 2;
+    public static final float ENEMY_BULLET_LASER_SPEED = 150;
 
     // explosion
     static final String EXPLOSION_SMALL = "explosion-small";
