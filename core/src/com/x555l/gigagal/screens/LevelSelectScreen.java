@@ -14,7 +14,7 @@ class LevelSelectScreen extends MyScreen {
     LevelSelectScreen(Game game) {
         super(
                 game,
-                Constants.SELECT_LEVEL_WORLD_SIZE,
+                Constants.MainMenu.SELECT_LEVEL_WORLD_SIZE,
                 Assets.instance.background.selectLevel
         );
     }
@@ -24,7 +24,7 @@ class LevelSelectScreen extends MyScreen {
 
         Table subTable = createBackButton(table);
 
-        for (int i = 0; i < Constants.MAX_LEVEL; i++) {
+        for (int i = 0; i < Constants.Level.MAX_LEVEL; i++) {
             // new button
             TextButton button;
 
@@ -41,8 +41,8 @@ class LevelSelectScreen extends MyScreen {
             // format the button
             subTable.add(button)
                     .pad(5, 5, 5, 5)
-                    .prefSize(Constants.SELECT_LEVEL_SIZE.x,
-                            Constants.SELECT_LEVEL_SIZE.y);
+                    .prefSize(Constants.Level.SELECT_LEVEL_BUTTON_SIZE.x,
+                            Constants.Level.SELECT_LEVEL_BUTTON_SIZE.y);
 
             // add action to button
             button.addListener(new ChangeListener() {
@@ -54,7 +54,7 @@ class LevelSelectScreen extends MyScreen {
             });
 
             // end row
-            if ((i + 1) % Constants.SELECT_LEVEL_NUMBER_OF_COLUMN == 0)
+            if ((i + 1) % Constants.Level.SELECT_LEVEL_NUMBER_OF_COLUMN == 0)
                 subTable.row();
         }
     }

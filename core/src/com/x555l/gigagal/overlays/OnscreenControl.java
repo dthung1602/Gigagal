@@ -16,8 +16,8 @@ public class OnscreenControl {
 
     public OnscreenControl() {
         viewport = new ExtendViewport(
-                Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE,
-                Constants.ONSCREEN_CONTROLS_VIEWPORT_SIZE
+                Constants.OnscreenControl.ONSCREEN_CONTROLS_VIEWPORT_SIZE,
+                Constants.OnscreenControl.ONSCREEN_CONTROLS_VIEWPORT_SIZE
         );
 
         buttons = new Button[6];
@@ -36,7 +36,7 @@ public class OnscreenControl {
     }
 
     public void calculateButtonPosition() {
-        float radius = Constants.BUTTON_RADIUS;
+        float radius = Constants.OnscreenControl.BUTTON_RADIUS;
         float width = viewport.getWorldWidth();
 
         // leftButton
@@ -77,13 +77,13 @@ public class OnscreenControl {
         void render(SpriteBatch batch) {
             batch.draw(
                     region,
-                    position.x - Constants.BUTTON_RADIUS,
-                    position.y - Constants.BUTTON_RADIUS
+                    position.x - Constants.OnscreenControl.BUTTON_RADIUS,
+                    position.y - Constants.OnscreenControl.BUTTON_RADIUS
             );
         }
 
         public boolean touched(Vector2 touchPosition) {
-            return (position.dst(touchPosition) <= Constants.BUTTON_RADIUS);
+            return (position.dst(touchPosition) <= Constants.OnscreenControl.BUTTON_RADIUS);
         }
     }
 }

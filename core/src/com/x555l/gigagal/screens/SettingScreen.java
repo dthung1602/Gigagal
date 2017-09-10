@@ -18,7 +18,7 @@ class SettingScreen extends MyScreen {
     SettingScreen(Game game) {
         super(
                 game,
-                Constants.SETTING_WORLD_SIZE,
+                Constants.MainMenu.SETTING_WORLD_SIZE,
                 Assets.instance.background.setting
         );
     }

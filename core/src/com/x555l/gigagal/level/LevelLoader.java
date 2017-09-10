@@ -43,7 +43,7 @@ public class LevelLoader {
 
         try {
             // parse json file
-            FileHandle fileHandle = Gdx.files.internal(Constants.LEVEL_TILESET_FILE);
+            FileHandle fileHandle = Gdx.files.internal(Constants.Level.LEVEL_TILESET_FILE);
             JSONParser parser = new JSONParser();
             JSONObject rootJsonObject = (JSONObject) parser.parse(fileHandle.reader());
             tileCount = (Long) rootJsonObject.get("tilecount");

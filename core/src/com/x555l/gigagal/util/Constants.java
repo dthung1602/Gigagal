@@ -19,6 +19,7 @@ public class Constants {
         public static final float DEATH_DEPTH = -150;
         public static final float CAMERA_SPEED = 64;
         public static final float GRAVITY = 1024;
+        public static final Vector2 MENU_OVERLAY_PADDING = new Vector2(25, 25);
     }
 
     /**
@@ -211,65 +212,79 @@ public class Constants {
         public static final int GGG_BULLET_DAMAGE = 1;
     }
 
-    // enemy bullet
+    /**
+     * Constants for HUD
+     */
+    public static class HUD {
+        public static final float HUD_VIEWPORT_SIZE = 160;
+        public static final float HUD_LIFE_ICON_SIZE = 15;
+        public static final Vector2 HUD_HEALTH_OFFSET = new Vector2(5, 5);
+        public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
+    }
+
+    /**
+     * Constants for level loading & level choosing
+     */
+    public static class Level {
+        // level loading
+        public static final int MAX_LEVEL = 2;
+        public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
+        public static final String LEVEL_TILESET_FILE = "levels/tileset.json";
+
+        // level selecting
+        public static final int SELECT_LEVEL_NUMBER_OF_COLUMN = 6;
+        public static final Vector2 SELECT_LEVEL_BUTTON_SIZE = new Vector2(30, 20);
+    }
 
 
-    // explosion
+    /**
+     * Constants for EndLevel overlays: Victory and Gameover overlay
+     */
+    public static class EndLevelOverlay {
+        // common
+        public static final String FONT_FILE = "font/header.fnt";
+        public static final float LEVEL_END_DURATION = 3;
+
+        // victory
+        public static final String VICTORY_MESSAGE = "Level completed!";
+        public static final int EXPLOSION_COUNT = 600;
+
+        // gameover
+        public static final String GAME_OVER_MESSAGE = "Game Over, Gal";
+        public static final int ENEMY_COUNT = 300;
+    }
+
+    /**M
+     * Constants for onscreen control for mobile
+     */
+    public static class OnscreenControl {
+        public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 180;
+        public static final float BUTTON_RADIUS = 16;
+    }
+
+    /**
+     * Constants for main menu
+     */
+    public static class MainMenu {
+        public static final float MAIN_MENU_WORLD_SIZE = 180;
+        public static final float SELECT_LEVEL_WORLD_SIZE = 180;
+        public static final float SETTING_WORLD_SIZE = 180;
+    }
+
+    /**
+     * Constants for loading & saving config file
+     */
+    public static class Config {
+        static final String CONFIG_FILE = "config.json";
+        static final String CONFIG_FILE_DEFAULT = "config-default.json";
+        static final String CONFIG_CURRENT_LEVEL = "level";
+        static final String CONFIG_BRIGHTNESS = "brightness";
+        static final String CONFIG_SOUND_ENABLE = "sound-enable";
+        static final String CONFIG_MUSIC_ENABLE = "music-enable";
+        static final String CONFIG_SOUND_VOLUME = "sound-volume";
+        static final String CONFIG_MUSIC_VOLUME = "music-volume";
+    }
 
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);
-
-
-    // bonus
-
-    // exit portal
-
     public static final float EXIT_PORTAL_RADIUS = 30;
-
-    // level
-    public static final int MAX_LEVEL = 2;
-
-    public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
-
-    public static final String LEVEL_TILESET_FILE = "levels/tileset.json";
-
-    // HUD
-    public static final float HUD_VIEWPORT_SIZE = 160;
-    public static final float HUD_LIFE_ICON_SIZE = 15;
-    public static final Vector2 HUD_HEALTH_OFFSET = new Vector2(5, 5);
-    public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
-
-    // VictoryOverlay/Game Over screens
-    public static final float LEVEL_END_DURATION = 3;
-    public static final String VICTORY_MESSAGE = "Level completed!";
-    public static final String GAME_OVER_MESSAGE = "Game Over, Gal";
-    public static final int EXPLOSION_COUNT = 600;
-    public static final int ENEMY_COUNT = 300;
-    public static final String FONT_FILE = "font/header.fnt";
-
-    // onscreen control asset
-    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 180;
-    public static final float BUTTON_RADIUS = 16;
-
-    // main menu
-    public static final float MAIN_MENU_WORLD_SIZE = 180;
-    public static final float SELECT_LEVEL_WORLD_SIZE = 180;
-    public static final float SETTING_WORLD_SIZE = 180;
-
-
-    // select level
-    public static final int SELECT_LEVEL_NUMBER_OF_COLUMN = 6;
-    public static final Vector2 SELECT_LEVEL_SIZE = new Vector2(30, 20);
-
-    // confirm overlay
-    public static final Vector2 CONFIRM_OVERLAY_PADDING = new Vector2(25, 25);
-
-    // Config
-    static final String CONFIG_FILE = "config.json";
-    static final String CONFIG_FILE_DEFAULT = "config-default.json";
-    static final String CONFIG_CURRENT_LEVEL = "level";
-    static final String CONFIG_BRIGHTNESS = "brightness";
-    static final String CONFIG_SOUND_ENABLE = "sound-enable";
-    static final String CONFIG_MUSIC_ENABLE = "music-enable";
-    static final String CONFIG_SOUND_VOLUME = "sound-volume";
-    static final String CONFIG_MUSIC_VOLUME = "music-volume";
 }

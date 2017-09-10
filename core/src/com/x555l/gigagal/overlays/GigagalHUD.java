@@ -17,7 +17,7 @@ public class GigagalHUD {
     private BitmapFont font;
 
     public GigagalHUD() {
-        viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
+        viewport = new ExtendViewport(Constants.HUD.HUD_VIEWPORT_SIZE, Constants.HUD.HUD_VIEWPORT_SIZE);
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
         font.getData().setScale(0.5f);
@@ -34,16 +34,16 @@ public class GigagalHUD {
         font.draw(
                 batch,
                 "Health: " + gigagal.health,
-                Constants.HUD_HEALTH_OFFSET.x,
-                viewport.getWorldHeight() - Constants.HUD_HEALTH_OFFSET.y
+                Constants.HUD.HUD_HEALTH_OFFSET.x,
+                viewport.getWorldHeight() - Constants.HUD.HUD_HEALTH_OFFSET.y
         );
 
         // bullet left
         font.draw(
                 batch,
                 "Bullet: " + gigagal.bullet,
-                Constants.HUD_BULLET_OFFSET.x,
-                viewport.getWorldHeight() - Constants.HUD_BULLET_OFFSET.y
+                Constants.HUD.HUD_BULLET_OFFSET.x,
+                viewport.getWorldHeight() - Constants.HUD.HUD_BULLET_OFFSET.y
         );
 
         // life
@@ -51,8 +51,8 @@ public class GigagalHUD {
             TextureRegion region = Assets.instance.gigagal.standingRight;
             batch.draw(
                     region,
-                    viewport.getWorldWidth() - (i + 1) * Constants.HUD_LIFE_ICON_SIZE,
-                    viewport.getWorldHeight() - Constants.HUD_LIFE_ICON_SIZE,
+                    viewport.getWorldWidth() - (i + 1) * Constants.HUD.HUD_LIFE_ICON_SIZE,
+                    viewport.getWorldHeight() - Constants.HUD.HUD_LIFE_ICON_SIZE,
                     0,
                     0,
                     region.getRegionWidth(),

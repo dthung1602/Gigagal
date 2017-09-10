@@ -18,7 +18,7 @@ public class GameOverOverlay extends EndLevelOverlay {
 
     public GameOverOverlay() {
         viewport = new ExtendViewport(Constants.GameWorld.WORLD_SIZE, Constants.GameWorld.WORLD_SIZE);
-        font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
+        font = new BitmapFont(Gdx.files.internal(Constants.EndLevelOverlay.FONT_FILE));
         font.getData().setScale(1.1f);
         font.setColor(Color.RED);
     }
@@ -27,7 +27,7 @@ public class GameOverOverlay extends EndLevelOverlay {
     public void init() {
         enemies = new Array<StaticEnemy>();
 
-        for (int i = 0; i < Constants.ENEMY_COUNT; i++) {
+        for (int i = 0; i < Constants.EndLevelOverlay.ENEMY_COUNT; i++) {
             enemies.add(new StaticEnemy());
         }
     }
@@ -44,7 +44,7 @@ public class GameOverOverlay extends EndLevelOverlay {
 
         font.draw(
                 batch,
-                Constants.GAME_OVER_MESSAGE,
+                Constants.EndLevelOverlay.GAME_OVER_MESSAGE,
                 viewport.getWorldWidth() / 8,
                 viewport.getWorldHeight() * 3 / 4
         );
@@ -62,7 +62,7 @@ public class GameOverOverlay extends EndLevelOverlay {
         StaticEnemy() {
             x = MathUtils.random(0, viewport.getWorldWidth());
             y = MathUtils.random(0, viewport.getWorldHeight());
-            delay = MathUtils.random(0, Constants.LEVEL_END_DURATION);
+            delay = MathUtils.random(0, Constants.EndLevelOverlay.LEVEL_END_DURATION);
             angle = MathUtils.random(0, (float) Math.PI * 2);
             startTime = TimeUtils.nanoTime();
         }

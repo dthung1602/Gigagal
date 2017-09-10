@@ -34,7 +34,7 @@ public class Configs {
     public void load() {
         try {
             // open file
-            FileHandle configFile = Gdx.files.local(Constants.CONFIG_FILE);
+            FileHandle configFile = Gdx.files.local(Constants.Config.CONFIG_FILE);
 
             // check if file exists
             if (!configFile.exists())
@@ -55,7 +55,7 @@ public class Configs {
     void save() {
         try {
             // open file
-            FileHandle configFile = Gdx.files.local(Constants.CONFIG_FILE);
+            FileHandle configFile = Gdx.files.local(Constants.Config.CONFIG_FILE);
 
             // write
             configFile.writeString(rootObject.toJSONString(), false);
@@ -71,8 +71,8 @@ public class Configs {
      */
     private void newConfigFile() {
         try {
-            FileHandle source = Gdx.files.internal(Constants.CONFIG_FILE_DEFAULT);
-            FileHandle destination = Gdx.files.local(Constants.CONFIG_FILE);
+            FileHandle source = Gdx.files.internal(Constants.Config.CONFIG_FILE_DEFAULT);
+            FileHandle destination = Gdx.files.local(Constants.Config.CONFIG_FILE);
             source.copyTo(destination);
         } catch (Exception ex) {
             Util.exitWithError(TAG, ex);
@@ -85,27 +85,27 @@ public class Configs {
     //--------------------------------------
 
     public int getCurrentLevel() {
-        return ((Number) rootObject.get(Constants.CONFIG_CURRENT_LEVEL)).intValue();
+        return ((Number) rootObject.get(Constants.Config.CONFIG_CURRENT_LEVEL)).intValue();
     }
 
     public float getBrightness() {
-        return ((Number) rootObject.get(Constants.CONFIG_BRIGHTNESS)).floatValue();
+        return ((Number) rootObject.get(Constants.Config.CONFIG_BRIGHTNESS)).floatValue();
     }
 
     public float getSoundVolume() {
-        return ((Number) rootObject.get(Constants.CONFIG_SOUND_VOLUME)).floatValue();
+        return ((Number) rootObject.get(Constants.Config.CONFIG_SOUND_VOLUME)).floatValue();
     }
 
     public float getMusicVolume() {
-        return ((Number) rootObject.get(Constants.CONFIG_MUSIC_VOLUME)).floatValue();
+        return ((Number) rootObject.get(Constants.Config.CONFIG_MUSIC_VOLUME)).floatValue();
     }
 
     public boolean isSoundEnabled() {
-        return (Boolean) rootObject.get(Constants.CONFIG_SOUND_ENABLE);
+        return (Boolean) rootObject.get(Constants.Config.CONFIG_SOUND_ENABLE);
     }
 
     public boolean isMusicEnabled() {
-        return (Boolean) rootObject.get(Constants.CONFIG_MUSIC_ENABLE);
+        return (Boolean) rootObject.get(Constants.Config.CONFIG_MUSIC_ENABLE);
     }
 
     //--------------------------------------
@@ -113,26 +113,26 @@ public class Configs {
     //--------------------------------------
 
     public void setCurrentLevel(int value) {
-        rootObject.put(Constants.CONFIG_CURRENT_LEVEL, value);
+        rootObject.put(Constants.Config.CONFIG_CURRENT_LEVEL, value);
     }
 
     public void setBrightness(float value) {
-        rootObject.put(Constants.CONFIG_BRIGHTNESS, value);
+        rootObject.put(Constants.Config.CONFIG_BRIGHTNESS, value);
     }
 
     public void setSoundVolume(float value) {
-        rootObject.put(Constants.CONFIG_SOUND_VOLUME, value);
+        rootObject.put(Constants.Config.CONFIG_SOUND_VOLUME, value);
     }
 
     public void setMusicVolume(float value) {
-        rootObject.put(Constants.CONFIG_MUSIC_VOLUME, value);
+        rootObject.put(Constants.Config.CONFIG_MUSIC_VOLUME, value);
     }
 
     public void setSoundEnabled(boolean value) {
-        rootObject.put(Constants.CONFIG_SOUND_ENABLE, value);
+        rootObject.put(Constants.Config.CONFIG_SOUND_ENABLE, value);
     }
 
     public void setMusicEnabled(boolean value) {
-        rootObject.put(Constants.CONFIG_MUSIC_ENABLE, value);
+        rootObject.put(Constants.Config.CONFIG_MUSIC_ENABLE, value);
     }
 }

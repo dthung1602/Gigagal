@@ -159,7 +159,7 @@ public class PlayScreen extends ScreenAdapter {
         endLevelOverlay.render(batch);
 
         // end layer after a period of time
-        if (Util.secondsSince(levelEndOverLayerStartTime) > Constants.LEVEL_END_DURATION) {
+        if (Util.secondsSince(levelEndOverLayerStartTime) > Constants.EndLevelOverlay.LEVEL_END_DURATION) {
             levelComplete();
         }
     }
@@ -169,7 +169,7 @@ public class PlayScreen extends ScreenAdapter {
         if (level.victory)
             // TODO end of game, congrat player
             // unlock all level
-            if (level.levelNum == Constants.MAX_LEVEL) {
+            if (level.levelNum == Constants.Level.MAX_LEVEL) {
                 levelNum = 1;
             } else {
                 levelNum++; // load next level

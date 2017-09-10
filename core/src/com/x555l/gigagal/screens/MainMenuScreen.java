@@ -15,7 +15,7 @@ public class MainMenuScreen extends MyScreen {
     public MainMenuScreen(Game game) {
         super(
                 game,
-                Constants.MAIN_MENU_WORLD_SIZE,
+                Constants.MainMenu.MAIN_MENU_WORLD_SIZE,
                 Assets.instance.background.mainMenu
         );
     }

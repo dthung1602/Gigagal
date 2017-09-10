@@ -17,7 +17,7 @@ public class VictoryOverlay extends EndLevelOverlay {
 
     public VictoryOverlay() {
         viewport = new ExtendViewport(Constants.GameWorld.WORLD_SIZE, Constants.GameWorld.WORLD_SIZE);
-        font = new BitmapFont(Gdx.files.internal(Constants.FONT_FILE));
+        font = new BitmapFont(Gdx.files.internal(Constants.EndLevelOverlay.FONT_FILE));
         font.getData().setScale(1.2f);
         font.setColor(Color.RED);
     }
@@ -26,10 +26,10 @@ public class VictoryOverlay extends EndLevelOverlay {
     public void init() {
         explosions = new Array<Explosion>();
 
-        for (int i = 0; i < Constants.EXPLOSION_COUNT; i++) {
+        for (int i = 0; i < Constants.EndLevelOverlay.EXPLOSION_COUNT; i++) {
             float x = MathUtils.random(0, viewport.getWorldWidth());
             float y = MathUtils.random(0, viewport.getWorldHeight());
-            float delay = MathUtils.random(0, Constants.LEVEL_END_DURATION);
+            float delay = MathUtils.random(0, Constants.EndLevelOverlay.LEVEL_END_DURATION);
 
             Explosion explosion = new Explosion(new Vector2(x, y), false);
             explosion.setDelayTime(delay);
@@ -49,7 +49,7 @@ public class VictoryOverlay extends EndLevelOverlay {
 
         font.draw(
                 batch,
-                Constants.VICTORY_MESSAGE,
+                Constants.EndLevelOverlay.VICTORY_MESSAGE,
                 viewport.getWorldWidth() / 8,
                 viewport.getWorldHeight() * 3 / 4
         );
