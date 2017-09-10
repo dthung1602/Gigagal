@@ -68,13 +68,10 @@ public class Constants {
         static final float ENEMY_BULLET_PLASMA_FRAME_DURATION = 0.1f;
 
         // explosions
-        static final String EXPLOSION_SMALL = "explosion-small";
-        static final String EXPLOSION_MEDIUM = "explosion-medium";
-        static final String EXPLOSION_LARGE = "explosion-large";
-        static final String EXPLOSION_SMALL_X = "explosion-small-x";
-        static final String EXPLOSION_MEDIUM_X = "explosion-medium-x";
-        static final String EXPLOSION_LARGE_X = "explosion-large-x";
-        static final float EXPLOSION_DURATION = 0.05f;
+        static final String EXPLOSION_SMALL = "explosion-small-";
+        static final String EXPLOSION_LARGE = "explosion-large-";
+        static final int EXPLOSION_FRAME_COUNT = 3;
+        static final float EXPLOSION_FRAME_DURATION = 0.05f;
 
         // bonuses
         static final String BONUS_HEALTH = "health";

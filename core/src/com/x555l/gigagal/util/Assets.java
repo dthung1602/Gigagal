@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -79,7 +80,7 @@ public class Assets implements Disposable, AssetErrorListener {
     /**
      * Create and return animation base on given parameters
      */
-    private Animation<TextureRegion> createAnimation(TextureAtlas atlas, String name, int frameCount, float frameDuration) {
+    private Animation<TextureRegion> createAnimation(TextureAtlas atlas, String name, int frameCount, float frameDuration, PlayMode playMode) {
         Array<TextureRegion> regions = new Array<TextureRegion>();
 
         for (int i = 1; i < frameCount; i++)
@@ -88,7 +89,7 @@ public class Assets implements Disposable, AssetErrorListener {
         return new Animation<TextureRegion>(
                 frameDuration,
                 regions,
-                Animation.PlayMode.LOOP_PINGPONG
+                playMode
         );
     }
 
@@ -122,14 +123,16 @@ public class Assets implements Disposable, AssetErrorListener {
                     atlas,
                     Constants.Asset.WALK_LEFT,
                     Constants.Asset.WALK_FRAME_COUNT,
-                    Constants.Asset.WALK_FRAME_DURATION
+                    Constants.Asset.WALK_FRAME_DURATION,
+                    PlayMode.LOOP_PINGPONG
             );
 
             walkingRight = createAnimation(
                     atlas,
                     Constants.Asset.WALK_RIGHT,
                     Constants.Asset.WALK_FRAME_COUNT,
-                    Constants.Asset.WALK_FRAME_DURATION
+                    Constants.Asset.WALK_FRAME_DURATION,
+                    PlayMode.LOOP_PINGPONG
             );
         }
     }
@@ -206,27 +209,24 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class ExplosionAssets {
-        private Array<TextureRegion> smallArray;
-        private Array<TextureRegion> largeArray;
+        public Animation<TextureRegion> smallExplosion;
+        public Animation<TextureRegion> largeExplosion;
 
         ExplosionAssets(TextureAtlas atlas) {
-            smallArray = new Array<TextureRegion>();
-
-            smallArray.add(atlas.findRegion(Constants.Asset.EXPLOSION_SMALL));
-            smallArray.add(atlas.findRegion(Constants.Asset.EXPLOSION_MEDIUM));
-            smallArray.add(atlas.findRegion(Constants.Asset.EXPLOSION_LARGE));
-
-            largeArray = new Array<TextureRegion>();
-
-            largeArray.add(atlas.findRegion(Constants.Asset.EXPLOSION_SMALL_X));
-            largeArray.add(atlas.findRegion(Constants.Asset.EXPLOSION_MEDIUM_X));
-            largeArray.add(atlas.findRegion(Constants.Asset.EXPLOSION_LARGE_X));
-        }
-
-        public Animation<TextureRegion> getExplosionLoop(boolean largeExplosion) {
-            if (largeExplosion)
-                return new Animation<TextureRegion>(Constants.Asset.EXPLOSION_DURATION, largeArray, Animation.PlayMode.NORMAL);
-            return new Animation<TextureRegion>(Constants.Asset.EXPLOSION_DURATION, smallArray, Animation.PlayMode.NORMAL);
+            smallExplosion = createAnimation(
+                    atlas,
+                    Constants.Asset.EXPLOSION_SMALL,
+                    Constants.Asset.EXPLOSION_FRAME_COUNT,
+                    Constants.Asset.EXPLOSION_FRAME_DURATION,
+                    PlayMode.NORMAL
+            );
+            largeExplosion = createAnimation(
+                    atlas,
+                    Constants.Asset.EXPLOSION_LARGE,
+                    Constants.Asset.EXPLOSION_FRAME_COUNT,
+                    Constants.Asset.EXPLOSION_FRAME_DURATION,
+                    PlayMode.NORMAL
+            );
         }
     }
 
@@ -250,7 +250,8 @@ public class Assets implements Disposable, AssetErrorListener {
                     atlas,
                     Constants.Asset.EXIT_PORTAL,
                     Constants.Asset.EXIT_PORTAL_FRAME_COUNT,
-                    Constants.Asset.EXIT_PORTAL_FRAME_DURATION
+                    Constants.Asset.EXIT_PORTAL_FRAME_DURATION,
+                    PlayMode.LOOP
             );
         }
     }

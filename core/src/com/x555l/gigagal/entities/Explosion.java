@@ -19,7 +19,7 @@ public class Explosion {
 
     public Explosion(Vector2 position, boolean largeExplosion) {
         this.position = position.cpy();
-        animation = Assets.instance.explosion.getExplosionLoop(largeExplosion);
+        animation = largeExplosion ? Assets.instance.explosion.largeExplosion : Assets.instance.explosion.smallExplosion;
         explosionStartTime = TimeUtils.nanoTime();
         delayTime = 0;
         finished = false;

@@ -158,46 +158,46 @@ exit-portal-6
   orig: 64, 64
   offset: 0, 0
   index: -1
-explosion-large
-  rotate: false
-  xy: 420, 63
-  size: 17, 17
-  orig: 17, 17
-  offset: 0, 0
-  index: -1
-explosion-large-x
+explosion-large-1
   rotate: false
   xy: 491, 92
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
-explosion-medium
-  rotate: false
-  xy: 439, 63
-  size: 17, 17
-  orig: 17, 17
-  offset: 0, 0
-  index: -1
-explosion-medium-x
+explosion-large-2
   rotate: false
   xy: 246, 26
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
-explosion-small
-  rotate: false
-  xy: 458, 63
-  size: 17, 17
-  orig: 17, 17
-  offset: 0, 0
-  index: -1
-explosion-small-x
+explosion-large-3
   rotate: false
   xy: 527, 92
   size: 34, 34
   orig: 34, 34
+  offset: 0, 0
+  index: -1
+explosion-small-1
+  rotate: false
+  xy: 420, 63
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+explosion-small-2
+  rotate: false
+  xy: 439, 63
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+explosion-small-3
+  rotate: false
+  xy: 458, 63
+  size: 17, 17
+  orig: 17, 17
   offset: 0, 0
   index: -1
 health
