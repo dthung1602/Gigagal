@@ -57,6 +57,7 @@ public class Constants {
         static final String ENEMY_PATROL_AIR = "enemy-patrol-air";
         static final String ENEMY_FAST = "enemy-fast";
         static final String ENEMY_SHOOT = "enemy-shoot";
+        static final String ENEMY_GUARD = "enemy-guard";
 
         // gigagal's bullets
         static final String GGG_BULLET_LEFT = "bullet-left";
@@ -106,7 +107,7 @@ public class Constants {
     public static class Gigagal {
         //position
         public static final Vector2 CENTER = new Vector2(8, 15);
-        public static final Vector2 GUN_POSITION = new Vector2(12, -13);
+        public static final Vector2 GUN_POSITION = new Vector2(12, -7);
 
         // size
         public static final float WIDTH = 15;
@@ -183,6 +184,19 @@ public class Constants {
         public static final float SHOOT_ENEMY_SPEED = 25f;
         public static final int SHOOT_ENEMY_HEALTH = 4;
         public static final float SHOOT_ENEMY_COOLDOWN = 0.5f;
+
+        // guard enemy
+        public static final Vector2 GUARD_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float GUARD_ENEMY_SPEED = 20f;
+        public static final int GUARD_ENEMY_HEALTH = 3;
+        public static final float GUARD_ENEMY_SPEED_BOOST = 1.5f;
+        public static final float GUARD_ENEMY_COOLDOWN = 0.75f;
+        public static final float GUARD_ENEMY_STOP_TIME_MIN = 1;
+        public static final float GUARD_ENEMY_STOP_TIME_MAX = 3;
+        public static final float GUARD_ENEMY_NEXT_STOP_MIN = 2;
+        public static final float GUARD_ENEMY_NEXT_STOP_MAX = 7;
+        public static final float GUARD_ENEMY_FLOAT_AMPLITUDE = 6f;
+        public static final float GUARD_ENEMY_FLOAT_PERIOD = 2f;
     }
 
     /**

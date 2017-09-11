@@ -421,19 +421,10 @@ public class GigaGal {
             shootLastTime = TimeUtils.nanoTime();
             bullet--;
 
-            float xOffset = Constants.Gigagal.GUN_POSITION.x;
-            if (facing == Facing.LEFT)
-                xOffset = -xOffset;
-
-            Facing bulletFacing = null;
-
-            if (walkState != WalkState.FACE_UP)
-                bulletFacing = facing;
-
             level.getBullets().add(new GigagalBullet(
-                    position.x + xOffset,
+                    position.x + Constants.Gigagal.GUN_POSITION.x * ((facing == Facing.LEFT) ? -1 : 1),
                     position.y + Constants.Gigagal.GUN_POSITION.y,
-                    bulletFacing,
+                    ((walkState == WalkState.FACE_UP) ? null : facing),
                     level
             ));
         }

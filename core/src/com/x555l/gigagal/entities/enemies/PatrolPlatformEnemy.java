@@ -47,6 +47,10 @@ abstract class PatrolPlatformEnemy extends Enemy {
         position.x += velocity.x * delta;
 
         // change direction at platform edges
+        changeDirectionAtEdges();
+    }
+
+    void changeDirectionAtEdges() {
         if (position.x < platform.x) {
             velocity.x *= -1;
             position.x = platform.x;
@@ -68,7 +72,7 @@ abstract class PatrolPlatformEnemy extends Enemy {
      * A convenient implementation of attack method for platform enemies
      * Enemy will move towards Gigagal and push
      */
-    void push(float delta, Vector2 gigagal) {
+    void push(float speedBoost, float delta, Vector2 gigagal) {
 
         // change direction & velocity to follow ggg
         if (gigagal.x < position.x) {
@@ -80,6 +84,6 @@ abstract class PatrolPlatformEnemy extends Enemy {
         }
 
         // move toward target
-        position.x += velocity.x * delta * Constants.Enemy.FAST_ENEMY_SPEED_BOOST;
+        position.x += velocity.x * delta * speedBoost;
     }
 }

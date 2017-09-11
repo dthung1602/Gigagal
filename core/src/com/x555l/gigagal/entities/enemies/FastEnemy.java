@@ -29,7 +29,7 @@ public class FastEnemy extends PatrolPlatformEnemy {
 
     @Override
     void attack(float delta, Vector2 gigagalPosition) {
-        push(delta, gigagalPosition);
+        push(Constants.Enemy.FAST_ENEMY_SPEED_BOOST, delta, gigagalPosition);
     }
 
     @Override

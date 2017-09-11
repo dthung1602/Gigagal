@@ -49,8 +49,8 @@
                  "type":"",
                  "visible":true,
                  "width":29,
-                 "x":594,
-                 "y":207
+                 "x":583,
+                 "y":222
                 }, 
                 {
                  "gid":14,
@@ -65,28 +65,28 @@
                  "y":315
                 }, 
                 {
-                 "gid":14,
+                 "gid":15,
                  "height":44,
-                 "id":44,
+                 "id":46,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":29,
-                 "x":332,
-                 "y":332
+                 "x":219,
+                 "y":338
                 }, 
                 {
-                 "gid":1,
+                 "gid":15,
                  "height":44,
-                 "id":45,
+                 "id":47,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":29,
-                 "x":237,
-                 "y":363
+                 "x":129,
+                 "y":359
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -112,15 +112,15 @@
                 }, 
                 {
                  "gid":6,
-                 "height":46,
+                 "height":37,
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"ShootEnemy",
+                 "type":"GuardEnemy",
                  "visible":true,
-                 "width":142,
-                 "x":322,
-                 "y":379
+                 "width":288,
+                 "x":176,
+                 "y":370
                 }, 
                 {
                  "gid":6,
@@ -200,11 +200,11 @@
                  "id":36,
                  "name":"",
                  "rotation":0,
-                 "type":"BasicEnemy",
+                 "type":"GuardEnemy",
                  "visible":true,
-                 "width":449,
-                 "x":220,
-                 "y":383
+                 "width":648,
+                 "x":92,
+                 "y":382
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -257,8 +257,8 @@
                  "type":"PatrolAirEnemy",
                  "visible":true,
                  "width":0,
-                 "x":493,
-                 "y":347
+                 "x":501,
+                 "y":298
                 }, 
                 {
                  "gid":10,
@@ -526,7 +526,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":46,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.0.2",
