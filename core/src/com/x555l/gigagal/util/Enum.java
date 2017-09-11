@@ -1,5 +1,8 @@
 package com.x555l.gigagal.util;
 
+/**
+ * Provides enums for moving states of objects
+ */
 
 public class Enum {
     public enum Facing {

@@ -9,7 +9,7 @@ import org.json.simple.parser.JSONParser;
 
 /**
  * A singleton class that contains:
- * - player's progress: max unlock level
+ * - player's progress: max unlocked level
  * - settings: brightness, fx sound, music
  * Also includes methods for loading and saving config json file
  */

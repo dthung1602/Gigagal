@@ -6,6 +6,9 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Random;
 
+/**
+ * Provides common utilities for all classes
+ */
 
 public class Util {
     private static Random random = new Random();

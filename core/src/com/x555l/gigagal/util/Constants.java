@@ -16,10 +16,13 @@ public class Constants {
     public static class GameWorld {
         public static final int GAME_WORLD_SIZE = 256;
         public static final float DEATH_DEPTH = -150;
-        public static final float CAMERA_SPEED = 64;
         public static final float GRAVITY = 1024;
         public static final Color BACKGROUND_COLOR = Color.SKY;
         public static final Vector2 MENU_OVERLAY_PADDING = new Vector2(25, 25);
+
+        // camera
+        static final float CAMERA_SPEED = 64;
+        static final float SPACE_PRESSED_DELAY = 0.3f;
     }
 
     /**
