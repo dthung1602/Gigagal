@@ -107,6 +107,11 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     @Override
+    public void hide() {
+        Configs.instance.save();
+    }
+
+    @Override
     public void render(float delta) {
         // check if game is paused or not
         if (inputProcessor.pauseKeyPressed)

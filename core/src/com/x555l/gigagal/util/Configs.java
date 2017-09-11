@@ -52,7 +52,7 @@ public class Configs {
     /**
      * Save config data to json file
      */
-    void save() {
+    public void save() {
         try {
             // open file
             FileHandle configFile = Gdx.files.local(Constants.Config.CONFIG_FILE);

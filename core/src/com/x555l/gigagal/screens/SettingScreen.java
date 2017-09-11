@@ -23,6 +23,11 @@ class SettingScreen extends MyScreen {
         );
     }
 
+    @Override
+    public void hide() {
+        Configs.instance.save();
+    }
+
     void createWidgets(Table table) {
         Label label;
         CheckBox checkBox;
