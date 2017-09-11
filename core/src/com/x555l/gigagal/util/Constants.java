@@ -14,11 +14,11 @@ public class Constants {
      * Constants for the game world
      */
     public static class GameWorld {
-        public static final int WORLD_SIZE = 256;
-        public static final Color BACKGROUND_COLOR = Color.SKY;
+        public static final int GAME_WORLD_SIZE = 256;
         public static final float DEATH_DEPTH = -150;
         public static final float CAMERA_SPEED = 64;
         public static final float GRAVITY = 1024;
+        public static final Color BACKGROUND_COLOR = Color.SKY;
         public static final Vector2 MENU_OVERLAY_PADDING = new Vector2(25, 25);
     }
 
@@ -32,16 +32,16 @@ public class Constants {
         static final String SKIN = "skin/skin.json";
 
         // gigagal assets
-        static final String STANDING_RIGHT = "standing-right";
-        static final String STANDING_LEFT = "standing-left";
-        static final String STANDING_UP_RIGHT = "standing-up-right";
-        static final String STANDING_UP_LEFT = "standing-up-left";
-        static final String JUMPING_LEFT = "jumping-left";
-        static final String JUMPING_RIGHT = "jumping-right";
-        static final String WALK_LEFT = "walk-left-";
-        static final String WALK_RIGHT = "walk-right-";
-        static final int WALK_FRAME_COUNT = 3;
-        static final float WALK_FRAME_DURATION = 0.30f;
+        static final String GGG_STANDING_RIGHT = "standing-right";
+        static final String GGG_STANDING_LEFT = "standing-left";
+        static final String GGG_STANDING_UP_RIGHT = "standing-up-right";
+        static final String GGG_STANDING_UP_LEFT = "standing-up-left";
+        static final String GGG_JUMPING_LEFT = "jumping-left";
+        static final String GGG_JUMPING_RIGHT = "jumping-right";
+        static final String GGG_WALK_LEFT = "walk-left-";
+        static final String GGG_WALK_RIGHT = "walk-right-";
+        static final int GGG_WALK_FRAME_COUNT = 3;
+        static final float GGG_WALK_FRAME_DURATION = 0.30f;
 
         // platform assets
         static final String PLATFORM_PASSABLE = "platform-passable";
@@ -98,8 +98,6 @@ public class Constants {
         static final String BG_SELECT_LEVEL = "select-level";
         static final String BG_SETTING = "setting";
         static final String BG_OVERLAY = "overlay";
-
-
     }
 
     /**
@@ -107,11 +105,11 @@ public class Constants {
      */
     public static class Gigagal {
         //position
-        public static final Vector2 CENTER = new Vector2(10, 24);
+        public static final Vector2 CENTER = new Vector2(8, 15);
         public static final Vector2 GUN_POSITION = new Vector2(12, -13);
 
         // size
-        public static final float STANCE_WIDTH = 15;
+        public static final float WIDTH = 15;
         public static final float HEIGHT = 23;
 
         // movement
@@ -131,8 +129,8 @@ public class Constants {
 
         // bullet
         public static final int MAX_BULLET = 500;
-        public static final int BONUS_BULLET_AMOUNT = 10;
         public static final int INIT_BULLET = 25;
+        public static final int BONUS_BULLET_AMOUNT = 15;
     }
 
     /**
@@ -140,51 +138,51 @@ public class Constants {
      */
     public static class Enemy {
         // common constants
-        public static final float SPEED_BOOST = 3f;
         public static final int KNOCK_BACK_DAMAGE = 1;
 
         // basic enemy
-        public static final Vector2 ENEMY_BASIC_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_BASIC_SPEED = 10f;
-        public static final float ENEMY_BASIC_FLOAT_AMPLITUDE = 4f;
-        public static final float ENEMY_BASIC_FLOAT_PERIOD = 3f;
-        public static final int ENEMY_BASIC_HEALTH = 3;
+        public static final Vector2 BASIC_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float BASIC_ENEMY_SPEED = 10f;
+        public static final float BASIC_ENEMY_FLOAT_AMPLITUDE = 4f;
+        public static final float BASIC_ENEMY_FLOAT_PERIOD = 3f;
+        public static final int BASIC_ENEMY_HEALTH = 3;
 
         // strong enemy
-        public static final Vector2 ENEMY_STRONG_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_STRONG_SPEED = 15f;
-        public static final float ENEMY_STRONG_FLOAT_AMPLITUDE = 3f;
-        public static final float ENEMY_STRONG_FLOAT_PERIOD = 2f;
-        public static final int ENEMY_STRONG_HEALTH = 9;
+        public static final Vector2 STRONG_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float STRONG_ENEMY_SPEED = 15f;
+        public static final float STRONG_ENEMY_FLOAT_AMPLITUDE = 3f;
+        public static final float STRONG_ENEMY_FLOAT_PERIOD = 2f;
+        public static final int STRONG_ENEMY_HEALTH = 9;
 
         // fly 8 enemy
-        public static final Vector2 ENEMY_FLY_8_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_FLY_8_SHORT_AMPLITUDE = 40f;
-        public static final float ENEMY_FLY_8_LONG_AMPLITUDE = 80f;
-        public static final float ENEMY_FLY_8_PERIOD = 8;
-        public static final int ENEMY_FLY_8_HEALTH = 4;
+        public static final Vector2 FLY_8_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float FLY_8_ENEMY_SHORT_AMPLITUDE = 40f;
+        public static final float FLY_8_ENEMY_LONG_AMPLITUDE = 80f;
+        public static final float FLY_8_ENEMY_PERIOD = 8;
+        public static final int FLY_8_ENEMY_HEALTH = 4;
 
         // follow path
-        public static final Vector2 ENEMY_FOLLOW_PATH_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_FOLLOW_PATH_SPEED = 50;
-        public static final int ENEMY_FOLLOW_PATH_HEALTH = 6;
+        public static final Vector2 FOLLOW_PATH_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float FOLLOW_PATH_ENEMY_SPEED = 50;
+        public static final int FOLLOW_PATH_ENEMY_HEALTH = 5;
 
         // patrol air
-        public static final Vector2 ENEMY_PATROL_AIR_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_PATROL_AIR_SPEED = 50;
-        public static final int ENEMY_PATROL_AIR_HEALTH = 6;
+        public static final Vector2 PATROL_AIR_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float PATROL_AIR_ENEMY_SPEED = 50;
+        public static final int PATROL_AIR_ENEMY_HEALTH = 6;
 
         // fast enemy
-        public static final Vector2 ENEMY_FAST_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_FAST_SPEED = 35f;
-        public static final int ENEMY_FAST_HEALTH = 4;
-        public static final float ENEMY_FAST_ANGLE = 20f;
+        public static final Vector2 FAST_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float FAST_ENEMY_SPEED = 35f;
+        public static final float FAST_ENEMY_SPEED_BOOST = 2f;
+        public static final int FAST_ENEMY_HEALTH = 4;
+        public static final float FAST_ENEMY_ANGLE = 20f;
 
         // shoot enemy
-        public static final Vector2 ENEMY_SHOOT_CENTER = new Vector2(14, 22);
-        public static final float ENEMY_SHOOT_SPEED = 25f;
-        public static final int ENEMY_SHOOT_HEALTH = 4;
-        public static final float ENEMY_SHOOT_COOLDOWN = 0.5f;
+        public static final Vector2 SHOOT_ENEMY_CENTER = new Vector2(14, 22);
+        public static final float SHOOT_ENEMY_SPEED = 25f;
+        public static final int SHOOT_ENEMY_HEALTH = 4;
+        public static final float SHOOT_ENEMY_COOLDOWN = 0.5f;
     }
 
     /**
@@ -192,34 +190,34 @@ public class Constants {
      */
     public static class EnemyBullet {
         // laser
-        public static final Vector2 ENEMY_BULLET_LASER_CENTER = new Vector2(8, 3);
-        public static final int ENEMY_BULLET_LASER_DAMAGE = 1;
-        public static final float ENEMY_BULLET_LASER_SPEED = 150;
+        public static final Vector2 LASER_CENTER = new Vector2(8, 3);
+        public static final int LASER_DAMAGE = 1;
+        public static final float LASER_SPEED = 150;
 
         // plasma
-        public static final Vector2 ENEMY_BULLET_PLASMA_CENTER = new Vector2(10, 7);
-        public static final int ENEMY_BULLET_PLASMA_DAMAGE = 2;
-        public static final float ENEMY_BULLET_PLASMA_SPEED = 120;
+        public static final Vector2 PLASMA_CENTER = new Vector2(10, 7);
+        public static final int PLASMA_DAMAGE = 2;
+        public static final float PLASMA_SPEED = 120;
     }
 
     /**
      * Constants for Gigagal's bullets
      */
     public static class GigagalBullet {
-        public static final Vector2 GGG_BULLET_CENTER = new Vector2(2, 3);
-        public static final float GGG_BULLET_SPEED = 200;
-        public static final float GGG_BULLET_COOL_DOWN = 0.35f;
-        public static final int GGG_BULLET_DAMAGE = 1;
+        public static final Vector2 BULLET_CENTER = new Vector2(2, 3);
+        public static final float BULLET_SPEED = 200;
+        public static final float BULLET_COOL_DOWN = 0.35f;
+        public static final int BULLET_DAMAGE = 1;
     }
 
     /**
      * Constants for HUD
      */
     public static class HUD {
-        public static final float HUD_VIEWPORT_SIZE = 160;
-        public static final float HUD_LIFE_ICON_SIZE = 15;
-        public static final Vector2 HUD_HEALTH_OFFSET = new Vector2(5, 5);
-        public static final Vector2 HUD_BULLET_OFFSET = new Vector2(5, 13);
+        public static final float VIEWPORT_SIZE = 160;
+        public static final float LIFE_ICON_SIZE = 15;
+        public static final Vector2 HEALTH_OFFSET = new Vector2(5, 5);
+        public static final Vector2 BULLET_OFFSET = new Vector2(5, 13);
     }
 
     /**
@@ -228,8 +226,8 @@ public class Constants {
     public static class Level {
         // level loading
         public static final int MAX_LEVEL = 2;
-        public static final String LEVEL_ERROR_MESSAGE = "There was a problem loading the level";
-        public static final String LEVEL_TILESET_FILE = "levels/tileset.json";
+        public static final String LOADING_ERROR_MESSAGE = "There was a problem loading the level";
+        public static final String TILESET_FILE = "levels/tileset.json";
 
         // level selecting
         public static final int SELECT_LEVEL_NUMBER_OF_COLUMN = 6;
@@ -243,7 +241,7 @@ public class Constants {
     public static class EndLevelOverlay {
         // common
         public static final String FONT_FILE = "font/header.fnt";
-        public static final float LEVEL_END_DURATION = 3;
+        public static final float DURATION = 3;
 
         // victory
         public static final String VICTORY_MESSAGE = "Level completed!";
@@ -254,11 +252,11 @@ public class Constants {
         public static final int ENEMY_COUNT = 300;
     }
 
-    /**M
+    /**
      * Constants for onscreen control for mobile
      */
     public static class OnscreenControl {
-        public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 180;
+        public static final float VIEWPORT_SIZE = 180;
         public static final float BUTTON_RADIUS = 16;
     }
 
@@ -274,15 +272,15 @@ public class Constants {
     /**
      * Constants for loading & saving config file
      */
-    public static class Config {
+    static class Config {
         static final String CONFIG_FILE = "config.json";
         static final String CONFIG_FILE_DEFAULT = "config-default.json";
-        static final String CONFIG_CURRENT_LEVEL = "level";
-        static final String CONFIG_BRIGHTNESS = "brightness";
-        static final String CONFIG_SOUND_ENABLE = "sound-enable";
-        static final String CONFIG_MUSIC_ENABLE = "music-enable";
-        static final String CONFIG_SOUND_VOLUME = "sound-volume";
-        static final String CONFIG_MUSIC_VOLUME = "music-volume";
+        static final String CURRENT_LEVEL = "level";
+        static final String BRIGHTNESS = "brightness";
+        static final String SOUND_ENABLE = "sound-enable";
+        static final String MUSIC_ENABLE = "music-enable";
+        static final String SOUND_VOLUME = "sound-volume";
+        static final String MUSIC_VOLUME = "music-volume";
     }
 
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);

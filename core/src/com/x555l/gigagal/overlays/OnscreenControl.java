@@ -16,8 +16,8 @@ public class OnscreenControl {
 
     public OnscreenControl() {
         viewport = new ExtendViewport(
-                Constants.OnscreenControl.ONSCREEN_CONTROLS_VIEWPORT_SIZE,
-                Constants.OnscreenControl.ONSCREEN_CONTROLS_VIEWPORT_SIZE
+                Constants.OnscreenControl.VIEWPORT_SIZE,
+                Constants.OnscreenControl.VIEWPORT_SIZE
         );
 
         buttons = new Button[6];

@@ -77,8 +77,8 @@ public class GigaGal {
 
         currentPlatform = null;
 
-        leftFoot = position.x - Constants.Gigagal.STANCE_WIDTH / 2;
-        rightFoot = position.x + Constants.Gigagal.STANCE_WIDTH / 2;
+        leftFoot = position.x - Constants.Gigagal.WIDTH / 2;
+        rightFoot = position.x + Constants.Gigagal.WIDTH / 2;
         prevLeftFoot = leftFoot;
         prevRightFoot = rightFoot;
 
@@ -113,10 +113,10 @@ public class GigaGal {
         position.mulAdd(velocity, delta);
 
         // calculate left, right foot
-        leftFoot = position.x - Constants.Gigagal.STANCE_WIDTH / 2;
-        rightFoot = position.x + Constants.Gigagal.STANCE_WIDTH / 2;
-        prevLeftFoot = prevPosition.x - Constants.Gigagal.STANCE_WIDTH / 2;
-        prevRightFoot = prevPosition.x + Constants.Gigagal.STANCE_WIDTH / 2;
+        leftFoot = position.x - Constants.Gigagal.WIDTH / 2;
+        rightFoot = position.x + Constants.Gigagal.WIDTH / 2;
+        prevLeftFoot = prevPosition.x - Constants.Gigagal.WIDTH / 2;
+        prevRightFoot = prevPosition.x + Constants.Gigagal.WIDTH / 2;
 
         // death plane
         if (position.y < Constants.GameWorld.DEATH_DEPTH) {
@@ -168,7 +168,7 @@ public class GigaGal {
                 if (jumpState != JumpState.GROUNDED)
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
-                position.x = platform.xRight + Constants.Gigagal.STANCE_WIDTH / 2 + 1;
+                position.x = platform.xRight + Constants.Gigagal.WIDTH / 2 + 1;
                 break;
             }
 
@@ -176,7 +176,7 @@ public class GigaGal {
                 if (jumpState != JumpState.GROUNDED)
                     jumpState = JumpState.FALLING;
                 velocity.x = 0;
-                position.x = platform.x - Constants.Gigagal.STANCE_WIDTH / 2 - 1;
+                position.x = platform.x - Constants.Gigagal.WIDTH / 2 - 1;
                 break;
             }
         }
@@ -187,7 +187,7 @@ public class GigaGal {
         Rectangle gigagalBoundary = new Rectangle(
                 position.x - Constants.Gigagal.CENTER.x,
                 position.y - Constants.Gigagal.CENTER.y,
-                Constants.Gigagal.STANCE_WIDTH,
+                Constants.Gigagal.WIDTH,
                 Constants.Gigagal.HEIGHT
         );
 
@@ -417,7 +417,7 @@ public class GigaGal {
     //-------------------------------------
 
     private void shoot() {
-        if (Util.secondsSince(shootLastTime) > Constants.GigagalBullet.GGG_BULLET_COOL_DOWN && bullet > 0) {
+        if (Util.secondsSince(shootLastTime) > Constants.GigagalBullet.BULLET_COOL_DOWN && bullet > 0) {
             shootLastTime = TimeUtils.nanoTime();
             bullet--;
 

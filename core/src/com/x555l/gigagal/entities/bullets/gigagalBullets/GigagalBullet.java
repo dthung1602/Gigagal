@@ -16,8 +16,8 @@ public class GigagalBullet extends Bullet {
         super(
                 x,
                 y,
-                Constants.GigagalBullet.GGG_BULLET_DAMAGE,
-                Constants.GigagalBullet.GGG_BULLET_CENTER,
+                Constants.GigagalBullet.BULLET_DAMAGE,
+                Constants.GigagalBullet.BULLET_CENTER,
                 level
         );
 
@@ -26,15 +26,15 @@ public class GigagalBullet extends Bullet {
         if (direction == null) {
             // up bullet
             textureRegion = Assets.instance.bullet.upBullet;
-            velocity.y = Constants.GigagalBullet.GGG_BULLET_SPEED;
+            velocity.y = Constants.GigagalBullet.BULLET_SPEED;
         } else if (direction == Facing.LEFT) {
             // left bullet
             textureRegion = Assets.instance.bullet.leftBullet;
-            velocity.x = -Constants.GigagalBullet.GGG_BULLET_SPEED;
+            velocity.x = -Constants.GigagalBullet.BULLET_SPEED;
         } else {
             // right bullet
             textureRegion = Assets.instance.bullet.rightBullet;
-            velocity.x = Constants.GigagalBullet.GGG_BULLET_SPEED;
+            velocity.x = Constants.GigagalBullet.BULLET_SPEED;
         }
     }
 

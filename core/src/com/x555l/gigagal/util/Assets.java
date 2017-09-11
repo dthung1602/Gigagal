@@ -110,28 +110,28 @@ public class Assets implements Disposable, AssetErrorListener {
         public Animation<TextureRegion> walkingRight;
 
         GigaGalAssets(TextureAtlas atlas) {
-            standingRight = atlas.findRegion(Constants.Asset.STANDING_RIGHT);
-            standingLeft = atlas.findRegion(Constants.Asset.STANDING_LEFT);
+            standingRight = atlas.findRegion(Constants.Asset.GGG_STANDING_RIGHT);
+            standingLeft = atlas.findRegion(Constants.Asset.GGG_STANDING_LEFT);
 
-            standingUpRight = atlas.findRegion(Constants.Asset.STANDING_UP_RIGHT);
-            standingUpLeft = atlas.findRegion(Constants.Asset.STANDING_UP_LEFT);
+            standingUpRight = atlas.findRegion(Constants.Asset.GGG_STANDING_UP_RIGHT);
+            standingUpLeft = atlas.findRegion(Constants.Asset.GGG_STANDING_UP_LEFT);
 
-            jumpingLeft = atlas.findRegion(Constants.Asset.JUMPING_LEFT);
-            jumpingRight = atlas.findRegion(Constants.Asset.JUMPING_RIGHT);
+            jumpingLeft = atlas.findRegion(Constants.Asset.GGG_JUMPING_LEFT);
+            jumpingRight = atlas.findRegion(Constants.Asset.GGG_JUMPING_RIGHT);
 
             walkingLeft = createAnimation(
                     atlas,
-                    Constants.Asset.WALK_LEFT,
-                    Constants.Asset.WALK_FRAME_COUNT,
-                    Constants.Asset.WALK_FRAME_DURATION,
+                    Constants.Asset.GGG_WALK_LEFT,
+                    Constants.Asset.GGG_WALK_FRAME_COUNT,
+                    Constants.Asset.GGG_WALK_FRAME_DURATION,
                     PlayMode.LOOP_PINGPONG
             );
 
             walkingRight = createAnimation(
                     atlas,
-                    Constants.Asset.WALK_RIGHT,
-                    Constants.Asset.WALK_FRAME_COUNT,
-                    Constants.Asset.WALK_FRAME_DURATION,
+                    Constants.Asset.GGG_WALK_RIGHT,
+                    Constants.Asset.GGG_WALK_FRAME_COUNT,
+                    Constants.Asset.GGG_WALK_FRAME_DURATION,
                     PlayMode.LOOP_PINGPONG
             );
         }

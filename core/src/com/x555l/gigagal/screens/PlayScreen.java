@@ -159,7 +159,7 @@ public class PlayScreen extends ScreenAdapter {
         endLevelOverlay.render(batch);
 
         // end layer after a period of time
-        if (Util.secondsSince(levelEndOverLayerStartTime) > Constants.EndLevelOverlay.LEVEL_END_DURATION) {
+        if (Util.secondsSince(levelEndOverLayerStartTime) > Constants.EndLevelOverlay.DURATION) {
             levelComplete();
         }
     }

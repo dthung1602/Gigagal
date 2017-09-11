@@ -12,9 +12,9 @@ public class FollowPathEnemy extends NonPlatformEnemy {
         super(
                 level,
                 entity.polygon,
-                Constants.Enemy.ENEMY_FOLLOW_PATH_HEALTH,
-                Constants.Enemy.ENEMY_FOLLOW_PATH_SPEED,
-                Constants.Enemy.ENEMY_FOLLOW_PATH_CENTER,
+                Constants.Enemy.FOLLOW_PATH_ENEMY_HEALTH,
+                Constants.Enemy.FOLLOW_PATH_ENEMY_SPEED,
+                Constants.Enemy.FOLLOW_PATH_ENEMY_CENTER,
                 Assets.instance.enemy.followPathEnemy
         );
 

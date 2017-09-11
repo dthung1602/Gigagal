@@ -13,9 +13,9 @@ public class EnemyLaser extends EnemyBullet {
                 position.y,
                 target.x,
                 target.y,
-                Constants.EnemyBullet.ENEMY_BULLET_LASER_CENTER,
-                Constants.EnemyBullet.ENEMY_BULLET_LASER_SPEED,
-                Constants.EnemyBullet.ENEMY_BULLET_LASER_DAMAGE,
+                Constants.EnemyBullet.LASER_CENTER,
+                Constants.EnemyBullet.LASER_SPEED,
+                Constants.EnemyBullet.LASER_DAMAGE,
                 Assets.instance.bullet.enemyLaser,
                 level
         );

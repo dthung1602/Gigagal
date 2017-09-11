@@ -23,7 +23,7 @@ public class Util {
     public static void exitWithError(String tag, Exception ex) {
         ex.printStackTrace();
         Gdx.app.error(tag, ex.getMessage());
-        Gdx.app.error(tag, Constants.Level.LEVEL_ERROR_MESSAGE);
+        Gdx.app.error(tag, Constants.Level.LOADING_ERROR_MESSAGE);
         exit(1);
     }
 }

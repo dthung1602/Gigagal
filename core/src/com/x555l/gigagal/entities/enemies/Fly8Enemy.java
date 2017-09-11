@@ -19,8 +19,8 @@ public class Fly8Enemy extends NonPlatformEnemy {
     public Fly8Enemy(Level level, Entity entity) {
         super(
                 level,
-                Constants.Enemy.ENEMY_FLY_8_HEALTH,
-                Constants.Enemy.ENEMY_FLY_8_CENTER,
+                Constants.Enemy.FLY_8_ENEMY_HEALTH,
+                Constants.Enemy.FLY_8_ENEMY_CENTER,
                 Assets.instance.enemy.fly8Enemy
         );
 
@@ -36,18 +36,18 @@ public class Fly8Enemy extends NonPlatformEnemy {
 
         if (vertical) {
             position.y = path8Center.y +
-                    (float) Math.sin(2 * Math.PI / Constants.Enemy.ENEMY_FLY_8_PERIOD * time)
-                            * Constants.Enemy.ENEMY_FLY_8_LONG_AMPLITUDE;
+                    (float) Math.sin(2 * Math.PI / Constants.Enemy.FLY_8_ENEMY_PERIOD * time)
+                            * Constants.Enemy.FLY_8_ENEMY_LONG_AMPLITUDE;
             position.x = path8Center.x +
-                    (float) Math.sin(4 * Math.PI / Constants.Enemy.ENEMY_FLY_8_PERIOD * time)
-                            * Constants.Enemy.ENEMY_FLY_8_SHORT_AMPLITUDE;
+                    (float) Math.sin(4 * Math.PI / Constants.Enemy.FLY_8_ENEMY_PERIOD * time)
+                            * Constants.Enemy.FLY_8_ENEMY_SHORT_AMPLITUDE;
         } else {
             position.x = path8Center.x +
-                    (float) Math.sin(2 * Math.PI / Constants.Enemy.ENEMY_FLY_8_PERIOD * time)
-                            * Constants.Enemy.ENEMY_FLY_8_LONG_AMPLITUDE;
+                    (float) Math.sin(2 * Math.PI / Constants.Enemy.FLY_8_ENEMY_PERIOD * time)
+                            * Constants.Enemy.FLY_8_ENEMY_LONG_AMPLITUDE;
             position.y = path8Center.y +
-                    (float) Math.sin(4 * Math.PI / Constants.Enemy.ENEMY_FLY_8_PERIOD * time)
-                            * Constants.Enemy.ENEMY_FLY_8_SHORT_AMPLITUDE;
+                    (float) Math.sin(4 * Math.PI / Constants.Enemy.FLY_8_ENEMY_PERIOD * time)
+                            * Constants.Enemy.FLY_8_ENEMY_SHORT_AMPLITUDE;
         }
     }
 }

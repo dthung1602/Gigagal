@@ -85,27 +85,27 @@ public class Configs {
     //--------------------------------------
 
     public int getCurrentLevel() {
-        return ((Number) rootObject.get(Constants.Config.CONFIG_CURRENT_LEVEL)).intValue();
+        return ((Number) rootObject.get(Constants.Config.CURRENT_LEVEL)).intValue();
     }
 
     public float getBrightness() {
-        return ((Number) rootObject.get(Constants.Config.CONFIG_BRIGHTNESS)).floatValue();
+        return ((Number) rootObject.get(Constants.Config.BRIGHTNESS)).floatValue();
     }
 
     public float getSoundVolume() {
-        return ((Number) rootObject.get(Constants.Config.CONFIG_SOUND_VOLUME)).floatValue();
+        return ((Number) rootObject.get(Constants.Config.SOUND_VOLUME)).floatValue();
     }
 
     public float getMusicVolume() {
-        return ((Number) rootObject.get(Constants.Config.CONFIG_MUSIC_VOLUME)).floatValue();
+        return ((Number) rootObject.get(Constants.Config.MUSIC_VOLUME)).floatValue();
     }
 
     public boolean isSoundEnabled() {
-        return (Boolean) rootObject.get(Constants.Config.CONFIG_SOUND_ENABLE);
+        return (Boolean) rootObject.get(Constants.Config.SOUND_ENABLE);
     }
 
     public boolean isMusicEnabled() {
-        return (Boolean) rootObject.get(Constants.Config.CONFIG_MUSIC_ENABLE);
+        return (Boolean) rootObject.get(Constants.Config.MUSIC_ENABLE);
     }
 
     //--------------------------------------
@@ -113,26 +113,26 @@ public class Configs {
     //--------------------------------------
 
     public void setCurrentLevel(int value) {
-        rootObject.put(Constants.Config.CONFIG_CURRENT_LEVEL, value);
+        rootObject.put(Constants.Config.CURRENT_LEVEL, value);
     }
 
     public void setBrightness(float value) {
-        rootObject.put(Constants.Config.CONFIG_BRIGHTNESS, value);
+        rootObject.put(Constants.Config.BRIGHTNESS, value);
     }
 
     public void setSoundVolume(float value) {
-        rootObject.put(Constants.Config.CONFIG_SOUND_VOLUME, value);
+        rootObject.put(Constants.Config.SOUND_VOLUME, value);
     }
 
     public void setMusicVolume(float value) {
-        rootObject.put(Constants.Config.CONFIG_MUSIC_VOLUME, value);
+        rootObject.put(Constants.Config.MUSIC_VOLUME, value);
     }
 
     public void setSoundEnabled(boolean value) {
-        rootObject.put(Constants.Config.CONFIG_SOUND_ENABLE, value);
+        rootObject.put(Constants.Config.SOUND_ENABLE, value);
     }
 
     public void setMusicEnabled(boolean value) {
-        rootObject.put(Constants.Config.CONFIG_MUSIC_ENABLE, value);
+        rootObject.put(Constants.Config.MUSIC_ENABLE, value);
     }
 }

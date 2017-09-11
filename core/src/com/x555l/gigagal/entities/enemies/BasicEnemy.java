@@ -1,6 +1,5 @@
 package com.x555l.gigagal.entities.enemies;
 
-import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.entities.Platform;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
@@ -19,9 +18,9 @@ public class BasicEnemy extends PatrolPlatformEnemy {
                 level,
                 platform,
                 false,
-                Constants.Enemy.ENEMY_BASIC_HEALTH,
-                Constants.Enemy.ENEMY_BASIC_SPEED,
-                Constants.Enemy.ENEMY_BASIC_CENTER,
+                Constants.Enemy.BASIC_ENEMY_HEALTH,
+                Constants.Enemy.BASIC_ENEMY_SPEED,
+                Constants.Enemy.BASIC_ENEMY_CENTER,
                 Assets.instance.enemy.basicEnemy
         );
 
@@ -36,6 +35,6 @@ public class BasicEnemy extends PatrolPlatformEnemy {
         // create floating effect
         float time = Util.secondsSince(startTime);
         position.y = platform.yTop + center.y
-                + (float) Math.sin(2 * Math.PI / Constants.Enemy.ENEMY_BASIC_FLOAT_PERIOD * time) * Constants.Enemy.ENEMY_BASIC_FLOAT_AMPLITUDE;
+                + (float) Math.sin(2 * Math.PI / Constants.Enemy.BASIC_ENEMY_FLOAT_PERIOD * time) * Constants.Enemy.BASIC_ENEMY_FLOAT_AMPLITUDE;
     }
 }

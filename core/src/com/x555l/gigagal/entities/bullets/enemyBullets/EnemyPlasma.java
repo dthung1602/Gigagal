@@ -12,9 +12,9 @@ public class EnemyPlasma extends EnemyBullet {
                 position.y,
                 target.x,
                 target.y,
-                Constants.EnemyBullet.ENEMY_BULLET_PLASMA_CENTER,
-                Constants.EnemyBullet.ENEMY_BULLET_PLASMA_SPEED,
-                Constants.EnemyBullet.ENEMY_BULLET_PLASMA_DAMAGE,
+                Constants.EnemyBullet.PLASMA_CENTER,
+                Constants.EnemyBullet.PLASMA_SPEED,
+                Constants.EnemyBullet.PLASMA_DAMAGE,
                 Assets.instance.bullet.enemyPlasma,
                 level
         );
