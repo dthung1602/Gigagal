@@ -10,7 +10,7 @@ import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
 
 
-class LevelSelectScreen extends MyScreen {
+class LevelSelectScreen extends ScreenAdapter {
     LevelSelectScreen(Game game) {
         super(
                 game,

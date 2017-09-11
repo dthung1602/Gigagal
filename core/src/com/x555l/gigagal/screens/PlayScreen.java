@@ -90,7 +90,6 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         batch.dispose();
-        Assets.instance.dispose();
     }
 
     @Override

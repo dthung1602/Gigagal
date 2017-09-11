@@ -16,19 +16,22 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.util.Assets;
 
+/**
+ * Screen adapter for other screens
+ */
 
-abstract class MyScreen implements Screen {
+abstract class ScreenAdapter implements Screen {
     Game game;
     Skin skin;
 
-    Stage stage;
+    private Stage stage;
 
     private Batch batch;
     private Viewport backgroundViewport;
     private float worldSize;
     private TextureRegion background;
 
-    MyScreen(Game game, float worldSize, TextureRegion background) {
+    ScreenAdapter(Game game, float worldSize, TextureRegion background) {
         this.skin = Assets.instance.skin;
         this.game = game;
         this.worldSize = worldSize;

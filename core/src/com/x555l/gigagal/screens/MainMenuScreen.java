@@ -11,7 +11,7 @@ import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
 
-public class MainMenuScreen extends MyScreen {
+public class MainMenuScreen extends ScreenAdapter {
     public MainMenuScreen(Game game) {
         super(
                 game,

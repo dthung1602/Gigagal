@@ -13,7 +13,7 @@ import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Configs;
 
 
-class SettingScreen extends MyScreen {
+class SettingScreen extends ScreenAdapter {
 
     SettingScreen(Game game) {
         super(

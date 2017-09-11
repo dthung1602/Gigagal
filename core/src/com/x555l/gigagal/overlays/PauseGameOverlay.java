@@ -34,7 +34,7 @@ public class PauseGameOverlay extends MenuOverlay {
         Skin skin = Assets.instance.skin;
 
         // title
-        Label title = new Label("PAUSE", skin);
+        Label title = new Label("GAME PAUSED", skin);
         table.add(title).padBottom(15).row();
 
         // resume button
