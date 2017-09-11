@@ -14,21 +14,20 @@ public class Util {
         return MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
     }
 
-    public static void exit(int exitCode) {
+    public static void exitWithOutError() {
         // clean up
         Assets.instance.dispose();
         Configs.instance.save();
 
         // exit
         Gdx.app.exit();
-        System.exit(exitCode);
+        System.exit(0);
     }
 
     public static void exitWithError(String tag, Exception ex) {
-        ex.printStackTrace();
-        Gdx.app.error(tag, ex.getMessage());
-        Gdx.app.error(tag, Constants.Level.LOADING_ERROR_MESSAGE);
-        exit(1);
+        Gdx.app.log(tag, ex.getMessage());
+        Gdx.app.exit();
+        System.exit(1);
     }
 
     public static float randomFloat(float min, float max) {

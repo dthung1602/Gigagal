@@ -44,27 +44,32 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public void load() {
-        skin = new Skin(Gdx.files.internal(Constants.Asset.SKIN));
 
         assetManager = new AssetManager();
         assetManager.setErrorListener(this);
         assetManager.load(Constants.Asset.GIGAGAL_ATLAS, TextureAtlas.class);
         assetManager.load(Constants.Asset.BACKGROUND_ATLAS, TextureAtlas.class);
+        assetManager.load(Constants.Asset.SKIN, Skin.class);
         assetManager.finishLoading();
 
         TextureAtlas gigagalAtlas = assetManager.get(Constants.Asset.GIGAGAL_ATLAS);
         TextureAtlas backgroundAtlas = assetManager.get(Constants.Asset.BACKGROUND_ATLAS);
 
-        gigagal = new GigaGalAssets(gigagalAtlas);
-        platform = new PlatformAssets(gigagalAtlas);
-        enemy = new EnemyAssets(gigagalAtlas);
-        bullet = new BulletAssets(gigagalAtlas);
-        explosion = new ExplosionAssets(gigagalAtlas);
-        bonus = new BonusAssets(gigagalAtlas);
-        exitPortal = new ExitPortalAssets(gigagalAtlas);
-        onscreenControl = new OnscreenControlAssets(gigagalAtlas);
+        skin = assetManager.get(Constants.Asset.SKIN);
 
-        background = new BackgroundAssets(backgroundAtlas);
+        try {
+            gigagal = new GigaGalAssets(gigagalAtlas);
+            platform = new PlatformAssets(gigagalAtlas);
+            enemy = new EnemyAssets(gigagalAtlas);
+            bullet = new BulletAssets(gigagalAtlas);
+            explosion = new ExplosionAssets(gigagalAtlas);
+            bonus = new BonusAssets(gigagalAtlas);
+            exitPortal = new ExitPortalAssets(gigagalAtlas);
+            onscreenControl = new OnscreenControlAssets(gigagalAtlas);
+            background = new BackgroundAssets(backgroundAtlas);
+        } catch (AssetsContainer.AtlasRegionNotFound ex) {
+            Util.exitWithError(TAG, ex);
+        }
     }
 
     @Override
@@ -77,27 +82,50 @@ public class Assets implements Disposable, AssetErrorListener {
         assetManager.dispose();
     }
 
-    /**
-     * Create and return animation base on given parameters
-     */
-    private Animation<TextureRegion> createAnimation(TextureAtlas atlas, String name, int frameCount, float frameDuration, PlayMode playMode) {
-        Array<TextureRegion> regions = new Array<TextureRegion>();
-
-        for (int i = 1; i <= frameCount; i++)
-            regions.add(atlas.findRegion(name + i));
-
-        return new Animation<TextureRegion>(
-                frameDuration,
-                regions,
-                playMode
-        );
-    }
-
     //------------------------------------------------------------//
     //                       INNER CLASSES                        //
     //------------------------------------------------------------//
 
-    public class GigaGalAssets {
+    /**
+     * Abstract base class for all other inner classes
+     * Ensure all instance variables are not null
+     */
+    private abstract class AssetsContainer {
+        /**
+         * Find a region in an atlas region
+         * Ensure that region is found
+         */
+        AtlasRegion findRegion(TextureAtlas atlas, String regionName) throws AtlasRegionNotFound {
+            AtlasRegion region = atlas.findRegion(regionName);
+            if (region != null)
+                return region;
+            else
+                throw new AtlasRegionNotFound(regionName);
+        }
+
+        /**
+         * Create and return animation base on given parameters
+         */
+        Animation<TextureRegion> createAnimation(TextureAtlas atlas, String name, int frameCount, float frameDuration, PlayMode playMode) throws AtlasRegionNotFound {
+            Array<TextureRegion> regions = new Array<TextureRegion>();
+
+            for (int i = 1; i <= frameCount; i++)
+                regions.add(findRegion(atlas, name + i));
+
+            return new Animation<TextureRegion>(frameDuration, regions, playMode);
+        }
+
+        /**
+         * Custom exception
+         */
+        class AtlasRegionNotFound extends Exception {
+            AtlasRegionNotFound(String regionName) {
+                super("ERROR: Atlas region '" + regionName + "' not found");
+            }
+        }
+    }
+
+    public class GigaGalAssets extends AssetsContainer {
         public AtlasRegion standingRight;
         public AtlasRegion standingLeft;
         public AtlasRegion standingUpLeft;
@@ -109,15 +137,15 @@ public class Assets implements Disposable, AssetErrorListener {
         public Animation<TextureRegion> walkingLeft;
         public Animation<TextureRegion> walkingRight;
 
-        GigaGalAssets(TextureAtlas atlas) {
-            standingRight = atlas.findRegion(Constants.Asset.GGG_STANDING_RIGHT);
-            standingLeft = atlas.findRegion(Constants.Asset.GGG_STANDING_LEFT);
+        GigaGalAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            standingRight = findRegion(atlas, Constants.Asset.GGG_STANDING_RIGHT);
+            standingLeft = findRegion(atlas, Constants.Asset.GGG_STANDING_LEFT);
 
-            standingUpRight = atlas.findRegion(Constants.Asset.GGG_STANDING_UP_RIGHT);
-            standingUpLeft = atlas.findRegion(Constants.Asset.GGG_STANDING_UP_LEFT);
+            standingUpRight = findRegion(atlas, Constants.Asset.GGG_STANDING_UP_RIGHT);
+            standingUpLeft = findRegion(atlas, Constants.Asset.GGG_STANDING_UP_LEFT);
 
-            jumpingLeft = atlas.findRegion(Constants.Asset.GGG_JUMPING_LEFT);
-            jumpingRight = atlas.findRegion(Constants.Asset.GGG_JUMPING_RIGHT);
+            jumpingLeft = findRegion(atlas, Constants.Asset.GGG_JUMPING_LEFT);
+            jumpingRight = findRegion(atlas, Constants.Asset.GGG_JUMPING_RIGHT);
 
             walkingLeft = createAnimation(
                     atlas,
@@ -137,12 +165,12 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class PlatformAssets {
+    public class PlatformAssets extends AssetsContainer {
         public NinePatch passablePlatform;
         public NinePatch solidPlatform;
 
-        PlatformAssets(TextureAtlas atlas) {
-            TextureRegion region = atlas.findRegion(Constants.Asset.PLATFORM_PASSABLE);
+        PlatformAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            TextureRegion region = findRegion(atlas, Constants.Asset.PLATFORM_PASSABLE);
             passablePlatform = new NinePatch(
                     region,
                     Constants.Asset.PLATFORM_HORIZONTAL_BORDER,
@@ -151,7 +179,7 @@ public class Assets implements Disposable, AssetErrorListener {
                     Constants.Asset.PLATFORM_VERTICAL_BORDER
             );
 
-            region = atlas.findRegion(Constants.Asset.PLATFORM_SOLID);
+            region = findRegion(atlas, Constants.Asset.PLATFORM_SOLID);
             solidPlatform = new NinePatch(
                     region,
                     Constants.Asset.PLATFORM_HORIZONTAL_BORDER,
@@ -162,7 +190,7 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class EnemyAssets {
+    public class EnemyAssets extends AssetsContainer {
         public AtlasRegion basicEnemy;
         public AtlasRegion strongEnemy;
         public AtlasRegion fly8Enemy;
@@ -172,19 +200,19 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion shootEnemy;
         public AtlasRegion guardEnemy;
 
-        EnemyAssets(TextureAtlas atlas) {
-            basicEnemy = atlas.findRegion(Constants.Asset.ENEMY_BASIC);
-            strongEnemy = atlas.findRegion(Constants.Asset.ENEMY_STRONG);
-            fly8Enemy = atlas.findRegion(Constants.Asset.ENEMY_FLY_8);
-            followPathEnemy = atlas.findRegion(Constants.Asset.ENEMY_FOLLOW_PATH);
-            patrolAirEnemy = atlas.findRegion(Constants.Asset.ENEMY_PATROL_AIR);
-            fastEnemy = atlas.findRegion(Constants.Asset.ENEMY_FAST);
-            shootEnemy = atlas.findRegion(Constants.Asset.ENEMY_SHOOT);
-            guardEnemy = atlas.findRegion(Constants.Asset.ENEMY_GUARD);
+        EnemyAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            basicEnemy = findRegion(atlas, Constants.Asset.ENEMY_BASIC);
+            strongEnemy = findRegion(atlas, Constants.Asset.ENEMY_STRONG);
+            fly8Enemy = findRegion(atlas, Constants.Asset.ENEMY_FLY_8);
+            followPathEnemy = findRegion(atlas, Constants.Asset.ENEMY_FOLLOW_PATH);
+            patrolAirEnemy = findRegion(atlas, Constants.Asset.ENEMY_PATROL_AIR);
+            fastEnemy = findRegion(atlas, Constants.Asset.ENEMY_FAST);
+            shootEnemy = findRegion(atlas, Constants.Asset.ENEMY_SHOOT);
+            guardEnemy = findRegion(atlas, Constants.Asset.ENEMY_GUARD);
         }
     }
 
-    public class BulletAssets {
+    public class BulletAssets extends AssetsContainer {
         public AtlasRegion leftBullet;
         public AtlasRegion rightBullet;
         public AtlasRegion upBullet;
@@ -192,12 +220,12 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion enemyLaser;
         public Animation<TextureRegion> enemyPlasma;
 
-        BulletAssets(TextureAtlas atlas) {
-            leftBullet = atlas.findRegion(Constants.Asset.GGG_BULLET_LEFT);
-            rightBullet = atlas.findRegion(Constants.Asset.GGG_BULLET_RIGHT);
-            upBullet = atlas.findRegion(Constants.Asset.GGG_BULLET_UP);
+        BulletAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            leftBullet = findRegion(atlas, Constants.Asset.GGG_BULLET_LEFT);
+            rightBullet = findRegion(atlas, Constants.Asset.GGG_BULLET_RIGHT);
+            upBullet = findRegion(atlas, Constants.Asset.GGG_BULLET_UP);
 
-            enemyLaser = atlas.findRegion(Constants.Asset.ENEMY_BULLET_LASER);
+            enemyLaser = findRegion(atlas, Constants.Asset.ENEMY_BULLET_LASER);
             enemyPlasma = createAnimation(
                     atlas,
                     Constants.Asset.ENEMY_BULLET_PLASMA,
@@ -208,11 +236,11 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class ExplosionAssets {
+    public class ExplosionAssets extends AssetsContainer {
         public Animation<TextureRegion> smallExplosion;
         public Animation<TextureRegion> largeExplosion;
 
-        ExplosionAssets(TextureAtlas atlas) {
+        ExplosionAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
             smallExplosion = createAnimation(
                     atlas,
                     Constants.Asset.EXPLOSION_SMALL,
@@ -230,22 +258,22 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class BonusAssets {
+    public class BonusAssets extends AssetsContainer {
         public AtlasRegion health;
         public AtlasRegion life;
         public AtlasRegion bullet;
 
-        BonusAssets(TextureAtlas atlas) {
-            health = atlas.findRegion(Constants.Asset.BONUS_HEALTH);
-            life = atlas.findRegion(Constants.Asset.BONUS_LIFE);
-            bullet = atlas.findRegion(Constants.Asset.BONUS_BULLET);
+        BonusAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            health = findRegion(atlas, Constants.Asset.BONUS_HEALTH);
+            life = findRegion(atlas, Constants.Asset.BONUS_LIFE);
+            bullet = findRegion(atlas, Constants.Asset.BONUS_BULLET);
         }
     }
 
-    public class ExitPortalAssets {
+    public class ExitPortalAssets extends AssetsContainer {
         public Animation<TextureRegion> animation;
 
-        ExitPortalAssets(TextureAtlas atlas) {
+        ExitPortalAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
             animation = createAnimation(
                     atlas,
                     Constants.Asset.EXIT_PORTAL,
@@ -256,7 +284,7 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class OnscreenControlAssets {
+    public class OnscreenControlAssets extends AssetsContainer {
         public AtlasRegion leftButton;
         public AtlasRegion rightButton;
         public AtlasRegion upButton;
@@ -265,28 +293,28 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion jumpButton;
         public AtlasRegion shootButton;
 
-        OnscreenControlAssets(TextureAtlas atlas) {
-            leftButton = atlas.findRegion(Constants.Asset.BUTTON_LEFT);
-            rightButton = atlas.findRegion(Constants.Asset.BUTTON_RIGHT);
-            upButton = atlas.findRegion(Constants.Asset.BUTTON_UP);
-            downButton = atlas.findRegion(Constants.Asset.BUTTON_DOWN);
+        OnscreenControlAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            leftButton = findRegion(atlas, Constants.Asset.BUTTON_LEFT);
+            rightButton = findRegion(atlas, Constants.Asset.BUTTON_RIGHT);
+            upButton = findRegion(atlas, Constants.Asset.BUTTON_UP);
+            downButton = findRegion(atlas, Constants.Asset.BUTTON_DOWN);
 
-            jumpButton = atlas.findRegion(Constants.Asset.BUTTON_JUMP);
-            shootButton = atlas.findRegion(Constants.Asset.BUTTON_SHOOT);
+            jumpButton = findRegion(atlas, Constants.Asset.BUTTON_JUMP);
+            shootButton = findRegion(atlas, Constants.Asset.BUTTON_SHOOT);
         }
     }
 
-    public class BackgroundAssets {
+    public class BackgroundAssets extends AssetsContainer {
         public TextureRegion mainMenu;
         public TextureRegion selectLevel;
         public TextureRegion setting;
         public TextureRegion overlay;
 
-        BackgroundAssets(TextureAtlas atlas) {
-            mainMenu = atlas.findRegion(Constants.Asset.BG_MAIN_MENU);
-            selectLevel = atlas.findRegion(Constants.Asset.BG_SELECT_LEVEL);
-            setting = atlas.findRegion(Constants.Asset.BG_SETTING);
-            overlay = atlas.findRegion(Constants.Asset.BG_OVERLAY);
+        BackgroundAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
+            mainMenu = findRegion(atlas, Constants.Asset.BG_MAIN_MENU);
+            selectLevel = findRegion(atlas, Constants.Asset.BG_SELECT_LEVEL);
+            setting = findRegion(atlas, Constants.Asset.BG_SETTING);
+            overlay = findRegion(atlas, Constants.Asset.BG_OVERLAY);
         }
     }
 }

@@ -58,7 +58,7 @@ public class MainMenuScreen extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Util.exit(0);
+                Util.exitWithOutError();
             }
         });
         table.add(button).fillX();
