@@ -44,11 +44,18 @@ class SettingScreen extends AbstractScreen {
     private Table createButtonLayer() {
         Table table = new Table();
 
-        Label label;
-        CheckBox checkBox;
+        addBrightness(table);
+        addSound(table);
+        addMusic(table);
+        addDebug(table);
+        addResetProgress(table);
 
-        // ------------------- brightness --------------------------------
-        label = new Label("Brightness", skin, "default");
+        return table;
+    }
+
+    private void addBrightness(Table table) {
+        final Label label = new Label("Brightness", skin, "default");
+
         final Slider brightnessSlider = new Slider(0, 1, 0.05f, false, skin);
         brightnessSlider.setValue(Configs.instance.getBrightness());
         brightnessSlider.addListener(new ChangeListener() {
@@ -62,8 +69,9 @@ class SettingScreen extends AbstractScreen {
         table.add(label);
         table.add(brightnessSlider);
         table.row().padTop(5);
+    }
 
-        // ------------------- FX sound ----------------------------------
+    private void addSound(Table table) {
         final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
         fxSoundSlider.setValue(Configs.instance.getSoundVolume());
         fxSoundSlider.setDisabled(!Configs.instance.isSoundEnabled());
@@ -74,7 +82,7 @@ class SettingScreen extends AbstractScreen {
             }
         });
 
-        checkBox = new CheckBox("FX sound", skin);
+        final CheckBox checkBox = new CheckBox("FX sound", skin);
         checkBox.setChecked(Configs.instance.isSoundEnabled());
         checkBox.addListener(new ChangeListener() {
             @Override
@@ -88,9 +96,9 @@ class SettingScreen extends AbstractScreen {
         table.add(checkBox).left();
         table.add(fxSoundSlider);
         table.row().padTop(5);
+    }
 
-
-        // ------------------ music ------------------------------------
+    private void addMusic(Table table) {
         final Slider musicSlider = new Slider(0, 1, 0.05f, false, skin);
         musicSlider.setValue(Configs.instance.getMusicVolume());
         musicSlider.setDisabled(!Configs.instance.isMusicEnabled());
@@ -101,7 +109,7 @@ class SettingScreen extends AbstractScreen {
             }
         });
 
-        checkBox = new CheckBox("Music", skin);
+        final CheckBox checkBox = new CheckBox("Music", skin);
         checkBox.setChecked(Configs.instance.isMusicEnabled());
         checkBox.addListener(new ChangeListener() {
             @Override
@@ -115,12 +123,14 @@ class SettingScreen extends AbstractScreen {
         table.add(checkBox).left();
         table.add(musicSlider);
         table.row().padTop(15).padBottom(20);
+    }
 
-        // -------------------- add debugging options ------------
-        label = new Label("Debug", skin);
+    private void addDebug(Table table) {
+        Label label = new Label("Debug", skin);
         label.setColor(Color.BLUE);
         table.add(label).left().padBottom(10).row();
-        checkBox = new CheckBox("Screen layout", skin);
+
+        CheckBox checkBox = new CheckBox("Screen layout", skin);
         checkBox.setChecked(Configs.instance.isDebugScreenLayoutEnabled());
         checkBox.addListener(new ChangeListener() {
             @Override
@@ -130,6 +140,7 @@ class SettingScreen extends AbstractScreen {
             }
         });
         table.add(checkBox).left().padLeft(20).row();
+
         checkBox = new CheckBox("FPS in play screen", skin);
         checkBox.setChecked(Configs.instance.isDebugFPSEnabled());
         checkBox.addListener(new ChangeListener() {
@@ -140,8 +151,9 @@ class SettingScreen extends AbstractScreen {
             }
         });
         table.add(checkBox).left().padLeft(20).row();
+    }
 
-        //----------------- reset progress ----------------------
+    private void addResetProgress(Table table) {
         final TextButton resetButton = new TextButton("Reset progress", skin);
         resetButton.addListener(new ChangeListener() {
             @Override
@@ -152,7 +164,5 @@ class SettingScreen extends AbstractScreen {
 
         table.add(resetButton).padTop(15);
         table.row();
-
-        return table;
     }
 }
