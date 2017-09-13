@@ -106,6 +106,7 @@ public class Constants {
         static final String BUTTON_DOWN = "button-down";
         static final String BUTTON_JUMP = "button-jump";
         static final String BUTTON_SHOOT = "button-shoot";
+        static final String BUTTON_PAUSE = "button-pause";
 
         // backgrounds
         static final String BG_MAIN_MENU = "main-menu";
@@ -254,8 +255,7 @@ public class Constants {
      */
     public static class Level {
         // level loading
-        public static final int MAX_LEVEL = 18;
-        public static final String LOADING_ERROR_MESSAGE = "There was a problem loading the level";
+        public static final int MAX_LEVEL = 2;
         public static final String TILESET_FILE = "levels/tileset.json";
 
         // level selecting
@@ -313,6 +313,7 @@ public class Constants {
 
         static final String DEBUG_SCREEN_LAYOUT = "debug-screen-layout";
         static final String DEBUG_FPS = "debug-fps";
+        static final String DEBUG_ONSCREEN_CONTROL = "debug-onscreen-control";
     }
 
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);

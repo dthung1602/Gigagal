@@ -20,7 +20,7 @@ public class OnscreenControl {
                 Constants.OnscreenControl.VIEWPORT_SIZE
         );
 
-        buttons = new Button[6];
+        buttons = new Button[7];
     }
 
     public void render(SpriteBatch batch) {
@@ -38,6 +38,7 @@ public class OnscreenControl {
     public void calculateButtonPosition() {
         float radius = Constants.OnscreenControl.BUTTON_RADIUS;
         float width = viewport.getWorldWidth();
+        float height = viewport.getWorldHeight();
 
         // leftButton
         buttons[0] = new Button(radius * 4 / 3, radius * 2.4f, Assets.instance.onscreenControl.leftButton);
@@ -52,6 +53,9 @@ public class OnscreenControl {
         buttons[4] = new Button(width - radius * 4 / 3, radius * 5 / 2, Assets.instance.onscreenControl.jumpButton);
         // shootButton
         buttons[5] = new Button(width - radius * 3.5f, radius * 1.25f, Assets.instance.onscreenControl.shootButton);
+
+        // pauseButton
+        buttons[6] = new Button(width - radius * 4 / 3, height - radius * 3 / 2, Assets.instance.onscreenControl.pauseButton);
     }
 
     public Viewport getViewport() {

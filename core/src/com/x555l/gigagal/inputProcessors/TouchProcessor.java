@@ -11,6 +11,7 @@ public class TouchProcessor extends InputProcessor {
      * 0: left     *   1: right
      * 2: up       *   3: down
      * 4: jump     *   5: shoot
+     * 6: pause
      */
     private Button buttons[];
 
@@ -113,6 +114,8 @@ public class TouchProcessor extends InputProcessor {
             case 5:
                 shootKeyPressed = value;
                 break;
+            case 6:
+                pauseKeyPressed = value;
         }
         buttons[num].pointer = pointer;
     }

@@ -1,1 +1,1 @@
-{"sound-volume":0.1,"music-enable":true,"music-volume":1.0,"debug-fps":false,"brightness":0.6,"sound-enable":false,"level":2,"debug-screen-layout":false}
+{"sound-volume":0.1,"music-enable":true,"music-volume":1.0,"debug-fps":true,"brightness":0.6,"sound-enable":false,"level":2,"debug-screen-layout":false,"debug-onscreen-control":true}

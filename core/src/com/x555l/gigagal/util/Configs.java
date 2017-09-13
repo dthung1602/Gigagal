@@ -116,6 +116,10 @@ public class Configs {
         return (Boolean) rootObject.get(Constants.Config.DEBUG_FPS);
     }
 
+    public boolean isDebugOnScreenControlEnabled() {
+        return (Boolean) rootObject.get(Constants.Config.DEBUG_ONSCREEN_CONTROL);
+    }
+
     //--------------------------------------
     //               SETTERS
     //--------------------------------------
@@ -150,5 +154,9 @@ public class Configs {
 
     public void setDebugFPSEnabled(boolean value) {
         rootObject.put(Constants.Config.DEBUG_FPS, value);
+    }
+
+    public void setDebugOnScreenControl(boolean value) {
+        rootObject.put(Constants.Config.DEBUG_ONSCREEN_CONTROL, value);
     }
 }

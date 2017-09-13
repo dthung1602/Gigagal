@@ -126,10 +126,12 @@ class SettingScreen extends AbstractScreen {
     }
 
     private void addDebug(Table table) {
+        // Label
         Label label = new Label("Debug", skin);
         label.setColor(Color.BLUE);
         table.add(label).left().padBottom(10).row();
 
+        // Screen layout
         CheckBox checkBox = new CheckBox("Screen layout", skin);
         checkBox.setChecked(Configs.instance.isDebugScreenLayoutEnabled());
         checkBox.addListener(new ChangeListener() {
@@ -141,6 +143,7 @@ class SettingScreen extends AbstractScreen {
         });
         table.add(checkBox).left().padLeft(20).row();
 
+        // FPS
         checkBox = new CheckBox("FPS in play screen", skin);
         checkBox.setChecked(Configs.instance.isDebugFPSEnabled());
         checkBox.addListener(new ChangeListener() {
@@ -148,6 +151,18 @@ class SettingScreen extends AbstractScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 CheckBox dbFPS = (CheckBox) actor;
                 Configs.instance.setDebugFPSEnabled(dbFPS.isChecked());
+            }
+        });
+        table.add(checkBox).left().padLeft(20).row();
+
+        // On screen control
+        checkBox = new CheckBox("On screen control", skin);
+        checkBox.setChecked(Configs.instance.isDebugOnScreenControlEnabled());
+        checkBox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                CheckBox dbOnScreenCtrl = (CheckBox) actor;
+                Configs.instance.setDebugOnScreenControl(dbOnScreenCtrl.isChecked());
             }
         });
         table.add(checkBox).left().padLeft(20).row();

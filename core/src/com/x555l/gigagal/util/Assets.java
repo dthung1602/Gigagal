@@ -293,6 +293,8 @@ public class Assets implements Disposable, AssetErrorListener {
         public AtlasRegion jumpButton;
         public AtlasRegion shootButton;
 
+        public AtlasRegion pauseButton;
+
         OnscreenControlAssets(TextureAtlas atlas) throws AtlasRegionNotFound {
             leftButton = findRegion(atlas, Constants.Asset.BUTTON_LEFT);
             rightButton = findRegion(atlas, Constants.Asset.BUTTON_RIGHT);
@@ -301,6 +303,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
             jumpButton = findRegion(atlas, Constants.Asset.BUTTON_JUMP);
             shootButton = findRegion(atlas, Constants.Asset.BUTTON_SHOOT);
+
+            pauseButton = findRegion(atlas, Constants.Asset.BUTTON_PAUSE);
         }
     }
 

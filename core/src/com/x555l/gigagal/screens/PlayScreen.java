@@ -43,7 +43,7 @@ public class PlayScreen extends ScreenAdapter {
 
     private long levelEndOverLayerStartTime;
 
-    private boolean onMobile;
+    private boolean useOnScreenControl;
     private boolean pause;
 
     PlayScreen(Game game, int levelNum) {
@@ -60,9 +60,11 @@ public class PlayScreen extends ScreenAdapter {
         gameoverOverlay = new GameOverOverlay();
         pauseGameOverlay = new PauseGameOverlay(game, batch);
 
-        onMobile = (Gdx.app.getType() == Application.ApplicationType.Android);
+        useOnScreenControl = (Gdx.app.getType() == Application.ApplicationType.Android // on mobile
+                || Configs.instance.isDebugOnScreenControlEnabled() // or debugging
+        );
 
-        if (onMobile) {
+        if (useOnScreenControl) {
             onscreenControl = new OnscreenControl();
             inputProcessor = new TouchProcessor(onscreenControl);
         } else {
@@ -80,7 +82,7 @@ public class PlayScreen extends ScreenAdapter {
         hud.getViewport().update(width, height, true);
         victoryOverlay.getViewport().update(width, height, true);
         gameoverOverlay.getViewport().update(width, height, true);
-        if (onMobile) {
+        if (useOnScreenControl) {
             onscreenControl.getViewport().update(width, height, true);
             onscreenControl.calculateButtonPosition();
         }
@@ -135,7 +137,7 @@ public class PlayScreen extends ScreenAdapter {
         // render everything
         level.render(batch);
         hud.render(batch, level.getGigagal());
-        if (onMobile)
+        if (useOnScreenControl)
             onscreenControl.render(batch);
 
         // render messages when level ends

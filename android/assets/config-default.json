@@ -6,5 +6,6 @@
   "music-enable": true,
   "music-volume": 0.5,
   "debug-screen-layout": false,
-  "debug-fps": false
+  "debug-fps": false,
+  "debug-onscreen-control": false
 }
