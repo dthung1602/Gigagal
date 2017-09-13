@@ -2,6 +2,8 @@ package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -11,7 +13,7 @@ import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
 
-public class MainMenuScreen extends ScreenAdapter {
+public class MainMenuScreen extends AbstractScreen {
     public MainMenuScreen(Game game) {
         super(
                 game,
@@ -21,7 +23,20 @@ public class MainMenuScreen extends ScreenAdapter {
     }
 
     @Override
-    void createWidgets(Table table) {
+    void createLayers(Stack stack) {
+        stack.add(createBackgroundLayer());
+        stack.add(createButtonLayer());
+    }
+
+    private Image createBackgroundLayer() {
+        return new Image(Assets.instance.background.mainMenu);
+    }
+
+    private Table createButtonLayer() {
+        // root table
+        Table table = new Table();
+        table.setFillParent(true);
+        table.bottom().right().pad(15);
 
         // start button
         TextButton button = new TextButton("CONTINUE", skin, "default");
@@ -62,5 +77,7 @@ public class MainMenuScreen extends ScreenAdapter {
             }
         });
         table.add(button).fillX();
+
+        return table;
     }
 }

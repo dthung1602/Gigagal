@@ -2,6 +2,8 @@ package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -10,7 +12,7 @@ import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
 
 
-class LevelSelectScreen extends ScreenAdapter {
+class LevelSelectScreen extends AbstractScreen {
     LevelSelectScreen(Game game) {
         super(
                 game,
@@ -20,9 +22,19 @@ class LevelSelectScreen extends ScreenAdapter {
     }
 
     @Override
-    void createWidgets(Table table) {
+    void createLayers(Stack stack) {
+        stack.add(createBackgroundLayer());
+        stack.add(createBackButtonLayer());
+        stack.add(createButtonLayer());
+    }
 
-        Table subTable = createBackButton(table);
+    private Image createBackgroundLayer() {
+        return new Image(Assets.instance.background.selectLevel);
+    }
+
+    private Table createButtonLayer() {
+        Table table = new Table();
+        table.padTop(22);
 
         for (int i = 0; i < Constants.Level.MAX_LEVEL; i++) {
             // new button
@@ -39,7 +51,7 @@ class LevelSelectScreen extends ScreenAdapter {
             }
 
             // format the button
-            subTable.add(button)
+            table.add(button)
                     .pad(5, 5, 5, 5)
                     .prefSize(Constants.Level.SELECT_LEVEL_BUTTON_SIZE.x,
                             Constants.Level.SELECT_LEVEL_BUTTON_SIZE.y);
@@ -55,7 +67,10 @@ class LevelSelectScreen extends ScreenAdapter {
 
             // end row
             if ((i + 1) % Constants.Level.SELECT_LEVEL_NUMBER_OF_COLUMN == 0)
-                subTable.row();
+                table.row();
         }
+
+        return table;
     }
 }
+

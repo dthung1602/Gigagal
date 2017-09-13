@@ -11,6 +11,16 @@ import com.badlogic.gdx.math.Vector2;
 public class Constants {
 
     /**
+     * Constants for desktop platform
+     */
+    public static class DeskTop {
+        public static final float SCREEN_RATIO = 16f / 9f;
+        public static final int SCREEN_WIDTH = 1000;
+        public static final int SCREEN_HEIGHT = (int) (SCREEN_WIDTH / SCREEN_RATIO);
+    }
+
+
+    /**
      * Constants for the game world
      */
     public static class GameWorld {
@@ -242,7 +252,7 @@ public class Constants {
      */
     public static class Level {
         // level loading
-        public static final int MAX_LEVEL = 2;
+        public static final int MAX_LEVEL = 18;
         public static final String LOADING_ERROR_MESSAGE = "There was a problem loading the level";
         public static final String TILESET_FILE = "levels/tileset.json";
 
@@ -281,9 +291,9 @@ public class Constants {
      * Constants for main menu
      */
     public static class MainMenu {
-        public static final float MAIN_MENU_WORLD_SIZE = 180;
-        public static final float SELECT_LEVEL_WORLD_SIZE = 180;
-        public static final float SETTING_WORLD_SIZE = 180;
+        public static final float MAIN_MENU_WORLD_SIZE = 256;
+        public static final float SELECT_LEVEL_WORLD_SIZE = 256;
+        public static final float SETTING_WORLD_SIZE = 256;
     }
 
     /**

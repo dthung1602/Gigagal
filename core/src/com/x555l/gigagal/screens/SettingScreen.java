@@ -3,17 +3,19 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.x555l.gigagal.util.Assets;
-import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Configs;
+import com.x555l.gigagal.util.Constants;
 
 
-class SettingScreen extends ScreenAdapter {
+class SettingScreen extends AbstractScreen {
 
     SettingScreen(Game game) {
         super(
@@ -28,12 +30,22 @@ class SettingScreen extends ScreenAdapter {
         Configs.instance.save();
     }
 
-    void createWidgets(Table table) {
+    @Override
+    void createLayers(Stack stack) {
+        stack.add(createBackgroundLayer());
+        stack.add(createBackButtonLayer());
+        stack.add(createButtonLayer());
+    }
+
+    private Image createBackgroundLayer() {
+        return new Image(Assets.instance.background.setting);
+    }
+
+    private Table createButtonLayer() {
+        Table table = new Table();
+
         Label label;
         CheckBox checkBox;
-
-        // add back to menu button
-        Table subTable = createBackButton(table);
 
         // ------------------- brightness --------------------------------
         label = new Label("Brightness", skin, "default");
@@ -47,9 +59,9 @@ class SettingScreen extends ScreenAdapter {
             }
         });
 
-        subTable.add(label);
-        subTable.add(brightnessSlider);
-        subTable.row().padTop(5);
+        table.add(label);
+        table.add(brightnessSlider);
+        table.row().padTop(5);
 
         // ------------------- FX sound ----------------------------------
         final Slider fxSoundSlider = new Slider(0, 1, 0.05f, false, skin);
@@ -73,9 +85,9 @@ class SettingScreen extends ScreenAdapter {
             }
         });
 
-        subTable.add(checkBox).left();
-        subTable.add(fxSoundSlider);
-        subTable.row().padTop(5);
+        table.add(checkBox).left();
+        table.add(fxSoundSlider);
+        table.row().padTop(5);
 
 
         // ------------------ music ------------------------------------
@@ -100,9 +112,9 @@ class SettingScreen extends ScreenAdapter {
             }
         });
 
-        subTable.add(checkBox).left();
-        subTable.add(musicSlider);
-        subTable.row().padTop(15);
+        table.add(checkBox).left();
+        table.add(musicSlider);
+        table.row().padTop(15);
 
         //----------------- reset progress ----------------------
         final TextButton resetButton = new TextButton("Reset progress", skin);
@@ -113,7 +125,9 @@ class SettingScreen extends ScreenAdapter {
             }
         });
 
-        subTable.add(resetButton);
-        subTable.row();
+        table.add(resetButton);
+        table.row();
+
+        return table;
     }
 }
