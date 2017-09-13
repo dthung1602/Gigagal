@@ -14,4 +14,10 @@ public class GigaGalGame extends Game {
         Configs.instance.load();
         setScreen(new MainMenuScreen(this));
     }
+
+    @Override
+    public void dispose() {
+        Assets.instance.dispose();
+        Configs.instance.save();
+    }
 }

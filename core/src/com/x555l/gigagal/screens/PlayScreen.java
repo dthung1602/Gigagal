@@ -18,7 +18,6 @@ import com.x555l.gigagal.overlays.GigagalHUD;
 import com.x555l.gigagal.overlays.OnscreenControl;
 import com.x555l.gigagal.overlays.PauseGameOverlay;
 import com.x555l.gigagal.overlays.VictoryOverlay;
-import com.x555l.gigagal.util.Assets;
 import com.x555l.gigagal.util.ChaseCamera;
 import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
