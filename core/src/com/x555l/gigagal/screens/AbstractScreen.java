@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
 
 /**
@@ -65,7 +66,7 @@ abstract class AbstractScreen implements Screen {
     public void show() {
         // new stage
         stage = new Stage(new ExtendViewport(worldSize, worldSize));
-        stage.setDebugAll(false); // DEBUG
+        stage.setDebugAll(Configs.instance.isDebugScreenLayoutEnabled());
         Gdx.input.setInputProcessor(stage);
 
         // add stack to stage

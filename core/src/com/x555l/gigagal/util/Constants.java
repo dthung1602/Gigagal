@@ -245,6 +245,7 @@ public class Constants {
         public static final float LIFE_ICON_SIZE = 15;
         public static final Vector2 HEALTH_OFFSET = new Vector2(5, 5);
         public static final Vector2 BULLET_OFFSET = new Vector2(5, 13);
+        public static final Vector2 FPS_OFFSET = new Vector2(30, 13);
     }
 
     /**
@@ -308,6 +309,9 @@ public class Constants {
         static final String MUSIC_ENABLE = "music-enable";
         static final String SOUND_VOLUME = "sound-volume";
         static final String MUSIC_VOLUME = "music-volume";
+
+        static final String DEBUG_SCREEN_LAYOUT = "debug-screen-layout";
+        static final String DEBUG_FPS = "debug-fps";
     }
 
     public static final Vector2 EXPLOSION_CENTER = new Vector2(8, 8);

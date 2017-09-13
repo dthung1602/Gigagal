@@ -1,6 +1,7 @@
 package com.x555l.gigagal.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -113,7 +114,32 @@ class SettingScreen extends AbstractScreen {
 
         table.add(checkBox).left();
         table.add(musicSlider);
-        table.row().padTop(15);
+        table.row().padTop(15).padBottom(20);
+
+        // -------------------- add debugging options ------------
+        label = new Label("Debug", skin);
+        label.setColor(Color.BLUE);
+        table.add(label).left().padBottom(10).row();
+        checkBox = new CheckBox("Screen layout", skin);
+        checkBox.setChecked(Configs.instance.isDebugScreenLayoutEnabled());
+        checkBox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                CheckBox dbScreenLayout = (CheckBox) actor;
+                Configs.instance.setDebugScreenLayoutEnabled(dbScreenLayout.isChecked());
+            }
+        });
+        table.add(checkBox).left().padLeft(20).row();
+        checkBox = new CheckBox("FPS in play screen", skin);
+        checkBox.setChecked(Configs.instance.isDebugFPSEnabled());
+        checkBox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                CheckBox dbFPS = (CheckBox) actor;
+                Configs.instance.setDebugFPSEnabled(dbFPS.isChecked());
+            }
+        });
+        table.add(checkBox).left().padLeft(20).row();
 
         //----------------- reset progress ----------------------
         final TextButton resetButton = new TextButton("Reset progress", skin);
@@ -124,7 +150,7 @@ class SettingScreen extends AbstractScreen {
             }
         });
 
-        table.add(resetButton);
+        table.add(resetButton).padTop(15);
         table.row();
 
         return table;

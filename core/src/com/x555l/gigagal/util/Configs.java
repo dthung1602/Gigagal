@@ -108,6 +108,14 @@ public class Configs {
         return (Boolean) rootObject.get(Constants.Config.MUSIC_ENABLE);
     }
 
+    public boolean isDebugScreenLayoutEnabled() {
+        return (Boolean) rootObject.get(Constants.Config.DEBUG_SCREEN_LAYOUT);
+    }
+
+    public boolean isDebugFPSEnabled() {
+        return (Boolean) rootObject.get(Constants.Config.DEBUG_FPS);
+    }
+
     //--------------------------------------
     //               SETTERS
     //--------------------------------------
@@ -134,5 +142,13 @@ public class Configs {
 
     public void setMusicEnabled(boolean value) {
         rootObject.put(Constants.Config.MUSIC_ENABLE, value);
+    }
+
+    public void setDebugScreenLayoutEnabled(boolean value) {
+        rootObject.put(Constants.Config.DEBUG_SCREEN_LAYOUT, value);
+    }
+
+    public void setDebugFPSEnabled(boolean value) {
+        rootObject.put(Constants.Config.DEBUG_FPS, value);
     }
 }

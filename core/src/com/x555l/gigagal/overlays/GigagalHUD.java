@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.Configs;
 import com.x555l.gigagal.util.Constants;
 
 public class GigagalHUD {
@@ -22,7 +23,6 @@ public class GigagalHUD {
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
         font.getData().setScale(0.5f);
-        font.setColor(Color.BLUE);
     }
 
     public void render(SpriteBatch batch, GigaGal gigagal) {
@@ -32,6 +32,7 @@ public class GigagalHUD {
         batch.begin();
 
         // health
+        font.setColor(Color.BLUE);
         font.draw(
                 batch,
                 "Health: " + gigagal.health,
@@ -61,6 +62,27 @@ public class GigagalHUD {
                     0.5f,
                     0.5f,
                     0
+            );
+        }
+
+        // FPS
+        if (Configs.instance.isDebugFPSEnabled()) {
+            int fps = Gdx.graphics.getFramesPerSecond();
+            Color color;
+            if (fps > 50)
+                color = Color.GREEN;
+            else if (fps > 40)
+                color = Color.YELLOW;
+            else if (fps > 30)
+                color = Color.ORANGE;
+            else color = Color.RED;
+
+            font.setColor(color);
+            font.draw(
+                    batch,
+                    "FPS: " + fps,
+                    viewport.getWorldWidth() - Constants.HUD.FPS_OFFSET.x,
+                    Constants.HUD.BULLET_OFFSET.y
             );
         }
 

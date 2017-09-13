@@ -4,5 +4,7 @@
   "sound-enable": true,
   "sound-volume": 0.5,
   "music-enable": true,
-  "music-volume": 0.5
+  "music-volume": 0.5,
+  "debug-screen-layout": false,
+  "debug-fps": false
 }
