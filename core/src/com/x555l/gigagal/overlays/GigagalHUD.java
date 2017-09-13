@@ -31,39 +31,33 @@ public class GigagalHUD {
 
         batch.begin();
 
-        // health
-        font.setColor(Color.BLUE);
-        font.draw(
-                batch,
-                "Health: " + gigagal.health,
-                Constants.HUD.HEALTH_OFFSET.x,
-                viewport.getWorldHeight() - Constants.HUD.HEALTH_OFFSET.y
-        );
-
-        // bullet left
-        font.draw(
-                batch,
-                "Bullet: " + gigagal.bullet,
-                Constants.HUD.BULLET_OFFSET.x,
-                viewport.getWorldHeight() - Constants.HUD.BULLET_OFFSET.y
-        );
-
         // life
-        for (int i = 0; i < gigagal.life; i++) {
-            TextureRegion region = Assets.instance.gigagal.standingRight;
-            batch.draw(
-                    region,
-                    viewport.getWorldWidth() - (i + 1) * Constants.HUD.LIFE_ICON_SIZE,
-                    viewport.getWorldHeight() - Constants.HUD.LIFE_ICON_SIZE,
-                    0,
-                    0,
-                    region.getRegionWidth(),
-                    region.getRegionHeight(),
-                    0.5f,
-                    0.5f,
-                    0
-            );
-        }
+        drawInfo(
+                batch,
+                Assets.instance.gigagal.standingRight,
+                0.3f,
+                gigagal.life,
+                1
+        );
+
+        // health
+        drawInfo(
+                batch,
+                Assets.instance.bonus.health,
+                0.4f,
+                gigagal.health,
+                2
+        );
+
+        // bullet
+        drawInfo(
+                batch,
+                Assets.instance.bullet.rightBullet,
+                1f,
+                gigagal.bullet,
+                3
+        );
+
 
         // FPS
         if (Configs.instance.isDebugFPSEnabled()) {
@@ -82,11 +76,36 @@ public class GigagalHUD {
                     batch,
                     "FPS: " + fps,
                     viewport.getWorldWidth() - Constants.HUD.FPS_OFFSET.x,
-                    Constants.HUD.BULLET_OFFSET.y
+                    Constants.HUD.ICON_OFFSET.y
             );
         }
 
         batch.end();
+    }
+
+    private void drawInfo(SpriteBatch batch, TextureRegion icon, float scale, int quantity, int lineNum) {
+        // icon
+        batch.draw(
+                icon,
+                Constants.HUD.ICON_OFFSET.x,
+                viewport.getWorldHeight() - Constants.HUD.ICON_OFFSET.y * lineNum,
+                0,
+                0,
+                icon.getRegionWidth(),
+                icon.getRegionHeight(),
+                scale,
+                scale,
+                0
+        );
+
+        // text
+        font.setColor(Constants.HUD.INFO_COLOR);
+        font.draw(
+                batch,
+                "X " + quantity,
+                Constants.HUD.TEXT_OFFSET.x,
+                viewport.getWorldHeight() - Constants.HUD.TEXT_OFFSET.y * lineNum + Constants.HUD.Y_OFFSET
+        );
     }
 
     public Viewport getViewport() {

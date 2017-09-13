@@ -14,8 +14,6 @@ abstract class MenuOverlay {
     public Stage stage;
     Table table;
 
-    ConfirmOverlay confirmOverlay;
-
     MenuOverlay(Batch batch, Viewport viewport, TextureRegion background) {
         stage = new Stage(viewport, batch);
         Gdx.input.setInputProcessor(stage);
@@ -39,16 +37,6 @@ abstract class MenuOverlay {
     abstract void addWidgets();
 
     public void render() {
-        if (confirmOverlay == null) {
-            stage.draw();
-        } else {
-            if (confirmOverlay.confirm == null)
-                confirmOverlay.render();
-            else if (confirmOverlay.confirm)
-                confirmOverlay.action.yes();
-            else
-                confirmOverlay.action.no();
-        }
-
+        stage.draw();
     }
 }

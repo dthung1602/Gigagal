@@ -242,9 +242,10 @@ public class Constants {
      */
     public static class HUD {
         public static final float VIEWPORT_SIZE = 160;
-        public static final float LIFE_ICON_SIZE = 15;
-        public static final Vector2 HEALTH_OFFSET = new Vector2(5, 5);
-        public static final Vector2 BULLET_OFFSET = new Vector2(5, 13);
+        public static final Color INFO_COLOR = Color.BLUE;
+        public static final float Y_OFFSET = 6;
+        public static final Vector2 ICON_OFFSET = new Vector2(5, 10);
+        public static final Vector2 TEXT_OFFSET = new Vector2(16, 10);
         public static final Vector2 FPS_OFFSET = new Vector2(30, 13);
     }
 
