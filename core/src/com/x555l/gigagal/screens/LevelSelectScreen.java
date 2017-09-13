@@ -16,8 +16,7 @@ class LevelSelectScreen extends AbstractScreen {
     LevelSelectScreen(Game game) {
         super(
                 game,
-                Constants.MainMenu.SELECT_LEVEL_WORLD_SIZE,
-                Assets.instance.background.selectLevel
+                Constants.MainMenu.SELECT_LEVEL_WORLD_SIZE
         );
     }
 

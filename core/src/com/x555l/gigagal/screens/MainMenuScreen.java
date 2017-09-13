@@ -17,8 +17,7 @@ public class MainMenuScreen extends AbstractScreen {
     public MainMenuScreen(Game game) {
         super(
                 game,
-                Constants.MainMenu.MAIN_MENU_WORLD_SIZE,
-                Assets.instance.background.mainMenu
+                Constants.MainMenu.MAIN_MENU_WORLD_SIZE
         );
     }
 
@@ -73,7 +72,17 @@ public class MainMenuScreen extends AbstractScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Util.exitWithOutError();
+                ConfirmWindow window = new ConfirmWindow("Quit", "Are you sure you want to quit?") {
+                    @Override
+                    void yes() {
+                        Util.exitWithOutError();
+                    }
+
+                    @Override
+                    void no() {
+                    }
+                };
+
             }
         });
         table.add(button).fillX();

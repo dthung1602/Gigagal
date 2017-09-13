@@ -20,8 +20,7 @@ class SettingScreen extends AbstractScreen {
     SettingScreen(Game game) {
         super(
                 game,
-                Constants.MainMenu.SETTING_WORLD_SIZE,
-                Assets.instance.background.setting
+                Constants.MainMenu.SETTING_WORLD_SIZE
         );
     }
 
