@@ -77,6 +77,7 @@ public class Level {
     public void render(SpriteBatch batch) {
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
+        batch.setColor(1, 1, 1, 1);
         batch.begin();
 
         for (Platform platform : platforms) {
