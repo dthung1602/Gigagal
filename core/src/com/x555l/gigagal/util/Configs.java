@@ -23,10 +23,14 @@ public class Configs {
 
     // ensure there's only one instance
     private Configs() {
+        loadingError = false;
     }
 
     // root json object
     private JSONObject rootObject;
+
+    // error flag
+    private boolean loadingError;
 
     /**
      * Load config data from json file
@@ -45,7 +49,17 @@ public class Configs {
             rootObject = (JSONObject) parser.parse(configFile.reader());
 
         } catch (Exception ex) {
-            Util.exitWithError(TAG, ex);
+            // if error happens again, exit with error
+            if (loadingError)
+                Util.exitWithError(TAG, ex);
+
+            // if any error occurs for the first time, try to reset configs
+            loadingError = true;
+            Gdx.app.log(TAG, "Error loading config file. Try to reset config to default");
+            newConfigFile();
+
+            // reload
+            load();
         }
     }
 
