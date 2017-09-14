@@ -148,18 +148,22 @@ public class Configs {
 
     public void setSoundVolume(float value) {
         rootObject.put(Constants.Config.SOUND_VOLUME, value);
+        AudioManager.instance.updateBackgroundMusic();
     }
 
     public void setMusicVolume(float value) {
         rootObject.put(Constants.Config.MUSIC_VOLUME, value);
+        AudioManager.instance.updateBackgroundMusic();
     }
 
     public void setSoundEnabled(boolean value) {
         rootObject.put(Constants.Config.SOUND_ENABLE, value);
+        AudioManager.instance.updateBackgroundMusic();
     }
 
     public void setMusicEnabled(boolean value) {
         rootObject.put(Constants.Config.MUSIC_ENABLE, value);
+        AudioManager.instance.updateBackgroundMusic();
     }
 
     public void setDebugScreenLayoutEnabled(boolean value) {

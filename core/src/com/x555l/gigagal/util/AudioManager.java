@@ -1,16 +1,40 @@
 package com.x555l.gigagal.util;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 
 
 public class AudioManager {
-
     // singleton
     public static final AudioManager instance = new AudioManager();
+    private Music bgMusic = Assets.instance.audio.background;
 
     // ensure singleton
     private AudioManager() {
+    }
+
+    public void playBackgroundMusic() {
+        if (Configs.instance.isMusicEnabled()) {
+            if (!bgMusic.isPlaying()) {
+                bgMusic.play();
+                bgMusic.setLooping(true);
+            }
+            bgMusic.setVolume(Configs.instance.getMusicVolume());
+        }
+    }
+
+    public void stopBackgroundMusic() {
+        Music bgMusic = Assets.instance.audio.background;
+        if (bgMusic.isPlaying())
+            bgMusic.stop();
+    }
+
+    public void updateBackgroundMusic() {
+        if (!Configs.instance.isMusicEnabled())
+            stopBackgroundMusic();
+        else
+            playBackgroundMusic();
     }
 
     private void play(Sound sound) {
