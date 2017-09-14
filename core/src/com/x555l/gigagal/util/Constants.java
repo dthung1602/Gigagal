@@ -25,6 +25,7 @@ public class Constants {
      */
     public static class GameWorld {
         public static final int GAME_WORLD_SIZE = 256;
+        public static final int STAGE_WORLD_SIZE = 256;
         public static final float DEATH_DEPTH = -150;
         public static final float GRAVITY = 1024;
         public static final Color BACKGROUND_COLOR = Color.SKY;

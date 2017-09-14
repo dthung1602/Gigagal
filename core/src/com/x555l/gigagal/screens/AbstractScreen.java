@@ -3,6 +3,7 @@ package com.x555l.gigagal.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -24,13 +25,15 @@ import com.x555l.gigagal.util.Constants;
 
 abstract class AbstractScreen implements Screen {
     Game game;
-    Skin skin;
+    Skin skin = Assets.instance.skin;
 
-    private Stage stage;
+    Stage stage;
     private float worldSize;
 
+    AbstractScreen() {
+    }
+
     AbstractScreen(Game game, float worldSize) {
-        this.skin = Assets.instance.skin;
         this.game = game;
         this.worldSize = worldSize;
     }
@@ -65,7 +68,10 @@ abstract class AbstractScreen implements Screen {
     @Override
     public void show() {
         // new stage
-        stage = new Stage(new ExtendViewport(worldSize, worldSize));
+        stage = new Stage(
+                new ExtendViewport(worldSize, worldSize),
+                new SpriteBatch()
+        );
         stage.setDebugAll(Configs.instance.isDebugScreenLayoutEnabled());
         Gdx.input.setInputProcessor(stage);
 
@@ -81,7 +87,8 @@ abstract class AbstractScreen implements Screen {
     /**
      * Add layers to the screen by this method
      */
-    abstract void createLayers(Stack stack);
+    void createLayers(Stack stack) {
+    }
 
     /**
      * Create a layer that has only a back to main menu button at top left of the screen
