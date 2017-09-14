@@ -3,6 +3,7 @@ package com.x555l.gigagal.entities.bonus;
 import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.entities.GigaGal;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.AudioManager;
 import com.x555l.gigagal.util.Constants;
 
 
@@ -14,6 +15,7 @@ public class BonusLife extends Bonus {
 
     @Override
     public void performAction(GigaGal gigaGal) {
+        AudioManager.instance.bonusLifeSound();
         if (gigaGal.life < Constants.Gigagal.MAX_LIFE)
             gigaGal.life++;
     }

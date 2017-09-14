@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -34,10 +36,9 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExitPortalAssets exitPortal;
     public OnscreenControlAssets onscreenControl;
 
-
     public BackgroundAssets background;
-
     public Skin skin;
+    public AudioAssets audio;
 
     // ensure singleton
     private Assets() {
@@ -50,12 +51,14 @@ public class Assets implements Disposable, AssetErrorListener {
         assetManager.load(Constants.Asset.GIGAGAL_ATLAS, TextureAtlas.class);
         assetManager.load(Constants.Asset.BACKGROUND_ATLAS, TextureAtlas.class);
         assetManager.load(Constants.Asset.SKIN, Skin.class);
+        loadAudio(assetManager);
         assetManager.finishLoading();
 
         TextureAtlas gigagalAtlas = assetManager.get(Constants.Asset.GIGAGAL_ATLAS);
         TextureAtlas backgroundAtlas = assetManager.get(Constants.Asset.BACKGROUND_ATLAS);
 
         skin = assetManager.get(Constants.Asset.SKIN);
+        audio = new AudioAssets(assetManager);
 
         try {
             gigagal = new GigaGalAssets(gigagalAtlas);
@@ -70,6 +73,18 @@ public class Assets implements Disposable, AssetErrorListener {
         } catch (AssetsContainer.AtlasRegionNotFound ex) {
             Util.exitWithError(TAG, ex);
         }
+    }
+
+    /**
+     * Add sound and music files for asset manager to load
+     */
+    private void loadAudio(AssetManager assetManager) {
+        // load sounds
+        for (String file : Constants.Asset.SOUND_FILES) {
+            assetManager.load(file, Sound.class);
+        }
+        // load music
+        assetManager.load(Constants.Asset.AUDIO_BACKGROUND, Music.class);
     }
 
     @Override
@@ -319,6 +334,48 @@ public class Assets implements Disposable, AssetErrorListener {
             selectLevel = findRegion(atlas, Constants.Asset.BG_SELECT_LEVEL);
             setting = findRegion(atlas, Constants.Asset.BG_SETTING);
             overlay = findRegion(atlas, Constants.Asset.BG_OVERLAY);
+        }
+    }
+
+    public class AudioAssets {
+
+        public Music background;
+
+        public Sound bonusBullet;
+        public Sound bonusHealth;
+        public Sound bonusLife;
+
+        public Sound bulletShoot;
+        public Sound bulletHit;
+        public Sound explosion;
+
+        public Sound jump;
+        public Sound land;
+
+        public Sound enemyLaser;
+        public Sound enemyPlasma;
+
+        AudioAssets(AssetManager assetManager) {
+            try {
+                background = assetManager.get(Constants.Asset.AUDIO_BACKGROUND, Music.class);
+
+                bonusBullet = assetManager.get(Constants.Asset.AUDIO_BONUS_BULLET, Sound.class);
+                bonusHealth = assetManager.get(Constants.Asset.AUDIO_BONUS_HEALTH, Sound.class);
+                bonusLife = assetManager.get(Constants.Asset.AUDIO_BONUS_LIFE, Sound.class);
+
+                bulletShoot = assetManager.get(Constants.Asset.AUDIO_BULLET_SHOOT, Sound.class);
+                bulletHit = assetManager.get(Constants.Asset.AUDIO_BULLET_HIT, Sound.class);
+                explosion = assetManager.get(Constants.Asset.AUDIO_EXPLOSION, Sound.class);
+
+                jump = assetManager.get(Constants.Asset.AUDIO_JUMP, Sound.class);
+                land = assetManager.get(Constants.Asset.AUDIO_LAND, Sound.class);
+
+                enemyLaser = assetManager.get(Constants.Asset.AUDIO_ENEMY_LASER, Sound.class);
+                enemyPlasma = assetManager.get(Constants.Asset.AUDIO_ENEMY_PLASMA, Sound.class);
+
+            } catch (Exception ex) {
+                Util.exitWithError(TAG, ex);
+            }
         }
     }
 }

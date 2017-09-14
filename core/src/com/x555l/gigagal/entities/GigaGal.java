@@ -12,6 +12,7 @@ import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.inputProcessors.InputProcessor;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.AudioManager;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
 import com.x555l.gigagal.util.Enum.JumpState;
@@ -421,6 +422,7 @@ public class GigaGal {
             shootLastTime = TimeUtils.nanoTime();
             bullet--;
 
+            AudioManager.instance.shootSound();
             level.getBullets().add(new GigagalBullet(
                     position.x + Constants.Gigagal.GUN_POSITION.x * ((facing == Facing.LEFT) ? -1 : 1),
                     position.y + Constants.Gigagal.GUN_POSITION.y,
@@ -447,6 +449,7 @@ public class GigaGal {
     }
 
     private void knockBack(Bullet bullet) {
+
         if (jumpState != JumpState.KNOCK_BACK) {
             if (!loseHealth(bullet.damage)) return;
             jumpState = JumpState.KNOCK_BACK;

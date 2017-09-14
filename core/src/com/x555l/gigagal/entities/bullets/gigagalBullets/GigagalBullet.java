@@ -6,6 +6,7 @@ import com.x555l.gigagal.entities.bullets.Bullet;
 import com.x555l.gigagal.entities.enemies.Enemy;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.AudioManager;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Enum.Facing;
 
@@ -49,6 +50,7 @@ public class GigagalBullet extends Bullet {
         for (Enemy enemy : level.getEnemies()) {
             if (enemy.boundary.hitByBullet(position)) {
                 enemy.health -= damage;
+                AudioManager.instance.hitEnemySound();
                 level.getExplosions().add(new Explosion(position, false));
                 active = false;
                 return;

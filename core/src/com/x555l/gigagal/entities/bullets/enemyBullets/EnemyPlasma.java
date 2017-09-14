@@ -3,6 +3,7 @@ package com.x555l.gigagal.entities.bullets.enemyBullets;
 import com.badlogic.gdx.math.Vector2;
 import com.x555l.gigagal.level.Level;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.AudioManager;
 import com.x555l.gigagal.util.Constants;
 
 public class EnemyPlasma extends EnemyBullet {
@@ -18,5 +19,6 @@ public class EnemyPlasma extends EnemyBullet {
                 Assets.instance.bullet.enemyPlasma,
                 level
         );
+        AudioManager.instance.enemyPlasmaSound();
     }
 }

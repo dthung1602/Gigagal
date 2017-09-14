@@ -114,6 +114,31 @@ public class Constants {
         static final String BG_SELECT_LEVEL = "select-level";
         static final String BG_SETTING = "setting";
         static final String BG_OVERLAY = "overlay";
+
+        // audio
+        static final String AUDIO_BACKGROUND = "audio/background.mp3";
+        static final String AUDIO_BONUS_BULLET = "audio/bonus-bullet.mp3";
+        static final String AUDIO_BONUS_HEALTH = "audio/bonus-health.wav";
+        static final String AUDIO_BONUS_LIFE = "audio/bonus-life.wav";
+        static final String AUDIO_BULLET_SHOOT = "audio/bullet-shoot.mp3";
+        static final String AUDIO_BULLET_HIT = "audio/bullet-hit.wav";
+        static final String AUDIO_EXPLOSION = "audio/explosion.mp3";
+        static final String AUDIO_JUMP = "audio/jump.wav";
+        static final String AUDIO_LAND = "audio/land.mp3";
+        static final String AUDIO_ENEMY_LASER = "audio/laser.mp3";
+        static final String AUDIO_ENEMY_PLASMA = "audio/plasma.mp3";
+        static final String[] SOUND_FILES = new String[]{
+                AUDIO_BONUS_BULLET,
+                AUDIO_BONUS_HEALTH,
+                AUDIO_BONUS_LIFE,
+                AUDIO_BULLET_SHOOT,
+                AUDIO_BULLET_HIT,
+                AUDIO_EXPLOSION,
+                AUDIO_JUMP,
+                AUDIO_LAND,
+                AUDIO_ENEMY_LASER,
+                AUDIO_ENEMY_PLASMA
+        };
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.x555l.gigagal.entities.enemies;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.entities.Platform;
@@ -64,8 +65,8 @@ public class GuardEnemy extends PatrolPlatformEnemy {
 
     private void createRandomStop() {
         lastTimeStop = TimeUtils.nanoTime();
-        nextStop = Util.randomFloat(Constants.Enemy.GUARD_ENEMY_NEXT_STOP_MIN, Constants.Enemy.GUARD_ENEMY_NEXT_STOP_MAX);
-        stopTime = Util.randomFloat(Constants.Enemy.GUARD_ENEMY_STOP_TIME_MIN, Constants.Enemy.GUARD_ENEMY_STOP_TIME_MAX);
+        nextStop = MathUtils.random(Constants.Enemy.GUARD_ENEMY_NEXT_STOP_MIN, Constants.Enemy.GUARD_ENEMY_NEXT_STOP_MAX);
+        stopTime = MathUtils.random(Constants.Enemy.GUARD_ENEMY_STOP_TIME_MIN, Constants.Enemy.GUARD_ENEMY_STOP_TIME_MAX);
     }
 
     @Override

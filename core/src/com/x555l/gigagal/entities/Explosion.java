@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.x555l.gigagal.util.Assets;
+import com.x555l.gigagal.util.AudioManager;
 import com.x555l.gigagal.util.Constants;
 import com.x555l.gigagal.util.Util;
 
@@ -23,6 +24,7 @@ public class Explosion {
         explosionStartTime = TimeUtils.nanoTime();
         delayTime = 0;
         finished = false;
+        AudioManager.instance.explosionSound();
     }
 
     public void render(SpriteBatch batch) {
