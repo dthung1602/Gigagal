@@ -24,13 +24,13 @@ public class AudioManager {
         }
     }
 
-    public void stopBackgroundMusic() {
+    private void stopBackgroundMusic() {
         Music bgMusic = Assets.instance.audio.background;
         if (bgMusic.isPlaying())
             bgMusic.stop();
     }
 
-    public void updateBackgroundMusic() {
+    void updateBackgroundMusic() {
         if (!Configs.instance.isMusicEnabled())
             stopBackgroundMusic();
         else

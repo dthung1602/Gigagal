@@ -21,7 +21,7 @@ SCREENS
         - Setting
         #- Restart level >> ask for confirmation
 
-AUDIO
+# AUDIO
 
 #CHARACTER
     # up arrow key: face up (ready to shoot up)
@@ -36,7 +36,7 @@ ENEMY
     # Basic (done)
     # Fast (can detect when character land on its platform)
     # Strong (high health)
-    Shoot (can shoot bullet)
+    # Shoot (can shoot bullet)
 
     # Flying ?
 
